@@ -1,0 +1,17 @@
+[user]
+    name = kgn
+    email = kgn@one.com
+[core]
+    editor = vim
+[alias]
+    st = status
+    co = checkout
+    br = branch
+    up = rebase
+    ci = commit
+    logwhat = log --name-status
+    jdiff = !echo '*.json diff=json' | git -c 'core.attributesfile=/dev/stdin' -c 'diff.json.textconv=python -m json.tool' diff
+[log]
+    decorate = true
+[push]
+    default = simple
