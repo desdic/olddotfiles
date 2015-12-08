@@ -36,6 +36,7 @@ case $(uname -s) in
         alias newlinecomma='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/,/g'\'
         alias newlinespace='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/\ /g'\'
         alias ls='/bin/ls -FGh'
+        source .githubhomebrewapi
         ;;
     'Linux')
         alias ls='/bin/ls -F --color=auto'
@@ -46,7 +47,6 @@ export GIT_AUTHOR_NAME="Kim Nielsen"
 export GIT_AUTHOR_EMAIL=kgn@one.com
 export GIT_COMMITTER_NAME="${GIT_AUTHOR_NAME}"
 export GIT_COMMITTER_EMAIL="${GIT_AUTHOR_EMAIL}"
-export HOMEBREW_GITHUB_API_TOKEN=""
 export EDITOR=vim
 export ONECOMID=kgn
 export LC_CTYPE=en_US.UTF-8
