@@ -29,13 +29,14 @@ else
     RPROMPT=' %{$fg_bold[green]%}%(1j.%j.)%{$reset_color%}'
 fi
 
+alias newlinestring='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/\\n/g'\'
+alias newlinecomma='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/,/g'\'
+alias newlinespace='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/\ /g'\'
+
 case $(uname -s) in
     'Darwin')
         # OSX does not use gnu sed
-        alias newlinestring='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/\\n/g'\'
-        alias newlinecomma='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/,/g'\'
-        alias newlinespace='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/\ /g'\'
-        alias ls='/bin/ls -FGh'
+       alias ls='/bin/ls -FGh'
         if [ -f ~/.githubhomebrewapi ]; then
             source ~/.githubhomebrewapi
         fi
