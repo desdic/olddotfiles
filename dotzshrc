@@ -60,7 +60,6 @@ if [ -x "$(which vim)" ]; then
     export EDITOR="$(which vim)"
     export VISUAL="${EDITOR}"
     export FCEDIT="${EDITOR}"
-    export VIM="${HOME}/.vim"
     alias vi="${EDITOR}"
     alias nvi="/usr/bin/vi"
     alias view="${EDITOR} -M"

@@ -9,6 +9,9 @@ set listchars=tab:→·,trail:·
 set modeline
 set modelines=5
 set cursorline
+set nocompatible
+set autowrite
+set showmode
 
 " Enable status line always
 set laststatus=2
