@@ -36,7 +36,9 @@ case $(uname -s) in
         alias newlinecomma='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/,/g'\'
         alias newlinespace='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/\ /g'\'
         alias ls='/bin/ls -FGh'
-        source ~/.githubhomebrewapi
+        if [ -f ~/.githubhomebrewapi ]; then
+            source ~/.githubhomebrewapi
+        fi
         ;;
     'Linux')
         alias ls='/bin/ls -F --color=auto'
