@@ -17,16 +17,16 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:
 # Status of background processes %(1j.%j.)
 # Full path %~
 
-PROMPT="%(?:%{$reset_color%}:%{$fg_bold[red]%}✗ %s)%{$fg[red]%}%{$reset_color%}%n@%m %{$fg[cyan]%}%~%{$reset_color%}\$ "
+export PROMPT="%(?:%{$reset_color%}:%{$fg_bold[red]%}✗ %s)%{$fg[red]%}%{$reset_color%}%n@%m %{$fg[cyan]%}%~%{$reset_color%}\$ "
 
 if [ -f ~/.git-prompt.sh ]; then
     # Use git-prompt
     source ~/.git-prompt.sh
     setopt PROMPT_SUBST
     export GIT_PS1_SHOWDIRTYSTATE=1
-    RPROMPT="%{$fg[red]%}$(__git_ps1 "(%s)") %{$fg_bold[green]%}%(1j.%j.)%{$reset_color%}"
+    export RPROMPT='%{$fg[red]%}$(__git_ps1 "(%s)") %{$fg_bold[green]%}%(1j.%j.)%{$reset_color%}'
 else
-    RPROMPT=" %{$fg_bold[green]%}%(1j.%j.)%{$reset_color%}"
+    RPROMPT=' %{$fg_bold[green]%}%(1j.%j.)%{$reset_color%}'
 fi
 
 case $(uname -s) in
