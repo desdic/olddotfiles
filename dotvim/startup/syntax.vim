@@ -1,5 +1,5 @@
 syntax on
-"colorscheme cabin
+colorscheme kgn
 filetype plugin indent on
 
 
