@@ -21,29 +21,34 @@ set laststatus=2
 
 function! Mode()
     redraw
-    redrawstatus!
     let l:mode = mode()
-    if     mode ==# 'n'  | exec 'hi User4 ctermbg=108 ctermfg=254' | return 'NORMAL '
-    elseif mode ==# 'i'  | exec 'hi User4 ctermbg=9   ctermfg=254' | return 'INSERT '
-    elseif mode ==# 'R'  | exec 'hi User4 ctermbg=108 ctermfg=254' | return 'REPLACE'
-    elseif mode ==# 'v'  | exec 'hi User4 ctermbg=13  ctermfg=254' | return 'VISUAL '
-    elseif mode ==# 'V'  | exec 'hi User4 ctermbg=108 ctermfg=254' | return 'VLINE  '
-    elseif mode ==# ''   | exec 'hi User4 ctermbg=108 ctermfg=254' | return 'VBLOCK '
-    else                 | exec 'hi User4 ctermbg=11  ctermfg=254' | return 'BLOCK  '
-"    else                 | return l:mode
+    if     mode ==# 'n'         | exec 'hi User4 ctermbg=108 ctermfg=254' | return 'NORMAL'
+    elseif mode ==# 'i'         | exec 'hi User4 ctermbg=9   ctermfg=254' | return 'INSERT'
+    elseif mode ==# 'R'         | exec 'hi User4 ctermbg=9   ctermfg=254' | return 'REPLACE'
+    elseif mode ==# 'v'         | exec 'hi User4 ctermbg=13  ctermfg=254' | return 'VISUAL'
+    elseif mode ==# 'V'         | exec 'hi User4 ctermbg=108 ctermfg=254' | return 'V-LINE'
+    elseif mode ==# ''        | exec 'hi User4 ctermbg=108 ctermfg=254' | return 'V-BLOCK'
+    elseif mode ==# ''        | exec 'hi User4 ctermbg=108 ctermfg=254' | return 'S-BLOCK'
+    elseif mode ==# 'S'         | exec 'hi User4 ctermbg=108 ctermfg=254' | return 'S-LINE'
+    elseif mode ==# 's'         | exec 'hi User4 ctermbg=108 ctermfg=254' | return 'SELECT'
+    else                        | return l:mode
     endif
 endfunc
 
 set statusline=
-set statusline+=%4*%10{Mode()}
-set statusline+=%1*\ %F                                     " filename
-set statusline+=%1*\ \[%n/%{bufnr('$')}]\                   " buffer number / number of buffers
-set statusline+=%1*\ %h%m%r%y%w                             " status flags
-set statusline+=%1*[%{strlen(&fenc)?&fenc:'none'},%{&ff}]   " file type
-set statusline+=%1*%=                                       " right align remainder
+set statusline+=%4*%10{Mode()}\                             " Show mode
+set statusline+=%1*\ %.60F                                  " filename
+set statusline+=\ \[%n/%{bufnr('$')}]\                      " buffer number / number of buffers
+set statusline+=\ %h
+set statusline+=%m                                          " Modified
+set statusline+=%r                                          " Readonly
+set statusline+=%y                                          " Filetype
+set statusline+=%w
+set statusline+=\ [%{strlen(&fenc)?&fenc:'none'},%{&ff}]      " file type
+set statusline+=%=                                          " right align remainder
 set statusline+=\ %=row:(%l,%c)/%L\ (%p%%)\                 " line, character
-set statusline+=%1*hex:0x%B                                 " character value
-set statusline+=%1*\ %<%P                                   " file position
+set statusline+=hex:0x%B                                    " character value
+set statusline+=\ %<%P                                      " file position
 
 set tabstop=4 shiftwidth=4 expandtab
 
