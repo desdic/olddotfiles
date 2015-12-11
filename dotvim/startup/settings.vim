@@ -37,7 +37,7 @@ endfunc
 
 set statusline=
 set statusline+=%2*%8{Mode()}\                              " Show mode
-set statusline+=%1*\ %.60F                                  " filename
+set statusline+=%1*\ \[%0.30t]                              " filename
 set statusline+=\ \[%n/%{bufnr('$')}]\                      " buffer number / number of buffers
 set statusline+=\ %h
 set statusline+=%m                                          " Modified
