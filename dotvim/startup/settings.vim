@@ -22,21 +22,21 @@ set laststatus=2
 function! Mode()
     redraw
     let l:mode = mode()
-    if     mode ==# 'n'         | exec 'hi User4 ctermbg=108 ctermfg=254' | return 'NORMAL'
-    elseif mode ==# 'i'         | exec 'hi User4 ctermbg=9   ctermfg=254' | return 'INSERT'
-    elseif mode ==# 'R'         | exec 'hi User4 ctermbg=9   ctermfg=254' | return 'REPLACE'
-    elseif mode ==# 'v'         | exec 'hi User4 ctermbg=13  ctermfg=254' | return 'VISUAL'
-    elseif mode ==# 'V'         | exec 'hi User4 ctermbg=108 ctermfg=254' | return 'V-LINE'
-    elseif mode ==# ''        | exec 'hi User4 ctermbg=108 ctermfg=254' | return 'V-BLOCK'
-    elseif mode ==# ''        | exec 'hi User4 ctermbg=108 ctermfg=254' | return 'S-BLOCK'
-    elseif mode ==# 'S'         | exec 'hi User4 ctermbg=108 ctermfg=254' | return 'S-LINE'
-    elseif mode ==# 's'         | exec 'hi User4 ctermbg=108 ctermfg=254' | return 'SELECT'
+    if     mode ==# 'n'         | exec 'hi User2 '.g:StatusLine_color_normal  | return 'NORMAL'
+    elseif mode ==# 'i'         | exec 'hi User2 '.g:StatusLine_color_insert  | return 'INSERT'
+    elseif mode ==# 'R'         | exec 'hi User2 '.g:StatusLine_color_replace | return 'REPLACE'
+    elseif mode ==# 'v'         | exec 'hi User2 '.g:StatusLine_color_visual  | return 'VISUAL'
+    elseif mode ==# 'V'         | exec 'hi User2 '.g:StatusLine_color_vline   | return 'V-LINE'
+    elseif mode ==# ''        | exec 'hi User2 '.g:StatusLine_color_vblock  | return 'V-BLOCK'
+    elseif mode ==# ''        | exec 'hi User2 '.g:StatusLine_color_sblock  | return 'S-BLOCK'
+    elseif mode ==# 'S'         | exec 'hi User2 '.g:StatusLine_color_sline   | return 'S-LINE'
+    elseif mode ==# 's'         | exec 'hi User2 '.g:StatusLine_color_select  | return 'SELECT'
     else                        | return l:mode
     endif
 endfunc
 
 set statusline=
-set statusline+=%4*%8{Mode()}\                              " Show mode
+set statusline+=%2*%8{Mode()}\                              " Show mode
 set statusline+=%1*\ %.60F                                  " filename
 set statusline+=\ \[%n/%{bufnr('$')}]\                      " buffer number / number of buffers
 set statusline+=\ %h
