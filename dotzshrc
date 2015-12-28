@@ -24,10 +24,12 @@ if [ -f ~/.git-prompt.sh ]; then
     source ~/.git-prompt.sh
     setopt PROMPT_SUBST
     export GIT_PS1_SHOWDIRTYSTATE=1
-    export RPROMPT="%{$fg[red]%}$(__git_ps1 "(%s)") %{$fg_bold[green]%}%(1j.%j.)%{$reset_color%}"
+    RPROMPT='%{$fg[red]%}$(__git_ps1 "(%s)") %{$fg_bold[green]%}%(1j.%j.)%{$reset_color%}'
 else
     RPROMPT=" %{$fg_bold[green]%}%(1j.%j.)%{$reset_color%}"
 fi
+
+export RPROMPT
 
 PATH=""
 for dir in ${HOME}/bin /usr/local/MacGPG2/bin /{sbin,bin} /usr/{sbin,bin} /usr/local/{sbin,bin}
