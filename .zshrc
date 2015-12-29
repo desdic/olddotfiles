@@ -81,3 +81,11 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=5000
 export SAVEHIST=5000
 
+# Keyboard bindings
+bindkey -e
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+bindkey "^[[3~" delete-char
+bindkey "^[^[[D" backward-word
+bindkey "^[^[[C" forward-word
+
