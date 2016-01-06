@@ -17,7 +17,20 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:
 # Status of background processes %(1j.%j.)
 # Full path %~
 
-export PROMPT="%(?:%{$reset_color%}:%{$fg_bold[red]%}✗ %s)%{$fg[red]%}%{$reset_color%}%n@%m %{$fg[cyan]%}%~%{$reset_color%}\$ "
+if [ $(id -u) -eq 0 ]; then
+    # Root terminal
+    HOST_COLOR=red
+else
+    if [ "$SSH_TTY" ]; then
+        # Non-local terminal
+        HOST_COLOR=yellow
+    else
+        # Local terminal
+        HOST_COLOR=green
+    fi
+fi
+
+export PROMPT="%(?:%{$reset_color%}:%{$fg_bold[red]%}✗ %s)%{$fg[red]%}%{$reset_color%}%{$fg[${HOST_COLOR}]%}%n@%m %{$fg[cyan]%}%~%{$reset_color%}\$ "
 
 if [ -f ~/.git-prompt.sh ]; then
     # Use git-prompt
