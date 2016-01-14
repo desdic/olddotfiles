@@ -12,6 +12,7 @@ setopt hist_ignore_space
 setopt no_hist_beep
 setopt hist_save_no_dups
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' menu select
 
 # Status of exit code %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}✗ %s)
 # Status of background processes %(1j.%j.)
