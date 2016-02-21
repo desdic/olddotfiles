@@ -15,6 +15,7 @@ set showmode
 set noshowmode
 set noerrorbells
 set novisualbell
+set synmaxcol=200
 
 " Enable status line always
 set laststatus=2
