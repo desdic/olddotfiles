@@ -16,6 +16,8 @@ set noshowmode
 set noerrorbells
 set novisualbell
 set synmaxcol=200
+set scrolljump=5
+set lazyredraw
 
 " Enable status line always
 set laststatus=2
@@ -92,5 +94,6 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 autocmd VimEnter * :call AfterOpen()
+autocmd BufEnter * :syn sync maxlines=200
 
 
