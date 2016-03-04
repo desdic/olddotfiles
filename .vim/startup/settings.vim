@@ -18,40 +18,10 @@ set novisualbell
 set synmaxcol=200
 set scrolljump=5
 set lazyredraw
+set hidden
 
 " Enable status line always
 set laststatus=2
-
-function! Mode()
-    redraw
-    let l:mode = mode()
-    if     mode ==# 'n'         | exec 'hi User2 '.g:StatusLine_color_normal  | return 'NORMAL'
-    elseif mode ==# 'i'         | exec 'hi User2 '.g:StatusLine_color_insert  | return 'INSERT'
-    elseif mode ==# 'R'         | exec 'hi User2 '.g:StatusLine_color_replace | return 'REPLACE'
-    elseif mode ==# 'v'         | exec 'hi User2 '.g:StatusLine_color_visual  | return 'VISUAL'
-    elseif mode ==# 'V'         | exec 'hi User2 '.g:StatusLine_color_vline   | return 'V-LINE'
-    elseif mode ==# ''        | exec 'hi User2 '.g:StatusLine_color_vblock  | return 'V-BLOCK'
-    elseif mode ==# ''        | exec 'hi User2 '.g:StatusLine_color_sblock  | return 'S-BLOCK'
-    elseif mode ==# 'S'         | exec 'hi User2 '.g:StatusLine_color_sline   | return 'S-LINE'
-    elseif mode ==# 's'         | exec 'hi User2 '.g:StatusLine_color_select  | return 'SELECT'
-    else                        | return l:mode
-    endif
-endfunc
-
-set statusline=
-set statusline+=%2*%8{Mode()}\                              " Show mode
-set statusline+=%1*\ \[%0.30t]                              " filename
-set statusline+=\ \[%n/%{bufnr('$')}]\                      " buffer number / number of buffers
-set statusline+=\ %h
-set statusline+=%m                                          " Modified
-set statusline+=%r                                          " Readonly
-set statusline+=%y                                          " Filetype
-set statusline+=%w
-set statusline+=\ [%{strlen(&fenc)?&fenc:'none'},%{&ff}]      " file type
-set statusline+=%=                                          " right align remainder
-set statusline+=\ %=row:(%l,%c)/%L\ (%p%%)\                 " line, character
-set statusline+=hex:0x%B                                    " character value
-set statusline+=\ %<%P                                      " file position
 
 set tabstop=4 shiftwidth=4 expandtab
 
@@ -70,7 +40,7 @@ let g:syntastic_python_checkers = ['python', 'pylint']
 let g:syntastic_perl_checkers = ['perl']
 
 if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
+    let g:airline_symbols = {}
 endif
 
 let g:airline_left_sep = ''
@@ -78,6 +48,14 @@ let g:airline_right_sep = ''
 let g:airline_symbols.linenr = '¶'
 let g:airline_symbols.branch = '⎇'
 let g:airline_symbols.paste = 'Þ'
+" Enable buffer tabs
+let g:airline#extensions#tabline#enabled =  1
+" Only show tabs if we have more than one file open
+let g:airline#extensions#tabline#buffer_min_count = 2
+let g:airline#extensions#tabline#left_sep = '|'
+let g:airline#extensions#tabline#left_alt_sep = '|'
+" Show hex value of char
+let g:airline_section_y = 'hex:0x%B'
 
 highlight SpecialKey ctermfg=19
 highlight CursorLine cterm=NONE ctermbg=17
