@@ -31,7 +31,7 @@ else
     fi
 fi
 
-export PROMPT="%(?:%{$reset_color%}:%{$fg_bold[red]%}✗ %s)%{$fg[red]%}%{$reset_color%}%{$fg[${HOST_COLOR}]%}%n@%m %{$fg[cyan]%}%~%{$reset_color%}\$ "
+export PROMPT="%(?:%{$reset_color%}:%{$fg_bold[red]%}✗ %s)%{$fg[red]%}%{$reset_color%}%{$fg[${HOST_COLOR}]%}%n@%m %{$fg[cyan]%}%1~%{$reset_color%}\$ "
 
 if [ -f ~/.git-prompt.sh ]; then
     # Use git-prompt
@@ -57,8 +57,11 @@ alias newlinecomma='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/,
 alias newlinespace='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/\ /g'\'
 
 case $(uname -s) in
-    'Linux'|'Darwin')
-        # Less Colors for Man Pages
+   'Darwin')
+        alias ls='/bin/ls -FGh'
+        if [ -f ~/.githubhomebrewapi ]; then
+            source ~/.githubhomebrewapi
+        fi
         export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
         export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
         export LESS_TERMCAP_me=$'\E[0m'           # end mode
@@ -66,16 +69,19 @@ case $(uname -s) in
         export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
         export LESS_TERMCAP_ue=$'\E[0m'           # end underline
         export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
-        ;;
-    'Darwin')
-        alias ls='/bin/ls -FGh'
-        if [ -f ~/.githubhomebrewapi ]; then
-            source ~/.githubhomebrewapi
-        fi
+        [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
         ;;
     'Linux')
         alias ls='/bin/ls -F --color=auto'
         alias dchi='dch --no-auto-nmu -i'
+        export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
+        export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
+        export LESS_TERMCAP_me=$'\E[0m'           # end mode
+        export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
+        export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
+        export LESS_TERMCAP_ue=$'\E[0m'           # end underline
+        export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
+        [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
         ;;
 esac
 
@@ -112,4 +118,22 @@ bindkey "^[[3~" delete-char
 bindkey "^[^[[D" backward-word
 bindkey "^[^[[C" forward-word
 bindkey '^w' backward-delete-word
+
+export TERMINAL='xterm -fg PapayaWhip -fg "rgb:00/80/00" -bg "rgb:00/00/00"'
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+case "$(hostname)" in
+    'horus.insecurity.dk')
+        eval $(ssh-agent) > /dev/null
+        ;;
+esac
+
+if [ -f ~/dircolors ]; then
+    eval $(dircolors ~/dircolors)
+fi
+
+eval $(keychain  --eval id_rsa)
+eval $(keychain  --noask --timeout 30 --eval AB222CB2)
+
 
