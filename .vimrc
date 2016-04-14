@@ -7,6 +7,7 @@ source ~/.vim/startup/functions.vim
 source ~/.vim/startup/json.vim
 source ~/.vim/startup/yaml.vim
 source ~/.vim/startup/python.vim
+source ~/.vim/startup/ruby.vim
 source ~/.vim/startup/go.vim
 source ~/.vim/startup/markdown.vim
 source ~/.vim/startup/otherfiles.vim
