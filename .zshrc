@@ -46,7 +46,7 @@ fi
 export RPROMPT
 
 PATH=""
-for dir in ${HOME}/bin /usr/local/MacGPG2/bin /{sbin,bin} /usr/{sbin,bin} /usr/local/{sbin,bin} /Library/Ruby/Gems/2.0.0/gems/librarian-chef-0.0.4/bin
+for dir in ${HOME}/bin /usr/local/MacGPG2/bin /{sbin,bin} /usr/{sbin,bin} /usr/local/{sbin,bin} /Library/Ruby/Gems/2.0.0/gems/librarian-chef-0.0.4/bin /usr/bin/core_perl
 do
     [ -d "${dir}" ] && PATH="${dir}:${PATH}"
 done

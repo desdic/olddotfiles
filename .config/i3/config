@@ -191,6 +191,10 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 bindsym XF86KbdBrightnessUp exec sudo /usr/local/bin/kbd_backlight.sh up
 bindsym XF86KbdBrightnessDown exec sudo /usr/local/bin/kbd_backlight.sh down
 bindsym XF86LaunchA exec ~/bin/toggletrackpad.sh
+bindsym XF86AudioPlay exec /usr/bin/amarok --play-pause
+bindsym XF86AudioPause exec /usr/bin/amarok --pause
+bindsym XF86AudioNext exec /usr/bin/amarok --next
+bindsym XF86AudioPrev exec /usr/bin/amarok --previous
 
 bindsym $mod+F3 exec ~/.screenlayout/work.sh
 bindsym $mod+F5 exec /usr/bin/pavucontrol
@@ -203,13 +207,11 @@ bindsym $mod+Shift+x exec /usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.
 # Program Workspaces
 assign [class="chromium"]      $workspace1
 assign [class="Firefox"]       $workspace2
-assign [class="Pidgin"]        $workspace3
 assign [class="Thunderbird"]   $workspace4
-assign [class="Rhythmbox"]     $workspace5
-assign [class="banshee"]       $workspace5
+assign [class="Amarok"]        $workspace5
 
 exec sudo /usr/local/bin/kbd_backlight.sh total
 exec /usr/bin/setxkbmap dk
 exec xset r rate 200 30
 exec ~/.screenlayout/work.sh
-
+exec /usr/bin/xautolock -time 15 -locker '/usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png' &
