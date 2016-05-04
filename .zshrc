@@ -133,7 +133,9 @@ if [ -f ~/dircolors ]; then
     eval $(dircolors ~/dircolors)
 fi
 
-eval $(keychain  --eval id_rsa)
-eval $(keychain  --noask --timeout 30 --eval AB222CB2)
+if [ -x /usr/bin/keychain ]; then
+    eval $(keychain --eval id_rsa)
+    eval $(keychain --noask --timeout 30 --eval AB222CB2)
+fi
 
 
