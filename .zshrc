@@ -73,6 +73,8 @@ case $(uname -s) in
         ;;
     'Linux')
         alias ls='/bin/ls -F --color=auto'
+        alias grep='/usr/bin/grep --color=auto'
+        alias egrep='/usr/bin/egrep --color=auto'
         alias dchi='dch --no-auto-nmu -i'
         export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
         export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
@@ -129,8 +131,8 @@ case "$(hostname)" in
         ;;
 esac
 
-if [ -f ~/dircolors ]; then
-    eval $(dircolors ~/dircolors)
+if [ -f ~/.dircolors ]; then
+    eval $(dircolors ~/.dircolors)
 fi
 
 if [ -x /usr/bin/keychain ]; then
