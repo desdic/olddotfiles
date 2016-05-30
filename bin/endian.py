@@ -12,7 +12,7 @@ l = len(addr)
 p = 0
 
 if l > 32:
-    print ("Larget than 128bit not supported")
+    print ("Larger than 128bit not supported")
     sys.exit(1)
 if l > 16:
     p = 32
