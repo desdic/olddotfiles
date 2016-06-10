@@ -131,13 +131,15 @@ case "$(hostname)" in
         ;;
 esac
 
-if [ -f ~/.dircolors ]; then
-    eval $(dircolors ~/.dircolors)
+if [ -f ~/.config/.dircolors ]; then
+    eval $(dircolors ~/.config/.dircolors)
 fi
 
 if [ -x /usr/bin/keychain ]; then
-    eval $(keychain --eval id_rsa)
-    eval $(keychain --noask --timeout 30 --eval AB222CB2)
+    eval $(keychain -q --eval id_rsa)
+    eval $(keychain -q --noask --timeout 30 --eval AB222CB2)
 fi
 
-
+if [ -x /usr/bin/task ]; then
+    /usr/bin/task +Work
+fi
