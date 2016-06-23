@@ -1,16 +1,21 @@
 [user]
-    name = kgn
+    name = Kim Gert Nielsen
     email = kgn@one.com
 [core]
     editor = vim
 [alias]
-    st = status
-    co = checkout
     br = branch
-    up = rebase
     ci = commit
-    logwhat = log --name-status
+    co = checkout
+    resetdb = reset --soft HEAD
+    fa = fetch --all
     jdiff = !echo '*.json diff=json' | git -c 'core.attributesfile=/dev/stdin' -c 'diff.json.textconv=python -m json.tool' diff
+    la = log --decorate --graph --all
+    lg = log --decorate --graph
+    logwhat = log --name-status
+    pu = pull -r
+    st = status
+    up = rebase
 [log]
     decorate = true
 [push]
