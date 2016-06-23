@@ -140,6 +140,3 @@ if [ -x /usr/bin/keychain ]; then
     eval $(keychain -q --noask --timeout 30 --eval AB222CB2)
 fi
 
-if [ -x /usr/bin/task ]; then
-    /usr/bin/task +Work
-fi
