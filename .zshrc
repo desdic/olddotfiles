@@ -13,6 +13,7 @@ setopt no_hist_beep
 setopt hist_save_no_dups
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' menu select
+WORDCHARS=${WORDCHARS//[\/.;-]}
 
 # Status of exit code %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}✗ %s)
 # Status of background processes %(1j.%j.)
@@ -75,7 +76,9 @@ case $(uname -s) in
         alias ls='/bin/ls -F --color=auto'
         alias grep='/usr/bin/grep --color=auto'
         alias egrep='/usr/bin/egrep --color=auto'
-        alias dchi='dch --no-auto-nmu -i'
+        if [ -x /usr/bin/dsh ]; then
+            alias dchi='dch --no-auto-nmu -i'
+        fi
         export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
         export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
         export LESS_TERMCAP_me=$'\E[0m'           # end mode
@@ -136,7 +139,7 @@ if [ -f ~/.config/.dircolors ]; then
 fi
 
 if [ -x /usr/bin/keychain ]; then
-    eval $(keychain -q --eval id_rsa)
-    eval $(keychain -q --noask --timeout 30 --eval AB222CB2)
+    eval $(keychain -q --systemd --noask --eval id_rsa)
+    eval $(keychain -q --systemd --timeout 60 --noask --eval AB222CB2)
 fi
 

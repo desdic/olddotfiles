@@ -8,9 +8,9 @@ set $monitor2 "DP1"
 set $workspace1 "1: "
 set $workspace2 "2: "
 set $workspace3 "3: "
-set $workspace4 "4:  "
-set $workspace5 "5: "
-set $workspace6 "6:"
+set $workspace4 "4:  "
+set $workspace5 "5:  "
+set $workspace6 "6: "
 set $workspace7 "7:"
 set $workspace8 "8:"
 set $workspace9 "9:"
@@ -19,7 +19,6 @@ set $workspace10 "10:"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-#font pango:monospace 8
 font pango:System San Francisco Display Regular 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -38,7 +37,6 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-#bindsym $mod+Return exec xterm -fn 7x13 -fa "System San Francisco Display Regular:size=12:antialias=true" -fg 'rgb:00/80/00' -bg "rgb:242/242/242"
 bindsym $mod+Return exec st
 
 # kill focused window
@@ -164,7 +162,7 @@ mode "  " {
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
-            bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape
@@ -178,8 +176,6 @@ bindsym $mod+r mode "  "
 # finds out, if available)
 bar {
         status_command i3status
-#        position top
-#        status_command ~/bin/myi3status.sh
     }
 
 # Volume & Media Bindings
@@ -200,6 +196,7 @@ bindsym $mod+F3 exec ~/.screenlayout/work.sh
 bindsym $mod+F5 exec /usr/bin/pavucontrol
 #bindsym Control+V exec /usr/bin/xdotool click 2
 
+bindsym $mod+F6 exec /usr/bin/xrandr --output eDP1 --scale 0.7x0.7
 
 bindsym $mod+Shift+x exec /usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png
 #exec /usr/bin/xrandr --dpi 144
@@ -207,11 +204,7 @@ bindsym $mod+Shift+x exec /usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.
 # Program Workspaces
 assign [class="chromium"]      $workspace1
 assign [class="Firefox"]       $workspace2
-assign [class="Thunderbird"]   $workspace4
-assign [class="Amarok"]        $workspace5
 
-exec sudo /usr/local/bin/kbd_backlight.sh total
-exec /usr/bin/setxkbmap dk
-exec xset r rate 200 30
-exec ~/.screenlayout/work.sh
+exec ~/bin/i3startup.sh
 exec /usr/bin/xautolock -time 15 -locker '/usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png' &
+#exec /usr/bin/blueman-applet &

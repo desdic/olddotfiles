@@ -11,10 +11,10 @@
 "ino <up> <Nop>
 
 " mapping \"
-imap <leader>' ''<ESC>i
-imap <leader>" ""<ESC>i
-imap <leader>( ()<ESC>i
-imap <leader>[ []<ESC>i
+"imap <leader>' ''<ESC>i
+"imap <leader>" ""<ESC>i
+"imap <leader>( ()<ESC>i
+"imap <leader>[ []<ESC>i
 
 " Ctrl + n change buffer
 nmap <c-n> :bnext<CR>
