@@ -19,6 +19,11 @@ set synmaxcol=200
 set scrolljump=5
 set lazyredraw
 set hidden
+"set number
+
+" Crosshair plugin
+"set cursorline    " enable the horizontal line
+"set cursorcolumn  " enable the vertical line
 
 " Enable status line always
 set laststatus=2
@@ -34,10 +39,19 @@ let g:syntastic_error_symbol = "▸"
 let g:syntastic_warning_symbol = "▸"
 let g:syntastic_style_error_symbol = "▹"
 let g:syntastic_style_warning_symbol = "▹"
+
 let g:syntastic_enable_perl_checker = 1
-let g:syntastic_python_pylint_exec = '/usr/local/bin/pylint'
+let g:syntastic_enable_go_checker = 1
+let g:syntastic_enable_json_checker = 1
+let g:syntastic_enable_yaml_checker = 1
+let g:syntastic_enable_eruby_checker = 1
+let g:syntastic_enable_markdown_checker = 1
+let g:syntastic_enable_sh_checker = 1
+
 let g:syntastic_python_checkers = ['python', 'pylint']
 let g:syntastic_perl_checkers = ['perl']
+let g:syntastic_go_checkers = ['golint']
+let g:syntastic_yaml_checkers = ['yamllint']
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -74,4 +88,4 @@ autocmd BufWinLeave * call clearmatches()
 autocmd VimEnter * :call AfterOpen()
 autocmd BufEnter * :syn sync maxlines=200
 
-
+command Make make! | copen
