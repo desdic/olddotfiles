@@ -202,8 +202,8 @@ bindsym $mod+Shift+x exec /usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.
 #exec /usr/bin/xrandr --dpi 144
 
 # Program Workspaces
-assign [class="chromium"]      $workspace1
-assign [class="Firefox"]       $workspace2
+assign [class="chromium"]      $workspace9
+assign [class="Firefox"]       $workspace0
 
 exec ~/bin/i3startup.sh
 exec /usr/bin/xautolock -time 15 -locker '/usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png' &
