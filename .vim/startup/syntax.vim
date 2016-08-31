@@ -11,4 +11,4 @@ let g:solarized_visibility = "high"
 let g:solarized_termtrans = 0
 set t_Co=256
 set background=dark
-colorscheme solarized
+"colorscheme solarized
