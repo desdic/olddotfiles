@@ -55,23 +55,35 @@ let g:syntastic_go_checkers = ['golint']
 let g:syntastic_yaml_checkers = ['yamllint']
 let g:syntastic_sh_checkers = ['shellcheck']
 
+let g:powerline_pycmd = "py3"
+
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'Þ'
 " Enable buffer tabs
 let g:airline#extensions#tabline#enabled =  1
+
 " Only show tabs if we have more than one file open
 let g:airline#extensions#tabline#buffer_min_count = 2
-let g:airline#extensions#tabline#left_sep = '|'
-let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
 " Show hex value of char
 let g:airline_section_y = 'hex:0x%B'
+
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
 
 set completeopt=longest,menuone
 

@@ -12,6 +12,8 @@ if !has("gui_running")
     let g:solarized_contrast = "high"
 endif
 
-colorscheme solarized
-set background=dark
+"syntax enable
+"set background=light
+"let g:solarized_termcolors=256
+"colorscheme solarized
 

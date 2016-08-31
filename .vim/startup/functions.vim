@@ -5,8 +5,8 @@ endfunction
 
 function AfterOpen()
 	if exists("g:loaded_syntastic_plugin")
-        set statusline+=%#warningmsg#
-		set statusline+=%{SyntasticStatuslineFlag()}
+"        set statusline+=%#warningmsg#
+"		set statusline+=%{SyntasticStatuslineFlag()}
 	endif
 endfunction
 
