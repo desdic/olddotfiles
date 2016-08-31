@@ -28,6 +28,8 @@ nmap <leader>n :enew<CR>
 " ,q quit buffer
 nmap <leader>q :bp <BAR> bd #<CR>
 
+nmap <Leader>n :NERDTreeToggle<CR>
+
 " ,s sort
 vnoremap <Leader>s :sort<CR>
 
