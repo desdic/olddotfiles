@@ -31,6 +31,7 @@ set laststatus=2
 set tabstop=4 shiftwidth=4 expandtab
 
 let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_aggregate_errors = 1
 let g:syntastic_auto_loc_list = 2
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
@@ -52,6 +53,7 @@ let g:syntastic_python_checkers = ['python', 'pylint']
 let g:syntastic_perl_checkers = ['perl']
 let g:syntastic_go_checkers = ['golint']
 let g:syntastic_yaml_checkers = ['yamllint']
+let g:syntastic_sh_checkers = ['shellcheck']
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -70,6 +72,8 @@ let g:airline#extensions#tabline#left_sep = '|'
 let g:airline#extensions#tabline#left_alt_sep = '|'
 " Show hex value of char
 let g:airline_section_y = 'hex:0x%B'
+
+set completeopt=longest,menuone
 
 highlight SpecialKey ctermfg=19
 highlight CursorLine cterm=NONE ctermbg=17

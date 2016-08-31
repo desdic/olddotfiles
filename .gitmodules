@@ -1,0 +1,15 @@
+[submodule ".vim/bundle/syntastic.git"]
+	path = .vim/bundle/syntastic.git
+	url = https://github.com/scrooloose/syntastic.git
+[submodule ".vim/bundle/editorconfig-vim.git"]
+	path = .vim/bundle/editorconfig-vim.git
+	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule ".vim/bundle/vim-fugitive.git"]
+	path = .vim/bundle/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule ".vim/bundle/vim-git.git"]
+	path = .vim/bundle/vim-git.git
+	url = https://github.com/tpope/vim-git.git
+[submodule ".vim/bundle/vim-go.git"]
+	path = .vim/bundle/vim-go.git
+	url = https://github.com/fatih/vim-go.git
