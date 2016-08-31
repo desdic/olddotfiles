@@ -203,7 +203,7 @@ bindsym $mod+Shift+x exec /usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.
 
 # Program Workspaces
 assign [class="chromium"]      $workspace9
-assign [class="Firefox"]       $workspace0
+assign [class="Firefox"]       $workspace10
 
 exec ~/bin/i3startup.sh
 exec /usr/bin/xautolock -time 15 -locker '/usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png' &
