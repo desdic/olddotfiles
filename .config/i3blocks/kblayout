@@ -1,6 +1,6 @@
 #!/bin/bash
 
-COLOR="#00FF00"
+COLOR="#FFFFFF"
 case "$(xset -q|grep LED| awk '{ print $10 }')" in
     "00000000") KBD="DK" ;;
     "00000001") COLOR="#FF0000"; KBD="CAPS DK" ;;
@@ -9,6 +9,6 @@ case "$(xset -q|grep LED| awk '{ print $10 }')" in
     *) KBD="unknown" ;;
 esac
 
-echo "$KBD" # full text
-echo "$KBD" # short text
+echo " $KBD" # full text
+echo " $KBD" # short text
 echo "$COLOR"
