@@ -8,5 +8,6 @@ function AfterOpen()
         set statusline+=%#warningmsg#
         set statusline+=%{SyntasticStatuslineFlag()}
     endif
+    redraw!
 endfunction
 

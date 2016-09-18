@@ -174,9 +174,15 @@ bindsym $mod+r mode "  "
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+#bar {
+#        status_command i3status
+#    }
+
 bar {
-        status_command i3status
+#        status_command ~/bin/i3script.sh
+        status_command i3blocks
     }
+
 
 # Volume & Media Bindings
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%-
@@ -194,17 +200,15 @@ bindsym XF86AudioPrev exec /usr/bin/amarok --previous
 
 bindsym $mod+F3 exec ~/.screenlayout/work.sh
 bindsym $mod+F5 exec /usr/bin/pavucontrol
-#bindsym Control+V exec /usr/bin/xdotool click 2
 
 bindsym $mod+F6 exec /usr/bin/xrandr --output eDP1 --scale 0.7x0.7
 
 bindsym $mod+Shift+x exec /usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png
-#exec /usr/bin/xrandr --dpi 144
 
 # Program Workspaces
-assign [class="chromium"]      $workspace9
-assign [class="Firefox"]       $workspace10
+#assign [class="chromium"]      $workspace9
+#assign [class="Firefox"]       $workspace10
 
+exec /usr/bin/xss-lock -- /usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png
 exec ~/bin/i3startup.sh
-exec /usr/bin/xautolock -time 15 -locker '/usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png' &
 #exec /usr/bin/blueman-applet &

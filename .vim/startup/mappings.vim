@@ -28,6 +28,8 @@ nmap <leader>n :enew<CR>
 " ,q quit buffer
 nmap <leader>q :bp <BAR> bd #<CR>
 
+nmap <C-l> :redraw!
+
 nmap <Leader>t :NERDTreeToggle<CR>
 
 " ,s sort
@@ -51,13 +53,15 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-"nnoremap <M-j> <C-w>-
-"nnoremap <M-k> <C-w>+
-"nnoremap <M-h> <C-w><
-"nnoremap <M-l> <C-w>>
-
 " Select all
 map <Leader>a ggVG
+
+map <Leader>l :redraw!<CR>
+map <Leader>f :set tabstop=4 shiftwidth=4 expandtab
+map <Leader>p :set paste<CR>
+
+" Count selection
+map <Leader>c g<C-g>
 
 " Tab to complete (http://www.vimbits.com)
 function! SuperTab()
@@ -72,3 +76,7 @@ imap <Tab> <C-R>=SuperTab()<CR>
 " Typeos
 iabbr ture true
 iabbr flase false
+
+" Run make and if we get errors show them in a 3 line window
+command -nargs=* Make make <args> | copen
+map <Leader>m :Make<CR><CR><CR>

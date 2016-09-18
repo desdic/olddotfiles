@@ -57,6 +57,11 @@ alias newlinestring='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/
 alias newlinecomma='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/,/g'\'
 alias newlinespace='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/\ /g'\'
 
+function take {
+    mkdir -p $1
+    cd $1
+}
+
 case $(uname -s) in
    'Darwin')
         alias ls='/bin/ls -FGh'
@@ -74,8 +79,10 @@ case $(uname -s) in
         ;;
     'Linux')
         alias ls='/bin/ls -F --color=auto'
+        alias lc='/bin/ls -F --color'
         alias grep='/usr/bin/grep --color=auto'
         alias egrep='/usr/bin/egrep --color=auto'
+        alias tree='tree -C'
         if [ -x /usr/bin/dsh ]; then
             alias dchi='dch --no-auto-nmu -i'
         fi
@@ -86,6 +93,7 @@ case $(uname -s) in
         export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
         export LESS_TERMCAP_ue=$'\E[0m'           # end underline
         export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
+        export LESS=-Xr
         [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
         ;;
 esac
@@ -133,6 +141,16 @@ case "$(hostname)" in
         eval $(ssh-agent) > /dev/null
         ;;
 esac
+
+# On work days I'd like it to show me my tasks (Without Wednesday meetings)
+if [ -x /usr/bin/task ]; then
+    H=$(date +%H)
+    if [ $(date +%u) -lt 6 -a $H -gt 8 -a $H -lt 16 ]; then
+        /usr/bin/task long project.not:wednesday +Work
+    else
+        /usr/bin/task long +Private 2>&1|grep -v '^No matches'
+    fi
+fi
 
 if [ -f ~/.config/.dircolors ]; then
     eval $(dircolors ~/.config/.dircolors)

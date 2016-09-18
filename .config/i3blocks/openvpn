@@ -1,0 +1,11 @@
+#!/bin/bash
+
+CONFIG="${BLOCK_INSTANCE:-default}"
+PFILE="/var/run/${CONFIG}.pid"
+if [ -e "${PFILE}" ]; then
+    echo "${BLOCK_INSTANCE}" # long
+    echo "${BLOCK_INSTANCE}" # short
+    echo "#00FF00"
+else
+    echo -e ""
+fi

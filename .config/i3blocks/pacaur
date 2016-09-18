@@ -1,0 +1,20 @@
+#!/bin/bash
+
+updates=$(/usr/bin/pacaur -Qu|/usr/bin/wc -l)
+aur=$(/usr/bin/pacaur -Qu|awk '{print $2}'|/usr/bin/wc -l)
+
+if [ "$updates" -eq 0 ]; then
+    echo -e ""
+elif [ "$updates" -eq 1 ]; then
+    echo " $updates" # long
+    echo " $updates" # short
+    if [ "$aur" -eq "$updates" ]; then
+        echo "#00FF00"
+    else
+        echo "#FFF600"
+    fi
+else
+    echo " $updates" # long
+    echo " $updates" # short
+    echo "#FF0000"
+fi

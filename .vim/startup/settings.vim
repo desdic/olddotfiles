@@ -18,7 +18,9 @@ set synmaxcol=200
 set scrolljump=5
 set lazyredraw
 set hidden
-"set number
+set number
+" Really nice mouse marking but removed cut'n'paste from the prompt
+"set mouse=a
 
 " Crosshair plugin
 "set cursorline    " enable the horizontal line
@@ -89,6 +91,7 @@ highlight SpecialKey ctermfg=19
 highlight CursorLine cterm=NONE ctermbg=17
 highlight StatusLine ctermfg=18 ctermbg=106
 highlight ExtraWhitespace ctermbg=red
+highlight LineNr ctermfg=darkgrey
 
 match ExtraWhitespace /\s\+$/
 
@@ -102,4 +105,3 @@ autocmd BufWinLeave * call clearmatches()
 autocmd VimEnter * :call AfterOpen()
 autocmd BufEnter * :syn sync maxlines=200
 
-command Make make! | copen
