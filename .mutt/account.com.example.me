@@ -1,0 +1,25 @@
+# My mutt template
+set my_pass = `/usr/bin/pass Email/me@example.com`
+set imap_user = "me@example.com"
+set alias_file = "~/.mutt/com.example.me/aliases"
+
+set imap_pass = $my_pass
+set smtp_url = "smtps://me@example.com@send.one.com:465/"
+set smtp_pass = $my_pass
+set from = "me@example.com"
+set realname = "Kim Gert Nielsen"
+set folder = "imaps://imap.one.com:993"
+set record = +INBOX.Sent
+set spoolfile = "+INBOX"
+set postponed = "+[Example]/Drafts"
+set header_cache = ~/.mutt/com.example.me/cache/headers
+set message_cachedir = ~/.mutt/com.example.me/cache/bodies
+set certificate_file = ~/.mutt/com.example.me/certificates
+set signature="~/.mutt/account.com.example.me.signature"
+send-hook "~f @example.com" set pgp_sign_as=4F4F4F4F4F4F4F4F4F4F4F4F4F4F4F4F4F4F4F4F
+bind compose p pgp-menu
+macro compose Y pfy "send mail without GPG"
+set status_format="Example -%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d?  Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b?  Inc:%b?%?l?%l?] ---(%s/%S)-%>-(%P) [%<!%R]"
+
+source ~/.mutt/general.rc
+source ~/.mutt/gpg.rc
