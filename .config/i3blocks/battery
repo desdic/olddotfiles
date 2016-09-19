@@ -18,6 +18,8 @@ else
     icon4=""
 fi
 
+COLOR=""
+
 if [ -z "$Bat" ];then 
     bat=""
 elif [ "$Bat" -gt "100" ];then 
@@ -25,11 +27,16 @@ elif [ "$Bat" -gt "100" ];then
 elif [ "$Bat" -gt "90" ];then 
      bat="$icon3 $Bat % ${Remain}"
 elif [ "$Bat" -gt "60" ];then 
+     COLOR="#00FF00"
      bat="$icon2 $Bat % ${Remain}"
 elif [ "$Bat" -gt "30" ];then 
      bat="$icon1 $Bat % ${Remain}"
+     COLOR="#FFFAE00"
 elif [ "$Bat" -lt "30" ];then
     bat="$icon0 $Bat % ${Remain}"
+     COLOR="#FF0000"
 fi 
 
 echo -e "$bat"
+echo -e "$bat"
+echo "$COLOR"
