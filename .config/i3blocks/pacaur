@@ -16,5 +16,9 @@ elif [ "$updates" -eq 1 ]; then
 else
     echo " $updates" # long
     echo " $updates" # short
-    echo "#FF0000"
+    if [ "$aur" -eq "$updates" ]; then
+        echo "#00FF00"
+    else
+        echo "#FFF600"
+    fi
 fi

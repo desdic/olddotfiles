@@ -3,6 +3,7 @@
 Bat=$(acpi | cut -d " " -f4 | tr -d "%,")
 Adapt=$(acpi -a | cut -d " " -f3)
 Remain=$(acpi|cut -d" " -f5)
+Full=$(acpi|grep -c Full)
 
 if [ "$Adapt" = "on-line" ];then
 	icon0=""
@@ -20,15 +21,20 @@ fi
 
 COLOR=""
 
+if [ "$Full" -eq 1 ]; then
+    Bat=100
+fi
+
 if [ -z "$Bat" ];then 
     bat=""
-elif [ "$Bat" -gt "100" ];then 
+elif [ "$Bat" -ge "99" ];then 
      bat="$icon4 Full"
 elif [ "$Bat" -gt "90" ];then 
      bat="$icon3 $Bat % ${Remain}"
-elif [ "$Bat" -gt "60" ];then 
      COLOR="#00FF00"
+elif [ "$Bat" -gt "60" ];then 
      bat="$icon2 $Bat % ${Remain}"
+    echo "#FFF600"
 elif [ "$Bat" -gt "30" ];then 
      bat="$icon1 $Bat % ${Remain}"
      COLOR="#FFFAE00"
