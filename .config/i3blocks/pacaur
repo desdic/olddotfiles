@@ -1,24 +1,21 @@
 #!/bin/bash
 
+pacaur -Sya > /dev/null 2>&1
 updates=$(/usr/bin/pacaur -Qu|/usr/bin/wc -l)
-aur=$(/usr/bin/pacaur -Qu|awk '{print $2}'|/usr/bin/wc -l)
+aur=$(/usr/bin/pacaur -Qu|grep aur|awk '{print $2}'|/usr/bin/wc -l)
 
-if [ "$updates" -eq 0 ]; then
-    echo -e ""
-elif [ "$updates" -eq 1 ]; then
-    echo " $updates" # long
-    echo " $updates" # short
-    if [ "$aur" -eq "$updates" ]; then
-        echo "#00FF00"
-    else
-        echo "#FFF600"
-    fi
-else
-    echo " $updates" # long
-    echo " $updates" # short
-    if [ "$aur" -eq "$updates" ]; then
-        echo "#00FF00"
-    else
-        echo "#FFF600"
-    fi
+pacman=$(( updates - aur ))
+
+color="#00FF00"
+
+if [ "$pacman" -gt 1 ]; then
+    color="#FFF600"
 fi
+
+if [ "$updates" -gt 1 ]; then
+    echo " $pacman/$aur"
+    echo " $pacman/$aur"
+    echo "$color"
+fi
+
+

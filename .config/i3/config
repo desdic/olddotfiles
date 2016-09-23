@@ -42,6 +42,9 @@ bindsym $mod+Return exec st
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# Set keyboard rate since I loose it after hybernation
+bindsym $mod+Shift+p exec xset r rate 200 30
+
 # start dmenu (a program launcher)
 bindsym $mod+d exec rofi -show run
 #bindsym $mod+d exec dmenu_run
@@ -130,14 +133,14 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 #work space monitors
 workspace $workspace1 output $laptop
 workspace $workspace2 output $laptop
-workspace $workspace3 output $monitor2
-workspace $workspace4 output $monitor2
-workspace $workspace5 output $monitor2
-workspace $workspace6 output $monitor2
+workspace $workspace3 output $monitor1
+workspace $workspace4 output $monitor1
+workspace $workspace5 output $monitor1
+workspace $workspace6 output $monitor1
 workspace $workspace7 output $monitor1
 workspace $workspace8 output $monitor1
 workspace $workspace9 output $monitor1
-workspace $workspace10 output $monitor1
+workspace $workspace10 output $monitor2
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -172,14 +175,14 @@ mode "  " {
 
 bindsym $mod+r mode "  "
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-#        status_command i3status
-#    }
+bar {
+        output $monitor2
+        status_command i3blocks -c ~/.i3blocksdb1.conf
+    }
 
 bar {
-#        status_command ~/bin/i3script.sh
+        output $laptop
+        output $monitor1
         status_command i3blocks
     }
 
@@ -203,7 +206,7 @@ bindsym $mod+F5 exec /usr/bin/pavucontrol
 
 bindsym $mod+F6 exec /usr/bin/xrandr --output eDP1 --scale 0.7x0.7
 
-bindsym $mod+Shift+x exec /usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png
+bindsym $mod+Shift+x exec ~/bin/locklaptop.sh
 
 # Program Workspaces
 #assign [class="chromium"]      $workspace9
@@ -211,4 +214,5 @@ bindsym $mod+Shift+x exec /usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.
 
 exec /usr/bin/xss-lock -- /usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png
 exec ~/bin/i3startup.sh
+exec /usr/bin/clipit&
 #exec /usr/bin/blueman-applet &

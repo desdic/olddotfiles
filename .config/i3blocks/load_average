@@ -18,10 +18,10 @@ load="$(cut -d ' ' -f1 /proc/loadavg)"
 cpus="$(nproc)"
 
 # full text
-echo "$load"
+printf "%05.2f\n" $load
 
 # short text
-echo "$load"
+printf "%05.2f\n" $load
 
 # color if load is too high
 awk -v cpus=$cpus -v cpuload=$load '
