@@ -43,7 +43,7 @@ bindsym $mod+Return exec st
 bindsym $mod+Shift+q kill
 
 # Set keyboard rate since I loose it after hybernation
-bindsym $mod+Shift+p exec xset r rate 200 30
+bindsym $mod+Shift+p exec ~/bin/i3startup.sh
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec rofi -show run

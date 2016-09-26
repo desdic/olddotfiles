@@ -34,7 +34,7 @@ elif [ "$Bat" -gt "90" ];then
      COLOR="#00FF00"
 elif [ "$Bat" -gt "60" ];then 
      bat="$icon2 $Bat % ${Remain}"
-    echo "#FFF600"
+     COLOR="#FFF600"
 elif [ "$Bat" -gt "30" ];then 
      bat="$icon1 $Bat % ${Remain}"
      COLOR="#FFFAE00"
