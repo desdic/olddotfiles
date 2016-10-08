@@ -85,6 +85,8 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
+let NERDTreeShowHidden=1
+
 set completeopt=longest,menuone
 
 highlight SpecialKey ctermfg=19
