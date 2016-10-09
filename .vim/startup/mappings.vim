@@ -31,6 +31,7 @@ nmap <leader>q :bp <BAR> bd #<CR>
 nmap <C-l> :redraw!
 
 nmap <Leader>t :NERDTreeToggle<CR>
+nmap <Leader>f :CtrlP<CR>
 
 " ,s sort
 vnoremap <Leader>s :sort<CR>
@@ -53,11 +54,16 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+"Remap arrow keys for moving in compile errors
+"nnoremap <silent> <Up> :cprev<CR>
+"nnoremap <silent> <Down> :cnext<CR>
+
+
 " Select all
 map <Leader>a ggVG
 
 map <Leader>l :redraw!<CR>
-map <Leader>f :set tabstop=4 shiftwidth=4 expandtab
+map <Leader>x :set tabstop=4 shiftwidth=4 expandtab
 map <Leader>p :set paste<CR>
 
 " Count selection

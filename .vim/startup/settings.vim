@@ -19,6 +19,9 @@ set scrolljump=5
 set lazyredraw
 set hidden
 set number
+set hlsearch
+set incsearch
+
 " Really nice mouse marking but removed cut'n'paste from the prompt
 "set mouse=a
 
@@ -67,14 +70,12 @@ let g:airline#extensions#tabline#left_alt_sep = ''
 
 " Enable buffer tabs
 let g:airline#extensions#tabline#enabled =  1
-
+"
 " Show hex value of char
-let g:airline_section_y = 'hex:0x%B'
+let g:airline_section_b = 'BN: %{bufnr("%")}'
+let g:airline_section_y = 'Hex:0x%02B'
 
 let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
 let g:airline_symbols.space = "\ua0"
 
 let g:airline_left_sep = ''
@@ -95,6 +96,10 @@ highlight StatusLine ctermfg=18 ctermbg=106
 highlight ExtraWhitespace ctermbg=red
 highlight LineNr ctermfg=darkgrey
 
+" Highlight lines over 80 chars
+highlight ColorColumn ctermfg=green
+call matchadd('ColorColumn', '\%81v', 100)
+
 match ExtraWhitespace /\s\+$/
 
 autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
@@ -106,4 +111,15 @@ autocmd BufWinLeave * call clearmatches()
 
 autocmd VimEnter * :call AfterOpen()
 autocmd BufEnter * :syn sync maxlines=200
+
+" CtrlP settings
+let g:ctrlp_working_path_mode = 'cra'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|svn)$'
+let g:ctrlp_user_command = 'find %s -type f'
+
+
+" auto save and restore foldings
+"autocmd BufWinLeave *.* mkview
+"autocmd BufWinEnter *.* silent loadview
 

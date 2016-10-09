@@ -7,7 +7,7 @@ source ~/.vim/startup/filetypes.vim
 source ~/.vim/startup/settings.vim
 
 if has("gui_running")
-	set lines=24 columns=80
+    set lines=24 columns=80
 endif
 
 

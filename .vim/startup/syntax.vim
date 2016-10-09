@@ -12,3 +12,6 @@ let g:solarized_termtrans = 0
 set t_Co=256
 set background=dark
 colorscheme solarized
+
+" Addon to highlighting of folding
+hi Folded          ctermfg=14   ctermbg=0
