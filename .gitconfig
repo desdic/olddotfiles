@@ -1,6 +1,10 @@
 [user]
     name = Kim Gert Nielsen
     email = kgn@one.com
+[color]
+    diff = auto
+    status = auto
+    branch = auto
 [core]
     editor = vim
 [alias]
