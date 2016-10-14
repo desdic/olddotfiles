@@ -6,7 +6,7 @@ if [ -e "${PFILE}" ]; then
     COLOR="#FF0000"
     if [ "$(ip address show dev tun0|egrep -c 'inet [0-9]+\.[0-9]+\.[0-9]+\.[0-9]+')" -ge 1 ]; then
         if [ "$(ip r|grep -c tun0)" -ge 1 ]; then
-            COLOR="#00FF00"
+            COLOR="#FFFFFF"
         fi
     fi
     echo "${BLOCK_INSTANCE}" # long

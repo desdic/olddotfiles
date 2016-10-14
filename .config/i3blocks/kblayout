@@ -4,7 +4,7 @@ COLOR=""
 case "$(xset -q|grep LED| awk '{ print $10 }')" in
     "00000000") KBD="DK" ;;
     "00000001") COLOR="#FF0000"; KBD="DK (CAPS)" ;;
-    "00001000") KBD="US" ;;
+    "00001000") COLOR="#FFAE00"; KBD="US" ;;
     "00001001") COLOR="#FF0000"; KBD="US (CAPS)" ;;
     *) KBD="unknown" ;;
 esac
