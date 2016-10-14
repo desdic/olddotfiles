@@ -65,6 +65,7 @@ map <Leader>a ggVG
 map <Leader>l :redraw!<CR>
 map <Leader>x :set tabstop=4 shiftwidth=4 expandtab
 map <Leader>p :set paste<CR>
+map <Leader>C :let @/=""<CR>
 
 " Count selection
 map <Leader>c g<C-g>

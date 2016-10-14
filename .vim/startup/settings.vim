@@ -117,7 +117,7 @@ let g:ctrlp_working_path_mode = 'cra'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|svn)$'
 let g:ctrlp_user_command = 'find %s -type f'
-
+let g:ctrlp_map = '<Leader>f'
 
 " auto save and restore foldings
 "autocmd BufWinLeave *.* mkview
