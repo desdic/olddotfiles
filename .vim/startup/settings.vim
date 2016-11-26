@@ -52,12 +52,17 @@ let g:syntastic_enable_yaml_checker = 1
 let g:syntastic_enable_eruby_checker = 1
 let g:syntastic_enable_markdown_checker = 1
 let g:syntastic_enable_sh_checker = 1
+let g:syntastic_enable_asm_checker = 1
 
 let g:syntastic_python_checkers = ['python', 'pylint']
 let g:syntastic_perl_checkers = ['perl']
 let g:syntastic_go_checkers = ['golint']
 let g:syntastic_yaml_checkers = ['yamllint']
 let g:syntastic_sh_checkers = ['shellcheck']
+let g:syntastic_asm_checkers = ['nasm']
+
+let g:syntastic_cpp_config_file = '.include_file_for_syntastic'
+let g:syntastic_cpp_check_header = 1
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -86,9 +91,74 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-let NERDTreeShowHidden=1
+" Settings for vim-go
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
+let g:go_list_type = "quickfix"
+let g:go_bin_path = expand("~/GOPATH/bin")
 
 set completeopt=longest,menuone
+
+"Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+let s:dict_dir = $HOME . '/.vim/dicts'
+
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'python'  : s:dict_dir . '/python.dict',
+    \ 'ruby'    : s:dict_dir . '/ruby.dict',
+    \ 'c'       : s:dict_dir . '/c.dict',
+    \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#data_directory = $HOME.'/.vim/cache'
+
+" Enable omni completion.
+"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+"let g:neocomplete#sources#omni#input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+
+if !exists('g:neocomplete#sources')
+    let g:neocomplete#sources = {}
+endif
+let g:neocomplete#sources._ = ['buffer']
+let g:neocomplete#sources.cpp = ['buffer', 'dictionary']
+let g:neocomplete#sources.c = ['buffer', 'dictionary']
+let g:neocomplete#sources.python = ['buffer', 'dictionary']
+
+" go language
+let s:tlist_def_go_settings = 'go;g:enum;s:struct;u:union;t:type;' .
+                           \ 'v:variable;f:function'
+" Netrw Style Listing
+let g:netrw_liststyle = 3
+
+let NERDTreeShowHidden=1
 
 highlight SpecialKey ctermfg=19
 highlight CursorLine cterm=NONE ctermbg=17

@@ -64,11 +64,12 @@ map <Leader>a ggVG
 
 map <Leader>l :redraw!<CR>
 map <Leader>x :set tabstop=4 shiftwidth=4 expandtab
-map <Leader>p :set paste<CR>
+map <Leader>p :set paste<CR> i
 map <Leader>C :let @/=""<CR>
 
 " Count selection
-map <Leader>c g<C-g>
+map <Leader>g <C-g>
+map <Leader>c :close<CR>
 
 " Tab to complete (http://www.vimbits.com)
 function! SuperTab()
@@ -84,6 +85,16 @@ imap <Tab> <C-R>=SuperTab()<CR>
 iabbr ture true
 iabbr flase false
 
+" Netrw Style Listing. Open ctags/filebrowser
+nnoremap <Leader><Leader> :Tlist<CR><C-W>h<C-W>s:e .<CR><C-W>l:let g:netrw_chgwin=winnr()<CR><C-W>h
+
 " Run make and if we get errors show them in a 3 line window
 command -nargs=* Make make <args> | copen
 map <Leader>m :Make<CR><CR><CR>
+
+" Resizing
+nnoremap <silent> <Leader>+ :exe "resize +5"<CR>
+nnoremap <silent> <Leader>- :exe "resize -5"<CR>
+nnoremap <silent> <Leader>% :exe "vertical resize +5"<CR>
+nnoremap <silent> <Leader>& :exe "vertical resize -5"<CR>
+
