@@ -117,7 +117,10 @@ if [ -x "$(which vim)" ]; then
 fi
 
 export ONECOMID=kgn
-export LC_CTYPE=en_US.UTF-8
+export LANG=da_DK.UTF-8
+export LC_COLLATE=C
+export LC_MESSAGES=C
+export LC_NUMERIC=C
 export LSCOLORS="Exfxcxdxbxegedabagacad"
 
 export HISTFILE=~/.zsh_history
