@@ -37,13 +37,13 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec st
+bindsym $mod+Return exec --no-startup-id st
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # Set keyboard rate since I loose it after hybernation
-bindsym $mod+Shift+p exec ~/bin/i3startup.sh
+bindsym $mod+Shift+p exec --no-startup-id ~/bin/i3startup.sh
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec rofi -show run
@@ -191,28 +191,28 @@ bar {
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%-
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+
 bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
-bindsym XF86KbdBrightnessUp exec sudo /usr/local/bin/kbd_backlight.sh up
-bindsym XF86KbdBrightnessDown exec sudo /usr/local/bin/kbd_backlight.sh down
-bindsym XF86LaunchA exec ~/bin/toggletrackpad.sh
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym XF86KbdBrightnessUp exec sudo --no-startup-id /usr/local/bin/kbd_backlight.sh up
+bindsym XF86KbdBrightnessDown exec sudo --no-startup-id /usr/local/bin/kbd_backlight.sh down
+bindsym XF86LaunchA exec --no-startup-id ~/bin/toggletrackpad.sh
 bindsym XF86AudioPlay exec /usr/bin/amarok --play-pause
 bindsym XF86AudioPause exec /usr/bin/amarok --pause
 bindsym XF86AudioNext exec /usr/bin/amarok --next
 bindsym XF86AudioPrev exec /usr/bin/amarok --previous
 
 bindsym $mod+F3 exec ~/.screenlayout/work.sh
-bindsym $mod+F5 exec /usr/bin/pavucontrol
+bindsym $mod+F5 exec --no-startup-id /usr/bin/pavucontrol
 
-bindsym $mod+F6 exec /usr/bin/xrandr --output eDP1 --scale 0.7x0.7
+bindsym $mod+F6 exec --no-startup-id /usr/bin/xrandr --output eDP1 --scale 0.7x0.7
 
-bindsym $mod+Shift+x exec ~/bin/locklaptop.sh
+bindsym $mod+Shift+x exec --no-startup-id ~/bin/locklaptop.sh
 
 # Program Workspaces
 #assign [class="chromium"]      $workspace9
 #assign [class="Firefox"]       $workspace10
 
-exec /usr/bin/xss-lock -- /usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png
-exec ~/bin/i3startup.sh
-exec /usr/bin/clipit&
-#exec /usr/bin/blueman-applet &
+exec --no-startup-id /usr/bin/xss-lock -- /usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png
+exec --no-startup-id ~/bin/i3startup.sh
+exec --no-startup-id /usr/bin/clipit&
+#exec --no-startup-id /usr/bin/blueman-applet &
