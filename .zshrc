@@ -87,6 +87,9 @@ case $(uname -s) in
         if [ -x /usr/bin/dsh ]; then
             alias dchi='dch --no-auto-nmu -i'
         fi
+        if [ -x /usr/local/bin/xping ]; then
+            alias xping='xping -B'
+        fi
         export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
         export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
         export LESS_TERMCAP_me=$'\E[0m'           # end mode
@@ -139,12 +142,6 @@ bindkey '^w' backward-delete-word
 export TERMINAL='xterm -fg PapayaWhip -fg "rgb:00/80/00" -bg "rgb:00/00/00"'
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-case "$(hostname)" in
-    'horus.insecurity.dk')
-        eval $(ssh-agent) > /dev/null
-        ;;
-esac
 
 # On work days I'd like it to show me my tasks (Without Wednesday meetings)
 if [ -x /usr/bin/task ]; then

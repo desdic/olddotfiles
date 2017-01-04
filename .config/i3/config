@@ -16,6 +16,8 @@ set $workspace8 "8:"
 set $workspace9 "9:"
 set $workspace10 "10:"
 
+# Remove borders
+new_window 1pixel
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -204,8 +206,6 @@ bindsym XF86AudioPrev exec /usr/bin/amarok --previous
 bindsym $mod+F3 exec ~/.screenlayout/work.sh
 bindsym $mod+F5 exec --no-startup-id /usr/bin/pavucontrol
 
-bindsym $mod+F6 exec --no-startup-id /usr/bin/xrandr --output eDP1 --scale 0.7x0.7
-
 bindsym $mod+Shift+x exec --no-startup-id ~/bin/locklaptop.sh
 
 # Program Workspaces
@@ -215,4 +215,5 @@ bindsym $mod+Shift+x exec --no-startup-id ~/bin/locklaptop.sh
 exec --no-startup-id /usr/bin/xss-lock -- /usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png
 exec --no-startup-id ~/bin/i3startup.sh
 exec --no-startup-id /usr/bin/clipit&
+exec --no-startup-id feh --bg-tile ~/Pictures/wallpaper.jpg
 #exec --no-startup-id /usr/bin/blueman-applet &
