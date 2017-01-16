@@ -45,7 +45,7 @@ else
 fi
 
 export RPROMPT
-export GOPATH=$(pwd)/GOPATH
+export GOPATH=$(pwd)/GO
 
 PATH=""
 for dir in ${HOME}/bin /usr/local/MacGPG2/bin /{sbin,bin} /usr/{sbin,bin} /usr/local/{sbin,bin} /Library/Ruby/Gems/2.0.0/gems/librarian-chef-0.0.4/bin /usr/bin/core_perl $GOPATH/bin
