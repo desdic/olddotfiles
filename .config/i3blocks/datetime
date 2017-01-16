@@ -1,3 +1,3 @@
 #!/bin/bash
 
-/usr/bin/date "+%V  %A %e %B - %H:%M"
+/usr/bin/date "+%V  %A %e %B - %T"
