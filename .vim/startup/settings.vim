@@ -54,7 +54,7 @@ let g:syntastic_enable_markdown_checker = 1
 let g:syntastic_enable_sh_checker = 1
 let g:syntastic_enable_asm_checker = 1
 
-let g:syntastic_python_checkers = ['python', 'pylint']
+let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_perl_checkers = ['perl']
 let g:syntastic_go_checkers = ['golint']
 let g:syntastic_yaml_checkers = ['yamllint']
@@ -119,9 +119,9 @@ let s:dict_dir = $HOME . '/.vim/dicts'
 
 
 " Define dictionary.
+"    \ 'python'  : s:dict_dir . '/python.dict',
 let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'default' : '',
-    \ 'python'  : s:dict_dir . '/python.dict',
     \ 'ruby'    : s:dict_dir . '/ruby.dict',
     \ 'c'       : s:dict_dir . '/c.dict',
     \ }
