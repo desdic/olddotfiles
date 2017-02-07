@@ -38,8 +38,7 @@ font pango:System San Francisco Display Regular 10
 floating_modifier $mod
 
 # start a terminal
-#bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec --no-startup-id st
+bindsym $mod+Return exec --no-startup-id ~/bin/smartst.sh
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -215,5 +214,5 @@ bindsym $mod+Shift+x exec --no-startup-id ~/bin/locklaptop.sh
 exec --no-startup-id /usr/bin/xss-lock -- /usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png
 exec --no-startup-id ~/bin/i3startup.sh
 exec --no-startup-id /usr/bin/clipit&
-exec --no-startup-id feh --bg-tile ~/Pictures/wallpaper.jpg
+exec --no-startup-id /usr/bin/xsetroot -solid "#111111"
 #exec --no-startup-id /usr/bin/blueman-applet &
