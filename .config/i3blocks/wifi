@@ -37,7 +37,7 @@ printf "%03d%%\n" $QUALITY
 # color
 if [[ $QUALITY -ge 80 ]]; then
     echo ""
-elif [[ $QUALITY -lt 80 ]]; then
+elif [[ $QUALITY -lt 70 ]]; then
     echo "#FFF600"
 elif [[ $QUALITY -lt 60 ]]; then
     echo "#FFAE00"

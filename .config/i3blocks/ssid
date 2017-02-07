@@ -1,6 +1,7 @@
 #!/bin/bash
 
 SSID_NAME=$(iwgetid -r)
+SSID_NAME="${SSID_NAME} ($(iwgetid -a -s))"
 
 # You can put any urgent name so the block will give warning
 # if a network with this name is used, like public wifi or alike.
