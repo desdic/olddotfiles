@@ -45,7 +45,7 @@ else
 fi
 
 export RPROMPT
-export GOPATH=$(pwd)/GO
+export GOPATH=$(pwd)/go
 
 PATH=""
 for dir in ${HOME}/bin /usr/local/MacGPG2/bin /{sbin,bin} /usr/{sbin,bin} /usr/local/{sbin,bin} /Library/Ruby/Gems/2.0.0/gems/librarian-chef-0.0.4/bin /usr/bin/core_perl $GOPATH/bin
@@ -135,11 +135,11 @@ bindkey -e
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
 bindkey "^[[3~" delete-char
-bindkey "^[^[[D" backward-word
-bindkey "^[^[[C" forward-word
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
 bindkey '^w' backward-delete-word
 
-export TERMINAL='xterm -fg PapayaWhip -fg "rgb:00/80/00" -bg "rgb:00/00/00"'
+export TERMINAL='st'
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
@@ -158,7 +158,7 @@ if [ -f ~/.config/.dircolors ]; then
 fi
 
 if [ -x /usr/bin/keychain ]; then
-    eval $(keychain -q --systemd --noask --eval id_rsa)
-    eval $(keychain -q --systemd --timeout 60 --noask --eval AB222CB2)
+    eval $(keychain -q --systemd --agents ssh --noask --eval id_rsa)
+    eval $(keychain -q --agents gpg --timeout 60 --noask --eval AB222CB2)
 fi
 
