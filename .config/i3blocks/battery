@@ -38,7 +38,7 @@ elif [ "$Bat" -gt "60" ];then
 elif [ "$Bat" -gt "30" ];then 
      bat="$icon1 $Bat % ${Remain}"
      COLOR="#FFFAE00"
-elif [ "$Bat" -lt "30" ];then
+elif [ "$Bat" -le "30" ];then
     bat="$icon0 $Bat % ${Remain}"
      COLOR="#FF0000"
 fi 

@@ -3,6 +3,7 @@ set $mod Mod4
 set $laptop "eDP1"
 set $monitor1 "DP2"
 set $monitor2 "DP1"
+set $tv "HDMI3"
 
 # font awesome cheat sheet. https://fortawesome.github.io/Font-Awesome/cheatsheet/
 set $workspace1 "1: "
@@ -13,7 +14,7 @@ set $workspace5 "5:  "
 set $workspace6 "6: "
 set $workspace7 "7:"
 set $workspace8 "8:"
-set $workspace9 "9:"
+set $workspace9 "9:  "
 set $workspace10 "10:"
 
 # Remove borders
@@ -38,7 +39,8 @@ font pango:System San Francisco Display Regular 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id ~/bin/smartst.sh
+bindsym $mod+Return exec --no-startup-id /usr/bin/st
+bindsym $mod+BackSpace exec --no-startup-id /usr/bin/st -c ~/.config/stupidtermwhite.ini
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -140,7 +142,7 @@ workspace $workspace5 output $monitor1
 workspace $workspace6 output $monitor1
 workspace $workspace7 output $monitor1
 workspace $workspace8 output $monitor1
-workspace $workspace9 output $monitor1
+workspace $workspace9 output $tv
 workspace $workspace10 output $monitor2
 
 # reload the configuration file
@@ -178,6 +180,11 @@ bindsym $mod+r mode "  "
 
 bar {
         output $monitor2
+        status_command i3blocks -c ~/.i3blocksdb1.conf
+    }
+
+bar {
+        output $tv
         status_command i3blocks -c ~/.i3blocksdb1.conf
     }
 

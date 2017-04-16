@@ -110,13 +110,12 @@ export DEBFULLNAME="${GIT_AUTHOR_NAME}"
 export DEBEMAIL="${GIT_AUTHOR_EMAIL}"
 export DEBCHANGE_AUTO_NMU=no
 
-if [ -x "$(which vim)" ]; then
-    export EDITOR="$(which vim)"
+if [ -x "$(which nvim)" ]; then
+    export EDITOR="$(which nvim)"
     export VISUAL="${EDITOR}"
     export FCEDIT="${EDITOR}"
-    alias vi="${EDITOR}"
-    alias nvi="/usr/bin/vi"
     alias view="${EDITOR} -M"
+    export vim="$(which nvim)"
 fi
 
 export ONECOMID=kgn
