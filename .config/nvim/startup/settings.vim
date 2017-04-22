@@ -38,32 +38,35 @@ set tabstop=4 shiftwidth=4 expandtab
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_auto_loc_list = 2
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_signs = 1
-let g:syntastic_error_symbol = "▸"
-let g:syntastic_warning_symbol = "▸"
-let g:syntastic_style_error_symbol = "▹"
-let g:syntastic_style_warning_symbol = "▹"
+"let g:syntastic_error_symbol = "▸"
+"let g:syntastic_warning_symbol = "▸"
+"let g:syntastic_style_error_symbol = "▹"
+"let g:syntastic_style_warning_symbol = "▹"
 
-let g:syntastic_enable_perl_checker = 1
-let g:syntastic_enable_go_checker = 1
-let g:syntastic_enable_json_checker = 1
-let g:syntastic_enable_yaml_checker = 1
-let g:syntastic_enable_eruby_checker = 1
-let g:syntastic_enable_markdown_checker = 1
-let g:syntastic_enable_sh_checker = 1
-let g:syntastic_enable_asm_checker = 1
+"let g:syntastic_enable_perl_checker = 0
+"let g:syntastic_enable_go_checker = 0
+"let g:syntastic_enable_json_checker = 0
+"let g:syntastic_enable_yaml_checker = 0
+"let g:syntastic_enable_eruby_checker = 0
+"let g:syntastic_enable_markdown_checker = 0
+"let g:syntastic_enable_sh_checker = 0
+"let g:syntastic_enable_asm_checker = 0
 
-let g:syntastic_python_checkers = ['pylint']
-let g:syntastic_perl_checkers = ['perl']
-let g:syntastic_go_checkers = ['golint']
-let g:syntastic_yaml_checkers = ['yamllint']
-let g:syntastic_sh_checkers = ['shellcheck']
-let g:syntastic_asm_checkers = ['nasm']
+" Use Neomake
+let b:syntastic_skip_checks = 1
 
-let g:syntastic_cpp_config_file = '.include_file_for_syntastic'
-let g:syntastic_cpp_check_header = 1
+"let g:syntastic_python_checkers = ['pylint']
+"let g:syntastic_perl_checkers = ['perl']
+"let g:syntastic_go_checkers = ['golint']
+"let g:syntastic_yaml_checkers = ['yamllint']
+"let g:syntastic_sh_checkers = ['shellcheck']
+"let g:syntastic_asm_checkers = ['nasm']
+
+"let g:syntastic_cpp_config_file = '.include_file_for_syntastic'
+"let g:syntastic_cpp_check_header = 1
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -208,3 +211,5 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 0
 let g:ycm_filetype_blacklist = {'tex' : 1, 'markdown' : 1, 'text' : 1, 'html' : 1}
 let g:ycm_python_binary_path = '/usr/bin/python2'
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+autocmd! BufWritePost,BufEnter * Neomake
