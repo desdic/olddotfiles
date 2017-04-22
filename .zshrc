@@ -115,7 +115,7 @@ if [ -x "$(which nvim)" ]; then
     export VISUAL="${EDITOR}"
     export FCEDIT="${EDITOR}"
     alias view="${EDITOR} -M"
-    export vim="$(which nvim)"
+    alias vim="$(which nvim)"
 fi
 
 export ONECOMID=kgn

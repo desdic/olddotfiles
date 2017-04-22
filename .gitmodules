@@ -58,3 +58,6 @@
 [submodule ".config/nvim/bundle/vim-fugitive"]
 	path = .config/nvim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+[submodule ".config/nvim/bundle/neomake.git"]
+	path = .config/nvim/bundle/neomake
+	url = https://github.com/neomake/neomake
