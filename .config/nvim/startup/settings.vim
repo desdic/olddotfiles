@@ -212,4 +212,16 @@ let g:ycm_filetype_blacklist = {'tex' : 1, 'markdown' : 1, 'text' : 1, 'html' : 
 let g:ycm_python_binary_path = '/usr/bin/python2'
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
-autocmd! BufWritePost,BufEnter * Neomake
+highlight NeomakeErrorMsg ctermfg=white ctermbg=124
+let g:neomake_error_sign={'text': '', 'texthl': 'NeomakeErrorMsg'}
+
+highlight NeomakeWarningMsg ctermfg=white ctermbg=100
+let g:neomake_warning_sign={'text': '', 'texthl': 'NeomakeWarningMsg'}
+
+highlight NeomakeInfoMsg ctermfg=white ctermbg=darkblue
+let g:neomake_info_sign={'text': '', 'texthl': 'NeomakeInfoMsg'}
+
+let g:neomake_open_list = 2
+let g:neomake_list_height = 5
+
+autocmd! BufWritePost,BufRead * Neomake
