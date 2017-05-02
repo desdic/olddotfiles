@@ -34,30 +34,3 @@
 [submodule ".vim/bundle/neocomplete.vim.git"]
 	path = .vim/bundle/neocomplete.vim.git
 	url = https://github.com/Shougo/neocomplete.vim.git
-[submodule ".config/nvim/bundle/YouCompleteMe"]
-	path = .config/nvim/bundle/YouCompleteMe
-	url = https://github.com/Valloric/YouCompleteMe.git
-[submodule ".config/nvim/bundle/nerdtree"]
-	path = .config/nvim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
-[submodule ".config/nvim/bundle/ctrlp.vim"]
-	path = .config/nvim/bundle/ctrlp.vim
-	url = https://github.com/kien/ctrlp.vim.git
-[submodule ".config/nvim/bundle/syntastic"]
-	path = .config/nvim/bundle/syntastic
-	url = https://github.com/vim-syntastic/syntastic.git
-[submodule ".config/nvim/bundle/vim-airline"]
-	path = .config/nvim/bundle/vim-airline
-	url = https://github.com/vim-airline/vim-airline.git
-[submodule ".config/nvim/bundle/vim-airline-themes"]
-	path = .config/nvim/bundle/vim-airline-themes
-	url = https://github.com/vim-airline/vim-airline-themes.git
-[submodule ".config/nvim/bundle/vim-colors-solarized"]
-	path = .config/nvim/bundle/vim-colors-solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
-[submodule ".config/nvim/bundle/vim-fugitive"]
-	path = .config/nvim/bundle/vim-fugitive
-	url = https://github.com/tpope/vim-fugitive.git
-[submodule ".config/nvim/bundle/neomake.git"]
-	path = .config/nvim/bundle/neomake
-	url = https://github.com/neomake/neomake
