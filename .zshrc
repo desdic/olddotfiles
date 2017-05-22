@@ -142,16 +142,6 @@ export TERMINAL='st'
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-# On work days I'd like it to show me my tasks (Without Wednesday meetings)
-if [ -x /usr/bin/task ]; then
-    H=$(date +%H)
-    if [ $(date +%u) -lt 6 -a $H -gt 8 -a $H -lt 16 ]; then
-        /usr/bin/task long project.not:wednesday +Work
-    else
-        /usr/bin/task long +Private 2>&1|grep -v '^No matches'
-    fi
-fi
-
 if [ -f ~/.config/.dircolors ]; then
     eval $(dircolors ~/.config/.dircolors)
 fi
