@@ -204,10 +204,10 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 bindsym XF86KbdBrightnessUp exec sudo --no-startup-id /usr/local/bin/kbd_backlight.sh up
 bindsym XF86KbdBrightnessDown exec sudo --no-startup-id /usr/local/bin/kbd_backlight.sh down
 bindsym XF86LaunchA exec --no-startup-id ~/bin/toggletrackpad.sh
-bindsym XF86AudioPlay exec /usr/bin/amarok --play-pause
-bindsym XF86AudioPause exec /usr/bin/amarok --pause
-bindsym XF86AudioNext exec /usr/bin/amarok --next
-bindsym XF86AudioPrev exec /usr/bin/amarok --previous
+bindsym XF86AudioPlay exec /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioStop exec /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop
+bindsym XF86AudioNext exec /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym XF86AudioPrev exec /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
 bindsym $mod+F3 exec ~/.screenlayout/work.sh
 bindsym $mod+F5 exec --no-startup-id /usr/bin/pavucontrol
