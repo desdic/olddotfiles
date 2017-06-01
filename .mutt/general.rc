@@ -28,7 +28,7 @@ set sort_aux = 'reverse-last-date-received'
 set auto_tag = yes
 set send_charset="utf-8"
 set sleep_time=0
-set editor="nvim +7 -c 'set nobackup' -c 'set noswapfile' -c 'set nowritebackup' -c 'set tw=72 ft=mail noautoindent'"
+set editor="nvim +7 -c 'set tw=72 ft=mail noautoindent'"
 set wait_key=no
 set quit=ask-yes
 
