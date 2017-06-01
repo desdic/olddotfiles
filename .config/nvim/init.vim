@@ -78,6 +78,9 @@ set incsearch
 set spelllang=en
 set completeopt=longest,menuone
 set mouse=c
+set nobackup
+set nowritebackup
+set noswapfile
 " Crosshair plugin
 "set cursorline    " enable the horizontal line
 "set cursorcolumn  " enable the vertical line
@@ -117,14 +120,6 @@ let g:syntastic_enable_signs = 1
 
 " Use Neomake insted
 let b:syntastic_skip_checks = 1
-"function AfterOpen()
-"    if exists("g:loaded_syntastic_plugin")
-"        set statusline+=%#warningmsg#
-"        set statusline+=%{SyntasticStatuslineFlag()}
-"        set statusline+=%{fugitive#statusline()}
-"    endif
-"    redraw!
-"endfunction
 " --- }}}
 
 " Airline {{{
@@ -277,6 +272,21 @@ function! SuperTab()
     endif
 endfunction
 imap <Tab> <C-R>=SuperTab()<CR>
+"  Toogle spell language
+"  (http://vim.wikia.com/wiki/Toggle_spellcheck_with_function_keys)
+let b:myLang=0
+let g:myLangList=["nospell","en_us","da"]
+function! ToggleSpell()
+  let b:myLang=b:myLang+1
+  if b:myLang>=len(g:myLangList) | let b:myLang=0 | endif
+  if b:myLang==0
+    setlocal nospell
+  else
+    execute "setlocal spell spelllang=".get(g:myLangList, b:myLang)
+  endif
+  echo "spell checking language:" g:myLangList[b:myLang]
+endfunction
+map <Leader>s :call ToggleSpell()<CR>
 " ---}}}
 
 " vim-go ---{{{
