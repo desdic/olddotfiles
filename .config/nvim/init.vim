@@ -26,10 +26,12 @@ NeoBundleFetch 'vim-airline/vim-airline.git'
 NeoBundleFetch 'vim-airline/vim-airline-themes.git'
 NeoBundleFetch 'tpope/vim-git.git'
 NeoBundleFetch 'tpope/vim-fugitive.git'
+NeoBundleFetch 'tpope/vim-dispatch.git'
 NeoBundleFetch 'fatih/vim-go.git'
 NeoBundleFetch 'vim-syntastic/syntastic.git'
 NeoBundleFetch 'bronson/vim-trailing-whitespace.git'
 NeoBundleFetch 'tiagofumo/vim-nerdtree-syntax-highlight.git'
+NeoBundle 'vim-scripts/grep.vim'
 NeoBundle 'Valloric/YouCompleteMe', {
      \ 'build' : {
      \     'mac' : './install.sh --clang-completer --gocode-completer',
@@ -39,6 +41,7 @@ NeoBundle 'Valloric/YouCompleteMe', {
      \    }
      \ }
 NeoBundle 'ryanoasis/vim-devicons.git'
+NeoBundle 'scrooloose/nerdcommenter'
 call neobundle#end()
 NeoBundleCheck
 " --- }}
@@ -233,6 +236,8 @@ nmap <Leader>t :NERDTreeToggle<CR>
 " ,s sort
 vnoremap <Leader>s :sort<CR>
 
+command W w
+
 " Indentation
 vnoremap < <gv
 vnoremap > >gv
@@ -262,6 +267,24 @@ map <Leader>C :let @/=""<CR>
 
 " Count selection
 map <Leader>g <C-g>
+
+" Move
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
+ino " ""<left>
+ino ' ''<left>
+ino ( ()<left>
+ino [ []<left>
+ino { {}<left>
+ino {<CR> {<CR>}<ESC>O
+
+nnoremap <A-j> :lnext<CR>
+nnoremap <A-k> :lprevious<CR>
 
 " Tab to complete (http://www.vimbits.com)
 function! SuperTab()
@@ -299,6 +322,8 @@ let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
 let g:go_list_type = "quickfix"
 let g:go_bin_path = expand("~/GOPATH/bin")
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave = 1
 "---}}}
 
 " Typeos
