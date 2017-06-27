@@ -1,22 +1,32 @@
 #!/bin/bash
 
-MIXER="default"
-lsmod|grep -q pulse && MIXER="pulse"
-lsmod|grep -q jack && MIXER="jackplug"
+SINK=$(pacmd list-sinks|egrep -i 'index:'|grep '*'|awk '{print $3}')
+if [ -z "$SINK" ];then
+    SINK="0"
+fi
 
-MIXER="${2:-$MIXER}"
+N=$(pactl list sinks short|grep "^${SINK}"|awk '{print $2}'|cut -d. -f2-|cut -d- -f2-)
 
-CONTROLLER=$(amixer -D default scontrols |grep '^Simple'|head -n1|cut -d\' -f2)
+case $N in
+    *FiiO*)
+        NAME="FiiO"
+        ;;
+    *hdmi*)
+        NAME="hdmi"
+        ;;
+    *)
+        NAME="analog"
+        ;;
+esac
 
-PLAYBACK=$(amixer -D ${MIXER} get ${CONTROLLER}|egrep 'Front Left.*]$')
-
-ONOFF=$(echo $PLAYBACK|cut -d'[' -f3|cut -d']' -f1)
-VOL=$(echo $PLAYBACK|cut -d'[' -f2|cut -d']' -f1)
+VOL=$(pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')
+MUTE=$(pactl list sinks | grep '^[[:space:]]Mute:' | head -n $(( $SINK + 1 )) | tail -n 1|cut -d: -f2|awk '{print $1}')
 
 STR=""
-if [ "${ONOFF}" == 'off' ]; then
+if [ "${MUTE}" == 'yes' ]; then
     STR=""
 fi
 
-printf "%s %s\n" ${STR} ${VOL}
-printf "%s %s\n" ${STR} ${VOL}
+printf "%s %s %s\n" ${STR} ${VOL} ${NAME}
+printf "%s %s %s\n" ${STR} ${VOL} ${NAME}
+
