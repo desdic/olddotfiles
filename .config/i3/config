@@ -3,7 +3,7 @@ set $mod Mod4
 set $laptop "eDP1"
 set $monitor1 "DP2"
 set $monitor2 "DP1"
-set $tv "HDMI3"
+set $hdmi "HDMI3"
 
 # font awesome cheat sheet. https://fortawesome.github.io/Font-Awesome/cheatsheet/
 set $workspace1 "1: "
@@ -133,6 +133,12 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
+# move current workspace between monitors
+bindsym $mod+Control+h move workspace to output left
+bindsym $mod+Control+j move workspace to output down
+bindsym $mod+Control+k move workspace to output up
+bindsym $mod+Control+l move workspace to output right
+
 #work space monitors
 workspace $workspace1 output $laptop
 workspace $workspace2 output $laptop
@@ -142,7 +148,7 @@ workspace $workspace5 output $monitor1
 workspace $workspace6 output $monitor1
 workspace $workspace7 output $monitor1
 workspace $workspace8 output $monitor1
-workspace $workspace9 output $tv
+workspace $workspace9 output $hdmi
 workspace $workspace10 output $monitor2
 
 # reload the configuration file
@@ -184,8 +190,9 @@ bar {
     }
 
 bar {
-        output $tv
-        status_command i3blocks -c ~/.i3blocksdb1.conf
+        output $hdmi
+#        status_command i3blocks -c ~/.i3blocksdb1.conf
+        status_command i3blocks
     }
 
 bar {
@@ -196,9 +203,14 @@ bar {
 
 
 # Volume & Media Bindings
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%-
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+
-bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/bin/pulsesink.sh -5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/bin/pulsesink.sh +5%
+bindsym XF86AudioMute exec --no-startup-id ~/bin/pulsesink.sh toggle
+
+#bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%-
+#bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+
+#bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
+
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 bindsym XF86KbdBrightnessUp exec sudo --no-startup-id /usr/local/bin/kbd_backlight.sh up
@@ -221,5 +233,6 @@ bindsym $mod+Shift+x exec --no-startup-id ~/bin/locklaptop.sh
 exec --no-startup-id /usr/bin/xss-lock -- /usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png
 exec --no-startup-id ~/bin/i3startup.sh
 exec --no-startup-id /usr/bin/clipit&
+exec --no-startup-id /usr/bin/workrave&
 exec --no-startup-id /usr/bin/xsetroot -solid "#111111"
 #exec --no-startup-id /usr/bin/blueman-applet &
