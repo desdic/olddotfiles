@@ -17,40 +17,45 @@ endif
 
 " Plugins --- {{{"
 call neobundle#begin(expand('$HOME/.config/nvim/bundle'))
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundleFetch 'neomake/neomake.git'
-NeoBundleFetch 'editorconfig/editorconfig-vim.git'
-NeoBundleFetch 'frankier/neovim-colors-solarized-truecolor-only.git'
-NeoBundleFetch 'scrooloose/nerdtree.git'
-NeoBundleFetch 'vim-airline/vim-airline.git'
-NeoBundleFetch 'vim-airline/vim-airline-themes.git'
-NeoBundleFetch 'tpope/vim-git.git'
-NeoBundleFetch 'tpope/vim-fugitive.git'
-NeoBundleFetch 'tpope/vim-dispatch.git'
-NeoBundleFetch 'fatih/vim-go.git'
-NeoBundleFetch 'vim-syntastic/syntastic.git'
-NeoBundleFetch 'bronson/vim-trailing-whitespace.git'
-NeoBundleFetch 'tiagofumo/vim-nerdtree-syntax-highlight.git'
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/neocomplete'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'Shougo/deoplete.nvim'
+NeoBundle 'zchee/deoplete-go', {'build': {'unix': 'make'}}
+NeoBundle 'honza/vim-snippets'
+NeoBundle 'neomake/neomake.git'
+NeoBundle 'editorconfig/editorconfig-vim.git'
+NeoBundle 'frankier/neovim-colors-solarized-truecolor-only.git'
+NeoBundle 'scrooloose/nerdtree.git'
+NeoBundle 'vim-airline/vim-airline.git'
+NeoBundle 'vim-airline/vim-airline-themes.git'
+NeoBundle 'tpope/vim-git.git'
+NeoBundle 'tpope/vim-fugitive.git'
+NeoBundle 'tpope/vim-dispatch.git'
+NeoBundle 'AndrewRadev/splitjoin.vim'
+NeoBundle 'fatih/vim-go.git'
+NeoBundle 'vim-syntastic/syntastic.git'
+NeoBundle 'bronson/vim-trailing-whitespace.git'
+NeoBundle 'tiagofumo/vim-nerdtree-syntax-highlight.git'
+NeoBundle 'Raimondi/delimitMate.git'
 NeoBundle 'vim-scripts/grep.vim'
-NeoBundle 'Valloric/YouCompleteMe', {
-     \ 'build' : {
-     \     'mac' : './install.sh --clang-completer --gocode-completer',
-     \     'unix' : './install.sh --clang-completer --gocode-completer',
-     \     'windows' : './install.sh --clang-completer --gocode-completer',
-     \     'cygwin' : './install.sh --clang-completer --gocode-completer'
-     \    }
-     \ }
 NeoBundle 'ryanoasis/vim-devicons.git'
 NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'nsf/gocode', {'rtp': 'vim/'}
+NeoBundle 'ctrlpvim/ctrlp.vim'
 call neobundle#end()
 NeoBundleCheck
 " --- }}
 
 silent! call pathogen#infect()
 
+
 " Settings ---{{{
 set omnifunc=syntaxcomplete#Complete
 set nocursorcolumn
+" do not highlight line
+set nocursorline
 set norelativenumber
 " Enable true colors
 set encoding=utf-8
@@ -59,6 +64,8 @@ set encoding=utf-8
 set t_Co=256
 set vb
 set ruler
+" Show commands that I type
+set showcmd
 set showmatch
 set backspace=2
 set list
@@ -71,7 +78,9 @@ set showmode
 set noshowmode
 set noerrorbells
 set novisualbell
+" Speed up when using syntax highlight
 set synmaxcol=200
+syntax sync minlines=256
 set scrolljump=5
 set lazyredraw
 set hidden
@@ -79,11 +88,20 @@ set number
 set hlsearch
 set incsearch
 set spelllang=en
-set completeopt=longest,menuone
+"set completeopt=longest,menuone
+set completeopt=menu,menuone
+
+" Path to python interpreter for neovim
+let g:python3_host_prog  = '/usr/bin/python3'
+" Skip the check of neovim module
+let g:python3_host_skip_check = 1
+
 set mouse=c
 set nobackup
 set nowritebackup
 set noswapfile
+set fileformats=unix,dos,mac
+
 " Crosshair plugin
 "set cursorline    " enable the horizontal line
 "set cursorcolumn  " enable the vertical line
@@ -97,14 +115,17 @@ filetype plugin indent on
 syntax sync minlines=128
 
 " Theme --- {{{
-let g:solarized_termcolors=256
-let g:solarized_visibility = "high"
-let g:solarized_termtrans = 0
-
 set termguicolors
 set background=dark
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+" Solarized
+let g:solarized_termcolors=256
+let g:solarized_visibility = "high"
+let g:solarized_termtrans = 0
 colorscheme solarized
+let g:airline_theme='solarized'
+
 " Addon to highlighting of folding
 "hi Folded          ctermfg=14   ctermbg=0
 
@@ -156,25 +177,57 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
-let g:airline_theme='solarized'
 " ---}}}
 
-" Youcompleteme --- {{{
-let g:ycm_error_symbol = '>>'
-let g:ycm_warning_symbol = '>*'
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_min_num_of_chars_for_completion = 1
-let g:ycm_cache_omnifunc = 0
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_complete_in_comments = 1
-let g:ycm_complete_in_strings = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
-let g:ycm_filetype_blacklist = {'tex' : 1, 'markdown' : 1, 'text' : 1, 'html' : 1}
-let g:ycm_python_binary_path = '/usr/bin/python2'
-let g:ycm_confirm_extra_conf = 0 "no annoying tips on vim starting
-"let g:ycm_server_keep_logfiles = 1
-"let g:ycm_server_log_level = 'debug'
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" Neosnippet --- {{{
+"let g:neosnippet#enable_snipmate_compatibility = 1
+"let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+let g:neosnippet#snippets_directory='~/.config/nvim/bundle/vim-snippets/snippets'
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+" ---}}}
+
+" ctrlp ---{{{
+let g:ctrlp_map = '<c-m>'
+let g:ctrlp_cmd = 'CtrlP'
+" ---}}}
+
+" Deoplete ---{{{
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#disable_auto_complete = 0 " set to 1 if you want to disable autocomplete
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+"let g:deoplete#sources#go#package_dot = 1
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+let g:deoplete#sources#go#use_cache = 1
+let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go'
+
+function! s:tab_complete()
+  " is completion menu open? cycle to next item
+  if pumvisible()
+    return "\<c-n>"
+  endif
+
+  " is there a snippet that can be expanded?
+  " is there a placholder inside the snippet that can be jumped to?
+  if neosnippet#expandable_or_jumpable() 
+    return "\<Plug>(neosnippet_expand_or_jump)"
+  endif
+
+  " if none of these match just use regular tab
+  return "\<tab>"
+endfunction
+
+imap <silent><expr><TAB> <SID>tab_complete()
+
 " ---}}}
 
 " Neomake ---{{{
@@ -215,6 +268,15 @@ let g:NERDTreeAutoDeleteBuffer=1
 let NERDTreeCascadeSingleChildDir=0
 " ---}}}
 
+"delimate ---{{{
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_space = 1
+let g:delimitMate_smart_quotes = 1
+let g:delimitMate_expand_inside_quotes = 0
+let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
+" ---}}}
+
+
 " Mappings ---{{{
 let mapleader = ","
 
@@ -229,6 +291,8 @@ nmap <leader>q :bp <BAR> bd #<CR>
 
 " close window
 map <Leader>c :close<CR>
+" Save
+map <Leader>w :w!<CR>
 
 " redraw buffer
 nmap <C-l> :redraw!
@@ -263,38 +327,25 @@ map <Leader>l :redraw!<CR>
 map <Leader>x :set tabstop=4 shiftwidth=4 expandtab
 map <Leader>p :set paste<CR> i
 " Remove highlight after search
-map <Leader>C :let @/=""<CR>
+"map <Leader>C :let @/=""<CR>
+
+" Remove search highlight
+nnoremap <leader><space> :nohlsearch<CR>
 
 " Count selection
 map <Leader>g <C-g>
 
 " Move
-nnoremap <C-j> :m .+1<CR>==
-nnoremap <C-k> :m .-2<CR>==
-inoremap <C-j> <Esc>:m .+1<CR>==gi
-inoremap <C-k> <Esc>:m .-2<CR>==gi
-vnoremap <C-j> :m '>+1<CR>gv=gv
-vnoremap <C-k> :m '<-2<CR>gv=gv
-
-ino " ""<left>
-ino ' ''<left>
-ino ( ()<left>
-ino [ []<left>
-ino { {}<left>
-ino {<CR> {<CR>}<ESC>O
+"nnoremap <C-j> :m .+1<CR>==
+"nnoremap <C-k> :m .-2<CR>==
+"inoremap <C-j> <Esc>:m .+1<CR>==gi
+"inoremap <C-k> <Esc>:m .-2<CR>==gi
+"vnoremap <C-j> :m '>+1<CR>gv=gv
+"vnoremap <C-k> :m '<-2<CR>gv=gv
 
 nnoremap <A-j> :lnext<CR>
 nnoremap <A-k> :lprevious<CR>
 
-" Tab to complete (http://www.vimbits.com)
-function! SuperTab()
-    if (strpart(getline('.'),col('.')-2,1)=~'^\W\?$')
-        return "\<Tab>"
-    else
-        return "\<C-n>"
-    endif
-endfunction
-imap <Tab> <C-R>=SuperTab()<CR>
 "  Toogle spell language
 "  (http://vim.wikia.com/wiki/Toggle_spellcheck_with_function_keys)
 let b:myLang=0
@@ -313,17 +364,46 @@ map <Leader>s :call ToggleSpell()<CR>
 " ---}}}
 
 " vim-go ---{{{
+"let g:go_auto_sameids = 0
+"let g:go_auto_type_info = 0
+"let g:go_bin_path = expand("~/go/bin")
+let g:go_metalinter_enabled = ['vet', 'golint']
+"let g:go_metalinter_autosave = 1
+""let g:go_disable_autoinstall = 1
+"let g:go_loaded_gosnippets = 1
+"let g:go_addtags_transform = "snakecase"
+"let g:go_gocode_propose_builtins = 1
+"let g:go_gocode_unimported_packages = 1
+let g:go_fmt_fail_silently = 0
+let g:go_fmt_command = "goimports"
+let g:go_list_type = "quickfix"
+let g:go_auto_type_info = 0
+let g:go_def_mode = "guru"
+let g:go_echo_command_info = 1
+let g:go_gocode_autobuild = 0
+let g:go_gocode_unimported_packages = 1
+
+let g:go_autodetect_gopath = 1
+let g:go_info_mode = "guru"
+
+" let g:go_metalinter_autosave = 1
+" let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+
+
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
+let g:go_highlight_types = 0
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 0
 let g:go_highlight_build_constraints = 1
-let g:go_fmt_command = "goimports"
-let g:go_list_type = "quickfix"
-let g:go_bin_path = expand("~/GOPATH/bin")
-let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
-let g:go_metalinter_autosave = 1
+let g:go_highlight_structs = 1
+
+let g:go_highlight_space_tab_error = 0
+let g:go_highlight_array_whitespace_error = 0
+let g:go_highlight_trailing_whitespace_error = 0
+
+let g:go_modifytags_transform = 'camelcase'
 "---}}}
 
 " Typeos
@@ -341,11 +421,18 @@ nnoremap <silent> <Leader>% :exe "vertical resize +5"<CR>
 nnoremap <silent> <Leader>& :exe "vertical resize -5"<CR>
 
 " Files ---{{{
+" Vim
+autocmd FileType vim let b:deoplete_disable_auto_complete = 1
+
 " Mail
 autocmd FileType mail set tw=72 fo+=taw spell
+autocmd FileType mail let b:deoplete_disable_auto_complete = 1
 
 " GO
 autocmd FileType go set nolist
+autocmd FileType go setlocal tabstop=4 shiftwidth=4 expandtab
+autocmd FileType go setlocal tabstop=4 shiftwidth=4 expandtab
+autocmd FileType go setlocal tabstop=4 shiftwidth=4 expandtab
 
 set rtp+=~/.vim/plugin/lint.vim
 au FileType go nmap <leader>r <Plug>(go-run)
@@ -376,6 +463,7 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 "autocmd BufNewFile,BufRead *.md set syntax=off
 autocmd FileType markdown setlocal noexpandtab shiftwidth=4 tabstop=4
+autocmd FileType markdown let b:deoplete_disable_auto_complete = 1
 
 " don't show whitespace in help files
 autocmd FileType help set nolist
@@ -384,7 +472,9 @@ autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 
 autocmd FileType text setlocal tabstop=4 shiftwidth=4 expandtab
+autocmd FileType text let b:deoplete_disable_auto_complete = 1
 autocmd FileType ruby setlocal tabstop=4 shiftwidth=4 expandtab
+autocmd FileType ruby,eruby set filetype=ruby.eruby.chef
 
 " Yaml
 autocmd BufRead,BufNewFile *.yml setfiletype yaml
@@ -402,6 +492,7 @@ autocmd BufRead,BufNewFile *.rb setfiletype ruby
 
 " Git
 autocmd FileType gitcommit setlocal spell
+autocmd FileType gitcommit let b:deoplete_disable_auto_complete = 1
 
 autocmd BufEnter * :syn sync maxlines=200
 " ---}}}
