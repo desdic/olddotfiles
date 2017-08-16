@@ -1,0 +1,15 @@
+#!/bin/bash
+
+EDITOR=/usr/bin/vim
+export EDITOR
+/usr/bin/pacaur -Sya > /dev/null 2>&1
+PACKAGE_COUNT=$(/usr/bin/pacaur -Qu | /usr/bin/wc -l)
+
+if [[ "${PACKAGE_COUNT}" != 0 ]]
+then
+    echo "%{F#FF0}%{F-} ${PACKAGE_COUNT}"
+else
+    echo "%{F#666}%{F-} ${PACKAGE_COUNT}"
+fi
+
+

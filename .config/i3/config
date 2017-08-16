@@ -184,35 +184,13 @@ mode "  " {
 
 bindsym $mod+r mode "  "
 
-bar {
-        output $monitor2
-        status_command i3blocks -c ~/.i3blocksdb1.conf
-    }
-
-bar {
-        output $hdmi
-#        status_command i3blocks -c ~/.i3blocksdb1.conf
-        status_command i3blocks
-    }
-
-bar {
-        output $laptop
-        output $monitor1
-        status_command i3blocks
-    }
-
-
 # Volume & Media Bindings
 bindsym XF86AudioLowerVolume exec --no-startup-id ~/bin/pulsesink.sh -5%
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/bin/pulsesink.sh +5%
 bindsym XF86AudioMute exec --no-startup-id ~/bin/pulsesink.sh toggle
 
-#bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%-
-#bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+
-#bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
-
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 bindsym XF86KbdBrightnessUp exec sudo --no-startup-id /usr/local/bin/kbd_backlight.sh up
 bindsym XF86KbdBrightnessDown exec sudo --no-startup-id /usr/local/bin/kbd_backlight.sh down
 bindsym XF86LaunchA exec --no-startup-id ~/bin/toggletrackpad.sh
@@ -233,6 +211,6 @@ bindsym $mod+Shift+x exec --no-startup-id ~/bin/locklaptop.sh
 exec --no-startup-id /usr/bin/xss-lock -- /usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png
 exec --no-startup-id ~/bin/i3startup.sh
 exec --no-startup-id /usr/bin/clipit&
-exec --no-startup-id /usr/bin/workrave&
 exec --no-startup-id /usr/bin/xsetroot -solid "#111111"
 #exec --no-startup-id /usr/bin/blueman-applet &
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
