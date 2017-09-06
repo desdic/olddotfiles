@@ -49,3 +49,4 @@ bind editor ^T complete-query
 set record = +INBOX.Sent
 set spoolfile = "+INBOX"
 
+set index_format="%4C %Z %[%Y-%m-%d %H:%M] %-30.30L [%4c] %s"
