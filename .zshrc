@@ -1,50 +1,5 @@
-# Colors please
-autoload -U colors && colors
+## Colors please
 
-# Case insensative tab completion
-autoload -U compinit && compinit
-unsetopt menu_complete   # do not autoselect the first completion entry
-unsetopt flowcontrol
-setopt auto_menu         # show completion menu on succesive tab press
-setopt complete_in_word
-setopt always_to_end
-setopt hist_ignore_space
-setopt no_hist_beep
-setopt hist_save_no_dups
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' menu select
-WORDCHARS=${WORDCHARS//[\/.;-]}
-
-# Status of exit code %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}✗ %s)
-# Status of background processes %(1j.%j.)
-# Full path %~
-
-if [ $(id -u) -eq 0 ]; then
-    # Root terminal
-    HOST_COLOR=red
-else
-    if [ "$SSH_TTY" ]; then
-        # Non-local terminal
-        HOST_COLOR=yellow
-    else
-        # Local terminal
-        HOST_COLOR=green
-    fi
-fi
-
-export PROMPT="%(?:%{$reset_color%}:%{$fg_bold[red]%}✗ %s)%{$fg[red]%}%{$reset_color%}%{$fg[${HOST_COLOR}]%}%n@%m %{$fg[cyan]%}%1~%{$reset_color%}\$ "
-
-if [ -f ~/.git-prompt.sh ]; then
-    # Use git-prompt
-    source ~/.git-prompt.sh
-    setopt PROMPT_SUBST
-    export GIT_PS1_SHOWDIRTYSTATE=1
-    RPROMPT='%{$fg[red]%}$(__git_ps1 "(%s)") %{$fg_bold[green]%}%(1j.%j.)%{$reset_color%}'
-else
-    RPROMPT=" %{$fg_bold[green]%}%(1j.%j.)%{$reset_color%}"
-fi
-
-export RPROMPT
 export GOPATH=$(pwd)/go
 
 PATH=""
@@ -90,6 +45,11 @@ case $(uname -s) in
         if [ -x /usr/local/bin/xping ]; then
             alias xping='xping -B'
         fi
+
+        function highlight() {
+            /usr/bin/grep -E --color=auto "$1|";
+        }
+
         export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
         export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
         export LESS_TERMCAP_me=$'\E[0m'           # end mode
@@ -137,6 +97,10 @@ bindkey "^[[3~" delete-char
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 bindkey '^w' backward-delete-word
+# Enable CTRL+x-e to edit command line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
 
 export TERMINAL='st'
 
@@ -146,8 +110,28 @@ if [ -f ~/.config/.dircolors ]; then
     eval $(dircolors ~/.config/.dircolors)
 fi
 
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
+
 if [ -x /usr/bin/keychain ]; then
-    eval $(keychain -q --systemd --agents ssh --noask --eval id_rsa)
+    eval $(keychain -q --systemd --inherit any --agents ssh --noask --eval id_rsa)
     eval $(keychain -q --agents gpg --timeout 60 --noask --eval AB222CB2)
 fi
 
+ZSH=/usr/share/oh-my-zsh/
+if [ -f "$ZSH/oh-my-zsh.sh" ]; then
+    ZSH_THEME="robbyrussell"
+
+    COMPLETION_WAITING_DOTS="true"
+    DISABLE_AUTO_UPDATE="true"
+
+    if [ -f /etc/arch-release ]; then
+        plugins=(archlinux git go systemd colored-man-pages colorize)
+    else
+        plugins=(git)
+    fi
+    ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
+    if [[ ! -d $ZSH_CACHE_DIR ]]; then
+      mkdir $ZSH_CACHE_DIR
+    fi
+    source $ZSH/oh-my-zsh.sh
+fi
