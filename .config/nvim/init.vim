@@ -1,3 +1,5 @@
+set shell=bash
+
 " NeoBundle --- {{{
 if has('vim_starting')
   set runtimepath+=~/.config/nvim/bundle/neobundle.vim/
@@ -141,9 +143,16 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_auto_loc_list = 2
 let g:syntastic_enable_signs = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
 
-" Use Neomake insted
-let b:syntastic_skip_checks = 1
+let g:syntastic_style_error_symbol = ''
+let g:syntastic_style_warning_symbol = ''
+highlight SyntasticStyleErrorSign guifg=#ff0000 guibg=#073642
+highlight SyntasticStyleWarningSign  guifg=#fffc56 guibg=#073642
+
+" Use Neomake insted (Not)
+let b:syntastic_skip_checks = 0
 " --- }}}
 
 " Airline {{{
@@ -364,16 +373,8 @@ map <Leader>s :call ToggleSpell()<CR>
 " ---}}}
 
 " vim-go ---{{{
-"let g:go_auto_sameids = 0
-"let g:go_auto_type_info = 0
-"let g:go_bin_path = expand("~/go/bin")
-let g:go_metalinter_enabled = ['vet', 'golint']
-"let g:go_metalinter_autosave = 1
-""let g:go_disable_autoinstall = 1
-"let g:go_loaded_gosnippets = 1
-"let g:go_addtags_transform = "snakecase"
-"let g:go_gocode_propose_builtins = 1
-"let g:go_gocode_unimported_packages = 1
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave = 1
 let g:go_fmt_fail_silently = 0
 let g:go_fmt_command = "goimports"
 let g:go_list_type = "quickfix"
@@ -386,22 +387,18 @@ let g:go_gocode_unimported_packages = 1
 let g:go_autodetect_gopath = 1
 let g:go_info_mode = "guru"
 
-" let g:go_metalinter_autosave = 1
-" let g:go_metalinter_autosave_enabled = ['vet', 'golint']
-
-
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_types = 0
 let g:go_highlight_extra_types = 1
-let g:go_highlight_operators = 0
+let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_structs = 1
 
-let g:go_highlight_space_tab_error = 0
-let g:go_highlight_array_whitespace_error = 0
-let g:go_highlight_trailing_whitespace_error = 0
+let g:go_highlight_space_tab_error = 1
+let g:go_highlight_array_whitespace_error = 1
+let g:go_highlight_trailing_whitespace_error = 1
 
 let g:go_modifytags_transform = 'camelcase'
 "---}}}
@@ -439,6 +436,9 @@ au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 "au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <leader>l <Plug>(go-metalinter)
+nmap <leader>d :GoDef<CR>
+nmap <leader>g :GoDecls<CR>
 
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
@@ -449,7 +449,7 @@ autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd FileType asm setlocal tabstop=4 shiftwidth=4 expandtab
 
 " json
-"autocmd BufNewFile,BufRead *.json set ft=javascript
+autocmd BufNewFile,BufRead *.json set conceallevel=0
 autocmd BufNewFile,BufRead *.json set ft=json
 autocmd BufNewFile,BufRead *.json.disabled set ft=json
 autocmd BufNewFile,BufRead *.jsondisabled set ft=json
