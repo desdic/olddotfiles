@@ -195,6 +195,8 @@ let g:neosnippet#snippets_directory='~/.config/nvim/bundle/vim-snippets/snippets
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
+map <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?  "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
 if has('conceal')
@@ -223,12 +225,6 @@ function! s:tab_complete()
   " is completion menu open? cycle to next item
   if pumvisible()
     return "\<c-n>"
-  endif
-
-  " is there a snippet that can be expanded?
-  " is there a placholder inside the snippet that can be jumped to?
-  if neosnippet#expandable_or_jumpable() 
-    return "\<Plug>(neosnippet_expand_or_jump)"
   endif
 
   " if none of these match just use regular tab
