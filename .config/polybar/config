@@ -32,8 +32,9 @@ module-margin = 3
 ;font-1 = MaterialIcons:size=10;0
 ;font-2 = Termsynu:size=8:antialias=false;-2
 ;font-3 = FontAwesome:size=10;0
-font-0 = Input Mono:style=Regular:size=8;-1
-font-1 = FontAwesome:style=Regular:size=10;0
+font-0 = Hack:style=Regular:size=8;-1
+font-1 = Input Mono:style=Regular:size=8;-1
+font-2 = FontAwesome:style=Regular:size=10;0
 ;font-3 = dina:pixelsize=15;1
 ;font-4 = dejavu:pixelsize=10;1
 ;font-5 = siji:pixelsize=10;1
