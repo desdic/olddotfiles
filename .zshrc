@@ -47,7 +47,7 @@ case $(uname -s) in
         fi
 
         function highlight() {
-            /usr/bin/grep -E --color=auto "$1|";
+            /usr/bin/grep -E --color=auto "$@|";
         }
 
         export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
@@ -135,3 +135,5 @@ if [ -f "$ZSH/oh-my-zsh.sh" ]; then
     fi
     source $ZSH/oh-my-zsh.sh
 fi
+
+unsetopt share_history
