@@ -50,3 +50,7 @@ set record = +INBOX.Sent
 set spoolfile = "+INBOX"
 
 set index_format="%4C %Z %[%Y-%m-%d %H:%M] %-30.30L [%4c] %s"
+
+macro index A \
+    "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" \
+    "mark all new as read"
