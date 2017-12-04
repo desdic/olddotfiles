@@ -79,7 +79,7 @@ font-1 = FontAwesome:style=Regular:size=10;0
 
 modules-left = i3
 modules-right = volume backlight wifi vpn battery date
-
+tray-position = right
 
 [module/wifi]
 type = internal/network
