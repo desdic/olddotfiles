@@ -1,8 +1,7 @@
 set $mod Mod4
 
 set $laptop "eDP1"
-set $monitor1 "DP2"
-set $monitor2 "DP1"
+set $monitor1 "HDMI1"
 set $hdmi "HDMI3"
 
 # font awesome cheat sheet. https://fortawesome.github.io/Font-Awesome/cheatsheet/
@@ -149,7 +148,7 @@ workspace $workspace6 output $monitor1
 workspace $workspace7 output $monitor1
 workspace $workspace8 output $monitor1
 workspace $workspace9 output $hdmi
-workspace $workspace10 output $monitor2
+workspace $workspace10 output $monitor1
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

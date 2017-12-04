@@ -83,7 +83,7 @@ modules-right = volume backlight wifi vpn battery date
 
 [module/wifi]
 type = internal/network
-interface = wlp3s0
+interface = wlp4s0
 interval = 3.0
 ;udspeed-minwidth = 0
 
