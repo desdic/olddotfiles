@@ -17,6 +17,9 @@ set $workspace8 "8:"
 set $workspace9 "9:  "
 set $workspace10 "10:"
 
+# Make sure pinentry floats
+for_window [class="Pinentry-gtk-2" instance="pinentry-gtk-2"] floating enable
+
 # Remove borders
 new_window 1pixel
 
