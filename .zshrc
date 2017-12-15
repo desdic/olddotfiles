@@ -66,7 +66,7 @@ case $(uname -s) in
 esac
 
 export GIT_AUTHOR_NAME="Kim Nielsen"
-export GIT_AUTHOR_EMAIL=kgn@one.com
+export GIT_AUTHOR_EMAIL=kgn@biq.dk
 export GIT_COMMITTER_NAME="${GIT_AUTHOR_NAME}"
 export GIT_COMMITTER_EMAIL="${GIT_AUTHOR_EMAIL}"
 export DEBFULLNAME="${GIT_AUTHOR_NAME}"
