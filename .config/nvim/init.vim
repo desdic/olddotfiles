@@ -47,6 +47,7 @@ NeoBundle 'ryanoasis/vim-devicons.git'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'nsf/gocode', {'rtp': 'vim/'}
 NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'rodjek/vim-puppet.git'
 call neobundle#end()
 NeoBundleCheck
 " --- }}
