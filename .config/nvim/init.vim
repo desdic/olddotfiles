@@ -24,6 +24,7 @@ NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/deoplete.nvim'
+NeoBundle 'Shougo/denite.nvim'
 NeoBundle 'zchee/deoplete-go', {'build': {'unix': 'make'}}
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'neomake/neomake.git'
@@ -245,6 +246,9 @@ let g:neomake_info_sign={'text': '', 'texthl': 'NeomakeInfoSign'}
 
 let g:neomake_open_list = 0 " 2
 let g:neomake_list_height = 5
+
+"let g:neomake_python_enabled_makers = ['flake8', 'pylint']
+let g:neomake_python_enabled_makers = ['flake8']
 
 " Only add neomake to known files
 autocmd! BufWritePost,BufRead *.c Neomake
