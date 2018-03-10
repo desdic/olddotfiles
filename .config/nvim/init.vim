@@ -36,6 +36,7 @@ NeoBundle 'vim-airline/vim-airline-themes.git'
 NeoBundle 'tpope/vim-git.git'
 NeoBundle 'tpope/vim-fugitive.git'
 NeoBundle 'tpope/vim-dispatch.git'
+NeoBundle 'tpope/vim-markdown.git'
 NeoBundle 'AndrewRadev/splitjoin.vim'
 NeoBundle 'fatih/vim-go.git'
 NeoBundle 'vim-syntastic/syntastic.git'
@@ -52,24 +53,17 @@ call neobundle#end()
 NeoBundleCheck
 " --- }}
 
-silent! call pathogen#infect()
-
 
 " Settings ---{{{
 set omnifunc=syntaxcomplete#Complete
 set nocursorcolumn
-" do not highlight line
-set nocursorline
+set nocursorline "do not highlight line
 set norelativenumber
-" Enable true colors
 set encoding=utf-8
-"set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 12
-"set guifont=Meslo\ LG\ M\ Regular\ for\ Powerline\ Nerd\ Font\ Complete:h12
 set t_Co=256
 set vb
 set ruler
-" Show commands that I type
-set showcmd
+set showcmd "Show commands that I type
 set showmatch
 set backspace=2
 set list
@@ -95,11 +89,6 @@ set spelllang=en
 "set completeopt=longest,menuone
 set completeopt=menu,menuone
 
-" Path to python interpreter for neovim
-let g:python3_host_prog  = '/usr/bin/python3'
-" Skip the check of neovim module
-let g:python3_host_skip_check = 1
-
 set mouse=c
 set nobackup
 set nowritebackup
@@ -112,8 +101,7 @@ set fileformats=unix,dos,mac
 " Enable status line always
 set laststatus=2
 set tabstop=4 shiftwidth=4 expandtab
-" Disable welcome
-set shortmess+=I
+set shortmess+=I "Disable welcome
 syntax enable
 filetype plugin indent on
 syntax sync minlines=128
@@ -121,7 +109,7 @@ syntax sync minlines=128
 " Theme --- {{{
 set termguicolors
 set background=dark
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+set guicursor= "Disable cursor styling
 
 " Solarized
 let g:solarized_termcolors=256
@@ -197,7 +185,7 @@ let g:neosnippet#snippets_directory='~/.config/nvim/bundle/vim-snippets/snippets
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
-map <C-k>     <Plug>(neosnippet_expand_or_jump)
+"map <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?  "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
@@ -251,17 +239,6 @@ let g:neomake_list_height = 5
 "let g:neomake_python_enabled_makers = ['flake8', 'pylint']
 let g:neomake_python_enabled_makers = ['flake8']
 
-" Only add neomake to known files
-autocmd! BufWritePost,BufRead *.c Neomake
-autocmd! BufWritePost,BufRead *.cpp Neomake
-autocmd! BufWritePost,BufRead *.asm Neomake
-autocmd! BufWritePost,BufRead *.go Neomake
-autocmd! BufWritePost,BufRead *.py Neomake
-autocmd! BufWritePost,BufRead *.yaml Neomake
-autocmd! BufWritePost,BufRead *.json Neomake
-autocmd! BufWritePost,BufRead *.sh Neomake
-autocmd! BufWritePost,BufRead *.yml Neomake
-autocmd! BufWritePost,BufRead *.rb Neomake
 " ---}}}
 
 " Devicons ---{{{
@@ -290,27 +267,15 @@ let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
 " Mappings ---{{{
 let mapleader = ","
 
-" Ctrl + n change buffer
-nmap <c-n> :bnext<CR>
-" Ctrl + p change buffer
-nmap <c-p> :bprevious<CR>
-",n new buffer
-nmap <leader>n :enew<CR>
-" ,q quit buffer
-nmap <leader>q :bp <BAR> bd #<CR>
-
-" close window
-map <Leader>c :close<CR>
-" Save
-map <Leader>w :w!<CR>
-
-" redraw buffer
-nmap <C-l> :redraw!
-nmap <Leader>t :NERDTreeToggle<CR>
-" ,s sort
-vnoremap <Leader>s :sort<CR>
-
-command W w
+nmap <c-n> :bnext<CR>             " Ctrl + n change buffer
+nmap <c-p> :bprevious<CR>         " Ctrl + p change buffer
+nmap <leader>n :enew<CR>          " ,n new buffer
+nmap <leader>q :bp <BAR> bd #<CR> " ,q quit buffer
+map <Leader>c :close<CR>          " close window
+map <Leader>w :w!<CR>             " Save
+nmap <C-l> :redraw!               " redraw buffer
+nmap <Leader>n :NERDTreeToggle<CR>
+vnoremap <Leader>s :sort<CR>      " ,s sort
 
 " Indentation
 vnoremap < <gv
@@ -334,10 +299,7 @@ nnoremap <C-l> <C-w>l
 map <Leader>a ggVG
 
 map <Leader>l :redraw!<CR>
-map <Leader>x :set tabstop=4 shiftwidth=4 expandtab
 map <Leader>p :set paste<CR> i
-" Remove highlight after search
-"map <Leader>C :let @/=""<CR>
 
 " Remove search highlight
 nnoremap <leader><space> :nohlsearch<CR>
@@ -419,83 +381,82 @@ nnoremap <silent> <Leader>% :exe "vertical resize +5"<CR>
 nnoremap <silent> <Leader>& :exe "vertical resize -5"<CR>
 
 " Files ---{{{
-" Vim
-autocmd FileType vim let b:deoplete_disable_auto_complete = 1
+"
 
-" Mail
-autocmd FileType mail set tw=72 fo+=taw spell
-autocmd FileType mail let b:deoplete_disable_auto_complete = 1
+" Only add neomake to known files
+autocmd! BufWritePost,BufRead *.c Neomake
+autocmd! BufWritePost,BufRead *.cpp Neomake
+autocmd! BufWritePost,BufRead *.asm Neomake
+autocmd! BufWritePost,BufRead *.go Neomake
+autocmd! BufWritePost,BufRead *.py Neomake
+autocmd! BufWritePost,BufRead *.yaml Neomake
+autocmd! BufWritePost,BufRead *.json Neomake
+autocmd! BufWritePost,BufRead *.sh Neomake
+autocmd! BufWritePost,BufRead *.yml Neomake
+autocmd! BufWritePost,BufRead *.rb Neomake
 
-" GO
-autocmd FileType go set nolist
-autocmd FileType go setlocal tabstop=4 shiftwidth=4 expandtab
-autocmd FileType go setlocal tabstop=4 shiftwidth=4 expandtab
-autocmd FileType go setlocal tabstop=4 shiftwidth=4 expandtab
+augroup filetypedetect
+    command! -nargs=* -complete=help Help vertical belowright help <args>
+    autocmd FileType help wincmd L
 
-set rtp+=~/.vim/plugin/lint.vim
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-"au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-au FileType go nmap <leader>l <Plug>(go-metalinter)
-nmap <leader>d :GoDef<CR>
-nmap <leader>g :GoDecls<CR>
+    autocmd BufEnter * :syn sync maxlines=200
 
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    autocmd BufNewFile,BufRead *.go   setlocal noexpandtab tabstop=4 shiftwidth=4
+    autocmd BufNewFile,BufRead *.md   setlocal filetype=markdown noexpandtab shiftwidth=4 tabstop=4
+    autocmd BufNewFile,BufRead *.yml  setfiletype yaml
+    autocmd BufNewFile,BufRead *.txt  setlocal noet ts=4 sw=4
+    autocmd BufNewFile,BufRead *.html setlocal noet ts=4 sw=4
+    autocmd BufNewFile,BufRead *.vim  setlocal expandtab shiftwidth=2 tabstop=2
+    autocmd BufNewFile,BufRead *.sh   setlocal expandtab shiftwidth=2 tabstop=2
+    autocmd BufNewFile,BufRead *.js   setlocal tabstop=4 shiftwidth=4 expandtab
+    autocmd BufNewFile,BufRead *.json setlocal expandtab shiftwidth=2 tabstop=2
+    autocmd BufNewFile,BufRead *.erb  setlocal expandtab shiftwidth=2 tabstop=2 set filetype=ruby.eruby.chef setfiletype eruby
+    autocmd BufNewFile,BufRead *.rb   setlocal expandtab shiftwidth=2 tabstop=2 setfiletype ruby
 
-" C/C++
-autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab
-autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab
-autocmd FileType asm setlocal tabstop=4 shiftwidth=4 expandtab
+    autocmd FileType markdown let b:deoplete_disable_auto_complete = 1
+    autocmd FileType python   setlocal expandtab shiftwidth=4 tabstop=4 omnifunc=pythoncomplete#Complete
+    autocmd FileType c        setlocal expandtab tabstop=4 shiftwidth=4
+    autocmd FileType cpp      setlocal expandtab tabstop=4 shiftwidth=4
+    autocmd FileType asm      setlocal expandtab tabstop=4 shiftwidth=4
+    autocmd FileType html     setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType xml      setlocal omnifunc=xmlcomplete#CompleteTags
+    autocmd FileType yaml     setlocal expandtab ts=2 sw=2
+    autocmd FileType make     setlocal noexpandtab
+    autocmd FileType text let b:deoplete_disable_auto_complete = 1
+    autocmd FileType help     setlocal nolist " don't show whitespace in help files
+    autocmd FileType vim let b:deoplete_disable_auto_complete = 1
+    autocmd FileType gitcommit setlocal spell
+    autocmd FileType gitcommit let b:deoplete_disable_auto_complete = 1
 
-" json
-autocmd BufNewFile,BufRead *.json set conceallevel=0
-autocmd BufNewFile,BufRead *.json set ft=json
-autocmd BufNewFile,BufRead *.json.disabled set ft=json
-autocmd BufNewFile,BufRead *.jsondisabled set ft=json
-autocmd FileType json setlocal tabstop=4 shiftwidth=4 expandtab
+augroup END
 
-autocmd FileType javascript setlocal tabstop=4 shiftwidth=4 expandtab
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+augroup json
+    autocmd!
+    autocmd BufNewFile,BufRead *.json set conceallevel=0
+    autocmd BufNewFile,BufRead *.json set ft=json
+    autocmd BufNewFile,BufRead *.json.disabled set ft=json
+    autocmd BufNewFile,BufRead *.jsondisabled set ft=json
+augroup END
 
-"let g:vim_markdown_folding_disabled=1
-"autocmd FileType markdown setlocal tw=80
-autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
-"autocmd BufNewFile,BufRead *.md set syntax=off
-autocmd FileType markdown setlocal noexpandtab shiftwidth=4 tabstop=4
-autocmd FileType markdown let b:deoplete_disable_auto_complete = 1
+augroup mail
+    autocmd!
+    autocmd FileType mail set tw=72 fo+=taw spell
+    autocmd FileType mail let b:deoplete_disable_auto_complete = 1
+augroup END
 
-" don't show whitespace in help files
-autocmd FileType help set nolist
+augroup go
+    autocmd!
+    autocmd FileType go set nolist "Don't want to see those tabs
 
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-
-autocmd FileType text setlocal tabstop=4 shiftwidth=4 expandtab
-autocmd FileType text let b:deoplete_disable_auto_complete = 1
-autocmd FileType ruby setlocal tabstop=4 shiftwidth=4 expandtab
-autocmd FileType ruby,eruby set filetype=ruby.eruby.chef
-
-" Yaml
-autocmd BufRead,BufNewFile *.yml setfiletype yaml
-"autocmd BufRead,BufNewFile *.yml syntax clear
-autocmd FileType yaml setlocal expandtab ts=2 sw=2
-
-" Make
-autocmd FileType make setlocal noexpandtab
-
-" Eruby
-autocmd BufRead,BufNewFile *.erb setfiletype eruby
-
-" Ruby
-autocmd BufRead,BufNewFile *.rb setfiletype ruby
-
-" Git
-autocmd FileType gitcommit setlocal spell
-autocmd FileType gitcommit let b:deoplete_disable_auto_complete = 1
-
-autocmd BufEnter * :syn sync maxlines=200
+    set rtp+=~/.vim/plugin/lint.vim
+    au FileType go nmap <leader>r <Plug>(go-run-split)
+    au FileType go nmap <leader>b <Plug>(go-build)
+    au FileType go nmap <leader>t <Plug>(go-test)
+    au FileType go nmap <leader>c <Plug>(go-coverage)
+    au FileType go nmap <leader>l <Plug>(go-metalinter)
+    nmap <leader>d :GoDef<CR>
+    nmap <leader>g :GoDecls<CR>
+augroup END
 " ---}}}
 
 
@@ -504,12 +465,4 @@ let s:tlist_def_go_settings = 'go;g:enum;s:struct;u:union;t:type;' .
                            \ 'v:variable;f:function'
 " Netrw Style Listing
 let g:netrw_liststyle = 3
-
-"autocmd VimEnter * :call AfterOpen()
-
-" auto save and restore foldings
-"autocmd BufWinLeave *.* mkview
-"autocmd BufWinEnter *.* silent loadview
-
-
 
