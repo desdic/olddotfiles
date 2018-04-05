@@ -1,5 +1,3 @@
-## Colors please
-
 export GOPATH=$(pwd)/go
 
 PATH=""
@@ -16,6 +14,16 @@ alias newlinespace='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/\
 function take {
     mkdir -p $1
     cd $1
+}
+
+function cd() {
+    builtin cd $1
+    if [[ -f .gorc ]]; then
+        echo $GOPATH|grep -q $PWD
+        if [ "$?" != 0 ]; then
+            export GOPATH="${GOPATH}:${PWD}"
+        fi
+    fi
 }
 
 case $(uname -s) in
@@ -53,6 +61,7 @@ case $(uname -s) in
             /usr/bin/grep -E --color=auto "$@|";
         }
 
+        export BROWSER=google-chrome-stable
         export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
         export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
         export LESS_TERMCAP_me=$'\E[0m'           # end mode
@@ -78,10 +87,9 @@ if [ -x "$(which nvim)" ]; then
     export VISUAL="${EDITOR}"
     export FCEDIT="${EDITOR}"
     alias view="${EDITOR} -M"
-    alias vim="$(which nvim)"
+#    alias vim="$(which nvim)"
 fi
 
-export ONECOMID=kgn
 export LANG=da_DK.UTF-8
 export LC_COLLATE=C
 export LC_MESSAGES=C

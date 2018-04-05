@@ -1,5 +1,6 @@
 [colors]
 background = #222
+black = #0
 foreground = #eee
 linecolor = #fba922
 bordercolor = #333
@@ -13,6 +14,7 @@ empty = #44
 screenchange-reload = true
 
 [bar/top]
+locale = en_US.UTF-8
 monitor = ${env:MONITOR:eDP1}
 width = 100%
 height = 27
@@ -23,10 +25,10 @@ foreground = #ccffffff
 line-color = ${bar/bottom.background}
 line-size = 16
 
-spacing = 2
+spacing = 1
 padding-right = 5
-padding-left = 5
-module-margin = 3
+padding-left = 1
+module-margin = 2
 
 ;font-0 = NotoSans-Regular:size=8;-1
 ;font-1 = MaterialIcons:size=10;0
@@ -35,15 +37,21 @@ module-margin = 3
 font-0 = Hack:style=Regular:size=8;-1
 font-1 = Input Mono:style=Regular:size=8;-1
 font-2 = FontAwesome:style=Regular:size=10;0
+
+font-3 = NotoSans-Regular:size=8;-1
+font-4 = MaterialIcons:size=10;0
+font-5 = Termsynu:size=8:antialias=false;-2
+
 ;font-3 = dina:pixelsize=15;1
 ;font-4 = dejavu:pixelsize=10;1
 ;font-5 = siji:pixelsize=10;1
 ;font-6 = unifont:size=6;1
 
-modules-left = xkeyboard pacaur
-modules-right = fs-root temperature cpu memory
+modules-left = spotify
+modules-right = pacaur fs-root temperature cpu memory
 
 [bar/bottom]
+locale = en_US.UTF-8
 monitor = ${env:MONITOR:eDP1}
 bottom = true
 width = 100%
@@ -68,6 +76,7 @@ module-margin-right = 6
 ;font-5 = Termsynu:size=8:antialias=false;0
 font-0 = Input Mono:style=Regular:size=8;-1
 font-1 = FontAwesome:style=Regular:size=10;0
+font-2 = Material Icons:style=Regular:size=10;0
 
 ;font-0 = Input Mono:style=Regular:size=11;4
 ;font-1 = FontAwesome:style=Regular:size=11;4
@@ -76,10 +85,19 @@ font-1 = FontAwesome:style=Regular:size=10;0
 ;font-5 = siji:pixelsize=10;1
 ;font-6 = unifont:size=6;1
 
-
 modules-left = i3
-modules-right = volume backlight wifi vpn battery date
+modules-right = pulseaudio backlight wired-network wifi tun ppp battery date
 tray-position = right
+
+[module/spotify]
+type = custom/script
+exec = /home/kgn/.config/polybar/spotify.py
+click-middle = /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+click-right = /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+click-left = /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+interval = 2
+format = <label>
+exec-if "ps aux|grep -v grep|grep -q '/bin/spotify'"
 
 [module/wifi]
 type = internal/network
@@ -110,7 +128,7 @@ ramp-signal-4-foreground = ${colors.icons}
 
 format-foreground = ${colors.foreground}
 
-[module/vpn]
+[module/tun]
 type = internal/network
 interface = tun0
 interval = 3.0
@@ -127,6 +145,22 @@ label-disconnected = 
 label-connected-foreground = ${colors.icons}
 label-disconnected-foreground = ${colors.warn}
 
+[module/ppp]
+type = internal/network
+interface = ppp0
+interval = 3.0
+
+format-connected-padding = 1
+format-disconnected-padding = 1
+
+format-connected = <label-connected>
+label-foreground = $(colors.foreground)
+format-connected-foreground = $(colors.foreground)
+
+label-connected =  %local_ip%
+label-disconnected = 
+label-connected-foreground = ${colors.icons}
+label-disconnected-foreground = ${colors.warn}
 
 [module/battery]
 type = internal/battery
@@ -152,7 +186,7 @@ ramp-capacity-2 = 
 ramp-capacity-foreground = ${colors.icons}
 ramp-capacity-0-foreground = ${colors.alert}
 ramp-capacity-1-foreground = ${colors.warn}
-ramp-capacity-2-foreground = ${colors.ok}
+ramp-capacity-2-foreground = ${colors.icons}
 
 animation-charging-0 =  
 animation-charging-1 =  
@@ -368,10 +402,10 @@ label = %date% %time%
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 70
+warn-temperature = 80
 
-format = <ramp> <label>
-format-prefix = ""
+format = <ramp><label>
+format-prefix =
 format-warn-prefix = ""
 format-warn = <ramp> <label-warn>
 format-foreground = ${colors.icons}
@@ -382,13 +416,13 @@ label-foreground = ${colors.foreground}
 label-warn = %temperature%
 label-warn-foreground = ${colors.alert}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground}
-ramp-0-foreground = ${colors.ok}
-ramp-1-foreground = ${colors.warn}
-ramp-2-foreground = ${colors.alert}
+ramp-0 =
+ramp-1 =
+ramp-2 =
+ramp-foreground = ${colors.background}
+ramp-0-foreground = ${colors.icons}
+ramp-1-foreground = ${colors.icons}
+ramp-2-foreground = ${colors.warn}
 
 [module/fs-root]
 type = internal/fs
@@ -397,61 +431,42 @@ label-mounted = "%{F#5b5b5b}%{F-} %free%"
 
 [module/memory]
 type = internal/memory
-format = <label> <bar-used>
-format-prefix = " "
+interval = 3
+
+format = <label>
 format-prefix-foreground = ${colors.icons}
-label = RAM
+format-prefix = " "
+label-foreground = ${colors.foreground}
 
-bar-used-width = 30
-bar-used-foreground-0 = ${colors.ok}
-bar-used-foreground-1 = ${colors.ok}
-bar-used-foreground-2 = ${colors.warn}
-bar-used-foreground-3 = ${colors.alert}
-bar-used-indicator = |
-bar-used-indicator-font = 6
-bar-used-indicator-foreground = #ff
-bar-used-fill = ─
-bar-used-fill-font = 6
-bar-used-empty = ─
-bar-used-empty-font = 6
-bar-used-empty-foreground = ${colors.empty}
-
-[module/mpd]
-type = internal/mpd
-format-online = <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
-
-icon-play = 
-icon-pause = 
-icon-stop = 
-icon-prev = 
-icon-next = 
-icon-random = 
-icon-repeat = 
-
-toggle-on-foreground =
-toggle-off-foreground = #55
-
-bar-progress-width = 45
-bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
-bar-progress-indicator = |
-bar-progress-indicator-foreground = #ff
-bar-progress-indicator-font = 3
-bar-progress-fill = ─
-bar-progress-fill-foreground = #bb
-bar-progress-fill-font = 3
-bar-progress-empty = ─
-bar-progress-empty-font = 3
-bar-progress-empty-foreground = ${colors.empty}
+label = %gb_used%
+;format = <label> <bar-used>
+;format-prefix = " "
+;format-prefix-foreground = ${colors.icons}
+;label = RAM
+;
+;bar-used-width = 30
+;bar-used-foreground-0 = ${colors.ok}
+;bar-used-foreground-1 = ${colors.ok}
+;bar-used-foreground-2 = ${colors.warn}
+;bar-used-foreground-3 = ${colors.alert}
+;bar-used-indicator = |
+;bar-used-indicator-font = 6
+;bar-used-indicator-foreground = #ff
+;bar-used-fill = ─
+;bar-used-fill-font = 6
+;bar-used-empty = ─
+;bar-used-empty-font = 6
+;bar-used-empty-foreground = ${colors.empty}
 
 [module/wireless-network]
 type = internal/network
-interface = net1
+interface = wlp4s0
 interval = 3.0
 ping-interval = 10
 
 format-connected = <ramp-signal> <label-connected>
-label-connected = %essid%
-label-disconnected =    not connected
+label-connected = %{T3} %essid% - %local_ip%%{T-}
+#label-disconnected =    not connected
 label-disconnected-foreground = #66
 
 ramp-signal-0 = 
@@ -468,14 +483,14 @@ animation-packetloss-framerate = 500
 
 [module/wired-network]
 type = internal/network
-interface = net0
+interface = enp0s31f6
 interval = 3.0
 
-label-connected =    %{T3}%local_ip%%{T-}
+label-connected =  %local_ip%
 label-disconnected-foreground = #66
 
 [module/volume]
-type = internal/volume
+type = internal/alsa
 master-soundcard = default
 speaker-soundcard = default
 headphone-soundcard = default
@@ -506,6 +521,18 @@ bar-volume-empty = ─
 bar-volume-empty-font = 3
 bar-volume-empty-foreground = ${colors.empty}
 bar-volume-fill-foreground = ${colors.foreground}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+format-volume = <ramp-volume> <label-volume>
+label-muted =  muted
+label-muted-foreground = ${colors.alert}
+ramp-volume-0 =
+ramp-volume-1 =
+ramp-volume-2 =
+ramp-volume-0-foreground = ${colors.icons}
+ramp-volume-1-foreground = ${colors.icons}
+ramp-volume-2-foreground = ${colors.ok}
 
 [module/backlight]
 type = internal/xbacklight
