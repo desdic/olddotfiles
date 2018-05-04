@@ -364,6 +364,7 @@ let g:go_highlight_array_whitespace_error = 1
 let g:go_highlight_trailing_whitespace_error = 1
 
 let g:go_modifytags_transform = 'camelcase'
+let g:go_addtags_transform = 'camelcase'
 "---}}}
 
 " Typeos
@@ -372,7 +373,8 @@ iabbr flase false
 
 " Run make and if we get errors show them in a 3 line window
 command -nargs=* Make make <args> | copen
-map <Leader>m :Make<CR><CR><CR>
+"map <Leader>m :Make<CR><CR><CR>
+map <Leader>m :Make<CR>
 
 " Resizing
 nnoremap <silent> <Leader>+ :exe "resize +5"<CR>
@@ -456,6 +458,7 @@ augroup go
     au FileType go nmap <leader>l <Plug>(go-metalinter)
     nmap <leader>d :GoDef<CR>
     nmap <leader>g :GoDecls<CR>
+    nmap <leader>s :GoFillStruct<CR>
 augroup END
 " ---}}}
 
@@ -465,4 +468,3 @@ let s:tlist_def_go_settings = 'go;g:enum;s:struct;u:union;t:type;' .
                            \ 'v:variable;f:function'
 " Netrw Style Listing
 let g:netrw_liststyle = 3
-

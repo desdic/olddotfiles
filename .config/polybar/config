@@ -86,7 +86,7 @@ font-2 = Material Icons:style=Regular:size=10;0
 ;font-6 = unifont:size=6;1
 
 modules-left = i3
-modules-right = pulseaudio backlight wired-network wifi tun ppp battery date
+modules-right = pulseaudio backlight wired-network wifi tun battery date
 tray-position = right
 
 [module/spotify]
@@ -131,23 +131,6 @@ format-foreground = ${colors.foreground}
 [module/tun]
 type = internal/network
 interface = tun0
-interval = 3.0
-
-format-connected-padding = 1
-format-disconnected-padding = 1
-
-format-connected = <label-connected>
-label-foreground = $(colors.foreground)
-format-connected-foreground = $(colors.foreground)
-
-label-connected =  %local_ip%
-label-disconnected = 
-label-connected-foreground = ${colors.icons}
-label-disconnected-foreground = ${colors.warn}
-
-[module/ppp]
-type = internal/network
-interface = ppp0
 interval = 3.0
 
 format-connected-padding = 1
@@ -446,13 +429,13 @@ bar-volume-fill-foreground = ${colors.foreground}
 type = internal/pulseaudio
 format-volume = <ramp-volume> <label-volume>
 label-muted =  muted
-label-muted-foreground = ${colors.alert}
+label-muted-foreground = ${colors.warn}
 ramp-volume-0 =
 ramp-volume-1 =
 ramp-volume-2 =
 ramp-volume-0-foreground = ${colors.icons}
 ramp-volume-1-foreground = ${colors.icons}
-ramp-volume-2-foreground = ${colors.ok}
+ramp-volume-2-foreground = ${colors.icons}
 
 [module/backlight]
 type = internal/xbacklight
