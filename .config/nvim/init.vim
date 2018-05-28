@@ -54,57 +54,9 @@ NeoBundleCheck
 " --- }}
 
 
-" Settings ---{{{
-set omnifunc=syntaxcomplete#Complete
-set nocursorcolumn
-set nocursorline "do not highlight line
-set norelativenumber
-set encoding=utf-8
-set t_Co=256
-set vb
-set ruler
-set showcmd "Show commands that I type
-set showmatch
-set backspace=2
-set list
-set listchars=tab:→·,trail:·
-set modeline
-set modelines=5
-set cursorline
-set autowrite
-set showmode
-set noshowmode
-set noerrorbells
-set novisualbell
-" Speed up when using syntax highlight
-set synmaxcol=200
-syntax sync minlines=256
-set scrolljump=5
-set lazyredraw
-set hidden
-set number
-set hlsearch
-set incsearch
-set spelllang=en
-"set completeopt=longest,menuone
-set completeopt=menu,menuone
-
-set mouse=c
-set nobackup
-set nowritebackup
-set noswapfile
-set fileformats=unix,dos,mac
-
-" Crosshair plugin
-"set cursorline    " enable the horizontal line
-"set cursorcolumn  " enable the vertical line
-" Enable status line always
-set laststatus=2
-set tabstop=4 shiftwidth=4 expandtab
-set shortmess+=I "Disable welcome
-syntax enable
-filetype plugin indent on
-syntax sync minlines=128
+" Settings --- {{{
+source ~/.config/nvim/settings.vim
+" --- }}}
 
 " Theme --- {{{
 set termguicolors
@@ -117,6 +69,7 @@ let g:solarized_visibility = "high"
 let g:solarized_termtrans = 0
 colorscheme solarized
 let g:airline_theme='solarized'
+
 
 " Addon to highlighting of folding
 "hi Folded          ctermfg=14   ctermbg=0
@@ -264,59 +217,9 @@ let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
 " ---}}}
 
 
-" Mappings ---{{{
-let mapleader = ","
-
-nmap <c-n> :bnext<CR>             " Ctrl + n change buffer
-nmap <c-p> :bprevious<CR>         " Ctrl + p change buffer
-nmap <leader>n :enew<CR>          " ,n new buffer
-nmap <leader>q :bp <BAR> bd #<CR> " ,q quit buffer
-map <Leader>c :close<CR>          " close window
-map <Leader>w :w!<CR>             " Save
-nmap <C-l> :redraw!               " redraw buffer
-nmap <Leader>n :NERDTreeToggle<CR>
-vnoremap <Leader>s :sort<CR>      " ,s sort
-
-" Indentation
-vnoremap < <gv
-vnoremap > >gv
-
-" Quoting in visuel mode
-vnoremap <Leader>" c"<C-R>""<ESC>
-vnoremap <Leader>' c'<C-R>"'<ESC>
-
-" Quoting in non visuel mode
-nnoremap <Leader>" ciw"<C-R>""<ESC>
-nnoremap <Leader>' ciw'<C-R>"'<ESC>
-
-" Split navigation
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-" Select all
-map <Leader>a ggVG
-
-map <Leader>l :redraw!<CR>
-map <Leader>p :set paste<CR> i
-
-" Remove search highlight
-nnoremap <leader><space> :nohlsearch<CR>
-
-" Count selection
-map <Leader>g <C-g>
-
-" Move
-"nnoremap <C-j> :m .+1<CR>==
-"nnoremap <C-k> :m .-2<CR>==
-"inoremap <C-j> <Esc>:m .+1<CR>==gi
-"inoremap <C-k> <Esc>:m .-2<CR>==gi
-"vnoremap <C-j> :m '>+1<CR>gv=gv
-"vnoremap <C-k> :m '<-2<CR>gv=gv
-
-nnoremap <A-j> :lnext<CR>
-nnoremap <A-k> :lprevious<CR>
+" Mappings --- {{{
+source ~/.config/nvim/mapping.vim
+" --- }}}
 
 "  Toogle spell language
 "  (http://vim.wikia.com/wiki/Toggle_spellcheck_with_function_keys)
@@ -371,17 +274,6 @@ let g:go_addtags_transform = 'camelcase'
 iabbr ture true
 iabbr flase false
 
-" Run make and if we get errors show them in a 3 line window
-command -nargs=* Make make <args> | copen
-"map <Leader>m :Make<CR><CR><CR>
-map <Leader>m :Make<CR>
-
-" Resizing
-nnoremap <silent> <Leader>+ :exe "resize +5"<CR>
-nnoremap <silent> <Leader>- :exe "resize -5"<CR>
-nnoremap <silent> <Leader>% :exe "vertical resize +5"<CR>
-nnoremap <silent> <Leader>& :exe "vertical resize -5"<CR>
-
 " Files ---{{{
 "
 
@@ -397,74 +289,11 @@ autocmd! BufWritePost,BufRead *.sh Neomake
 autocmd! BufWritePost,BufRead *.yml Neomake
 autocmd! BufWritePost,BufRead *.rb Neomake
 
-augroup filetypedetect
-    command! -nargs=* -complete=help Help vertical belowright help <args>
-    autocmd FileType help wincmd L
-
-    autocmd BufEnter * :syn sync maxlines=200
-
-    autocmd BufNewFile,BufRead *.go   setlocal noexpandtab tabstop=4 shiftwidth=4
-    autocmd BufNewFile,BufRead *.md   setlocal filetype=markdown noexpandtab shiftwidth=4 tabstop=4
-    autocmd BufNewFile,BufRead *.yml  setfiletype yaml
-    autocmd BufNewFile,BufRead *.txt  setlocal noet ts=4 sw=4
-    autocmd BufNewFile,BufRead *.html setlocal noet ts=4 sw=4
-    autocmd BufNewFile,BufRead *.vim  setlocal expandtab shiftwidth=2 tabstop=2
-    autocmd BufNewFile,BufRead *.sh   setlocal expandtab shiftwidth=2 tabstop=2
-    autocmd BufNewFile,BufRead *.js   setlocal tabstop=4 shiftwidth=4 expandtab
-    autocmd BufNewFile,BufRead *.json setlocal expandtab shiftwidth=2 tabstop=2
-    autocmd BufNewFile,BufRead *.erb  setlocal expandtab shiftwidth=2 tabstop=2 set filetype=ruby.eruby.chef setfiletype eruby
-    autocmd BufNewFile,BufRead *.rb   setlocal expandtab shiftwidth=2 tabstop=2 setfiletype ruby
-
-    autocmd FileType markdown let b:deoplete_disable_auto_complete = 1
-    autocmd FileType python   setlocal expandtab shiftwidth=4 tabstop=4 omnifunc=pythoncomplete#Complete
-    autocmd FileType c        setlocal expandtab tabstop=4 shiftwidth=4
-    autocmd FileType cpp      setlocal expandtab tabstop=4 shiftwidth=4
-    autocmd FileType asm      setlocal expandtab tabstop=4 shiftwidth=4
-    autocmd FileType html     setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType xml      setlocal omnifunc=xmlcomplete#CompleteTags
-    autocmd FileType yaml     setlocal expandtab ts=2 sw=2
-    autocmd FileType make     setlocal noexpandtab
-    autocmd FileType text let b:deoplete_disable_auto_complete = 1
-    autocmd FileType help     setlocal nolist " don't show whitespace in help files
-    autocmd FileType vim let b:deoplete_disable_auto_complete = 1
-    autocmd FileType gitcommit setlocal spell
-    autocmd FileType gitcommit let b:deoplete_disable_auto_complete = 1
-
-augroup END
-
-augroup json
-    autocmd!
-    autocmd BufNewFile,BufRead *.json set conceallevel=0
-    autocmd BufNewFile,BufRead *.json set ft=json
-    autocmd BufNewFile,BufRead *.json.disabled set ft=json
-    autocmd BufNewFile,BufRead *.jsondisabled set ft=json
-augroup END
-
-augroup mail
-    autocmd!
-    autocmd FileType mail set tw=72 fo+=taw spell
-    autocmd FileType mail let b:deoplete_disable_auto_complete = 1
-augroup END
-
-augroup go
-    autocmd!
-    autocmd FileType go set nolist "Don't want to see those tabs
-
-    set rtp+=~/.vim/plugin/lint.vim
-    au FileType go nmap <leader>r <Plug>(go-run-split)
-    au FileType go nmap <leader>b <Plug>(go-build)
-    au FileType go nmap <leader>t <Plug>(go-test)
-    au FileType go nmap <leader>c <Plug>(go-coverage)
-    au FileType go nmap <leader>l <Plug>(go-metalinter)
-    nmap <leader>d :GoDef<CR>
-    nmap <leader>g :GoDecls<CR>
-    nmap <leader>s :GoFillStruct<CR>
-augroup END
-" ---}}}
-
+" Settings --- {{{
+source ~/.config/nvim/filetypes.vim
+" --- }}}
 
 " go language
-let s:tlist_def_go_settings = 'go;g:enum;s:struct;u:union;t:type;' .
-                           \ 'v:variable;f:function'
+let s:tlist_def_go_settings = 'go;g:enum;s:struct;u:union;t:type;v:variable;f:function'
 " Netrw Style Listing
 let g:netrw_liststyle = 3
