@@ -268,6 +268,9 @@ let g:go_highlight_trailing_whitespace_error = 1
 
 let g:go_modifytags_transform = 'camelcase'
 let g:go_addtags_transform = 'camelcase'
+
+let g:go_jump_to_error = 1
+let g:go_bin_path = "~/go/bin/"
 "---}}}
 
 " Typeos
