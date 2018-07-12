@@ -1,211 +1,279 @@
-
 call plug#begin('~/.vim/plugged')
-  Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-  Plug 'Raimondi/delimitMate'
-  Plug 'tomasr/molokai'
-  Plug 'fatih/vim-go', { 'tag': '*', 'do': ':GoInstallBinaries' }
-  Plug 'tpope/vim-fugitive'
-  Plug 'scrooloose/nerdcommenter'
-  Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+    Plug 'Raimondi/delimitMate'
+    Plug 'fatih/vim-go', { 'tag': '*', 'do': ':GoInstallBinaries' }
+    Plug 'tpope/vim-fugitive'
+    Plug 'scrooloose/nerdcommenter'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'neomake/neomake'
+    Plug 'ctrlpvim/ctrlp.vim'
+
+    if has('nvim')
+        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    else
+        Plug 'Shougo/deoplete.nvim'
+        Plug 'roxma/vim-hug-neovim-rpc'
+        Plug 'roxma/nvim-yarp'
+    endif
+    Plug 'Shougo/denite.nvim'
+    Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}
+    Plug 'Shougo/neosnippet.vim'
+    Plug 'Shougo/neosnippet-snippets'
+    Plug 'honza/vim-snippets'
+    Plug 'fenetikm/falcon'
 call plug#end()
 
 " Settings --- {{{
-source ~/.config/nvim/settings.vim
+"set omnifunc=syntaxcomplete#Complete
+set nocursorcolumn
+set nocursorline "do not highlight line
+"set norelativenumber
+set encoding=utf-8
+set t_Co=256
+set vb
+set ruler
+set showcmd "Show commands that I type
+set showmatch
+set backspace=2
+
+" Display whitespaces
+set list
+set listchars=tab:→·,trail:·
+
+set modeline
+set modelines=5
+"set cursorline
+set autowrite
+set showmode
+set noshowmode
+set noerrorbells
+set novisualbell
+" Speed up when using syntax highlight
+set synmaxcol=200
+syntax sync minlines=256
+set scrolljump=5
+set lazyredraw
+set hidden
+set number
+set hlsearch
+set incsearch
+set spelllang=en
+set completeopt=menu,menuone
+"set nowrap
+
+set mouse=c
+set nobackup
+set nowritebackup
+set noswapfile
+set fileformats=unix,dos,mac
+
+" Crosshair plugin
+"set cursorline    " enable the horizontal line
+"set cursorcolumn  " enable the vertical line
+" Enable status line always
+set laststatus=2
+set tabstop=4 shiftwidth=4 expandtab
+set shortmess+=I "Disable welcome
+syntax enable
+filetype plugin indent on
+syntax sync minlines=128
 " --- }}}
 
-
 " Theme --- {{{
-"set termguicolors
-"set background=dark
-"set guicursor= "Disable cursor styling
 
 " color
 syntax enable
 set t_Co=256
 set background=dark
-let g:molokai_original = 1
-let g:rehash256 = 1
-colorscheme molokai
 
+" Enable 24bit colors in falcon
+"set termguicolors
+colorscheme falcon
+let g:falcon_airline = 1
+let g:airline_theme = 'falcon'
 
-" Settings --- {{{
-source ~/.config/nvim/filetypes.vim
-" --- }}}
+" For some reason only the comment colors are wrong when using tmux
+if exists('$TMUX')
+    hi Comment guifg=#89898c ctermfg=black guibg=NONE ctermbg=245 gui=italic cterm=italic
+endif
+" Make it easier to see the match
+hi MatchParen ctermbg=blue guibg=lightblue
 
-"=====================================================
-"===================== STATUSLINE ====================
+"" Airline {{{
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+"
+" Only show tabs if we have more than one file open
+let g:airline#extensions#tabline#buffer_min_count = 1
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline_skip_empty_sections = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#neomake#error_symbol=''
+let g:airline#extensions#neomake#warning_symbol=''
+"
+" Enable buffer tabs
+let g:airline#extensions#tabline#enabled =  1
+"
+" Show hex value of char
+"let g:airline_section_y = airline#section#create_right(['ffenc', 'Hex:0x%02B'])
+"let g:airline_section_c = airline#section#create_right(['file','BN: %{bufnr("%")}'])
 
-let s:modes = {
-      \ 'n': 'NORMAL',
-      \ 'i': 'INSERT',
-      \ 'R': 'REPLACE',
-      \ 'v': 'VISUAL',
-      \ 'V': 'V-LINE',
-      \ "\<C-v>": 'V-BLOCK',
-      \ 'c': 'COMMAND',
-      \ 's': 'SELECT',
-      \ 'S': 'S-LINE',
-      \ "\<C-s>": 'S-BLOCK',
-      \ 't': 'TERMINAL'
-      \}
+let g:airline_powerline_fonts = 1
+let g:airline_symbols.space = "\ua0"
 
-let s:prev_mode = ""
-function! StatusLineMode()
-  let cur_mode = get(s:modes, mode(), '')
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+" ---}}}
 
-  " do not update higlight if the mode is the same
-  if cur_mode == s:prev_mode
-    return cur_mode
-  endif
+" ctrlp ---{{{
+let g:ctrlp_map = '<c-m>'
+let g:ctrlp_cmd = 'CtrlP'
+" ---}}}
 
-  if cur_mode == "NORMAL"
-    exe 'hi! StatusLine ctermfg=236'
-    exe 'hi! myModeColor cterm=bold ctermbg=148 ctermfg=22'
-  elseif cur_mode == "INSERT"
-    exe 'hi! myModeColor cterm=bold ctermbg=23 ctermfg=231'
-  elseif cur_mode == "VISUAL" || cur_mode == "V-LINE" || cur_mode == "V_BLOCK"
-    exe 'hi! StatusLine ctermfg=236'
-    exe 'hi! myModeColor cterm=bold ctermbg=208 ctermfg=88'
-  endif
+" Devicons ---{{{
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:WebDevIconsOS = 'Linux'
+" ---}}}
 
-  let s:prev_mode = cur_mode
-  return cur_mode
-endfunction
-
-function! StatusLineFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-endfunction
-
-function! StatusLinePercent()
-  return (100 * line('.') / line('$')) . '%'
-endfunction
-
-function! StatusLineLeftInfo()
- let branch = fugitive#head()
- let filename = '' != expand('%:t') ? expand('%:t') : '[No Name]'
- if branch !=# ''
-   return printf("%s | %s", branch, filename)
- endif
- return filename
-endfunction
-
-exe 'hi! myInfoColor ctermbg=240 ctermfg=252'
-
-" start building our statusline
-set statusline=
-
-" mode with custom colors
-set statusline+=%#myModeColor#
-set statusline+=%{StatusLineMode()}
-set statusline+=%*
-
-" left information bar (after mode)
-set statusline+=%#myInfoColor#
-set statusline+=\ %{StatusLineLeftInfo()}
-set statusline+=\ %*
-
-" go command status (requires vim-go)
-set statusline+=%#goStatuslineColor#
-set statusline+=%{go#statusline#Show()}
-set statusline+=%*
-
-" right section seperator
-set statusline+=%=
-
-" filetype, percentage, line number and column number
-set statusline+=%#myInfoColor#
-set statusline+=\ %{StatusLineFiletype()}\ %{StatusLinePercent()}\ %l:%v
-set statusline+=\ %*
-
-"=====================================================
-"===================== MAPPINGS ======================
-
-
-" Mappings --- {{{
-source ~/.config/nvim/mapping.vim
-" --- }}}
-
-imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
-
-" ==================== NerdTree ====================
+" Nerdtree ---{{{
 let NERDTreeShowHidden=1
+let NERDTreeHijackNetrw=0
+let g:NERDTreeWinSize=45
+let g:NERDTreeAutoDeleteBuffer=1
+"let NERDTreeMinimalUI=1
+let NERDTreeCascadeSingleChildDir=0
+" ---}}}
 
+"delimate ---{{{
+let g:delimitMate_expand_cr = 1 
+let g:delimitMate_expand_space = 1 
+let g:delimitMate_smart_quotes = 1 
+let g:delimitMate_expand_inside_quotes = 0 
+let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
+"---}}}
 
-" ==================== vim-go ====================
-let g:go_fmt_fail_silently = 1
+" Neomake ---{{{
+highlight NeomakeErrorSign ctermfg=red guifg=#ff0000
+highlight NeomakeWarnSign  ctermfg=yellow guifg=#fffc56
+highlight NeomakeInfoSign  ctermfg=blue guifg=#4264ff
+let g:neomake_error_sign={'text': '✖', 'texthl': 'NeomakeErrorSign'}
+let g:neomake_warning_sign={'text': '⚠', 'texthl': 'NeomakeWarnSign'}
+let g:neomake_info_sign={'text': 'i', 'texthl': 'NeomakeInfoSign'}
+
+" Do not open any pane with errors
+let g:neomake_open_list = 0
+let g:neomake_list_height = 5
+let g:neomake_python_enabled_makers = ['flake8']
+" ---}}}
+
+source ~/.config/nvim/mapping.vim
+
+" vim-go ---{{{
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave = 1
+let g:go_fmt_fail_silently = 0
 let g:go_fmt_command = "goimports"
-let g:go_fmt_options = {
-  \ 'goimports': '-local do/',
-  \ }
-let g:go_sameid_search_enabled = 1
-
-let g:go_test_prepend_name = 1
 let g:go_list_type = "quickfix"
 let g:go_auto_type_info = 0
 let g:go_def_mode = "guru"
 let g:go_echo_command_info = 1
 let g:go_gocode_autobuild = 0
-let g:go_gocode_unimported_packages = 0
+let g:go_gocode_unimported_packages = 1
 
 let g:go_autodetect_gopath = 1
 let g:go_info_mode = "guru"
-let g:go_metalinter_autosave_enabled = ['vet', 'golint']
-let g:go_highlight_space_tab_error = 0
-let g:go_highlight_array_whitespace_error = 0
-let g:go_highlight_trailing_whitespace_error = 0
-let g:go_highlight_extra_types = 0
-let g:go_highlight_build_constraints = 1
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
 let g:go_highlight_types = 0
-let g:go_highlight_format_strings = 0
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_structs = 1
+
+let g:go_highlight_space_tab_error = 1
+let g:go_highlight_array_whitespace_error = 1
+let g:go_highlight_trailing_whitespace_error = 1
 
 let g:go_modifytags_transform = 'camelcase'
-let g:go_fold_enable = []
+let g:go_addtags_transform = 'camelcase'
 
-nmap <C-g> :GoDecls<cr>
-imap <C-g> <esc>:<C-u>GoDecls<cr>
+let g:go_jump_to_error = 1
+"let g:go_bin_path = "~/go/bin/"
+"---}}}
 
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
+" Deoplete ---{{{
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#disable_auto_complete = 0 " set to 1 if you want to disable autocomplete
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+let g:deoplete#sources#go#gocode_binary = '~/go/bin/gocode'
+"let g:deoplete#sources#go#package_dot = 1
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+let g:deoplete#sources#go#use_cache = 1
+let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go'
+
+function! s:tab_complete()
+  " is completion menu open? cycle to next item
+  if pumvisible()
+    return "\<c-n>"
   endif
+
+  " if none of these match just use regular tab
+  return "\<tab>"
 endfunction
 
-augroup go
-  autocmd!
+imap <silent><expr><TAB> <SID>tab_complete()
+" ---}}}
 
-  autocmd FileType go nmap <silent> <Leader>v <Plug>(go-def-vertical)
-  autocmd FileType go nmap <silent> <Leader>s <Plug>(go-def-split)
-  autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def-tab)
+" Neosnippet --- {{{
+"let g:neosnippet#enable_snipmate_compatibility = 1
+"let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+let g:neosnippet#snippets_directory='~/.config/nvim/bundle/vim-snippets/snippets'
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+"map <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?  "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-  autocmd FileType go nmap <silent> <Leader>x <Plug>(go-doc-vertical)
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+" ---}}}
 
-  autocmd FileType go nmap <silent> <Leader>i <Plug>(go-info)
-  autocmd FileType go nmap <silent> <Leader>l <Plug>(go-metalinter)
+autocmd! BufWritePost,BufRead *.c Neomake
+autocmd! BufWritePost,BufRead *.cpp Neomake
+autocmd! BufWritePost,BufRead *.asm Neomake
+autocmd! BufWritePost,BufRead *.go Neomake
+autocmd! BufWritePost,BufRead *.py Neomake
+autocmd! BufWritePost,BufRead *.yaml Neomake
+autocmd! BufWritePost,BufRead *.json Neomake
+autocmd! BufWritePost,BufRead *.sh Neomake
+autocmd! BufWritePost,BufRead *.yml Neomake
+autocmd! BufWritePost,BufRead *.rb Neomake
 
-  autocmd FileType go nmap <silent> <leader>b :<C-u>call <SID>build_go_files()<CR>
-  autocmd FileType go nmap <silent> <leader>tt <Plug>(go-test)
-  autocmd FileType go nmap <silent> <leader>r  <Plug>(go-run)
-  autocmd FileType go nmap <silent> <leader>e  <Plug>(go-install)
+"call neomake#configure#automake({
+"  \ 'TextChanged': {},
+"  \ 'InsertLeave': {},
+"  \ 'BufWritePost': {'delay': 500},
+"  \ 'BufWinEnter': {},
+"  \ }, 500)
 
-  autocmd FileType go nmap <silent> <Leader>c <Plug>(go-coverage-toggle)
+source ~/.config/nvim/filetypes.vim
 
-  " I like these more!
-  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-augroup END
+" go language
+let s:tlist_def_go_settings = 'go;g:enum;s:struct;u:union;t:type;v:variable;f:function'
+" Netrw Style Listing
+let g:netrw_liststyle = 3
 
-" ==================== delimitMate ====================
-let g:delimitMate_expand_cr = 1
-let g:delimitMate_expand_space = 1
-let g:delimitMate_smart_quotes = 1
-let g:delimitMate_expand_inside_quotes = 0
-let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
-
-imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 
