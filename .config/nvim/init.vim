@@ -1,4 +1,4 @@
-set shell=bash
+set shell=zsh
 
 " NeoBundle --- {{{
 if has('vim_starting')
@@ -270,7 +270,7 @@ let g:go_modifytags_transform = 'camelcase'
 let g:go_addtags_transform = 'camelcase'
 
 let g:go_jump_to_error = 1
-let g:go_bin_path = "~/go/bin/"
+"let g:go_bin_path = "~/go/bin/"
 "---}}}
 
 " Typeos

@@ -6,10 +6,11 @@ nmap <c-p> :bprevious<CR>         " Ctrl + p change buffer
 nmap <leader>n :enew<CR>          " ,n new buffer
 nmap <leader>q :bp <BAR> bd #<CR> " ,q quit buffer
 map <Leader>c :close<CR>          " close window
-map <Leader>w :w!<CR>             " Save
+map <Leader>w :w!<CR>
 nmap <C-l> :redraw!               " redraw buffer
 nmap <Leader>n :NERDTreeToggle<CR>
 vnoremap <Leader>s :sort<CR>      " ,s sort
+map <Leader>t :s/\s\+$//
 
 " Indentation
 vnoremap < <gv
@@ -63,3 +64,9 @@ nnoremap <silent> <Leader>& :exe "vertical resize -5"<CR>
 command -nargs=* Make make <args> | copen
 "map <Leader>m :Make<CR><CR><CR>
 map <Leader>m :Make<CR>
+
+" ctrl arrow delete so remap
+map <ESC>[1;5D <C-Left>
+map! <ESC>[1;5D <C-Left>
+map <ESC>[1;5C <C-Right>
+map! <ESC>[1;5C <C-Right>
