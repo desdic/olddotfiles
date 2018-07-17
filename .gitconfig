@@ -6,7 +6,7 @@
     status = auto
     branch = auto
 [core]
-    editor = nvim
+    editor = vim
 [alias]
     br = branch
     ci = commit
@@ -27,3 +27,5 @@
     decorate = true
 [push]
     default = simple
+[url "git@github.com:"]
+    insteadOf = https://github.com/
