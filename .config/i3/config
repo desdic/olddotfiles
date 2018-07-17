@@ -42,7 +42,7 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec --no-startup-id /usr/bin/st
-#bindsym $mod+BackSpace exec --no-startup-id /usr/bin/st -c ~/.config/stupidtermwhite.ini
+bindsym $mod+BackSpace exec --no-startup-id ~/bin/newsession.sh
 
 # kill focused window
 bindsym $mod+Shift+q kill
