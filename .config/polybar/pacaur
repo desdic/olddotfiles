@@ -3,7 +3,7 @@
 EDITOR=/usr/bin/vim
 export EDITOR
 /usr/bin/pacaur -Sya > /dev/null 2>&1
-PACKAGE_COUNT=$(/usr/bin/pacaur -Qu | /usr/bin/wc -l)
+PACKAGE_COUNT=$(/usr/bin/pacaur -Qu 2>/dev/null | /usr/bin/wc -l)
 
 #if [[ "${PACKAGE_COUNT}" != 0 ]]
 #then
