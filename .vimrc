@@ -37,6 +37,7 @@ set ruler
 set showcmd "Show commands that I type
 set showmatch
 set backspace=2
+set nocompatible
 
 " Display whitespaces
 set list
@@ -275,5 +276,4 @@ source ~/.config/nvim/filetypes.vim
 let s:tlist_def_go_settings = 'go;g:enum;s:struct;u:union;t:type;v:variable;f:function'
 " Netrw Style Listing
 let g:netrw_liststyle = 3
-
 
