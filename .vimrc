@@ -1,7 +1,7 @@
 call plug#begin('~/.vim/plugged')
     Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     Plug 'Raimondi/delimitMate'
-    Plug 'fatih/vim-go', { 'tag': '*', 'do': ':GoInstallBinaries' }
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     Plug 'tpope/vim-fugitive'
     Plug 'scrooloose/nerdcommenter'
     Plug 'vim-airline/vim-airline'
@@ -101,6 +101,9 @@ if exists('$TMUX')
 endif
 " Make it easier to see the match
 hi MatchParen ctermbg=blue guibg=lightblue
+
+" Spelling mistakes should only be underlined and not red
+hi SpellBad term=NONE cterm=underline ctermbg=NONE gui=NONE guisp=NONE
 
 "" Airline {{{
 if !exists('g:airline_symbols')
