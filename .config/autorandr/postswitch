@@ -1,0 +1,5 @@
+#!/bin/bash
+
+i3-msg restart
+xset r rate 200 30
+xkbcomp -w0 -I"$HOME/.xkb" -R"$HOME/.xkb" keymap/custom "$DISPLAY"
