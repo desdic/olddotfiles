@@ -2,3 +2,4 @@
 .vim/view/
 .vim/cache/
 .config/nvim/bundle/
+.vim/plugged/

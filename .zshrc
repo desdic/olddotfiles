@@ -115,11 +115,13 @@ if [ -f ~/.config/.dircolors ]; then
     eval $(dircolors ~/.config/.dircolors)
 fi
 
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
+if [ -x /usr/bin/qt4-ssh-askpass ]; then
+    export SSH_ASKPASS=/usr/bin/qt4-ssh-askpass
+fi
 
 if [ -x /usr/bin/keychain ]; then
-    eval $(keychain -q --systemd --inherit any --agents ssh --noask --eval id_rsa)
-    eval $(keychain -q --agents gpg --timeout 60 --noask --eval AB222CB2)
+    eval $(keychain -q -Q --systemd --inherit any --agents ssh --noask --eval id_rsa)
+    eval $(keychain -q -Q --agents gpg --timeout 60 --noask --eval AB222CB2)
 fi
 
 ZSH=/usr/share/oh-my-zsh/
