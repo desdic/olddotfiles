@@ -27,5 +27,6 @@
     decorate = true
 [push]
     default = simple
-[url "git@github.com:"]
-    insteadOf = https://github.com/
+# Not sure but sometimes this does not work
+#[url "git@github.com:"]
+#    insteadOf = https://github.com/

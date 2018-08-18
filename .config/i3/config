@@ -204,6 +204,7 @@ bindsym XF86AudioPrev exec /usr/bin/dbus-send --print-reply --dest=org.mpris.Med
 
 bindsym $mod+F3 exec ~/.screenlayout/work.sh
 bindsym $mod+F5 exec --no-startup-id /usr/bin/pavucontrol
+bindsym $mod+F11 exec --no-startup-id /usr/bin/gnome-calculator
 
 bindsym $mod+Shift+x exec --no-startup-id ~/bin/locklaptop.sh
 
