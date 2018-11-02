@@ -34,3 +34,12 @@ include /usr/share/doc/task/rc/holidays.da-DK.rc
 
 color=on
 #context.work=+Work
+
+# Change priorities to high, medium, none and low
+uda.priority.values = H,M,,L
+urgency.uda.priority.L.coefficient=0
+urgency.uda.priority..coefficient=1.8
+
+# Alter reports to only show amount of annotations
+report.next.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+report.waiting.columns=id,start.active,entry.age,depends.indicator,priority,project,tags,recur.indicator,wait,wait.remaining,scheduled,due,until,description.count
