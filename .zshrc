@@ -40,6 +40,8 @@ case $(uname -s) in
         alias grep='/usr/bin/grep --color=auto'
         alias egrep='/usr/bin/egrep --color=auto'
         alias tree='tree -C'
+        alias t='task'
+        alias tl='task list'
         if [ -x /usr/bin/dsh ]; then
             alias dchi='dch --no-auto-nmu -i'
         fi
@@ -76,12 +78,11 @@ export DEBFULLNAME="${GIT_AUTHOR_NAME}"
 export DEBEMAIL="${GIT_AUTHOR_EMAIL}"
 export DEBCHANGE_AUTO_NMU=no
 
-if [ -x "$(which nvim)" ]; then
-    export EDITOR="$(which nvim)"
+if [ -x "$(which vim)" ]; then
+    export EDITOR="$(which vim)"
     export VISUAL="${EDITOR}"
     export FCEDIT="${EDITOR}"
     alias view="${EDITOR} -M"
-#    alias vim="$(which nvim)"
 fi
 
 export LANG=da_DK.UTF-8
@@ -114,6 +115,8 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 if [ -f ~/.config/.dircolors ]; then
     eval $(dircolors ~/.config/.dircolors)
 fi
+
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
 if [ -x /usr/bin/qt4-ssh-askpass ]; then
     export SSH_ASKPASS=/usr/bin/qt4-ssh-askpass
