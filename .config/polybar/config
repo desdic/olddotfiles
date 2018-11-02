@@ -86,7 +86,7 @@ font-2 = Material Icons:style=Regular:size=10;0
 ;font-6 = unifont:size=6;1
 
 modules-left = i3
-modules-right = pulseaudio backlight wired-network wifi tun battery date
+modules-right = pulseaudio backlight wired-network wifi tun battery taskdate
 tray-position = right
 
 [module/spotify]
@@ -98,6 +98,12 @@ click-left = /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spot
 interval = 2
 format = <label>
 exec-if "ps aux|grep -v grep|grep -q '/bin/spotify'"
+
+[module/taskdate]
+type = custom/script
+exec = /home/kgn/.config/polybar/taskdate.sh
+interval = 10
+format = <label>
 
 [module/wifi]
 type = internal/network
@@ -122,7 +128,7 @@ ramp-signal-4 = 
 ;ramp-signal-foreground = ${colors.icons}
 ramp-signal-0-foreground = ${colors.alert}
 ramp-signal-1-foreground = ${colors.warn}
-ramp-signal-2-foreground = ${colors.warn}
+ramp-signal-2-foreground = ${colors.icons}
 ramp-signal-3-foreground = ${colors.icons}
 ramp-signal-4-foreground = ${colors.icons}
 
@@ -291,11 +297,12 @@ ramp-coreload-7-foreground = ${colors.alert}
 
 [module/date]
 type = internal/date
-interval = 1
+interval = 5
 date = "Week %V - %A %e %B %Y - "
 date-alt = "Week %V - %A %e %B %Y - "
-time = %T
-time-alt = %T
+# %T with seconds
+time = %H:%M
+time-alt = %H:%M
 format = " <label>"
 format-foreground = ${colors.foreground}
 label = %date% %time%
@@ -305,25 +312,28 @@ type = internal/temperature
 thermal-zone = 0
 warn-temperature = 80
 
-format = <ramp><label>
-format-prefix =
-format-warn-prefix = ""
-format-warn = <ramp> <label-warn>
+#format = <ramp><label>
+format = <label>
+format-prefix = " "
+
+format-warn-prefix = " "
+#format-warn = <ramp> <label-warn>
+format-warn = <label-warn>
 format-foreground = ${colors.icons}
-format-warn-foreground = ${colors.icons}
+format-warn-foreground = ${colors.warn}
 
 label = %temperature%
 label-foreground = ${colors.foreground}
 label-warn = %temperature%
-label-warn-foreground = ${colors.alert}
+label-warn-foreground = ${colors.warn}
 
-ramp-0 =
-ramp-1 =
-ramp-2 =
-ramp-foreground = ${colors.background}
-ramp-0-foreground = ${colors.icons}
-ramp-1-foreground = ${colors.icons}
-ramp-2-foreground = ${colors.warn}
+#ramp-0 =
+#ramp-1 =
+#ramp-2 =
+#ramp-foreground = ${colors.background}
+#ramp-0-foreground = ${colors.icons}
+#ramp-1-foreground = ${colors.icons}
+#ramp-2-foreground = ${colors.icons}
 
 [module/fs-root]
 type = internal/fs
@@ -390,7 +400,7 @@ interval = 3.0
 
 label-connected = %local_ip%
 label-disconnected-foreground = #66
-label-connected-foreground = ${colors.icons}
+label-connected-foreground = ${colors.foreground}
 
 [module/volume]
 type = internal/alsa
