@@ -12,7 +12,7 @@ let g:airline_theme = 'falcon'
 
 " For some reason only the comment colors are wrong when using tmux
 if exists('$TMUX')
-    hi Comment guifg=#89898c ctermfg=black guibg=NONE ctermbg=245 gui=italic cterm=italic
+    hi Comment guifg=#89898c ctermfg=16 guibg=NONE ctermbg=245 gui=italic cterm=italic
 endif
 " Make it easier to see the match
 hi MatchParen ctermbg=blue guibg=lightblue
