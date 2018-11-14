@@ -213,9 +213,11 @@ bindsym $mod+Shift+x exec --no-startup-id ~/bin/locklaptop.sh
 #assign [class="chromium"]      $workspace9
 #assign [class="Firefox"]       $workspace10
 
+exec --no-startup-id /usr/bin/dbus-launch /usr/bin/compton --config ~/.config/compton.conf
 exec --no-startup-id /usr/bin/xss-lock -- /usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png
 exec --no-startup-id ~/bin/i3startup.sh
-#exec --no-startup-id /usr/bin/clipit&
+exec --no-startup-id /usr/bin/clipit&
 exec --no-startup-id /usr/bin/xsetroot -solid "#111111"
+exec --no-startup-id ~/bin/randomwallpaper.sh
 #exec --no-startup-id /usr/bin/blueman-applet &
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
