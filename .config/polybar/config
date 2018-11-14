@@ -1,5 +1,7 @@
 [colors]
 background = #222
+backnotrans = #ff000000
+forenotrans = #ccffffff
 black = #0
 foreground = #eee
 linecolor = #fba922
@@ -19,8 +21,8 @@ monitor = ${env:MONITOR:eDP1}
 width = 100%
 height = 27
 
-background = #00000000
-foreground = #ccffffff
+background = ${colors.backnotrans}
+foreground = ${colors.forenotrans}
 
 line-color = ${bar/bottom.background}
 line-size = 16
