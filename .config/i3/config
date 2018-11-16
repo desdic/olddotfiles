@@ -154,6 +154,7 @@ workspace $workspace8 output $monitor1
 workspace $workspace9 output $hdmi
 workspace $workspace10 output $monitor1
 
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -203,10 +204,11 @@ bindsym XF86AudioStop exec /usr/bin/dbus-send --print-reply --dest=org.mpris.Med
 bindsym XF86AudioNext exec /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 bindsym XF86AudioPrev exec /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
-bindsym $mod+F3 exec ~/.screenlayout/work.sh
 bindsym $mod+F5 exec --no-startup-id /usr/bin/pavucontrol
 bindsym $mod+F11 exec --no-startup-id /usr/bin/gnome-calculator
-
+bindsym $mod+Shift+plus exec --no-startup-id "/usr/bin/transset -a --inc .1"
+bindsym $mod+Shift+minus exec --no-startup-id "/usr/bin/transset -a --dec .1"
+bindsym $mod+c exec --no-startup-id "~/bin/togglecompton.sh"
 bindsym $mod+Shift+x exec --no-startup-id ~/bin/locklaptop.sh
 
 # Program Workspaces
