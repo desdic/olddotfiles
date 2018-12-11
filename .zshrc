@@ -112,8 +112,8 @@ export TERMINAL='st'
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-if [ -f ~/.config/.dircolors ]; then
-    eval $(dircolors ~/.config/.dircolors)
+if [ -f ~/.config/dircolors ]; then
+    eval $(dircolors ~/.config/dircolors)
 fi
 
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
