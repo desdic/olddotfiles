@@ -7,8 +7,8 @@ set encoding=utf-8
 set t_Co=256
 set vb
 set ruler
-set showcmd "Show commands that I type
-set showmatch
+set showcmd                         "Show commands that I type
+set showmatch                       " Show matching brackets when text indicator is over them
 set backspace=2
 set nocompatible
 
@@ -18,7 +18,7 @@ set listchars=tab:→·,trail:·
 
 set modeline
 set modelines=5
-"set cursorline
+set cursorline
 set autowrite
 set showmode
 set noshowmode
@@ -31,25 +31,32 @@ set scrolljump=5
 set lazyredraw
 set hidden
 set number
-set hlsearch
-set incsearch
+set hlsearch                        " Highlight search results"
+set incsearch                       " Makes search act like search in modern browsers
 set spelllang=en
 set completeopt=menu,menuone
-"set nowrap
-"
-set mouse=c
+set nowrap
+
+set title                           " let vim set the terminal title
+if has('mouse')
+    set mouse=c
+endif
 set nobackup
 set nowritebackup
 set noswapfile
 set fileformats=unix,dos,mac
 
 " Crosshair plugin
-"set cursorline    " enable the horizontal line
 "set cursorcolumn  " enable the vertical line
 " Enable status line always
 set laststatus=2
-set tabstop=4 shiftwidth=4 expandtab
-set shortmess+=I "Disable welcome
+
+set autoindent                      " take indent for new line from previous line
+set smartindent                     " enable smart indentation
+set softtabstop=2
+set tabstop=2
+set expandtab                       " expands tabs to spaces"
+set shortmess+=I                    " Disable welcome
 syntax enable
 filetype plugin indent on
 syntax sync minlines=128

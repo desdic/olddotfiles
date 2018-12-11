@@ -8,6 +8,13 @@ let g:deoplete#sources#go#package_dot = 1
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 let g:deoplete#sources#go#use_cache = 1
 let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go'
+
+" Test options
+let g:deoplete#sources#go#align_class = 1
+let g:deoplete#keyword_patterns = {}
+let g:deoplete#keyword_patterns['default'] = '\h\w*'
+let g:deoplete#omni#input_patterns = {}
+
 " Disable the candidates in Comment/String syntaxes.
 "call deoplete#custom#source('_',
 "            \ 'disabled_syntaxes', ['Comment', 'String'])
