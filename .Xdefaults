@@ -19,17 +19,85 @@
 *color14: #93a1a1
 *color15: #fdf6e3
 
+
+! -----------------------------------------------------------------------------
+! File: gruvbox-urxvt256.xresources
+! Description: Retro groove colorscheme generalized
+! Author: morhetz <morhetz@gmail.com>
+! Source: https://github.com/morhetz/gruvbox-generalized
+! Last Modified: 13 Dec 2013
+! -----------------------------------------------------------------------------
+
+URxvt.color24:  #076678
+URxvt.color66:  #427b58
+URxvt.color88:  #9d0006
+URxvt.color96:  #8f3f71
+URxvt.color100: #79740e
+URxvt.color108: #8ec07c
+URxvt.color109: #83a598
+URxvt.color130: #af3a03
+URxvt.color136: #b57614
+URxvt.color142: #b8bb26
+URxvt.color167: #fb4934
+URxvt.color175: #d3869b
+URxvt.color208: #fe8019
+URxvt.color214: #fabd2f
+URxvt.color223: #ebdbb2
+URxvt.color228: #f2e5bc
+URxvt.color229: #fbf1c7
+URxvt.color230: #f9f5d7
+URxvt.color234: #1d2021
+URxvt.color235: #282828
+URxvt.color236: #32302f
+URxvt.color237: #3c3836
+URxvt.color239: #504945
+URxvt.color241: #665c54
+URxvt.color243: #7c6f64
+URxvt.color244: #928374
+URxvt.color245: #928374
+URxvt.color246: #a89984
+URxvt.color248: #bdae93
+URxvt.color250: #d5c4a1
+
+URxvt*termName: rxvt-unicode-256color
+
 URxvt.intensityStyles: false
 URxvt.background:       [90]#000000
 URxvt.depth:  32
+
 URxvt.font:\
-    xft:hack:size=12,\
-    xft:FuraCode Nerd Font:style=Regular:size=12,\
-    xft:Terminus:pixelsize=12,\
-    xft:Inconsolata\ for\ Powerline:pixelsize=12,\
-    xft:Noto Mono:size=12:antialias=true:hinting=true,\
-    xft:Noto Color Emoji,\
-    xft:Unifont
+    xft:DejaVu Sans Mono:style=Book:pixelsize=16,\
+    xft:FuraCode Nerd Font:style=Regular:size=12
+!!    xft:Terminus:pixelsize=12,\
+!!    xft:Inconsolata\ for\ Powerline:pixelsize=12,\
+!!    xft:Noto Mono:size=12:antialias=true:hinting=true,\
+!!    xft:Noto Color Emoji,\
+!!    xft:Unifont
+
+URxvt.boldFont:\
+    xft:DejaVu Sans Mono:style=bold:pixelsize=16,\
+    xft:FuraCode Nerd Font:style=Bold:size=12
+!!    xft:Unifont:bold,\
+!!    xft:Terminus:pixelsize=14:style:bold,\
+!!    xft:Inconsolata\ for\ Powerline:pixelsize=14:style=bold,\
+!!    xft:Noto Mono:size=14:antialias=true:hinting=true:style=bold,\
+!!    xft:Noto Color Emoji:style=bold,\
+!!    xft:Unifont:style=bold
+
+URxvt.italicFont:\
+    xft:DejaVu Sans Mono:style=Oblique:pixelsize=16,\
+    xft:FuraCode Nerd Font:style=Oblique:size=12
+!!    xft:Unifont:italic,\
+!!    xft:Terminus:pixelsize=12:style:italic,\
+!!    xft:Inconsolata\ for\ Powerline:pixelsize=12:style=italic,\
+!!    xft:Noto Mono:size=12:antialias=true:hinting=true:style=italic,\
+!!    xft:Noto Color Emoji:style=italic,\
+!!    xft:Unifont:style=italic
+
+
+URxvt*boldItalicFont:\
+    xft:DejaVu Sans Mono:style=BoldOblique:pixelsize=16,\
+    xft:FuraCode Nerd Font:style=BoldOblique:size=12
 
 URxvt.letterSpace:          -1
 
