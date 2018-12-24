@@ -1,0 +1,11 @@
+[Unit]
+Description=Wallpapaer
+Wants=wallpaper.timer
+
+[Service]
+Type=oneshot
+ExecStart=/home/kgn/bin/randomwallpaper.sh
+
+[Install]
+WantedBy=default.target
+

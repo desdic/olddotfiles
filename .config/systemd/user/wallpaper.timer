@@ -1,0 +1,15 @@
+[Unit]
+Description=Wallpaper
+
+[Timer]
+# Every 3 hours
+#OnCalendar=00/3:00
+# every 10 min
+OnCalendar=*:0/10
+#RandomizedDelaySec=1800
+Persistent=true
+Unit=wallpaper.service
+
+[Install]
+WantedBy=default.target
+
