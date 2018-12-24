@@ -50,7 +50,7 @@ font-5 = Termsynu:size=8:antialias=false;-2
 ;font-6 = unifont:size=6;1
 
 modules-left = spotify
-modules-right = pacaur fs-root temperature cpu memory
+modules-right = flipping pacaur fs-root temperature cpu memory
 
 [bar/bottom]
 locale = en_US.UTF-8
@@ -192,6 +192,12 @@ exec = /home/kgn/.config/polybar/pacaur
 interval = 600
 format = <label>
 exec-if "ping -q -w 2 -c 4 8.8.8.8 > /dev/null"
+
+[module/flipping]
+type = custom/script
+exec = ~/bin/flipping.sh
+interval = 10
+format = <label>
 
 [module/xkeyboard]
 type = internal/xkeyboard
