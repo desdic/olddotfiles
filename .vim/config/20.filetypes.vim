@@ -160,6 +160,24 @@ augroup filetype_go
     autocmd FileType go nmap <leader>d :GoDef<CR>
     autocmd FileType go nmap <leader>g :GoDecls<CR>
     autocmd FileType go nmap <leader>s :GoFillStruct<CR>
+    autocmd FileType go nmap <leader>e <Plug>(go-rename)
+
+    "autocmd FileType go nmap   <F4>    :GoDef<CR>
+    autocmd FileType go nmap   <F5>    :GoCallers<CR>
+    autocmd FileType go nmap   <F6>    :GoCallstack<CR>
+    autocmd FileType go nmap   <F8>    :TagbarToggle<CR>
+
+
+    autocmd FileType go nmap     <leader>dd    <Plug>(go-def)
+    autocmd FileType go nmap     <leader>ds    <Plug>(go-def-split)
+    autocmd FileType go nmap     <leader>dv    <Plug>(go-def-vertical)
+    autocmd FileType go nmap     <leader>dt    <Plug>(go-def-tab)
+    autocmd FileType go nmap     <leader>kk    <Plug>(go-doc)
+    autocmd FileType go nmap     <leader>kv    <Plug>(go-doc-vertical)
+    autocmd FileType go nmap     <leader>kb    <Plug>(go-doc-browser)
+    autocmd FileType go nmap     <leader>im    <Plug>(go-implements)
+    autocmd FileType go nmap     <leader>in    <Plug>(go-info)
+
 augroup END
 
 augroup filetype_vim

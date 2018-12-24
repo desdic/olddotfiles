@@ -31,7 +31,7 @@ let g:go_test_show_name = 1     " Add the failing test name to the output of :Go
 let g:go_gocode_autobuild = 1
 let g:go_gocode_unimported_packages = 1
 
-let g:go_autodetect_gopath = 1  " This does not seem to work so I have disabled it and set it on every project
+let g:go_autodetect_gopath = 0  " This does not seem to work so I have disabled it and set it on every project
 let g:go_info_mode = "guru"
 
 let g:go_highlight_functions = 1
