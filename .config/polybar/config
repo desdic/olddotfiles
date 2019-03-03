@@ -16,6 +16,7 @@ empty = #44
 screenchange-reload = true
 
 [bar/top]
+enable-ipc = true
 locale = en_US.UTF-8
 monitor = ${env:MONITOR:eDP1}
 width = 100%
@@ -53,6 +54,7 @@ modules-left = spotify
 modules-right = flipping pacaur fs-root temperature cpu memory
 
 [bar/bottom]
+enable-ipc = true
 locale = en_US.UTF-8
 monitor = ${env:MONITOR:eDP1}
 bottom = true

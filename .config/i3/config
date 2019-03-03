@@ -42,7 +42,8 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec --no-startup-id /usr/bin/st
-bindsym $mod+Return exec --no-startup-id LANG=da_DK.UTF-8 /usr/bin/urxvt
+bindsym $mod+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/termite
+bindsym $mod+Shift+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/urxvt
 bindsym $mod+BackSpace exec --no-startup-id ~/bin/newsession.sh
 
 # kill focused window
@@ -212,10 +213,11 @@ bindsym $mod+c exec --no-startup-id "~/bin/togglecompton.sh"
 bindsym $mod+Shift+x exec --no-startup-id ~/bin/locklaptop.sh
 
 # Program Workspaces
-assign [class="Google-chrome"]      $workspace3
+assign [class="Google-chrome"]                 $workspace3
 assign [class="libreoffice-startcenter"]       $workspace8
+assign [class="Code"]                          $workspace9
 
-exec --no-startup-id /usr/bin/dbus-launch /usr/bin/compton --config ~/.config/compton.conf
+#exec --no-startup-id /usr/bin/dbus-launch /usr/bin/compton --config ~/.config/compton.conf
 exec xautolock -time 5 -locker '/usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png' &
 exec --no-startup-id ~/bin/i3startup.sh
 exec --no-startup-id /usr/bin/clipit&

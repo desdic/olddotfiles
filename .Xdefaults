@@ -19,7 +19,6 @@
 *color14: #93a1a1
 *color15: #fdf6e3
 
-
 ! -----------------------------------------------------------------------------
 ! File: gruvbox-urxvt256.xresources
 ! Description: Retro groove colorscheme generalized
@@ -66,38 +65,31 @@ URxvt.background:       [90]#000000
 URxvt.depth:  32
 
 URxvt.font:\
-    xft:DejaVu Sans Mono:style=Book:pixelsize=16,\
-    xft:FuraCode Nerd Font:style=Regular:size=12
-!!    xft:Terminus:pixelsize=12,\
-!!    xft:Inconsolata\ for\ Powerline:pixelsize=12,\
-!!    xft:Noto Mono:size=12:antialias=true:hinting=true,\
-!!    xft:Noto Color Emoji,\
-!!    xft:Unifont
+    xft:FuraCode Nerd Font:style=Regular:size=13,\
+    xft:Fira Code Medium:style=Regular:size=13,\
+    xft:DejaVu Sans Mono:style=Book:pixelsize=13,\
+    xft:DejaVuSansMonoForPowerline\ Nerd\ Font:style=Book:pixelsize=13,\
+    xft:Inconsolata\ for\ Powerline:pixelsize=13,\
+    xft:EmojiOne,\
+    xft:Symbola,\
+    xft:Noto Emoji:minspace=False
 
 URxvt.boldFont:\
-    xft:DejaVu Sans Mono:style=bold:pixelsize=16,\
-    xft:FuraCode Nerd Font:style=Bold:size=12
-!!    xft:Unifont:bold,\
-!!    xft:Terminus:pixelsize=14:style:bold,\
-!!    xft:Inconsolata\ for\ Powerline:pixelsize=14:style=bold,\
-!!    xft:Noto Mono:size=14:antialias=true:hinting=true:style=bold,\
-!!    xft:Noto Color Emoji:style=bold,\
-!!    xft:Unifont:style=bold
+    xft:FuraCode Nerd Font:style=Bold:size=13,\
+    xft:Fira Code Medium:style=Bold:size=13,\
+    xft:DejaVu Sans Mono:style=bold:pixelsize=13,\
+    xft:DejaVuSansMonoForPowerline Nerd Font:style=Bold:pixelsize=13
 
 URxvt.italicFont:\
-    xft:DejaVu Sans Mono:style=Oblique:pixelsize=16,\
-    xft:FuraCode Nerd Font:style=Oblique:size=12
-!!    xft:Unifont:italic,\
-!!    xft:Terminus:pixelsize=12:style:italic,\
-!!    xft:Inconsolata\ for\ Powerline:pixelsize=12:style=italic,\
-!!    xft:Noto Mono:size=12:antialias=true:hinting=true:style=italic,\
-!!    xft:Noto Color Emoji:style=italic,\
-!!    xft:Unifont:style=italic
+    xft:FuraCode Nerd Font:style=Oblique:size=13,\
+    xft:DejaVu Sans Mono:style=Oblique:pixelsize=13,\
+    xft:DejaVuSansMonoForPowerline Nerd Font:style=Oblique:pixelsize=13
 
 
 URxvt*boldItalicFont:\
-    xft:DejaVu Sans Mono:style=BoldOblique:pixelsize=16,\
-    xft:FuraCode Nerd Font:style=BoldOblique:size=12
+    xft:FuraCode Nerd Font:style=BoldOblique:size=13,\
+    xft:DejaVu Sans Mono:style=BoldOblique:pixelsize=13,\
+    xft:DejaVuSansMonoForPowerline Nerd Font:style=Bold Oblique:pixelsize=13
 
 URxvt.letterSpace:          -1
 

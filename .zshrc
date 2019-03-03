@@ -1,10 +1,6 @@
 export GOPATH=$(pwd)/go
 
-PATH=""
-for dir in ${HOME}/bin /usr/local/MacGPG2/bin /{sbin,bin} /usr/{sbin,bin} /usr/local/{sbin,bin} /Library/Ruby/Gems/2.0.0/gems/librarian-chef-0.0.4/bin /usr/bin/core_perl ~/go/bin
-do
-    [ -d "${dir}" ] && PATH="${dir}:${PATH}"
-done
+PATH="${HOME}/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/bin/core_perl:${GOPATH}/bin"
 export PATH
 
 alias newlinestring='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/\\n/g'\'
@@ -26,41 +22,29 @@ function cd() {
     fi
 }
 
-case $(uname -s) in
-   'Darwin')
-        alias ls='/bin/ls -FGh'
-        if [ -f ~/.githubhomebrewapi ]; then
-            source ~/.githubhomebrewapi
-        fi
-        [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-        ;;
-    'Linux')
-        alias ls='/bin/ls -F --color=auto'
-        alias lc='/bin/ls -F --color'
-        alias grep='/usr/bin/grep --color=auto'
-        alias egrep='/usr/bin/egrep --color=auto'
-        alias tree='tree -C'
-        alias t='task'
-        alias tl='task list'
-        if [ -x /usr/bin/dsh ]; then
-            alias dchi='dch --no-auto-nmu -i'
-        fi
-        if [ -x /usr/local/bin/xping ]; then
-            alias xping='xping -B'
-        fi
-        if [ -x /usr/local/bin/xping-http ]; then
-            alias xping-http='xping-http -B'
-        fi
+alias ls='/bin/ls -F --color=auto'
+alias lc='/bin/ls -F --color'
+alias grep='/usr/bin/grep --color=auto'
+alias egrep='/usr/bin/egrep --color=auto'
+alias tree='tree -C'
+alias t='task'
+alias tl='task list'
+if [ -x /usr/bin/dsh ]; then
+    alias dchi='dch --no-auto-nmu -i'
+fi
+if [ -x /usr/local/bin/xping ]; then
+    alias xping='xping -B'
+fi
+if [ -x /usr/local/bin/xping-http ]; then
+    alias xping-http='xping-http -B'
+fi
 
-        function highlight() {
-            /usr/bin/grep -E --color=auto "$@|";
-        }
+function highlight() {
+    /usr/bin/grep -E --color=auto "$@|";
+}
 
-        export BROWSER=google-chrome-stable
-        export LESS=-Xr
-        [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-        ;;
-esac
+export BROWSER=firefox
+export LESS=-Xr
 
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
 export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
@@ -108,9 +92,9 @@ zle -N edit-command-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 
-export TERMINAL='st'
+export TERMINAL='termite'
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+#export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 if [ -f ~/.config/dircolors ]; then
     eval $(dircolors ~/.config/dircolors)
