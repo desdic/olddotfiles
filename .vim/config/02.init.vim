@@ -2,7 +2,6 @@
 "set omnifunc=syntaxcomplete#Complete
 set nocursorcolumn
 set nocursorline "do not highlight line
-"set norelativenumber
 set encoding=utf-8
 set t_Co=256
 set vb
@@ -30,11 +29,14 @@ syntax sync minlines=256
 set scrolljump=5
 set lazyredraw
 set hidden
-set number
+set number relativenumber
 set hlsearch                        " Highlight search results"
 set incsearch                       " Makes search act like search in modern browsers
 set spelllang=en
-set completeopt=menu,menuone
+"set completeopt=menu,menuone
+set completeopt=longest,menuone " auto complete setting"
+set completeopt+=noinsert
+set completeopt+=noselect
 set nowrap
 
 set title                           " let vim set the terminal title

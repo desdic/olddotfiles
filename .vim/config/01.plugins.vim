@@ -11,17 +11,18 @@ call plug#begin('~/.vim/plugged')
     if has('nvim')
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     else
-        Plug 'Shougo/deoplete.nvim'
         Plug 'roxma/vim-hug-neovim-rpc'
         Plug 'roxma/nvim-yarp'
+        Plug 'Shougo/deoplete.nvim'
     endif
     Plug 'Shougo/denite.nvim'
     Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}
     Plug 'Shougo/neosnippet.vim'
     Plug 'Shougo/neosnippet-snippets'
     Plug 'honza/vim-snippets'
+    " Not used in vim but for taskwarrior
     Plug 'fenetikm/falcon'
-    Plug 'sickill/vim-monokai'
+    " Plug 'sickill/vim-monokai'
     Plug 'morhetz/gruvbox'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'w0rp/ale'

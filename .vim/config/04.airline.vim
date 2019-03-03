@@ -20,13 +20,19 @@ let g:airline#extensions#tabline#enabled =  1
 "let g:airline_section_c = airline#section#create_right(['file','BN: %{bufnr("%")}'])
 
 let g:airline_powerline_fonts = 1
-let g:airline_symbols.space = "\ua0"
+"let g:airline_symbols.space = "\ua0"
 
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = 'Ξ'
+"let g:airline_left_sep = ''
+"let g:airline_left_alt_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_right_sep = '◀'
+"let g:airline_right_alt_sep = ''
+"let g:airline_symbols.branch = ''
+"let g:airline_symbols.readonly = ''
+"let g:airline_symbols.linenr = 'Ξ'
+
+if &term=~'rxvt-unicode-256color'
+    let g:airline_symbols.linenr = '¶'
+endif
+"
 " ---}}}

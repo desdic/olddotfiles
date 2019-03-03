@@ -18,10 +18,10 @@
 "    \ 'vetshadow'
 "\]
 
-let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave = 0 " Use Ale
 let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
-let g:go_list_type = "quickfix"
+"let g:go_list_type = "quickfix"
 let g:go_auto_type_info = 0 " Show type information
 let g:go_def_mode = "guru"
 
@@ -31,6 +31,7 @@ let g:go_test_show_name = 1     " Add the failing test name to the output of :Go
 let g:go_gocode_autobuild = 1
 let g:go_gocode_unimported_packages = 1
 
+"Enabled for go 1.11
 let g:go_autodetect_gopath = 0  " This does not seem to work so I have disabled it and set it on every project
 let g:go_info_mode = "guru"
 

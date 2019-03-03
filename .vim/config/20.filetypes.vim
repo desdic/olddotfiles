@@ -41,14 +41,14 @@ augroup END
 
 augroup filetype_c
     autocmd!
-    autocmd FileType c set expandtab
-    autocmd FileType c set shiftwidth=4
-    autocmd FileType c set softtabstop=4
-    autocmd FileType c set tabstop=4
-    autocmd FileType cpp set expandtab
-    autocmd FileType cpp set shiftwidth=4
-    autocmd FileType cpp set softtabstop=4
-    autocmd FileType cpp set tabstop=4
+    autocmd FileType c setlocal expandtab
+    autocmd FileType c setlocal shiftwidth=4
+    autocmd FileType c setlocal softtabstop=4
+    autocmd FileType c setlocal tabstop=4
+    autocmd FileType cpp setlocal expandtab
+    autocmd FileType cpp setlocal shiftwidth=4
+    autocmd FileType cpp setlocal softtabstop=4
+    autocmd FileType cpp setlocal tabstop=4
 augroup END
 
 augroup filetype_asm
@@ -73,6 +73,7 @@ augroup filetype_text
     autocmd FileType text set tabstop=4
     autocmd FileType text set shiftwidth=4
     autocmd FileType text let b:deoplete_disable_auto_complete = 1
+    autocmd FileType text let b:delimitMate_autoclose = 0
 augroup END
 
 augroup filetype_html
@@ -89,7 +90,6 @@ augroup filetype_sh
     autocmd FileType sh set expandtab
     autocmd FileType sh set tabstop=2
     autocmd FileType sh set shiftwidth=2
-    autocmd FileType sh set omnifunc=pythoncomplete#Complete
 augroup END
 
 augroup filetype_gitcommit
@@ -103,7 +103,6 @@ augroup filetype_python
     autocmd FileType python set expandtab
     autocmd FileType python set tabstop=4
     autocmd FileType python set shiftwidth=4
-    autocmd FileType python set omnifunc=pythoncomplete#Complete
 augroup END
 
 augroup filetype_make
@@ -112,6 +111,14 @@ augroup filetype_make
     autocmd FileType make set tabstop=2
     autocmd FileType make set shiftwidth=2
 augroup END
+
+augroup filetype_tex
+    autocmd!
+    autocmd FileType tex set noexpandtab
+    autocmd FileType tex set tabstop=2
+    autocmd FileType tex set shiftwidth=2
+augroup END
+
 
 augroup filetype_yaml
     autocmd!
@@ -141,6 +148,7 @@ augroup filetype_mail
     autocmd!
     autocmd FileType mail set tw=72 fo+=taw spell
     autocmd FileType mail let b:deoplete_disable_auto_complete = 1
+    autocmd FileType mail let b:delimitMate_autoclose = 0
 augroup END
 
 augroup filetype_go
@@ -166,7 +174,7 @@ augroup filetype_go
     autocmd FileType go nmap   <F5>    :GoCallers<CR>
     autocmd FileType go nmap   <F6>    :GoCallstack<CR>
     autocmd FileType go nmap   <F8>    :TagbarToggle<CR>
-
+    autocmd FileType go nmap   <F9>    :make
 
     autocmd FileType go nmap     <leader>dd    <Plug>(go-def)
     autocmd FileType go nmap     <leader>ds    <Plug>(go-def-split)

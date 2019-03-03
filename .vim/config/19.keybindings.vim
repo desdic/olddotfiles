@@ -34,7 +34,7 @@ nnoremap <C-l> <C-w>l
 map <Leader>a ggVG
 
 map <Leader>l :redraw!<CR>
-map <Leader>p :set paste<CR> i
+"map <Leader>p :set paste<CR> i
 
 " Remove search highlight
 nnoremap <leader><space> :nohlsearch<CR>
@@ -43,12 +43,12 @@ nnoremap <leader><space> :nohlsearch<CR>
 map <Leader>g <C-g>
 
 " Move
-"nnoremap <C-j> :m .+1<CR>==
-"nnoremap <C-k> :m .-2<CR>==
-"inoremap <C-j> <Esc>:m .+1<CR>==gi
-"inoremap <C-k> <Esc>:m .-2<CR>==gi
-"vnoremap <C-j> :m '>+1<CR>gv=gv
-"vnoremap <C-k> :m '<-2<CR>gv=gv
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
 
 nnoremap <A-j> :lnext<CR>
 nnoremap <A-k> :lprevious<CR>
@@ -73,4 +73,11 @@ map! <ESC>[1;5C <C-Right>
 " Alt+arrow left deletes a line so disable it
 noremap <ESC>[1;3C <NOP>
 
-set pastetoggle=<F11>
+set pastetoggle=<Leader>p
+
+imap jj <ESC>
+
+" Jump between errors found by ale linters
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
