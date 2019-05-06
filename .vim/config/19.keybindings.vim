@@ -43,12 +43,12 @@ nnoremap <leader><space> :nohlsearch<CR>
 map <Leader>g <C-g>
 
 " Move
-nnoremap <C-j> :m .+1<CR>==
-nnoremap <C-k> :m .-2<CR>==
-inoremap <C-j> <Esc>:m .+1<CR>==gi
-inoremap <C-k> <Esc>:m .-2<CR>==gi
-vnoremap <C-j> :m '>+1<CR>gv=gv
-vnoremap <C-k> :m '<-2<CR>gv=gv
+"nnoremap <C-j> :m .+1<CR>==
+"nnoremap <C-k> :m .-2<CR>==
+"inoremap <C-j> <Esc>:m .+1<CR>==gi
+"inoremap <C-k> <Esc>:m .-2<CR>==gi
+"vnoremap <C-j> :m '>+1<CR>gv=gv
+"vnoremap <C-k> :m '<-2<CR>gv=gv
 
 nnoremap <A-j> :lnext<CR>
 nnoremap <A-k> :lprevious<CR>
@@ -81,3 +81,9 @@ imap jj <ESC>
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
+" deoplete tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" fuzzy find text in the working directory
+nnoremap <leader>/ :Rg<CR>

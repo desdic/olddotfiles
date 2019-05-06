@@ -125,6 +125,7 @@ augroup filetype_yaml
     autocmd FileType yaml set expandtab
     autocmd FileType yaml set tabstop=2
     autocmd FileType yaml set shiftwidth=2
+    autocmd FileType yaml set softtabstop=2
 augroup END
 
 augroup filetype_markdown
