@@ -12,14 +12,16 @@ function take {
     cd $1
 }
 
-function cd() {
-    builtin cd $1
-    if [[ -f .gorc ]]; then
-        echo $GOPATH|grep -q $PWD
-        if [ "$?" != 0 ]; then
-            export GOPATH="${GOPATH}:${PWD}"
-        fi
-    fi
+function ef() {
+    /sbin/fzf | /sbin/xargs /sbin/zsh -c '</dev/tty $EDITOR "$@"' ignoreme
+}
+
+function fcd() {
+  dir=$(find ${1:-.} -type d -path ./.cache -prune -o -print 2> /dev/null | fzf +m) && cd "$dir"
+}
+
+function fzgrep() {
+  /sbin/grep --line-buffered --color=never -r "" * | fzf
 }
 
 alias ls='/bin/ls -F --color=auto'
@@ -29,14 +31,14 @@ alias egrep='/usr/bin/egrep --color=auto'
 alias tree='tree -C'
 alias t='task'
 alias tl='task list'
-if [ -x /usr/bin/dsh ]; then
-    alias dchi='dch --no-auto-nmu -i'
-fi
 if [ -x /usr/local/bin/xping ]; then
     alias xping='xping -B'
 fi
 if [ -x /usr/local/bin/xping-http ]; then
     alias xping-http='xping-http -B'
+fi
+if [ -x ~/bin/vifmrun ]; then
+        alias vifm=~/bin/vifmrun
 fi
 
 function highlight() {
@@ -131,3 +133,5 @@ if [ -f "$ZSH/oh-my-zsh.sh" ]; then
 fi
 
 unsetopt share_history
+
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
