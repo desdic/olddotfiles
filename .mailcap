@@ -1,3 +1,7 @@
+text/plain; $EDITOR %s ;
 text/html;  /sbin/firefox %s >/dev/null 2>&1; needsterminal
 text/html;  /usr/bin/elinks -dump %s; nametemplate=%s.html; copiousoutput
-application/pdf          ; /usr/bin/zathura %s ; copiousoutput
+application/pdf; /usr/bin/zathura %s ; copiousoutput
+image/*; muttimage %s ; copiousoutput
+video/*; setsid mpv --quiet %s &; copiousoutput
+application/pgp-encrypted; gpg -d '%s'; copiousoutput;
