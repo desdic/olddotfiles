@@ -122,7 +122,7 @@ font-3 = "Noto Sans Mono:size=10;0"
 
 modules-left = i3
 ;xwindow
-modules-center = weather
+;modules-center = weather
 modules-right = cpu2 memory2 temperature1 battery filesystem2 wireless-network pavolume arch-aur-updates
 
 separator = |
@@ -933,12 +933,13 @@ format-charging-background = ${colors.background}
 format-charging-underline = #a3c725
 
 format-discharging = <ramp-capacity> <label-discharging>
-label-discharging =  %percentage%%
+;label-discharging =  %percentage%%
+label-discharging = %percentage%%
 format-discharging-underline = #c7ae25
 format-discharging-foreground = ${colors.foreground}
 format-discharging-background = ${colors.background}
 
-label-full = Fully charged
+label-full = 100%
 label-full-foreground = ${colors.foreground}
 label-full-background = ${colors.background}
 format-full-prefix = " "

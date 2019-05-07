@@ -216,7 +216,6 @@ exec xautolock -time 5 -locker '/usr/bin/i3lock -c 000000 -i ~/Pictures/locked25
 exec --no-startup-id ~/bin/i3startup.sh
 exec --no-startup-id /usr/bin/clipit&
 exec --no-startup-id /usr/bin/xsetroot -solid "#111111"
-exec --no-startup-id ~/bin/randomwallpaper.sh
-#exec --no-startup-id /usr/bin/feh -B black --bg-fill ~/Pictures/wallpapers/UhiPF31-arch-linux-wallpaper.jpg  --bg-fill ~/Pictures/wallpapers/UhiPF31-arch-linux-wallpaper.jpg
+exec --no-startup-id /usr/bin/feh -B black --bg-fill ~/Pictures/wallpapers/uch8euG-arch-linux-wallpaper.jpg  --bg-fill ~/Pictures/wallpapers/uch8euG-arch-linux-wallpaper.jpg
 #exec --no-startup-id /usr/bin/blueman-applet &
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
