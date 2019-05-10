@@ -23,9 +23,18 @@ set $workspace10 "10"
 
 # Make sure pinentry floats
 for_window [class="Pinentry-gtk-2" instance="pinentry-gtk-2"] floating enable
+for_window [class="Spotify"] move container to workspace 1, floating enable, resize set 1280 900, move position center, resize grow right 300
+for_window [class="Slack"] move container to workspace 2, floating enable, resize set 1280 900, move position center, resize grow right 300
+
+# Program Workspaces (xprop)
+#assign [class="Spotify"]                       $workspace1
+#assign [class="Slack"]                         $workspace2
+assign [class="Google-chrome"]                 $workspace3
+assign [class="libreoffice-startcenter"]       $workspace8
+assign [class="Code"]                          $workspace9
 
 # Remove borders
-new_window 1pixel
+new_window pixel 1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -45,6 +54,7 @@ bindsym $mod+Shift+q kill
 
 # Set keyboard rate since I loose it after hybernation
 bindsym $mod+Shift+p exec --no-startup-id ~/bin/i3startup.sh
+bindsym $mod+Shift+w exec --no-startup-id ~/bin/wallpaper.sh
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec rofi -show run
@@ -57,10 +67,10 @@ bindsym $mod+d exec rofi -show run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+k focus up
+bindsym $mod+j focus down
+bindsym $mod+h focus left
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -69,10 +79,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -80,11 +90,11 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
-bindsym $mod+h split h
+# split in horizontal orientation |
+bindsym $mod+bar split h
 
-# split in vertical orientation
-bindsym $mod+v split v
+# split in vertical orientation -
+bindsym $mod+minus split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -100,12 +110,13 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
+bindsym $mod+semicolon workspace next
+
 # focus the parent container
-bindsym $mod+a focus parent
+# bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
-
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -165,10 +176,10 @@ mode "  " {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -180,8 +191,24 @@ mode "  " {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
 bindsym $mod+r mode "  "
+
+mode "move" {
+        bindsym $mod+Tab focus right
+        bindsym Left  move left 30
+        bindsym Down  move down 30
+        bindsym Up    move up 30
+        bindsym Right move right 30
+
+        bindsym h     move left 30
+        bindsym j     move down 30
+        bindsym k     move up 30
+        bindsym l     move right 30
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+m mode "move" focus floating
 
 # Volume & Media Bindings
 bindsym XF86AudioLowerVolume exec --no-startup-id ~/bin/pulsesink.sh -5%
@@ -201,21 +228,19 @@ bindsym XF86AudioPrev exec /usr/bin/dbus-send --print-reply --dest=org.mpris.Med
 
 bindsym $mod+F5 exec --no-startup-id /usr/bin/pavucontrol
 bindsym $mod+F11 exec --no-startup-id /usr/bin/gnome-calculator
-bindsym $mod+Shift+plus exec --no-startup-id "/usr/bin/transset -a --inc .1"
-bindsym $mod+Shift+minus exec --no-startup-id "/usr/bin/transset -a --dec .1"
+#bindsym $mod+Shift+plus exec --no-startup-id "/usr/bin/transset -a --inc .1"
+#bindsym $mod+Shift+minus exec --no-startup-id "/usr/bin/transset -a --dec .1"
 bindsym $mod+c exec --no-startup-id "~/bin/togglecompton.sh"
 bindsym $mod+Shift+x exec --no-startup-id ~/bin/locklaptop.sh
 
-# Program Workspaces
-assign [class="Google-chrome"]                 $workspace3
-assign [class="libreoffice-startcenter"]       $workspace8
-assign [class="Code"]                          $workspace9
+bindsym $mod+t split toggle
+
 
 #exec --no-startup-id /usr/bin/dbus-launch /usr/bin/compton --config ~/.config/compton.conf
 exec xautolock -time 5 -locker '/usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png' &
 exec --no-startup-id ~/bin/i3startup.sh
 exec --no-startup-id /usr/bin/clipit&
 exec --no-startup-id /usr/bin/xsetroot -solid "#111111"
-exec --no-startup-id /usr/bin/feh -B black --bg-fill ~/Pictures/wallpapers/uch8euG-arch-linux-wallpaper.jpg  --bg-fill ~/Pictures/wallpapers/uch8euG-arch-linux-wallpaper.jpg
 #exec --no-startup-id /usr/bin/blueman-applet &
+exec_always --no-startup-id ~/bin/wallpaper.sh
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
