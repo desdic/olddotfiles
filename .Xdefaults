@@ -61,7 +61,7 @@ URxvt.color250: #d5c4a1
 URxvt*termName: rxvt-unicode-256color
 
 URxvt.intensityStyles: false
-URxvt.background:       [90]#000000
+URxvt.background:       [100]#000000
 URxvt.depth:  32
 
 URxvt.font:\
