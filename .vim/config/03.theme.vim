@@ -6,11 +6,9 @@ set t_Co=256
 set t_8f=[38;2;%lu;%lu;%lum
 set t_8b=[48;2;%lu;%lu;%lum
 
-" Enable 24bit colors
-if &term=~'termite'
+" Only set termguicolors if its not rxvt
+if ! &term=~'rxvt-unicode-256color'
     set termguicolors
-elseif &term=~'rxvt-unicode-256color'
-    " urxvt specific settings
 endif
 
 try

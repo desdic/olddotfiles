@@ -7,7 +7,8 @@ if /usr/bin/tmux ls|grep -q work:; then
 else
   #LANG=da_DK.UTF-8 /usr/bin/st -- /usr/bin/tmux new-session -s work
   #LANG=da_DK.UTF-8 /usr/bin/urxvt -e /usr/bin/tmux new-session -s work
-  LANG=da_DK.UTF-8 /sbin/termite -e '/usr/bin/tmux new-session -s work'
+  #LANG=da_DK.UTF-8 /sbin/termite -e '/usr/bin/tmux new-session -s work'
+  LANG=da_DK.UTF-8 /sbin/kitty --class kittywork sh -c '/usr/bin/tmux new-session -s work'
 fi
 
 
