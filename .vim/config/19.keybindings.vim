@@ -87,3 +87,13 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " fuzzy find text in the working directory
 nnoremap <leader>/ :Rg<CR>
+
+" Map shift+down = 2B to move lines down (od -a)
+nnoremap <ESC>[1;2B :m .+1<CR>==
+inoremap <ESC>[1;2B <Esc>:m .+1<CR>==gi
+vnoremap <ESC>[1;2B :m '>+1<CR>gv=gv
+
+" Map shift+up = 2A to move lines up (od -a)
+nnoremap <ESC>[1;2A :m .-2<CR>==
+inoremap <ESC>[1;2A <Esc>:m .-2<CR>==gi
+vnoremap <ESC>[1;2A :m '<-2<CR>gv=gv

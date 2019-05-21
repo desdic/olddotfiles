@@ -23,6 +23,13 @@ let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
 "let g:go_list_type = "quickfix"
 "let g:go_def_mode = "guru"
+
+"let g:go_fmt_command = "gofmt"
+"let g:go_fmt_options = {
+"    \ 'gofmt': '-s',
+"    \ 'goimports': '-local biq.dk',
+"    \ }
+
 let g:go_def_mode = "gopls"
 let g:go_info_mode= "gopls"
 
@@ -34,7 +41,6 @@ let g:go_gocode_unimported_packages = 1
 
 "Enabled for go 1.11
 "let g:go_autodetect_gopath = 0  " This does not seem to work so I have disabled it and set it on every project
-let g:go_info_mode = "gopls"
 
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -54,4 +60,9 @@ let g:go_modifytags_transform = 'camelcase'
 let g:go_addtags_transform = 'camelcase'
 
 let g:go_jump_to_error = 0
+
+let g:go_def_mapping_enabled = 0
+
+let g:go_code_completion_enabled = 0
+
 "---}}}

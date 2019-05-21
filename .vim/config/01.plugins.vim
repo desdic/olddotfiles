@@ -8,15 +8,15 @@ call plug#begin('~/.vim/plugged')
     Plug 'ryanoasis/vim-devicons'
     Plug 'ctrlpvim/ctrlp.vim'
 
-    if has('nvim')
-        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    else
-        Plug 'roxma/vim-hug-neovim-rpc'
-        Plug 'roxma/nvim-yarp'
-        Plug 'Shougo/deoplete.nvim'
-    endif
+"    if has('nvim')
+"        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"    else
+"        Plug 'roxma/vim-hug-neovim-rpc'
+"        Plug 'roxma/nvim-yarp'
+"        Plug 'Shougo/deoplete.nvim'
+"    endif
     Plug 'Shougo/denite.nvim'
-    Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}
+"    Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}
     Plug 'Shougo/neosnippet.vim'
     Plug 'Shougo/neosnippet-snippets'
     Plug 'honza/vim-snippets'
@@ -30,4 +30,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'jparise/vim-graphql'
+
+    Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 call plug#end()

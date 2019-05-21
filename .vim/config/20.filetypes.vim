@@ -166,10 +166,18 @@ augroup filetype_go
     autocmd FileType go nmap <leader>t <Plug>(go-test)
     autocmd FileType go nmap <leader>c <Plug>(go-coverage)
     autocmd FileType go nmap <leader>l <Plug>(go-metalinter)
-    autocmd FileType go nmap <leader>d :GoDef<CR>
+""    autocmd FileType go nmap <leader>d :GoDef<CR>
     autocmd FileType go nmap <leader>g :GoDecls<CR>
+
+    autocmd FileType go nmap <silent> <leader>d <Plug>(coc-definition)
+
     autocmd FileType go nmap <leader>s :GoFillStruct<CR>
-    autocmd FileType go nmap <leader>e <Plug>(go-rename)
+    "autocmd FileType go nmap <leader>e <Plug>(go-rename)
+    autocmd FileType go nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+    autocmd FileType go vmap <leader>f  <Plug>(coc-format-selected)
+    autocmd FileType go nmap <leader>f  <Plug>(coc-format-selected)
 
     "autocmd FileType go nmap   <F4>    :GoDef<CR>
     autocmd FileType go nmap   <F5>    :GoCallers<CR>
