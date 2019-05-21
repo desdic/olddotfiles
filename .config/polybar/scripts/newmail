@@ -15,5 +15,5 @@ done
 if [ -n "${RES}" ]; then
   echo "${RES}"
 else
-  echo ""
+  echo " "
 fi
