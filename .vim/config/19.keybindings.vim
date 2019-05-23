@@ -59,10 +59,12 @@ nnoremap <silent> <Leader>- :exe "resize -5"<CR>
 nnoremap <silent> <Leader>% :exe "vertical resize +5"<CR>
 nnoremap <silent> <Leader>& :exe "vertical resize -5"<CR>
 
+command! Vmake silent w | silent make | unsilent redraw! | cwindow
+
 " Run make and if we get errors show them in a 3 line window
 command -nargs=* Make make <args> | copen
 "map <Leader>m :Make<CR><CR><CR>
-map <Leader>m :Make<CR>
+map <Leader>m :Vmake<CR>
 
 " ctrl arrow delete so remap
 map <ESC>[1;5D <C-Left>
