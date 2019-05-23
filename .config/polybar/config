@@ -1,9 +1,14 @@
 ;=====================================================
-; powerline
+; https://github.com/ryanoasis/powerline-extra-symbols
 ; 
+; 
 ; 
+; 
 ; 
 ; 
+; 
+; 
+; 
 
 [global/wm]
 margin-top = 0
@@ -16,7 +21,6 @@ font-1 = "FontAwesome:size=8;2"
 font-2 = "Noto Sans:size=8;0"
 font-3 = "Noto Sans Mono:size=10;0"
 font-4 = "MesloLGLDZNerdFont:style=RegularForPowerline:pixelsize=12;3"
-;font-4 = "3270Medium Nerd Font:style=Medium:size=17;4"
 
 [settings]
 ;https://github.com/jaagr/polybar/wiki/Configuration#application-settings
@@ -41,21 +45,20 @@ format-margin =
 format-offset =
 
 [colors]
-; Nord theme ============
 background = #2F343F
-foreground = #000
-alert = #d08770
-green = #3EC13F
-red = #cd1f3f
-nearred = #ff5555
-magenta = #c72581
-yellow = #c1941a
-purple = #7e52c6
-blue = #3384d0
-cyan = #42e8f4
-volume-min = #a3be8c
-volume-med = #ebcb8b
-volume-max = #bf616a
+foreground = #fff
+; alert = #d08770
+; green = #3EC13F
+; red = #cd1f3f
+; nearred = #ff5555
+; magenta = #c72581
+; yellow = #c1941a
+; purple = #7e52c6
+; blue = #3384d0
+; cyan = #42e8f4
+; volume-min = #a3be8c
+; volume-med = #ebcb8b
+; volume-max = #bf616a
 ; 70ACB7 light blue
 ; 627D82 dark blue
 ; E5D0BE light grey
@@ -64,31 +67,9 @@ volume-max = #bf616a
 ; ABA167 dark yellow
 ; FD6A6A light red
 ; D75757 dark red
-; 4db789 light green
+; 4DB789 light green
 ; 317759 dark green
 
-
-; =======================
-
-; Gotham theme ==========
-; background = #0a0f14
-; foreground = #99d1ce
-; alert = #d26937
-; volume-min = #2aa889
-; volume-med = #edb443
-; volume-max = #c23127
-; =======================
-
-; INTRCPTR theme ============
-;background = ${xrdb:color0:#222}
-;background = #aa000000
-;background-alt = #444
-;foreground = ${xrdb:color7:#222}
-;foreground = #fff
-;foreground-alt = #555
-;primary = #ffb52a
-;secondary = #e60053
-;alert = #bd2c40
 
 ################################################################################
 ################################################################################
@@ -147,11 +128,11 @@ modules-right = cpu memory filesystem s pavolume battery wireless-network s arch
 tray-detached = false
 tray-offset-x = 0
 tray-offset-y = 0
-tray-padding = 2
+tray-padding = 4
 tray-maxsize = 20
 tray-scale = 1.0
 tray-position = right
-tray-background = #ABA167
+tray-background = #627D82
 
 #i3: Make the bar appear below windows
 ;wm-restack = i3
@@ -262,11 +243,11 @@ label-mode-background = #FFBB00
 ;   %output%
 ; Default: %icon%  %name%
 ; focused = Active workspace on focused monitor
-label-focused = "%{F#70ACB7}%{F-}%{B#70ACB7}%icon% %name% %{B-}%{F#70ACB7}%{F-}"
+label-focused = "%{F#70ACB7}%{F-}%{B#70ACB7}%{F#2F343F}%icon%%{F-} %name% %{B-}%{F#70ACB7}%{F-}"
 label-focused-background = #2F343F
 label-focused-foreground = ${colors.foreground}
 label-focused-underline =
-label-focused-padding = 2
+label-focused-padding = 0
 
 ; Available tokens:
 ;   %name%
@@ -274,17 +255,17 @@ label-focused-padding = 2
 ;   %index%
 ; Default: %icon%  %name%
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %icon% %name%
+label-unfocused = "%{F#70ACB7}%{F-} %{F#627D82} %icon% %name% %{F-}%{F#70ACB7}%{F-}"
 label-unfocused-padding = 2
 label-unfocused-background = ${colors.background}
 label-unfocused-foreground = ${colors.foreground}
 label-unfocused-underline =
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %icon% %name%
+label-visible = "%{F#627D82}%{F-}%{B#627D82}%{F#2F343F}%icon%%{F-}%{F#70ACB7} %name% %{B-}%{F#627D82}%{F-}"
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = 2
+label-visible-padding = 0
 
 ; Available tokens:
 ;   %name%
@@ -292,17 +273,17 @@ label-visible-padding = 2
 ;   %index%
 ; Default: %icon%  %name%
 ; urgent = Workspace with urgency hint set
-label-urgent = "%{F#D75757}%{F-}%{B#D75757}%icon% %name% %{B-}%{F#D75757}%{F-}"
+label-urgent = "%{F#D75757}%{F-}%{B#D75757}%{F#2F343F}%icon%%{F-} %name% %{B-}%{F#D75757}%{F-}"
 label-urgent-background = #2F343F
 label-urgent-foreground = ${colors.foreground}
-label-urgent-padding = 2
+label-urgent-padding = 0
 
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 
-;label-separator = |
-;label-separator-padding = 2
-;label-separator-foreground = ${colors.foreground}
+;label-separator = 
+;label-separator-padding = 0
+;label-separator-foreground = #70ACB7
 
 ################################################################################
 ###############################################################################
@@ -312,7 +293,6 @@ format-background = ${colors.background}
 
 [module/s]
 type = custom/text
-;content = ""
 content = " "
 content-foreground = ${colors.foreground}
 content-background = ${colors.background}
@@ -321,10 +301,10 @@ content-background = ${colors.background}
 type = custom/script
 exec = ~/.config/polybar/scripts/check-all-updates.sh
 interval = 1000
-label = " %{F#627D82}%{F-}%{B#627D82}%output%  %{B-}"
+label = "  %{F#627D82}%{F-}%{B#627D82}%output%  %{B-}"
 format-foreground = ${colors.background}
 format-background = #70ACB7
-format-prefix = ""
+format-prefix = ""
 format-prefix-foreground = #70ACB7
 format-prefix-background = #2F343F
 
@@ -384,52 +364,37 @@ type = internal/battery
 ;adapter = AC0
 full-at = 100
 
-format-charging = <animation-charging> <label-charging>
-label-charging = "%{F#627D82}%{F-}%{B#627D82} %percentage:3%% %{B-}"
-format-charging-foreground = ${colors.red}
-format-charging-background = ${colors.red}
+format-charging = <animation-charging><label-charging>
+label-charging = "%{F#627D82}%{B#70ACB7}%{F-}%{B#627D82} %percentage:3%%  %{B-}"
+format-charging-background = #627D82
 
 format-discharging = <ramp-capacity><label-discharging>
-label-discharging = "%{F#627D82}%{B#70ACB7} %{F-}%{B#627D82} %percentage:3%% %{B-}"
-format-discharging-foreground = ${colors.red}
-format-discharging-background = ${colors.red}
+label-discharging = "%{F#627D82}%{B#70ACB7} %{F-}%{B#627D82} %percentage:3%%  %{B-}"
 
 label-full = 100%
-label-full-foreground = ${colors.red}
-label-full-background = ${colors.red}
-;format-full-prefix = " "
 format-full-prefix = ""
-format-full-prefix-foreground = ${colors.yellow}
-format-full-prefix-background = ${colors.red}
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 
-ramp-capacity-0 = "%{F#2F343F}%{B#70ACB7}%{B-}%{F-}"
-ramp-capacity-1 = "%{F#2F343F}%{B#70ACB7}%{B-}%{F-}"
-ramp-capacity-2 = "%{F#2F343F}%{B#70ACB7}%{B-}%{F-}"
-ramp-capacity-3 = "%{F#2F343F}%{B#70ACB7}%{B-}%{F-}"
-ramp-capacity-4 = "%{F#2F343F}%{B#70ACB7}%{B-}%{F-}"
+format-discharging-padding = 0
+format-charging-padding = 0
+format-full-padding = 0
+
+ramp-capacity-0 = "%{B#317759}%{F#2F343F}%{B#70ACB7}  %{B-}%{F-}"
+ramp-capacity-1 = "%{B#317759}%{F#2F343F}%{B#70ACB7}  %{B-}%{F-}"
+ramp-capacity-2 = "%{B#317759}%{F#2F343F}%{B#70ACB7}  %{B-}%{F-}"
+ramp-capacity-3 = "%{B#317759}%{F#2F343F}%{B#70ACB7}  %{B-}%{F-}"
+ramp-capacity-4 = "%{B#317759}%{F#2F343F}%{B#70ACB7}  %{B-}%{F-}"
 ramp-capacity-foreground = #70ACB7
 ramp-capacity-background = #627D82
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = ""
-animation-charging-4 = ""
-animation-charging-foreground = ${colors.yellow}
-animation-charging-framerate = 750
-
-################################################################################
-
-[module/compton]
-;https://github.com/jaagr/polybar/wiki/User-contributed-modules#compton
-type = custom/script
-exec = ~/.config/polybar/scripts/compton.sh
-click-left = ~/.config/polybar/scripts/compton-toggle.sh
-interval = 5
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
+animation-charging-0 = "%{B#317759}%{F#2F343F}%{B#70ACB7}  %{B-}%{F-}"
+animation-charging-1 = "%{B#317759}%{F#2F343F}%{B#70ACB7}  %{B-}%{F-}"
+animation-charging-2 = "%{B#317759}%{F#2F343F}%{B#70ACB7}  %{B-}%{F-}"
+animation-charging-3 = "%{B#317759}%{F#2F343F}%{B#70ACB7}  %{B-}%{F-}"
+animation-charging-4 = "%{B#317759}%{F#2F343F}%{B#70ACB7}  %{B-}%{F-}"
+animation-charging-foreground = #70ACB7
+animation-charging-background = #627D82
 
 ################################################################################
 [module/cpu]
@@ -439,8 +404,9 @@ interval = 2
 format = <label>
 format-padding = 0
 
-label = "  %{F#627D82}%{F-}%{B#627D82}%percentage:3%% %{B-}"
-format-prefix = ""
+label = "  %{F#627D82}%{F-}%{B#627D82}%percentage:3%% %{B-}"
+; "%{F#627D82}%{F-}"
+format-prefix = ""
 format-prefix-foreground = #70ACB7
 format-prefix-background = ${colors.background}
 label-background = #70ACB7
@@ -451,10 +417,11 @@ label-foreground = ${colors.background}
 [module/memory]
 ;https://github.com/jaagr/polybar/wiki/Module:-memory
 type = internal/memory
-interval = 1
-label = "  %{F#627D82}%{F-}%{B#627D82}%percentage_used:3%% %{B-}"
+interval = 2
+label = "  %{F#627D82}%{F-}%{B#627D82}%percentage_used:3%%%{B-}"
+; "%{F#627D82}%{F-}"
 format = <label>
-format-prefix = ""
+format-prefix = ""
 format-prefix-foreground = #70ACB7
 format-prefix-background = #627D82
 label-background = #70ACB7
@@ -492,10 +459,11 @@ format-mounted = <label-mounted>
 format-mounted-foreground = ${colors.foreground}
 format-mounted-background = ${colors.background}
 
-format-mounted-prefix = ""
+format-mounted-prefix = ""
+label-mounted = "  %{F#627D82}%{F-}%{B#627D82}%free% %{B-}%{F#627D82}%{F-}"
+
 format-mounted-prefix-foreground = #70ACB7
 format-mounted-prefix-background = #627D82
-label-mounted = "  %{F#627D82}%{F-}%{B#627D82}%free% %{B-}%{F#627D82}%{F-}"
 label-mounted-background = #70ACB7
 label-mounted-foreground = ${colors.background}
 
@@ -506,92 +474,7 @@ label-unmounted = %mountpoint% not mounted
 format-unmounted-foreground = ${colors.foreground}
 format-unmounted-background = ${colors.background}
 
-
-
-
 ################################################################################
-
-[module/date]
-;https://github.com/jaagr/polybar/wiki/Module:-date
-type = internal/date
-; Seconds to sleep between updates
-interval = 5
-; See "http://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
-; NOTE: if you want to use syntax tags here you need to use %%{...}
-date = " %Y-%m-%d%"
-date-alt = " %d-%m-%Y"
-time = %H:%M
-time-alt = %H:%M
-format-prefix = " "
-format-prefix-foreground = #c1941a
-format-underline = #c1941a
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
-label = %date% %time%
-
-#################################################################
-
-[module/discord]
-type = custom/script
-exec = echo " Discord "
-;exec = echo " "
-interval = 1
-tail = true
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
-format-prefix-foreground = #738adb
-format-underline = #738adb
-click-left = discord &
-click-right = killall Discord && killall Discord
-format-prefix = ""
-
-#################################################################
-
-[module/ewmh]
-type = internal/xworkspaces
-
-pin-workspaces = false
-enable-click = true
-enable-scroll = true
-reverse-scroll = true
-
-
-icon-0 = 1;
-icon-1 = 2;
-icon-2 = 3;
-icon-3 = 4;
-icon-4 = 5;
-#icon-5 = 6;
-format = <label-state>
-label-monitor = %name%
-
-label-active = %name%
-label-active-foreground = ${colors.foreground}
-label-active-background = ${colors.background}
-label-active-underline= #6790eb
-label-active-padding = 4
-
-label-occupied = %name%
-label-occupied-background = ${colors.background}
-label-occupied-padding = 2
-
-label-urgent = %name%
-label-urgent-foreground = ${colors.foreground}
-label-urgent-background = ${colors.alert}
-label-urgent-underline = ${colors.alert}
-label-urgent-padding = 2
-
-
-label-empty = %name%
-label-empty-foreground = ${colors.foreground}
-label-empty-padding = 2
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
-
-
-################################################################################
-
-
 
 [module/networkspeedup]
 ;https://github.com/jaagr/polybar/wiki/Module:-network
@@ -630,7 +513,6 @@ format-connected-background = ${colors.background}
 [module/pavolume]
 type = custom/script
 tail = true
-;label = "%{F#627D82}%{F-}%{B#627D82}%output% %{B-}"
 label = "%output%"
 
 exec = ~/.config/polybar/scripts/pavolume.sh --listen
@@ -649,16 +531,10 @@ click-right = /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spo
 click-left = /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 interval = 2
 
-;format = <label>
-;format-foreground = ${colors.foreground}
-;format-background = ${colors.background}
-;format-padding = 2
-;format-underline = #0f0
-format-prefix = ""
+format-prefix = ""
 format-prefix-foreground = #70ACB7
 format-prefix-background = ${colors.background}
-;label = %output:0:150%
-label = "  %{F#627D82}%{F-}%{B#627D82}%output:0:150%  %{B-}%{F#627D82}%{F-}"
+label = "   %{F#627D82}%{F-}%{B#627D82}%output:0:150%  %{B-}%{F#627D82}%{F-}"
 label-background = #70ACB7
 label-foreground = ${colors.background}
 
@@ -718,37 +594,6 @@ format-background = ${colors.background}
 format-underline = #C1B93E
 format-prefix-foreground = #C1B93E
 label =  %output:0:150:%
-
-################################################################################
-
-[module/uptime]
-;https://github.com/jaagr/polybar/wiki/User-contributed-modules#uptime
-type = custom/script
-exec = uptime | awk -F, '{sub(".*up ",x,$1);print $1}'
-interval = 100
-label = Uptime : %output%
-
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
-format-prefix = " "
-format-prefix-foreground = #C15D3E
-format-underline = #C15D3E
-
-################################################################################
-
-[module/variety]
-type = custom/script
-exec = echo " Variety"
-;exec = echo " "
-interval = 1
-tail = true
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
-format-prefix = ""
-format-prefix-foreground = #FFFFF
-format-underline = #0084FF
-click-right = variety --preferences
-click-left = variety --selector
 
 ################################################################################
 
@@ -841,18 +686,18 @@ interface = wlp4s0
 interval = 3.0
 
 ; connected
-label-connected = "  %{F#627D82}%{F-}%{B#627D82}%essid% %{B-}%{F#627D82}%{F-}"
+label-connected = "   %{F#627D82}%{F-}%{B#627D82}%essid% %{B-}%{F#627D82}%{F-}"
 label-connected-background = #70ACB7
 label-connected-foreground = ${colors.background}
 format-connected = <label-connected>
 format-connected-foreground = ${colors.foreground}
 format-connected-background = ${colors.background}
-format-connected-prefix = ""
+format-connected-prefix = ""
 format-connected-prefix-foreground = #70ACB7
 format-connected-prefix-background = #627D82
 
 ; disconnected
-label-disconnected = "  %{F#627D82}%{F-}%{B#627D82}disconnected %{B-}%{F#627D82}%{F-}"
+label-disconnected = "   %{F#627D82}%{F-}%{B#627D82}disconnected %{B-}%{F#627D82}%{F-}"
 label-disconnected-background = #70ACB7
 label-disconnected-foreground = ${colors.background}
 format-disconnected = <label-disconnected>
@@ -900,16 +745,16 @@ type = custom/script
 exec = /home/kgn/.config/polybar/scripts/newmail
 interval = 5
 
-label = " %{F#627D82}%{F-}%{B#627D82}%output%  %{B-}%{F#627D82}%{F-}"
+label = "  %{F#627D82}%{F-}%{B#627D82}%output%  %{B-}%{F#627D82}%{F-}"
 format-foreground = ${colors.background}
 format-background = #70ACB7
-format-prefix = ""
+format-prefix = ""
 format-prefix-foreground = #70ACB7
 format-prefix-background = #627D82
 
 [module/taskdate]
 type = custom/script
 exec = /home/kgn/.config/polybar/scripts/taskdate.sh
-interval = 3
+interval = 5
 label = "%output%"
 
