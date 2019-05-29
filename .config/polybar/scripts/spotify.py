@@ -7,7 +7,14 @@ try:
     spotify_properties = dbus.Interface(spotify_bus,
                                         "org.freedesktop.DBus.Properties")
     metadata = spotify_properties.Get("org.mpris.MediaPlayer2.Player", "Metadata")
+    sstate = spotify_properties.Get("org.mpris.MediaPlayer2.Player", "PlaybackStatus")
 
-    print("".join(metadata['xesam:artist']),"-",metadata['xesam:title'])
+    s = ""
+    if sstate == 'Playing':
+        s = ""
+    elif sstate == 'Paused':
+        s = ""
+
+    print(s, "".join(metadata['xesam:artist']), "-", metadata['xesam:title'])
 except:
     print("")

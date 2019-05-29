@@ -18,10 +18,7 @@ B=" %{B-}%{F-}%{F#627D82}%{B#70ACB7}%{F#fff}%{B#627D82}Week ${FORMAT}   %{B-}
 if [ "$($TASK +READY +OVERDUE count)" -gt 0 ]; then
   echo "${A}%{F#cd1f3f}%{B#70ACB7}${OVERDUE}${B}"
 elif [ "$($TASK +DUETODAY count)" -gt 0 ]; then
-  echo "${A}%{F#a3c725}%{B#70ACB7}${DUETODAY}${B}"
+  echo "${A}%{F#913c00}%{B#70ACB7}${DUETODAY}${B}"
 else
   echo "${A}%{F#2F343F}%{B#70ACB7}${DUETODAY}${B}"
 fi
-
-
-

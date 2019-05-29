@@ -3,8 +3,8 @@
 EDITOR=/usr/bin/vim
 export EDITOR
 
-/usr/bin/pacaur -Sya > /dev/null 2>&1
-if ! updates_aur=$(/usr/bin/pacaur -Qu 2>/dev/null | /usr/bin/wc -l); then
+/sbin/yay -Sya > /dev/null 2>&1
+if ! updates_aur=$(/sbin/yay -Qu 2>/dev/null | /usr/bin/wc -l); then
     updates_aur=0
 fi
 
