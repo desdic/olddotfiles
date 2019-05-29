@@ -79,18 +79,12 @@ export SAVEHIST=5000
 
 # Keyboard bindings
 bindkey -e
-bindkey "^[[H" beginning-of-line
-bindkey "^[[F" end-of-line
-bindkey "^[[3~" delete-char
-bindkey "^[[1;3C" forward-word
-bindkey "^[[1;3D" backward-word
-bindkey '^w' backward-delete-word
+
 # Enable CTRL+x-e to edit command line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
-bindkey '^x^e' edit-command-line
 
-export TERMINAL='termite'
+export TERMINAL='kitty'
 
 #export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
