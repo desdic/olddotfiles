@@ -11,7 +11,6 @@ set $laptop "eDP1"
 set $monitor1 "HDMI1"
 set $hdmi "HDMI3"
 
-# font awesome cheat sheet. https://fortawesome.github.io/Font-Awesome/cheatsheet/
 set $workspace1 "1"
 set $workspace2 "2"
 set $workspace3 "3"
@@ -26,6 +25,8 @@ set $workspace10 "10"
 # Make sure pinentry floats
 for_window [class="Pinentry-gtk-2" instance="pinentry-gtk-2"] floating enable
 for_window [class="Spotify"] move container to workspace 1
+for_window [class="VirtualBox Machine"] move container to workspace10
+
 #for_window [class="Slack"] move container to workspace 2, floating enable, resize set 1280 900, move position center, resize grow right 300
 
 # Program Workspaces (xprop)
