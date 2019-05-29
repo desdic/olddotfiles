@@ -26,7 +26,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'morhetz/gruvbox'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'w0rp/ale'
-    Plug 'ap/vim-css-color'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'jparise/vim-graphql'
