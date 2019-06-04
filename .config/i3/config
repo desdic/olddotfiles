@@ -1,9 +1,10 @@
 # class                 border  backgr. text    indicator child_border
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #70ACB7
 
-for_window [class="^.*"] border pixel 1
-gaps inner 5
-gaps outer 5
+# for i3-gaps
+#for_window [class="^.*"] border pixel 1
+#gaps inner 5
+#gaps outer 5
 
 set $mod Mod4
 
@@ -24,13 +25,12 @@ set $workspace10 "10"
 
 # Make sure pinentry floats
 for_window [class="Pinentry-gtk-2" instance="pinentry-gtk-2"] floating enable
-for_window [class="Spotify"] move container to workspace 1
-for_window [class="VirtualBox Machine"] move container to workspace10
+for_window [class="Spotify"] move container to workspace $workspace1, workspace --no-auto-back-and-forth $workspace1
+for_window [class="VirtualBox Machine"] move container to workspace $workspace10, workspace --no-auto-back-and-forth $workspace10
 
 #for_window [class="Slack"] move container to workspace 2, floating enable, resize set 1280 900, move position center, resize grow right 300
 
 # Program Workspaces (xprop)
-assign [class="Spotify"]                       $workspace1
 assign [class="Slack"]                         $workspace2
 assign [class="Google-chrome"]                 $workspace3
 assign [class="Firefox"]                       $workspace3
@@ -39,7 +39,7 @@ assign [class="libreoffice-startcenter"]       $workspace8
 assign [class="Code"]                          $workspace9
 
 # Remove borders
-new_window pixel 0
+new_window pixel 1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.

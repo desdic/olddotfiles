@@ -21,6 +21,11 @@ try
 catch
 endtry
 
+"set termguicolors
+"set background=dark
+"colorscheme solarized8
+"let g:airline_theme = 'solarized'
+
 " For some reason only the comment colors are wrong when using tmux (falcon
 " theme)
 "if exists('$TMUX')

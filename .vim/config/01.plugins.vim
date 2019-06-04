@@ -24,6 +24,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'fenetikm/falcon'
     " Plug 'sickill/vim-monokai'
     Plug 'morhetz/gruvbox'
+    Plug 'lifepillar/vim-solarized8'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'w0rp/ale'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }

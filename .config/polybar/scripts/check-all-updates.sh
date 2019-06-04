@@ -4,7 +4,7 @@ EDITOR=/usr/bin/vim
 export EDITOR
 
 /sbin/yay -Sya > /dev/null 2>&1
-if ! updates_aur=$(/sbin/yay -Qu 2>/dev/null | /usr/bin/wc -l); then
+if ! updates_aur=$(/sbin/yay -Pu 2>/dev/null | /usr/bin/wc -l); then
     updates_aur=0
 fi
 
