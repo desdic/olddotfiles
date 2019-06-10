@@ -150,11 +150,9 @@ function output() {
     volMuteStatus
     if [ "${curStatus}" = 'yes' ]
     then
-#        echo "%{F#4DB789}%{B#2F343F}%{B-}%{F-}%{F#cd1f3f}%{B#4DB789}  %{B-}%{F-}%{F#317759}%{B#70ACB7}%{F#fff}%{B#317759}$curVol% %{B-}%{F-}"
-        echo "%{F#cd1f3f}%{F-} $curVol%"
+        echo "%{F#4DB789}%{B#2F343F}%{B-}%{F-}%{F#cd1f3f}%{B#4DB789}  %{B-}%{F-}%{F#317759}%{B#70ACB7}%{F#fff}%{B#317759}$curVol% %{B-}%{F-}"
     else
-#        echo "%{F#4DB789}%{B#2F343F}%{B-}%{F-}%{F#2F343F}%{B#4DB789}  %{B-}%{F-}%{F#317759}%{B#70ACB7}%{F#fff}%{B#317759}$curVol% %{B-}%{F-}"
-        echo " $curVol%"
+        echo "%{F#4DB789}%{B#2F343F}%{B-}%{F-}%{F#2F343F}%{B#4DB789}  %{B-}%{F-}%{F#317759}%{B#70ACB7}%{F#fff}%{B#317759}$curVol% %{B-}%{F-}"
     fi
 } #}}}
 

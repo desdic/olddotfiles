@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+RES=""
+
+# Check all accounts/mailboxes for new mail. Notify if there is new content.
+for account in "$HOME/.local/share/mail/"*
+do
+  acc="$(echo "$account" | sed "s/.*\///")"
+  newcount=$(find "$HOME/.local/share/mail/$acc/INBOX/new/" "$HOME/.local/share/mail/$acc/Inbox/new/" "$HOME/.local/share/mail/$acc/inbox/new/" -type f 2> /dev/null | wc -l)
+  if [ "$newcount" -gt "0" ]; then
+    RES="${acc}:${newcount} ${RES}"
+  fi
+done
+
+if [ -n "${RES}" ]; then
+  echo "${RES}"
+else
+  echo " 0"
+fi

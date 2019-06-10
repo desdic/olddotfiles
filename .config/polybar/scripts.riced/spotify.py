@@ -11,10 +11,9 @@ try:
 
     s = ""
     if sstate == 'Playing':
-        # s = ""
-        s = "%{F#1ed761}%{F#4C5260}"
+        s = ""
     elif sstate == 'Paused':
-        s = "%{F#bfc900}%{F#4C5260}"
+        s = ""
 
     print(s, "".join(metadata['xesam:artist']), "-", metadata['xesam:title'])
 except:
