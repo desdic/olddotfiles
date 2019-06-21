@@ -232,8 +232,6 @@ bindsym XF86AudioPrev exec /usr/bin/dbus-send --print-reply --dest=org.mpris.Med
 
 bindsym $mod+F5 exec --no-startup-id /usr/bin/pavucontrol
 bindsym $mod+F11 exec --no-startup-id /usr/bin/gnome-calculator
-#bindsym $mod+Shift+plus exec --no-startup-id "/usr/bin/transset -a --inc .1"
-#bindsym $mod+Shift+minus exec --no-startup-id "/usr/bin/transset -a --dec .1"
 bindsym $mod+c exec --no-startup-id "~/bin/togglecompton.sh"
 bindsym $mod+Shift+x exec --no-startup-id ~/bin/locklaptop.sh
 
@@ -244,7 +242,7 @@ bindsym $mod+t split toggle
 exec xautolock -time 5 -locker '/usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png' &
 exec --no-startup-id ~/bin/i3startup.sh
 exec --no-startup-id /usr/bin/clipit&
-exec --no-startup-id /usr/bin/xsetroot -solid "#111111"
-#exec --no-startup-id /usr/bin/blueman-applet &
-exec_always --no-startup-id ~/bin/wallpaper.sh
+exec --no-startup-id /sbin/blueman-applet&
+#exec --no-startup-id /usr/bin/xsetroot -solid "#111111"
+exec --no-startup-id /usr/bin/xsetroot -solid "#000000"
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh

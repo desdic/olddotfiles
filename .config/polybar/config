@@ -1,13 +1,26 @@
+[colors]
+background  = #000000
+;background  = #002b36
+;background  = #073642
+foreground  = #FFF
+alert       = #D08770
+red         = #CD1F3F
+blue        = #3384D0
+;grey        = #b7b7b7
+grey        = #878787
+white       = #FFF
+
 [global/wm]
 margin-top = 0
 margin-bottom = 0
 
 [global/common]
 ;https://github.com/jaagr/polybar/wiki/Fonts
-;font-0 = "Source Code Pro Medium:antialias=true:style=Medium,Regular:size=8;2"
+;font-0 = "Source Code Pro:style=Medium:size=8;2"
 font-0 = "Terminus:style=Regular:size=8;2"
 font-1 = "FontAwesome:size=8;2"
 font-2 = "MesloLGLDZNerdFont:style=RegularForPowerline:pixelsize=12;3"
+font-3 = "Source Code Pro:style=Medium:size=8;2"
 
 monitor = ${env:MONITOR}
 monitor-strict = false
@@ -16,10 +29,10 @@ bottom = false
 fixed-center = true
 width = 100%
 height = 20
-line-color = #000000
+line-color = ${colors.red}
 border-size = 0
-border-bottom-size = 2
-border-color = #000000
+border-bottom-size = 0
+border-color = ${colors.red}
 module-margin-left = 0
 module-margin-right = 0
 separator = "  "
@@ -46,13 +59,6 @@ format-padding =
 format-margin =
 format-offset =
 
-[colors]
-background  = #000000
-foreground  = #FFF
-alert       = #D08770
-red         = #CD1F3F
-blue        = #3384D0
-grey        = #4C5260
 
 [bar/topbar-i3]
 inherit = global/common
@@ -60,13 +66,20 @@ line-size = 0
 padding-left = 2
 padding-right = 2
 
+background = ${colors.background}
+foreground = ${colors.foreground}
+
 modules-left = spotify
-modules-right = cpu temperature memory filesystem pavolume battery wireless-network arch-aur-updates mail mailcheck
+;modules-center = networkspeeddown networkspeedup
+modules-right = cpu temperature memory filesystem pavolume battery wired-network wireless-network arch-aur-updates mail mailcheck
 
 [bar/bottombar-i3]
 inherit = global/common
 bottom = true
 line-size = 1
+
+background = ${colors.background}
+foreground = ${colors.foreground}
 
 modules-left = i3
 modules-right = taskdate
@@ -146,17 +159,30 @@ fuzzy-match = false
 ;http://fontawesome.io/cheatsheet/
 ;       v     
 
-ws-icon-0 = 1;
-ws-icon-1 = 2;
-ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
-ws-icon-5 = 6;
-ws-icon-6 = 7;
-ws-icon-7 = 8;
-ws-icon-8 = 9;
-ws-icon-9 = 10;
-ws-icon-default = " "
+;ws-icon-0 = 1;
+;ws-icon-1 = 2;
+;ws-icon-2 = 3;
+;ws-icon-3 = 4;
+;ws-icon-4 = 5;
+;ws-icon-5 = 6;
+;ws-icon-6 = 7;
+;ws-icon-7 = 8;
+;ws-icon-8 = 9;
+;ws-icon-9 = 10;
+;ws-icon-default = " "
+
+ws-icon-0        = "1;%{F#268bd2}%{F-} "
+ws-icon-1        = "2;%{F#2aa198}%{F-} "
+ws-icon-2        = "3;%{F#859900}%{F-} "
+ws-icon-3        = "4;%{F#b58900}%{F-} "
+ws-icon-4        = "5;%{F#cb4b10}%{F-} "
+ws-icon-5        = "6;%{F#dc322f}%{F-} "
+ws-icon-6        = "7;%{F#d33682}%{F-} "
+ws-icon-7        = "8;%{F#6c71c4}%{F-} "
+ws-icon-8        = "9;%{F#93a1a1}%{F-}  "
+ws-icon-9        = "10;%{F#268bd2}%{F-}  "
+ws-icon-default  = "%{F#2aa198}%{F-} "
+
 
 ; Available tags:
 ;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
@@ -170,29 +196,31 @@ label-mode-padding = 2
 label-focused = " %icon% %name% "
 label-focused-background = ${colors.background}
 label-focused-foreground = ${colors.blue}
-label-focused-underline = ${colors.blue}
+label-focused-underline = ${colors.white}
+;label-focused-underline = 
 label-focused-padding = 0
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = " %icon% %name% "
 label-unfocused-padding = 2
-label-unfocused-background = ${self.label-focused-background}
+label-unfocused-background = ${colors.background}
 label-unfocused-foreground = ${colors.grey}
 label-unfocused-underline =
 
 ; visible = Active workspace on unfocused monitor
 label-visible = " %icon% %name% "
 label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
+label-visible-underline = ${colors.grey}
 label-visible-padding = 0
 
 ; urgent = Workspace with urgency hint set
 label-urgent = " %icon% %name% "
-label-urgent-background = ${self.label-focused-background}
-label-urgent-foreground = ${colors.red}
+label-urgent-background = ${colors.red}
+;label-urgent-foreground = ${colors.red}
+;label-urgent-underline = ${colors.red}
 label-urgent-padding = 0
 
-label-separator = 
+;label-separator = 
 
 [module/arch-aur-updates]
 type = custom/script
@@ -306,7 +334,6 @@ spacing = 4
 ;   <bar-used>
 ;   <ramp-capacity>
 format-mounted = <label-mounted>
-
 label-mounted = " %free%"
 
 [module/networkspeedup]
@@ -324,7 +351,6 @@ interface = enp0s31f6
 label-connected = "%downspeed:7%"
 format-connected = <label-connected>
 format-connected-prefix = ""
-
 
 [module/temperature]
 ;https://github.com/jaagr/polybar/wiki/Module:-temperature
@@ -366,7 +392,7 @@ ramp-2-foreground = ${colors.grey}
 ramp-3 = 
 ramp-3-foreground = ${colors.grey}
 ramp-4 = 
-ramp-4-foreground = ${colors.red}
+ramp-4-foreground = ${colors.grey}
 ramp-foreground =${colors.grey}
 ramp-background =${colors.background}
 
@@ -387,15 +413,15 @@ interval = 3.0
 ;   %linkspeed% [wired]
 ; Default: %ifname% %local_ip%
 ;label-connected =  %ifname%
-label-connected = " "
+label-connected = "%local_ip% "
 label-disconnected = %ifname% disconnected
 
-format-connected-foreground = ${colors.foreground}
-format-connected-background = ${colors.background}
-format-connected-underline = #55aa55
+;format-connected-foreground = ${colors.foreground}
+;format-connected-background = ${colors.background}
+;format-connected-underline = #55aa55
 format-connected-prefix = "  "
-format-connected-prefix-foreground = #55aa55
-format-connected-prefix-background = ${colors.background}
+;format-connected-prefix-foreground = #55aa55
+;format-connected-prefix-background = ${colors.background}
 
 format-disconnected = <label-disconnected>
 format-disconnected-underline = ${colors.alert}
@@ -409,7 +435,7 @@ interface = wlp4s0
 interval = 3.0
 
 ; connected
-label-connected = " %essid%"
+label-connected = " %essid% %local_ip%"
 format-connected = <label-connected>
 
 ; disconnected
@@ -452,7 +478,6 @@ type = custom/script
 exec = /home/kgn/.config/polybar/scripts/taskdate.sh
 interval = 5
 label = "%output%"
-format-foreground = ${colors.grey}
 
 [module/mailcheck]
 type = custom/script

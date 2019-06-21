@@ -32,4 +32,5 @@ call plug#begin('~/.vim/plugged')
     Plug 'jparise/vim-graphql'
 
     Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+    Plug 'tpope/vim-surround'
 call plug#end()
