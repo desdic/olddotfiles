@@ -13,5 +13,5 @@ if [ "$($TASK +READY +OVERDUE count)" -gt 0 ]; then
 elif [ "$($TASK +DUETODAY count)" -gt 0 ]; then
   echo "%{F#bfc900}${DUETODAY}%{F-}${B}"
 else
-  echo "${DUETODAY}${B}"
+  echo "%{F#FFF}${DUETODAY}%{F-}${B}"
 fi
