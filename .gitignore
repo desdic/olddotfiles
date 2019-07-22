@@ -3,3 +3,4 @@
 .vim/cache/
 .config/nvim/bundle/
 .vim/plugged/
+.config/vifm/vifminfo

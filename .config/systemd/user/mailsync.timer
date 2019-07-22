@@ -1,0 +1,12 @@
+[Unit]
+Description=mailsync
+
+[Timer]
+# Every hour
+OnCalendar=*:0/5
+Persistent=true
+Unit=mailsync.service
+
+[Install]
+WantedBy=default.target
+

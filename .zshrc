@@ -1,6 +1,6 @@
 export GOPATH=$(pwd)/go
 
-PATH="${HOME}/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/bin/core_perl:${GOPATH}/bin"
+PATH="${HOME}/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/bin/core_perl:${GOPATH}/bin:/opt/chefdk/embedded/bin/"
 export PATH
 
 alias newlinestring='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/\\n/g'\'
@@ -57,15 +57,16 @@ export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 export GIT_AUTHOR_NAME="Kim Nielsen"
-export GIT_AUTHOR_EMAIL=kgn@biq.dk
+export GIT_AUTHOR_EMAIL=kgn@one.com
 export GIT_COMMITTER_NAME="${GIT_AUTHOR_NAME}"
 export GIT_COMMITTER_EMAIL="${GIT_AUTHOR_EMAIL}"
 export DEBFULLNAME="${GIT_AUTHOR_NAME}"
 export DEBEMAIL="${GIT_AUTHOR_EMAIL}"
 export DEBCHANGE_AUTO_NMU=no
+export ONECOMID=kgn
 
 if [ -x "$(which vim)" ]; then
-    export EDITOR="$(which vim)"
+    export EDITOR="vim"
     export VISUAL="${EDITOR}"
     export FCEDIT="${EDITOR}"
     alias view="${EDITOR} -M"
@@ -84,7 +85,7 @@ bindkey -e
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
 
-export TERMINAL='kitty'
+export TERMINAL='urxvt'
 
 #export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
@@ -109,9 +110,10 @@ if [ -f "$ZSH/oh-my-zsh.sh" ]; then
 
     COMPLETION_WAITING_DOTS="true"
     DISABLE_AUTO_UPDATE="true"
+    CASE_SENSITIVE="true"
 
     if [ -f /etc/arch-release ]; then
-        plugins=(archlinux git go systemd colored-man-pages colorize)
+        plugins=(archlinux git go systemd colored-man-pages kitchen colorize)
     else
         plugins=(git)
     fi

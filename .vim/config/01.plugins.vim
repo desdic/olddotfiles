@@ -22,7 +22,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'honza/vim-snippets'
     " Not used in vim but for taskwarrior
     Plug 'fenetikm/falcon'
-    " Plug 'sickill/vim-monokai'
+    Plug 'sickill/vim-monokai'
     Plug 'morhetz/gruvbox'
     Plug 'lifepillar/vim-solarized8'
     Plug 'editorconfig/editorconfig-vim'
@@ -33,4 +33,5 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
     Plug 'tpope/vim-surround'
+    Plug 'dracula/vim'
 call plug#end()
