@@ -1,97 +1,54 @@
-*background: #000000
-*foreground: #839496
-*highlight: #073642
-
-*color0: #073642
-*color1: #dc322f
-*color2: #859900
-*color3: #b58900
-*color4: #268bd2
-*color5: #d33682
-*color6: #2aa198
-*color7: #eee8d5
-*color8: #002b36
-*color9: #cb4b16
-*color10: #586e75
-*color11: #657b83
-*color12: #839496
-*color13: #6c71c4
-*color14: #93a1a1
-*color15: #fdf6e3
-
-! -----------------------------------------------------------------------------
-! File: gruvbox-urxvt256.xresources
-! Description: Retro groove colorscheme generalized
-! Author: morhetz <morhetz@gmail.com>
-! Source: https://github.com/morhetz/gruvbox-generalized
-! Last Modified: 13 Dec 2013
-! -----------------------------------------------------------------------------
-
-URxvt.color24:  #076678
-URxvt.color66:  #427b58
-URxvt.color88:  #9d0006
-URxvt.color96:  #8f3f71
-URxvt.color100: #79740e
-URxvt.color108: #8ec07c
-URxvt.color109: #83a598
-URxvt.color130: #af3a03
-URxvt.color136: #b57614
-URxvt.color142: #b8bb26
-URxvt.color167: #fb4934
-URxvt.color175: #d3869b
-URxvt.color208: #fe8019
-URxvt.color214: #fabd2f
-URxvt.color223: #ebdbb2
-URxvt.color228: #f2e5bc
-URxvt.color229: #fbf1c7
-URxvt.color230: #f9f5d7
-URxvt.color234: #1d2021
-URxvt.color235: #282828
-URxvt.color236: #32302f
-URxvt.color237: #3c3836
-URxvt.color239: #504945
-URxvt.color241: #665c54
-URxvt.color243: #7c6f64
-URxvt.color244: #928374
-URxvt.color245: #928374
-URxvt.color246: #a89984
-URxvt.color248: #bdae93
-URxvt.color250: #d5c4a1
+Xft.dpi: 96
+Xft.antialias: true
+Xft.rgba: rgb
 
 URxvt*termName: rxvt-unicode-256color
 
 URxvt.intensityStyles: false
-URxvt.background:       [100]#000000
 URxvt.depth:  32
 
-URxvt.font:\
-    xft:FuraCode Nerd Font:style=Regular:size=13,\
-    xft:Fira Code Medium:style=Regular:size=13,\
-    xft:DejaVu Sans Mono:style=Book:pixelsize=13,\
-    xft:DejaVuSansMonoForPowerline\ Nerd\ Font:style=Book:pixelsize=13,\
-    xft:Inconsolata\ for\ Powerline:pixelsize=13,\
-    xft:EmojiOne,\
-    xft:Symbola,\
-    xft:Noto Emoji:minspace=False
+URxvt*imLocale: da_DK.UTF-8
 
-URxvt.boldFont:\
-    xft:FuraCode Nerd Font:style=Bold:size=13,\
-    xft:Fira Code Medium:style=Bold:size=13,\
-    xft:DejaVu Sans Mono:style=bold:pixelsize=13,\
-    xft:DejaVuSansMonoForPowerline Nerd Font:style=Bold:pixelsize=13
+!! URxvt.font:\
+!!     xft:FuraCode Nerd Font:style=Regular:size=13,\
+!!     xft:Fira Code Medium:style=Regular:size=13,\
+!!     xft:DejaVu Sans Mono:style=Book:pixelsize=13,\
+!!     xft:DejaVuSansMonoForPowerline\ Nerd\ Font:style=Book:pixelsize=13,\
+!!     xft:Inconsolata\ for\ Powerline:pixelsize=13,\
+!!     xft:EmojiOne,\
+!!     xft:Symbola,\
+!!     xft:Noto Emoji:minspace=False
+!! 
+!!URxvt.boldFont:\
+!!    xft:FuraCode Nerd Font:style=Bold:size=13,\
+!!    xft:Fira Code Medium:style=Bold:size=13,\
+!!    xft:DejaVu Sans Mono:style=bold:pixelsize=13,\
+!!    xft:DejaVuSansMonoForPowerline Nerd Font:style=Bold:pixelsize=13
+!!
+!!URxvt.italicFont:\
+!!    xft:FuraCode Nerd Font:style=Oblique:size=13,\
+!!    xft:DejaVu Sans Mono:style=Oblique:pixelsize=13,\
+!!    xft:DejaVuSansMonoForPowerline Nerd Font:style=Oblique:pixelsize=13
+!!
+!!
+!!URxvt*boldItalicFont:\
+!!    xft:FuraCode Nerd Font:style=BoldOblique:size=13,\
+!!    xft:DejaVu Sans Mono:style=BoldOblique:pixelsize=13,\
+!!    xft:DejaVuSansMonoForPowerline Nerd Font:style=Bold Oblique:pixelsize=13
 
-URxvt.italicFont:\
-    xft:FuraCode Nerd Font:style=Oblique:size=13,\
-    xft:DejaVu Sans Mono:style=Oblique:pixelsize=13,\
-    xft:DejaVuSansMonoForPowerline Nerd Font:style=Oblique:pixelsize=13
+!! URxvt.letterSpace:          -1
 
-
-URxvt*boldItalicFont:\
-    xft:FuraCode Nerd Font:style=BoldOblique:size=13,\
-    xft:DejaVu Sans Mono:style=BoldOblique:pixelsize=13,\
-    xft:DejaVuSansMonoForPowerline Nerd Font:style=Bold Oblique:pixelsize=13
-
-URxvt.letterSpace:          -1
+URxvt.font: \
+            xft:UbuntuMono Nerd Font:size=13, \
+            xft:Inconsolata Nerd Font Mono:size=13, \
+            xft:DejaVuSansMono Nerd Font:size=13, \
+            xft:DroidSansMono Nerd Font:size=13, \
+            xft:FuraMono Nerd Font:size=13, \
+            xft:RobotoMono Nerd Font:size=13, \
+            xft:Noto Sans Mono:size=13, \
+            xft:Monospace:style=Medium:size=13, \
+            xft:Noto Emoji:pixelsize=13:style=Regular, \
+            xft:Symbola
 
 URxvt.scrollBar: false
 URxvt.cursorColor: white
@@ -131,6 +88,55 @@ URxvt.iso14755_52: False
 URxvt.keysym.C-S-Left: string:\033[1;6D
 URxvt.keysym.C-S-Right: string:\033[1;6C
 
+! Dracula Xresources palette
+!! COLORS
+
+! special
+URxvt*foreground:   #bbc5ff
+!! URxvt*background:   [100]#292d3e
+!! URxvt*background:   #292d3e
+URxvt*background:   #000000
+URxvt*cursorColor:  #bbc5ff
+
+XTerm*foreground: #bbc5ff
+XTerm*background: #292d3e
+XTerm*cursorColor: #bbc5ff
+
+! black
+!! originally #292d3e
+*.color0:       #101010
+*.color8:       #434758
+!! 
+! red
+*.color1:       #ff1414
+*.color9:       #c70000
+!! 
+!! ! green
+*.color2:       #21ff76
+*.color10:      #00bf49
+!! 
+!! ! yellow
+*.color3:       #fffc1f
+*.color11:      #c9c600
+!! 
+!! ! blue
+*.color4:       #4049ff
+*.color12:      #000cff
+!! 
+!! ! magenta
+*.color5:       #ff12eb
+*.color13:      #b300a4
+!! 
+!! ! cyan
+*.color6:       #12f3ff
+*.color14:      #00949c
+!! 
+!! ! white
+*.color7:       #d0d0d0
+*.color15:      #ffffff
+
+urxvt.perl-ext-common: default,tabbed,matcher,resize-font,-tabbed
+
 rofi.color-enabled: true
 rofi.color-window: #000, #000, #000
 rofi.color-normal: #111, #819396, #222, #008ed4, #ffffff
@@ -143,3 +149,5 @@ rofi.bw:  0
 rofi.opacity: "10"
 rofi.hide-scrollbar: true
 rofi.width:  30
+
+Xcursor.size: 16
