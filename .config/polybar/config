@@ -71,7 +71,7 @@ foreground = ${colors.foreground}
 
 modules-left = spotify
 ;modules-center = networkspeeddown networkspeedup
-modules-right = cpu temperature memory filesystem pavolume battery wired-network wireless-network arch-aur-updates mail mailcheck
+modules-right = cpu temperature memory filesystem pavolume battery wired-network wireless-network vpncheck arch-aur-updates mail mailcheck
 
 [bar/bottombar-i3]
 inherit = global/common
@@ -82,7 +82,46 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 modules-left = i3
-modules-right = taskdate
+modules-right = layout taskdate
+
+tray-detached = false
+tray-offset-x = 0
+tray-offset-y = 0
+tray-padding = 4
+tray-maxsize = 20
+tray-scale = 1.0
+tray-position = right
+
+; Fallback click handlers that will be called if
+; there's no matching module handler found.
+click-left =
+click-middle =
+click-right =
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+double-click-left =
+double-click-middle =
+double-click-right =
+
+; Requires polybar to be built with xcursor support (xcb-util-cursor)
+; Possible values are:
+; - default   : The default pointer as before, can also be an empty string (default)
+; - pointer   : Typically in the form of a hand
+; - ns-resize : Up and down arrows, can be used to indicate scrolling
+cursor-click =
+cursor-scroll =
+
+
+[bar/bottombar-i3-mirror]
+inherit = global/common
+bottom = true
+line-size = 1
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+modules-left = i3mirror
+modules-right = layout taskdate
 
 tray-detached = false
 tray-offset-x = 0
@@ -120,7 +159,7 @@ type = internal/i3
 ; Useful if you want to show monitor specific workspaces
 ; on different bars
 ;
-; Default: false
+; Default: false (in mirrormode it only works if false)
 pin-workspaces = true
 
 ; This will split the workspace name on ':'
@@ -221,6 +260,88 @@ label-urgent-background = ${colors.red}
 label-urgent-padding = 0
 
 ;label-separator = 
+
+
+[module/i3mirror]
+;https://github.com/jaagr/polybar/wiki/Module:-i3
+type = internal/i3
+pin-workspaces = false
+
+; This will split the workspace name on ':'
+; Default: false
+strip-wsnumbers = false
+
+; Sort the workspaces by index instead of the default
+; sorting that groups the workspaces by output
+; Default: false
+index-sort = false
+
+; Create click handler used to focus workspace
+; Default: true
+enable-click = true
+
+; Create scroll handlers used to cycle workspaces
+; Default: true
+enable-scroll = true
+
+; Wrap around when reaching the first/last workspace
+; Default: true
+wrapping-scroll = false
+
+; Set the scroll cycle direction
+; Default: true
+; reverse-scroll = false
+
+fuzzy-match = false
+
+ws-icon-0        = "1;%{F#268bd2}%{F-} "
+ws-icon-1        = "2;%{F#2aa198}%{F-} "
+ws-icon-2        = "3;%{F#859900}%{F-} "
+ws-icon-3        = "4;%{F#b58900}%{F-} "
+ws-icon-4        = "5;%{F#cb4b10}%{F-} "
+ws-icon-5        = "6;%{F#dc322f}%{F-} "
+ws-icon-6        = "7;%{F#d33682}%{F-} "
+ws-icon-7        = "8;%{F#6c71c4}%{F-} "
+ws-icon-8        = "9;%{F#93a1a1}%{F-}  "
+ws-icon-9        = "10;%{F#268bd2}%{F-}  "
+ws-icon-default  = "%{F#2aa198}%{F-} "
+
+
+; Available tags:
+;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
+;   <label-mode> (default)
+format = <label-state> <label-mode>
+
+label-mode = %mode%
+label-mode-padding = 2
+
+; focused = Active workspace on focused monitor
+label-focused = " %icon% %name% "
+label-focused-background = ${colors.background}
+label-focused-foreground = ${colors.blue}
+label-focused-underline = ${colors.white}
+;label-focused-underline = 
+label-focused-padding = 0
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = " %icon% %name% "
+label-unfocused-padding = 2
+label-unfocused-background = ${colors.background}
+label-unfocused-foreground = ${colors.grey}
+label-unfocused-underline =
+
+; visible = Active workspace on unfocused monitor
+label-visible = " %icon% %name% "
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${colors.grey}
+label-visible-padding = 0
+
+; urgent = Workspace with urgency hint set
+label-urgent = " %icon% %name% "
+label-urgent-background = ${colors.red}
+;label-urgent-foreground = ${colors.red}
+;label-urgent-underline = ${colors.red}
+label-urgent-padding = 0
 
 [module/arch-aur-updates]
 type = custom/script
@@ -360,7 +481,7 @@ type = internal/temperature
 ; To list all the zone types, run
 ; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
 ; Default: 0
-thermal-zone = 2
+thermal-zone = 0
 
 ; Full path of temperature sysfs path
 ; Use `sensors` to find preferred temperature source, then run
@@ -399,7 +520,7 @@ ramp-background =${colors.background}
 [module/wired-network]
 ;https://github.com/jaagr/polybar/wiki/Module:-network
 type = internal/network
-interface = enp0s31f6
+interface = enp0s20f0u2u1
 ;interface = enp14s0
 interval = 3.0
 
@@ -431,7 +552,7 @@ label-disconnected-background = ${colors.background}
 [module/wireless-network]
 ;https://github.com/jaagr/polybar/wiki/Module:-network
 type = internal/network
-interface = wlp4s0
+interface = wlp0s20f3
 interval = 3.0
 
 ; connected
@@ -483,4 +604,17 @@ label = "%output%"
 type = custom/script
 exec = /home/kgn/.config/polybar/scripts/mailcheck.sh
 interval = 5
+label = "%output%"
+
+[module/vpncheck]
+type = custom/script
+exec = /home/kgn/.config/polybar/scripts/openvpn
+interval = 5
+label = "%output%"
+
+
+[module/layout]
+type = custom/script
+exec = /home/kgn/.config/polybar/scripts/layout.sh
+interval = 2
 label = "%output%"

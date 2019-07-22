@@ -8,8 +8,9 @@ client.focused          #4c7899 #285577 #ffffff #2e9ef4   #70ACB7
 
 set $mod Mod4
 
-set $laptop "eDP1"
-set $monitor1 "HDMI1"
+set $laptop "eDP-1"
+set $monitor1 "DP-2-1"
+set $monitor2 "DP-2-2"
 set $hdmi "HDMI3"
 
 set $workspace1 "1"
@@ -34,7 +35,7 @@ for_window [class="VirtualBox Machine"] move container to workspace $workspace10
 assign [class="Slack"]                         $workspace2
 assign [class="Google-chrome"]                 $workspace3
 assign [class="Firefox"]                       $workspace3
-assign [class="kittywork"]                     $workspace4
+assign [instance="work"]                       $workspace4
 assign [class="libreoffice-startcenter"]       $workspace8
 assign [class="Code"]                          $workspace9
 
@@ -51,8 +52,9 @@ floating_modifier $mod
 # start a terminal
 #bindsym $mod+Return exec --no-startup-id /usr/bin/st
 #bindsym $mod+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/termite
-bindsym $mod+Return exec --no-startup-id /sbin/kitty
-bindsym $mod+Shift+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/urxvt
+bindsym $mod+Shift+Return exec --no-startup-id /sbin/kitty
+#bindsym $mod+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/urxvt
+bindsym $mod+Return exec --no-startup-id /sbin/urxvt
 bindsym $mod+BackSpace exec --no-startup-id ~/bin/newsession.sh
 
 # kill focused window
@@ -156,11 +158,11 @@ bindsym $mod+Control+l move workspace to output right
 workspace $workspace1 output $laptop
 workspace $workspace2 output $laptop
 workspace $workspace3 output $monitor1
-workspace $workspace4 output $monitor1
-workspace $workspace5 output $monitor1
-workspace $workspace6 output $monitor1
-workspace $workspace7 output $monitor1
-workspace $workspace8 output $monitor1
+workspace $workspace4 output $monitor2
+workspace $workspace5 output $monitor2
+workspace $workspace6 output $monitor2
+workspace $workspace7 output $monitor2
+workspace $workspace8 output $monitor2
 workspace $workspace9 output $hdmi
 workspace $workspace10 output $monitor1
 
@@ -220,8 +222,8 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id ~/bin/pulsesink.sh +5%
 bindsym XF86AudioMute exec --no-startup-id ~/bin/pulsesink.sh toggle
 bindsym XF86AudioMicMute exec --no-startup-id ~/bin/togglemicrophone.sh
 
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 bindsym XF86KbdBrightnessUp exec sudo --no-startup-id /usr/local/bin/kbd_backlight.sh up
 bindsym XF86KbdBrightnessDown exec sudo --no-startup-id /usr/local/bin/kbd_backlight.sh down
 bindsym XF86LaunchA exec --no-startup-id ~/bin/toggletrackpad.sh
@@ -231,15 +233,18 @@ bindsym XF86AudioNext exec /usr/bin/dbus-send --print-reply --dest=org.mpris.Med
 bindsym XF86AudioPrev exec /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
 bindsym $mod+F5 exec --no-startup-id /usr/bin/pavucontrol
-bindsym $mod+F11 exec --no-startup-id /usr/bin/gnome-calculator
+bindsym $mod+F6 exec --no-startup-id /usr/bin/gnome-calculator
 bindsym $mod+c exec --no-startup-id "~/bin/togglecompton.sh"
 bindsym $mod+Shift+x exec --no-startup-id ~/bin/locklaptop.sh
+bindsym $mod+F10 exec --no-startup-id ~/.screenlayout/home.sh
+bindsym $mod+F11 exec --no-startup-id ~/.screenlayout/laptop.sh
+bindsym $mod+F12 exec --no-startup-id ~/.screenlayout/work.sh
 
 bindsym $mod+t split toggle
 
 
 #exec --no-startup-id /usr/bin/dbus-launch /usr/bin/compton --config ~/.config/compton.conf
-exec xautolock -time 5 -locker '/usr/bin/i3lock -c 000000 -i ~/Pictures/locked256x256.png' &
+exec xautolock -time 5 -locker '/sbin/i3lock -c 000000 -i ~/Pictures/locked256x256.png' &
 exec --no-startup-id ~/bin/i3startup.sh
 exec --no-startup-id /usr/bin/clipit&
 exec --no-startup-id /sbin/blueman-applet&
