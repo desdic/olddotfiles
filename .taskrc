@@ -44,3 +44,8 @@ urgency.uda.priority..coefficient=1.8
 # Alter reports to only show amount of annotations
 report.next.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
 report.waiting.columns=id,start.active,entry.age,depends.indicator,priority,project,tags,recur.indicator,wait,wait.remaining,scheduled,due,until,description.count
+taskd.certificate=\/home\/kgn\/.task\/kim_nielsen.cert.pem
+taskd.key=\/home\/kgn\/.task\/kim_nielsen.key.pem
+taskd.ca=\/home\/kgn\/.task\/ca.cert.pem
+taskd.server=maat.insecurity.dk:53589
+taskd.credentials=Insec\/Kim Nielsen\/8a996cad-7b3c-4efc-a052-c31f046bcc86
