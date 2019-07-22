@@ -108,7 +108,8 @@ XTerm*cursorColor: #bbc5ff
 *.color8:       #434758
 !! 
 ! red
-*.color1:       #ff1414
+!! *.color1:       #b01010
+*.color1:       #b01010
 *.color9:       #c70000
 !! 
 !! ! green
@@ -124,11 +125,11 @@ XTerm*cursorColor: #bbc5ff
 *.color12:      #000cff
 !! 
 !! ! magenta
-*.color5:       #ff12eb
+*.color5:       #b70ad1
 *.color13:      #b300a4
 !! 
 !! ! cyan
-*.color6:       #12f3ff
+*.color6:       #0dadb5
 *.color14:      #00949c
 !! 
 !! ! white
