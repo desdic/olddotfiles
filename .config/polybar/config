@@ -71,7 +71,7 @@ foreground = ${colors.foreground}
 
 modules-left = spotify
 ;modules-center = networkspeeddown networkspeedup
-modules-right = cpu temperature memory filesystem pavolume battery wired-network wireless-network vpncheck arch-aur-updates mail mailcheck
+modules-right = cpu backlight temperature memory filesystem pavolume battery wired-network wireless-network vpncheck arch-aur-updates mail mailcheck
 
 [bar/bottombar-i3]
 inherit = global/common
@@ -362,8 +362,9 @@ card = intel_backlight
 ;   <label> (default)
 ;   <ramp>
 ;   <bar>
-format = <label>
-format-foreground = ${colors.foreground}
+format = <ramp> <label>
+;format = <label>
+format-foreground = ${colors.grey}
 format-background = ${colors.background}
 
 ; Available tokens:
@@ -390,11 +391,13 @@ type = internal/battery
 ;adapter = AC0
 full-at = 100
 
+time-format = %H:%M
+
 format-charging = <animation-charging><label-charging>
 label-charging = " %percentage:3%%"
 
 format-discharging = <ramp-capacity><label-discharging>
-label-discharging = "%percentage:3%%"
+label-discharging = "%percentage:3%% %time%"
 
 label-full = 100%
 ;format-full-prefix = ""
