@@ -1,0 +1,11 @@
+[Unit]
+Description=Taskwarrior
+Wants=taskwarrior.timer
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/task sync
+
+[Install]
+WantedBy=default.target
+

@@ -1,11 +1,11 @@
 [Unit]
-Description=mailsync
+Description=Taskwarrior
 
 [Timer]
-# Every 5 min
+# every 5 min
 OnCalendar=*:0/5
 Persistent=true
-Unit=mailsync.service
+Unit=taskwarrior.service
 
 [Install]
 WantedBy=default.target

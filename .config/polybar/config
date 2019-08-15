@@ -69,7 +69,8 @@ padding-right = 2
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-modules-left = spotify
+;modules-left = spotify
+modules-left = playerctl
 ;modules-center = networkspeeddown networkspeedup
 modules-right = cpu backlight temperature memory filesystem pavolume battery wired-network wireless-network vpncheck arch-aur-updates mail mailcheck
 
@@ -389,7 +390,7 @@ bar-empty = ─
 type = internal/battery
 ;battery = BAT0
 ;adapter = AC0
-full-at = 100
+full-at = 98
 
 time-format = %H:%M
 
@@ -397,7 +398,7 @@ format-charging = <animation-charging><label-charging>
 label-charging = " %percentage:3%%"
 
 format-discharging = <ramp-capacity><label-discharging>
-label-discharging = "%percentage:3%% %time%"
+label-discharging = "%percentage:3%%"
 
 label-full = 100%
 ;format-full-prefix = ""
@@ -584,6 +585,14 @@ click-right = /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spo
 click-left = /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 interval = 2
 label = "%output:0:150:...% "
+
+[module/playerctl]
+type = custom/script
+exec = ~/.config/polybar/scripts/playerctl-spotify.sh
+interval = 2
+click-left = playerctl previous
+click-right = playerctl next
+click-middle = playerctl play-pause
 
 [module/mailsync]
 type = custom/script

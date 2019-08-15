@@ -110,10 +110,10 @@ if [ -f "$ZSH/oh-my-zsh.sh" ]; then
 
     COMPLETION_WAITING_DOTS="true"
     DISABLE_AUTO_UPDATE="true"
-    CASE_SENSITIVE="true"
+    # CASE_SENSITIVE="true"
 
     if [ -f /etc/arch-release ]; then
-        plugins=(archlinux git go systemd colored-man-pages kitchen colorize)
+        plugins=(archlinux git go systemd colored-man-pages colorize kitchen)
     else
         plugins=(git)
     fi
@@ -125,5 +125,6 @@ if [ -f "$ZSH/oh-my-zsh.sh" ]; then
 fi
 
 unsetopt share_history
+unsetopt AUTO_CD
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

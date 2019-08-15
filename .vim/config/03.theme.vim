@@ -14,7 +14,6 @@ if !has('nvim') && $TERM ==# 'screen-256color'
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
-
 try
     set background=dark
     let g:gruvbox_italic=1

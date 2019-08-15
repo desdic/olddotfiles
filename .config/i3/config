@@ -11,6 +11,7 @@ set $mod Mod4
 set $laptop "eDP-1"
 set $monitor1 "DP-2-1"
 set $monitor2 "DP-2-2"
+set $monitor3 "DP-2"
 set $hdmi "HDMI3"
 
 set $workspace1 "1"
@@ -24,19 +25,30 @@ set $workspace8 "8"
 set $workspace9 "9"
 set $workspace10 "10"
 
+workspace 1 output $laptop
+workspace 2 output $monitor1
+workspace 3 output $monitor1
+workspace 4 output $monitor2 $monitor3
+workspace 5 output $monitor2 $monitor3
+workspace 6 output $monitor2 $monitor3
+workspace 7 output $monitor2 $monitor3
+workspace 8 output $monitor2 $monitor3
+workspace 9 output $monitor2 $monitor3
+workspace 10 output $laptop
+
 # Make sure pinentry floats
 for_window [class="Pinentry-gtk-2" instance="pinentry-gtk-2"] floating enable
-for_window [class="Spotify"] move container to workspace $workspace1, workspace --no-auto-back-and-forth $workspace1
-for_window [class="VirtualBox Machine"] move container to workspace $workspace10, workspace --no-auto-back-and-forth $workspace10
+ for_window [class="Spotify"] move container to workspace $workspace10, workspace --no-auto-back-and-forth $workspace10
+for_window [class="VirtualBox Machine"] move container to workspace $workspace9, workspace --no-auto-back-and-forth $workspace9
 
 #for_window [class="Slack"] move container to workspace 2, floating enable, resize set 1280 900, move position center, resize grow right 300
 
 # Program Workspaces (xprop)
 assign [class="Slack"]                         $workspace2
-assign [class="Google-chrome"]                 $workspace3
-assign [class="Firefox"]                       $workspace3
+# assign [class="Google-chrome"]                 $workspace3
+# assign [class="Firefox"]                       $workspace3
 assign [instance="work"]                       $workspace4
-assign [class="libreoffice-startcenter"]       $workspace8
+# assign [class="libreoffice-startcenter"]       $workspace8
 assign [class="Code"]                          $workspace9
 
 # Remove borders
@@ -155,16 +167,16 @@ bindsym $mod+Control+k move workspace to output up
 bindsym $mod+Control+l move workspace to output right
 
 #work space monitors
-workspace $workspace1 output $laptop
-workspace $workspace2 output $laptop
-workspace $workspace3 output $monitor1
-workspace $workspace4 output $monitor2
-workspace $workspace5 output $monitor2
-workspace $workspace6 output $monitor2
-workspace $workspace7 output $monitor2
-workspace $workspace8 output $monitor2
-workspace $workspace9 output $hdmi
-workspace $workspace10 output $monitor1
+#workspace $workspace1 output $laptop
+#workspace $workspace2 output $laptop
+#workspace $workspace3 output $monitor1
+#workspace $workspace4 output $monitor2
+#workspace $workspace5 output $monitor2
+#workspace $workspace6 output $monitor2
+#workspace $workspace7 output $monitor2
+#workspace $workspace8 output $monitor2
+#workspace $workspace9 output $hdmi
+#workspace $workspace10 output $monitor1
 
 
 # reload the configuration file
@@ -173,6 +185,13 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev  exec --no-startup-id playerctl previous
+bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
+bindsym $mod+bracketright exec --no-startup-id playerctl next
+bindsym $mod+bracketleft exec --no-startup-id playerctl previous
+bindsym $mod+p exec --no-startup-id playerctl play-pause
 
 # resize window (you can also use the mouse for that)
 mode "  " {
@@ -227,10 +246,6 @@ bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 bindsym XF86KbdBrightnessUp exec sudo --no-startup-id /usr/local/bin/kbd_backlight.sh up
 bindsym XF86KbdBrightnessDown exec sudo --no-startup-id /usr/local/bin/kbd_backlight.sh down
 bindsym XF86LaunchA exec --no-startup-id ~/bin/toggletrackpad.sh
-bindsym XF86AudioPlay exec /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-bindsym XF86AudioStop exec /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop
-bindsym XF86AudioNext exec /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
-bindsym XF86AudioPrev exec /usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
 bindsym $mod+F5 exec --no-startup-id /usr/bin/pavucontrol
 bindsym $mod+F6 exec --no-startup-id /usr/bin/gnome-calculator

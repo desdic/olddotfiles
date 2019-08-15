@@ -2,7 +2,7 @@ augroup filetypedetect
     command! -nargs=* -complete=help Help vertical belowright help <args>
     autocmd FileType help wincmd L
     autocmd BufEnter * :syn sync maxlines=200
-    autocmd BufNewFile,BufRead *.erb  set filetype=ruby.eruby.chef setfiletype eruby
+    " autocmd BufNewFile,BufRead *.erb  set filetype=ruby.eruby.chef setfiletype eruby
 augroup END
 
 augroup filetype_help

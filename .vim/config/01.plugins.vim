@@ -33,5 +33,4 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
     Plug 'tpope/vim-surround'
-    Plug 'dracula/vim'
 call plug#end()
