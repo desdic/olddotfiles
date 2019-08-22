@@ -1,0 +1,16 @@
+\set PROMPT1 '\n%[%033[1;31m%]➤ %[%033[2;37m%]%`\! date "+%Y-%m-%d %H:%M:%S %Z"`%[%033[0m%] %[%033[1;36m%]%n%[%033[34m%]@%[%033[1;36m%]%M:%>%[%033[1;33m%]/%/ %[%033[1;31m%]%x %[%033[K%]%[%033[0m%]\n%[%033[1;33m%]%R%#%[%033[0m%] '
+\set PROMPT2 '%[%033[1;33m%]%R%#%[%033[0m%] '
+\set timing on
+\pset pager always
+\pset null '(null)'
+\set HISTCONTROL ignoredups
+\set HISTSIZE 32767
+\set HISTFILE ~/.psql_history- :DBNAME-:USER
+\pset border 2
+\pset unicode_border_linestyle double
+\pset unicode_column_linestyle single
+\pset unicode_header_linestyle single
+\set HISTFILE ~/.psql_history- :DBNAME-:USER
+\pset linestyle unicode
+\pset format aligned
+\pset pager on
