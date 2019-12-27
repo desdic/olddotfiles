@@ -1,10 +1,10 @@
 .netrwhist
 .vim/view/
 .vim/cache/
-.config/nvim/bundle/
 .vim/plugged/
 .config/vifm/vifminfo
 .config/nvim/undo
 .config/systemd/user/default.target.wants
 .taskrc
-.config/nvim/plugged/coc.nvim/
+.config/nvim/bundle/
+.config/nvim/plugged/
