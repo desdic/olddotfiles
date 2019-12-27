@@ -7,3 +7,4 @@
 .config/nvim/undo
 .config/systemd/user/default.target.wants
 .taskrc
+.config/nvim/plugged/coc.nvim/
