@@ -3,15 +3,18 @@
 TASK="/usr/bin/task"
 OVERDUE=""
 DUETODAY=""
+OK=""
 
-FORMAT=$(LC_TIME=en_US.UTF-8 /usr/bin/date +"%V - %A %e %B %Y - %H:%M")
+#FORMAT=$(LC_TIME=en_US.UTF-8 /usr/bin/date +"%V - %A %e %B %Y - %H:%M")
+FORMAT=$(LC_TIME=en_US.UTF-8 /usr/bin/date +"%d/%m/%Y - %H:%M")
 
-B=" Week ${FORMAT}   "
+#B=" Week ${FORMAT} "
+B=" ${FORMAT} "
 
 if [ "$($TASK +READY +OVERDUE count)" -gt 0 ]; then
-  echo "%{F#ff002e}${OVERDUE}%{F-}${B}"
+  echo "%{F#e53935}${OVERDUE}%{F#f5f5f5}${B}"
 elif [ "$($TASK +DUETODAY count)" -gt 0 ]; then
-  echo "%{F#bfc900}${DUETODAY}%{F-}${B}"
+  echo "%{F#EBD369}${DUETODAY}%{F#f5f5f5} ${B}"
 else
-  echo "%{F#FFF}${DUETODAY}%{F-}${B}"
+  echo "${OK}${B}"
 fi

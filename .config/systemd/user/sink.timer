@@ -1,0 +1,11 @@
+[Unit]
+Description=sink
+
+[Timer]
+OnCalendar=*:0/1
+Persistent=true
+Unit=sink.service
+
+[Install]
+WantedBy=default.target
+

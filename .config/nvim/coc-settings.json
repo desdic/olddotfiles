@@ -1,0 +1,35 @@
+{
+  "solargraph.diagnostics": true,
+  "solargraph.autoformat": true,
+  "solargraph.completion": true,
+  "solargraph.formatting": true,
+  "solargraph.hover": true,
+  "python.linting.enabled": true,
+  "python.linting.pylintArgs": [
+    "--extension-pkg-whitelist=dlib,cv2"
+  ],
+  "python.linting.pylamaEnabled":true,
+  "python.linting.pylamaArgs": [
+    "-i E501"
+  ],
+  "coc.source.buffer.enable": false,
+  "coc.preferences.formatOnType": false,
+  "coc.preferences.useQuickfixForLocations": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "go",
+  ],
+  "languageserver": {
+    "gopls": {
+      "command": "gopls",
+      "filetypes": [
+        "go"
+      ],
+      "rootPatterns": [
+        "go.mod",
+        ".git/",
+        ".vim/",
+        ".hg/"
+      ]
+    }
+  }
+}

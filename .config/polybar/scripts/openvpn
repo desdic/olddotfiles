@@ -1,9 +1,9 @@
 #!/bin/bash
 
-
 if pgrep -x openvpn > /dev/null; then
-        VA=$(ip a|grep -A2 tun0:|grep inet|awk '{print $2}')
-        echo " $VA"
+        #VA=$(ip a|grep -A2 tun0:|grep inet|awk '{print $2}')
+        #echo "%{B#6D8895}%{F#1C1E20}  %{B#C4C7C5}%{F#1C1E20} ${VA} %{B#2f343f}%{F#2f343f}|"
+        echo "%{B#6D8895}%{F#1C1E20}  %{B#2f343f}%{F#2f343f}|"
 else
         echo ""
 fi

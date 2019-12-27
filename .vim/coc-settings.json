@@ -1,0 +1,22 @@
+{
+  "solargraph.diagnostics": true,
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.useQuickfixForLocations": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "go"
+  ],
+  "languageserver": {
+    "gopls": {
+      "command": "gopls",
+      "filetypes": [
+        "go"
+      ],
+      "rootPatterns": [
+        "go.mod",
+        ".git/",
+        ".vim/",
+        ".hg/"
+      ]
+    }
+  }
+}

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+player_status=$(playerctl -p spotify status 2> /dev/null)
+artist=$(playerctl -p spotify metadata artist)
+title=$(playerctl -p spotify metadata title)
+meta="${artist} - ${title}"
+
+if [ "$player_status" = "Playing" ]; then
+    echo "%{B#627D82}%{F#1ed761} %{F#FFFFFF} ${meta} %{F#627D82}%{B#000000}"
+elif [ "$player_status" = "Paused" ]; then
+    echo "%{B#8c8800}%{F#FFFFFF}  ${meta} %{F#8c8800}%{B#000000}"
+else
+    echo ""
+fi

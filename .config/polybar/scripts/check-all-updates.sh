@@ -9,9 +9,9 @@ if ! updates_aur=$(/sbin/yay -Pu 2>/dev/null | /usr/bin/wc -l); then
 fi
 
 updates=$updates_aur
-
 if [ "$updates" -gt 0 ]; then
-    echo " $updates"
+    #echo "%{B#75A4CD}%{F#1C1E20}  %{B#C4C7C5}%{F#1C1E20} $updates %{B#2f343f}%{F#2f343f}|"
+    echo " $updates"
 else
-    echo "0"
+    echo ""
 fi

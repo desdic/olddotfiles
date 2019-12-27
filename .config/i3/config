@@ -2,15 +2,15 @@
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #70ACB7
 
 # for i3-gaps
-#for_window [class="^.*"] border pixel 1
-#gaps inner 5
-#gaps outer 5
+for_window [class="^.*"] border pixel 1
+gaps inner 5
+gaps outer 5
 
 set $mod Mod4
 
-set $laptop "eDP-1"
-set $monitor1 "DP-2-1"
-set $monitor2 "DP-2-2"
+set $laptop "eDP-1-1"
+set $monitor1 "DP-1-2-1"
+set $monitor2 "DP-1-2-2"
 set $monitor3 "DP-2"
 set $hdmi "HDMI3"
 
@@ -27,7 +27,7 @@ set $workspace10 "10"
 
 workspace 1 output $laptop
 workspace 2 output $monitor1
-workspace 3 output $monitor1
+workspace 3 output $monitor2 $monitor3
 workspace 4 output $monitor2 $monitor3
 workspace 5 output $monitor2 $monitor3
 workspace 6 output $monitor2 $monitor3
@@ -38,14 +38,19 @@ workspace 10 output $laptop
 
 # Make sure pinentry floats
 for_window [class="Pinentry-gtk-2" instance="pinentry-gtk-2"] floating enable
- for_window [class="Spotify"] move container to workspace $workspace10, workspace --no-auto-back-and-forth $workspace10
+for_window [class="Spotify"] move container to workspace $workspace10, workspace --no-auto-back-and-forth $workspace10
 for_window [class="VirtualBox Machine"] move container to workspace $workspace9, workspace --no-auto-back-and-forth $workspace9
+
+# for_window [class="^Pidgin$"] move container to workspace $workspace2, workspace --no-auto-back-and-forth $workspace2
+for_window [class="^Pidgin$" window_role="^buddy_list$"] move container to workspace $workspace2, workspace --no-auto-back-and-forth $workspace2
+for_window [class="^Pidgin$" window_role="^conversation$"] move container to workspace $workspace2, workspace --no-auto-back-and-forth $workspace2
+for_window [class="^Pidgin$" window_role="^conversation$"] resize grow width 0 px or 30 ppt; move right
 
 #for_window [class="Slack"] move container to workspace 2, floating enable, resize set 1280 900, move position center, resize grow right 300
 
 # Program Workspaces (xprop)
 assign [class="Slack"]                         $workspace2
-# assign [class="Google-chrome"]                 $workspace3
+assign [class="Google-chrome"]                 $workspace3
 # assign [class="Firefox"]                       $workspace3
 assign [instance="work"]                       $workspace4
 # assign [class="libreoffice-startcenter"]       $workspace8
@@ -66,18 +71,24 @@ floating_modifier $mod
 #bindsym $mod+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/termite
 bindsym $mod+Shift+Return exec --no-startup-id /sbin/kitty
 #bindsym $mod+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/urxvt
-bindsym $mod+Return exec --no-startup-id /sbin/urxvt
+#bindsym $mod+Return exec --no-startup-id /sbin/urxvt
+bindsym $mod+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/st
 bindsym $mod+BackSpace exec --no-startup-id ~/bin/newsession.sh
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # Set keyboard rate since I loose it after hybernation
-bindsym $mod+Shift+p exec --no-startup-id ~/bin/i3startup.sh
+#bindsym $mod+Shift+p exec --no-startup-id ~/bin/i3startup.sh
 bindsym $mod+Shift+w exec --no-startup-id ~/bin/wallpaper.sh
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show run
+#bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec ~/.config/polybar/scripts/launcher-alt
+#bindsym $mod+Shift+p exec rofi-pass
+bindsym $mod+Shift+p exec ~/bin/rofi-gopass
+bindsym $mod+g exec /sbin/google-chrome-stable; workspace 3
+bindsym $mod+s exec /sbin/spotify
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -118,7 +129,7 @@ bindsym $mod+minus split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+# bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -186,12 +197,12 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym XF86AudioNext exec --no-startup-id playerctl next
-bindsym XF86AudioPrev  exec --no-startup-id playerctl previous
-bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
-bindsym $mod+bracketright exec --no-startup-id playerctl next
-bindsym $mod+bracketleft exec --no-startup-id playerctl previous
-bindsym $mod+p exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl -p spotify next
+bindsym XF86AudioPrev  exec --no-startup-id playerctl -p spotify previous
+bindsym XF86AudioPause exec --no-startup-id playerctl -p spotify play-pause
+bindsym $mod+bracketright exec --no-startup-id playerctl -p spotify next
+bindsym $mod+bracketleft exec --no-startup-id playerctl -p spotify previous
+bindsym $mod+p exec --no-startup-id playerctl -p spotify play-pause
 
 # resize window (you can also use the mouse for that)
 mode "  " {
@@ -249,20 +260,23 @@ bindsym XF86LaunchA exec --no-startup-id ~/bin/toggletrackpad.sh
 
 bindsym $mod+F5 exec --no-startup-id /usr/bin/pavucontrol
 bindsym $mod+F6 exec --no-startup-id /usr/bin/gnome-calculator
-bindsym $mod+c exec --no-startup-id "~/bin/togglecompton.sh"
-bindsym $mod+Shift+x exec --no-startup-id ~/bin/locklaptop.sh
+# bindsym $mod+F9 exec --no-startup-id "~/bin/togglecompton.sh"
+bindsym $mod+Shift+x exec --no-startup-id ~/bin/imagelock.sh
 bindsym $mod+F10 exec --no-startup-id ~/.screenlayout/home.sh
 bindsym $mod+F11 exec --no-startup-id ~/.screenlayout/laptop.sh
 bindsym $mod+F12 exec --no-startup-id ~/.screenlayout/work.sh
 
 bindsym $mod+t split toggle
 
-
-#exec --no-startup-id /usr/bin/dbus-launch /usr/bin/compton --config ~/.config/compton.conf
-exec xautolock -time 5 -locker '/sbin/i3lock -c 000000 -i ~/Pictures/locked256x256.png' &
-exec --no-startup-id ~/bin/i3startup.sh
+#exec --no-startup-id /usr/bin/dbus-launch /sbin/picom --config ~/.config/picom.conf
+#exec xautolock -time 5 -locker '~/bin/imagelock.sh' &
+exec --no-startup-id /sbin/xss-lock -- '/home/kgn/bin/imagelock.sh' &
+exec_always --no-startup-id /sbin/optimus-manager-qt &
+#exec ~/bin/locker.sh &
+exec_always --no-startup-id ~/bin/i3startup.sh
 exec --no-startup-id /usr/bin/clipit&
-exec --no-startup-id /sbin/blueman-applet&
+#exec --no-startup-id /sbin/blueman-applet&
 #exec --no-startup-id /usr/bin/xsetroot -solid "#111111"
-exec --no-startup-id /usr/bin/xsetroot -solid "#000000"
+#exec --no-startup-id /usr/bin/xsetroot -solid "#000000"
+#exec --no-startup-id ~/bin/randomwallpaper.sh
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh

@@ -151,10 +151,16 @@ function output() {
     if [ "${curStatus}" = 'yes' ]
     then
 #        echo "%{F#4DB789}%{B#2F343F}%{B-}%{F-}%{F#cd1f3f}%{B#4DB789}  %{B-}%{F-}%{F#317759}%{B#70ACB7}%{F#fff}%{B#317759}$curVol% %{B-}%{F-}"
-        echo "%{F#cd1f3f}%{F-} $curVol%"
+        #echo "%{F#cd1f3f}%{F-} $curVol%"
+        #echo "%{B#404040}%{F#8c8800}%{F#000000}%{B#8c8800} $curVol%  %{B#8c8800}%{F#404040}"
+        #echo "%{B#EC7875}%{F#1C1E20}  %{B#C4C7C5}%{F#1C1E20} $curVol% "
+        echo " $curVol%"
     else
 #        echo "%{F#4DB789}%{B#2F343F}%{B-}%{F-}%{F#2F343F}%{B#4DB789}  %{B-}%{F-}%{F#317759}%{B#70ACB7}%{F#fff}%{B#317759}$curVol% %{B-}%{F-}"
-        echo " $curVol%"
+        # echo " $curVol%"
+        #echo "%{B#404040}%{F#627D82}%{F-}%{B#627D82} $curVol%  %{B#627D82}%{F#404040}"
+        #echo "%{B#75A4CD}%{F#1C1E20}  %{B#C4C7C5}%{F#1C1E20} $curVol% "
+        echo " $curVol%"
     fi
 } #}}}
 

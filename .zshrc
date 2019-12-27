@@ -1,11 +1,3 @@
-export GOPATH=$(pwd)/go
-
-PATH="${HOME}/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/bin/core_perl:${GOPATH}/bin:/opt/chefdk/embedded/bin/"
-export PATH
-
-alias newlinestring='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/\\n/g'\'
-alias newlinecomma='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/,/g'\'
-alias newlinespace='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/\ /g'\'
 
 function take {
     mkdir -p $1
@@ -20,9 +12,34 @@ function fcd() {
   dir=$(find ${1:-.} -type d -path ./.cache -prune -o -print 2> /dev/null | fzf +m) && cd "$dir"
 }
 
+function snode() {
+  ~/bin/cnodes | fzf +m -q ${1:-.} | /sbin/xargs /sbin/zsh -c '</dev/tty ssh "$@"' ignoreme
+}
+
 function fzgrep() {
   /sbin/grep --line-buffered --color=never -r "" * | fzf
 }
+
+function ng() {
+  cd ~/src/onecom/chef-repo/nodes && /sbin/fzf | /sbin/xargs /sbin/zsh -c '</dev/tty $EDITOR "$@"' ignoreme
+}
+
+export GOPATH=$(pwd)/go
+
+PATH="${HOME}/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/bin/core_perl:${GOPATH}/bin:/opt/chefdk/embedded/bin/:/home/kgn/.gem/ruby/2.6.0/bin"
+export PATH
+
+alias newlinestring='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/\\n/g'\'
+alias newlinecomma='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/,/g'\'
+alias newlinespace='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/\ /g'\'
+
+export LANG=en_US.UTF-8
+export LC_NUMERIC=C
+export LC_COLLATE=C
+export LC_MONETARY=da_DK.UTF-8
+export LC_TIME=da_DK.UTF-8
+export LC_MESSAGES=C
+export PAGER='less -R'
 
 alias ls='/bin/ls -F --color=auto'
 alias lc='/bin/ls -F --color'
@@ -37,15 +54,12 @@ fi
 if [ -x /usr/local/bin/xping-http ]; then
     alias xping-http='xping-http -B'
 fi
-if [ -x ~/bin/vifmrun ]; then
-        alias vifm=~/bin/vifmrun
-fi
 
 function highlight() {
     /usr/bin/grep -E --color=auto "$@|";
 }
 
-export BROWSER=firefox
+export BROWSER=google-chrome-stable
 export LESS=-Xr
 
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
@@ -65,7 +79,13 @@ export DEBEMAIL="${GIT_AUTHOR_EMAIL}"
 export DEBCHANGE_AUTO_NMU=no
 export ONECOMID=kgn
 
-if [ -x "$(which vim)" ]; then
+if [ -x "$(which nvim)" ]; then
+    alias vim="nvim"
+    export EDITOR="nvim"
+    export VISUAL="${EDITOR}"
+    export FCEDIT="${EDITOR}"
+    alias view="${EDITOR} -M"
+elif [ -x "$(which vim)" ]; then
     export EDITOR="vim"
     export VISUAL="${EDITOR}"
     export FCEDIT="${EDITOR}"
@@ -78,14 +98,7 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=5000
 export SAVEHIST=5000
 
-# Keyboard bindings
-bindkey -e
-
-# Enable CTRL+x-e to edit command line
-zle -N edit-command-line
-bindkey '^xe' edit-command-line
-
-export TERMINAL='urxvt'
+export TERMINAL='st'
 
 #export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
@@ -110,10 +123,10 @@ if [ -f "$ZSH/oh-my-zsh.sh" ]; then
 
     COMPLETION_WAITING_DOTS="true"
     DISABLE_AUTO_UPDATE="true"
-    # CASE_SENSITIVE="true"
+    #CASE_SENSITIVE="true"
 
     if [ -f /etc/arch-release ]; then
-        plugins=(archlinux git go systemd colored-man-pages colorize kitchen)
+        plugins=(archlinux git go systemd colored-man-pages colorize)
     else
         plugins=(git)
     fi
@@ -122,9 +135,22 @@ if [ -f "$ZSH/oh-my-zsh.sh" ]; then
       mkdir $ZSH_CACHE_DIR
     fi
     source $ZSH/oh-my-zsh.sh
+    if [ -x /sbin/gopass ]; then
+      source <(/sbin/gopass completion zsh | head -n -1 | tail -n +2)
+      compdef _gopass gopass
+    fi
 fi
 
 unsetopt share_history
 unsetopt AUTO_CD
+
+# Keyboard bindings
+#bindkey -e
+
+# Enable CTRL+x-e to edit command line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -4,9 +4,13 @@ Description=Wallpaper
 [Timer]
 # Every 3 hours
 #OnCalendar=00/3:00
-# every 10 min
-OnCalendar=*:0/10
-#RandomizedDelaySec=1800
+# every 30 min
+#OnCalendar=*:0/30
+OnBootSec=1m
+#OnUnitActiveSec=1h
+#Persistent=true
+OnCalendar=hourly
+#RandomizedDelaySec=600
 Persistent=true
 Unit=wallpaper.service
 

@@ -33,4 +33,8 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 xrandr --dpi 96
+
+xkbcomp -w0 -I"$HOME/.xkb" -R"$HOME/.xkb" keymap/custom "$DISPLAY"
+#xrandr --setprovideroutputsource modesetting NVIDIA-0
+/etc/X11/xinit/xinitrc.d/nvidia-script.sh
 exec /usr/bin/i3

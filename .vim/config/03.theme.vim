@@ -8,25 +8,32 @@ if ! &term=~'urxvt-unicode-256color'
     set termguicolors
 endif
 
-" Correct RGB escape codes for vim inside tmux
-if !has('nvim') && $TERM ==# 'screen-256color'
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
-
-try
-    set background=dark
-    let g:gruvbox_italic=1
-    if exists('$TMUX')
-        " urxvt-unicode+tmux italic problems
-        let g:gruvbox_italic=0
+if exists('$TMUX')
+    " Correct RGB escape codes for vim inside tmux
+    if !has('nvim') && $TERM ==# 'screen-256color'
+      let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+      let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     endif
-    let g:gruvbox_contrast_dark='hard'
-    colorscheme gruvbox
-    let g:airline_theme = 'gruvbox'
-catch
-endtry
 
-" Spelling mistakes should only be underlined and not red
-hi SpellBad term=NONE cterm=underline ctermbg=NONE gui=NONE guisp=NONE
- 
+    try
+        set background=dark
+        let g:gruvbox_italic=1
+        if exists('$TMUX')
+            " urxvt-unicode+tmux italic problems
+            let g:gruvbox_italic=0
+        endif
+        let g:gruvbox_contrast_dark='hard'
+        colorscheme gruvbox
+        let g:airline_theme = 'gruvbox'
+
+    catch
+    endtry
+
+    " Spelling mistakes should only be underlined and not red
+    hi SpellBad term=NONE cterm=underline ctermbg=NONE gui=NONE guisp=NONE
+else
+""    colorscheme dracula
+    colorscheme moody
+    " let g:rigel_airline = 1
+    " let g:airline_theme = 'rigel'
+endif

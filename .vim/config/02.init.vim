@@ -30,7 +30,8 @@ set scrolljump=5
 set lazyredraw
 set hidden
 set number relativenumber
-set hlsearch                        " Highlight search results"
+" set hlsearch                        " Highlight search results"
+set nohlsearch
 set incsearch                       " Makes search act like search in modern browsers
 set spelllang=en
 "set completeopt=menu,menuone

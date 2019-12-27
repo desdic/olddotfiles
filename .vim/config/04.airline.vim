@@ -5,8 +5,8 @@ endif
 "
 " Only show tabs if we have more than one file open
 let g:airline#extensions#tabline#buffer_min_count = 1
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
+"let g:airline#extensions#tabline#left_sep = ''
+"let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline_skip_empty_sections = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 "let g:airline#extensions#neomake#error_symbol=''
