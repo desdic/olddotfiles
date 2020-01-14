@@ -93,14 +93,19 @@ set synmaxcol=500
 set nowrap
 
 " For autocompletion, complete as much as you can.
-set wildmode=list:longest,full
+"set wildmode=list:longest,full
 
 if has("persistent_undo")
   set undodir=~/.config/nvim/undo
   set undofile
   set undolevels=1000
-  set undoreload=10000
+  set undoreload=1000
+  " Disable undo since it triggers automount
+  autocmd BufWritePre /mnt/* setlocal noundofile
+  autocmd BufWritePre /boot/* setlocal noundofile
 endif
+
+"set noundofile
 
 " Always show sign column for git icons
 set signcolumn=yes
@@ -122,7 +127,7 @@ syntax sync minlines=128
 
 " Prevent autocomplete options opening in scratchpad
 set completeopt=longest,menuone
-set completeopt-=preview
+"set completeopt-=preview
 
 " Keep the cursor in the same place when switching buffers
 " TODO dosn't work
@@ -553,4 +558,12 @@ augroup filetype_proto
     autocmd FileType proto set shiftwidth=2
     autocmd FileType proto set softtabstop=2
     autocmd FileType proto set tabstop=2
+augroup END
+
+augroup filetype_systemd
+    au BufNewFile,BufRead */systemd/*.{automount,mount,path,service,socket,swap,target,timer} setfiletype systemd
+    " Systemd overrides
+    au BufNewFile,BufRead /etc/systemd/system/*.d/*.conf setfiletype systemd
+    " Systemd temp files
+    au BufNewFile,BufRead /etc/systemd/system/*.d/.#* setfiletype systemd
 augroup END
