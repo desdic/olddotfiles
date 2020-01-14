@@ -1,9 +1,4 @@
 
-function take {
-    mkdir -p $1
-    cd $1
-}
-
 function ef() {
     /sbin/fzf | /sbin/xargs /sbin/zsh -c '</dev/tty $EDITOR "$@"' ignoreme
 }
