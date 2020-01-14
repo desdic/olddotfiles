@@ -262,9 +262,9 @@ bindsym $mod+F5 exec --no-startup-id /usr/bin/pavucontrol
 bindsym $mod+F6 exec --no-startup-id /usr/bin/gnome-calculator
 # bindsym $mod+F9 exec --no-startup-id "~/bin/togglecompton.sh"
 bindsym $mod+Shift+x exec --no-startup-id ~/bin/imagelock.sh
-bindsym $mod+F10 exec --no-startup-id ~/.screenlayout/home.sh
-bindsym $mod+F11 exec --no-startup-id ~/.screenlayout/laptop.sh
-bindsym $mod+F12 exec --no-startup-id ~/.screenlayout/work.sh
+bindsym $mod+F10 exec --no-startup-id /sbin/autorandr -c home
+bindsym $mod+F11 exec --no-startup-id /sbin/autorandr -c laptop
+bindsym $mod+F12 exec --no-startup-id /sbin/autorandr -c work
 
 bindsym $mod+t split toggle
 
