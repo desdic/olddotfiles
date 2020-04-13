@@ -14,6 +14,8 @@ done
 
 if [ -n "${RES}" ]; then
   echo " ${RES}"
+  #echo "📨 ${RES}"
 else
-  echo " 0"
+  # echo " 0"
+  echo ""
 fi

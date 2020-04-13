@@ -9,8 +9,8 @@ gaps outer 5
 set $mod Mod4
 
 set $laptop "eDP-1-1"
-set $monitor1 "DP-1-2-1"
-set $monitor2 "DP-1-2-2"
+set $monitor1 "DP-1-1-1"
+set $monitor2 "DP-1-1-2"
 set $monitor3 "DP-2"
 set $hdmi "HDMI3"
 
@@ -51,6 +51,7 @@ for_window [class="^Pidgin$" window_role="^conversation$"] resize grow width 0 p
 # Program Workspaces (xprop)
 assign [class="Slack"]                         $workspace2
 assign [class="Google-chrome"]                 $workspace3
+assign [class="Brave-browser"]                 $workspace3
 # assign [class="Firefox"]                       $workspace3
 assign [instance="work"]                       $workspace4
 # assign [class="libreoffice-startcenter"]       $workspace8
@@ -73,6 +74,7 @@ bindsym $mod+Shift+Return exec --no-startup-id /sbin/kitty
 #bindsym $mod+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/urxvt
 #bindsym $mod+Return exec --no-startup-id /sbin/urxvt
 bindsym $mod+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/st
+#bindsym $mod+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/alacritty
 bindsym $mod+BackSpace exec --no-startup-id ~/bin/newsession.sh
 
 # kill focused window
@@ -86,8 +88,14 @@ bindsym $mod+Shift+w exec --no-startup-id ~/bin/wallpaper.sh
 #bindsym $mod+d exec rofi -show run
 bindsym $mod+d exec ~/.config/polybar/scripts/launcher-alt
 #bindsym $mod+Shift+p exec rofi-pass
-bindsym $mod+Shift+p exec ~/bin/rofi-gopass
+#bindsym $mod+Shift+p exec ~/bin/rofi-gopass
+#bindsym $mod+Shift+b exec --no-startup-id LANG=da_DK.UTF-8 /sbin/bwmenu
+#bindsym $mod+Shift+b exec --no-startup-id /sbin/zsh -c 'source /home/kgn/.zshrc; /sbin/bwmenu'
+#bindsym $mod+Shift+t exec --no-startup-id /sbin/env > /tmp/i3-env
+bindsym $mod+Shift+p exec --no-startup-id /sbin/bwmenu
+#bindsym $mod+Shift+p exec /sbin/bwmenu
 bindsym $mod+g exec /sbin/google-chrome-stable; workspace 3
+bindsym $mod+b exec /sbin/brave; workspace 3
 bindsym $mod+s exec /sbin/spotify
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -278,5 +286,5 @@ exec --no-startup-id /usr/bin/clipit&
 #exec --no-startup-id /sbin/blueman-applet&
 #exec --no-startup-id /usr/bin/xsetroot -solid "#111111"
 #exec --no-startup-id /usr/bin/xsetroot -solid "#000000"
-#exec --no-startup-id ~/bin/randomwallpaper.sh
+exec --no-startup-id ~/bin/randomwallpaper.sh
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh

@@ -11,7 +11,8 @@ fi
 updates=$updates_aur
 if [ "$updates" -gt 0 ]; then
     #echo "%{B#75A4CD}%{F#1C1E20}  %{B#C4C7C5}%{F#1C1E20} $updates %{B#2f343f}%{F#2f343f}|"
-    echo " $updates"
+    #echo " $updates"
+    echo "💫 $updates"
 else
     echo ""
 fi
