@@ -7,21 +7,19 @@ function fcd() {
   dir=$(find ${1:-.} -type d -path ./.cache -prune -o -print 2> /dev/null | fzf +m) && cd "$dir"
 }
 
-function snode() {
-  ~/bin/cnodes | fzf +m -q ${1:-.} | /sbin/xargs /sbin/zsh -c '</dev/tty ssh "$@"' ignoreme
-}
-
 function fzgrep() {
   /sbin/grep --line-buffered --color=never -r "" * | fzf
 }
 
-function ng() {
-  cd ~/src/onecom/chef-repo/nodes && /sbin/fzf | /sbin/xargs /sbin/zsh -c '</dev/tty $EDITOR "$@"' ignoreme
-}
+export GOPATH=${HOME}/go
 
-export GOPATH=$(pwd)/go
-
-PATH="${HOME}/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/bin/core_perl:${GOPATH}/bin:/opt/chefdk/embedded/bin/:/home/kgn/.gem/ruby/2.6.0/bin"
+PATH="${HOME}/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin"
+for p in /usr/bin/core_perl ${GOPATH}/bin /opt/chefdk/embedded/bin/ ${HOME}/.gem/ruby/2.7.0/bin ${HOME}/.gem/ruby/2.6.0/bin ${HOME}/.rvm/bin
+do
+  if [ -d "${p}" ]; then
+    PATH="${PATH}:${p}"
+  fi
+done
 export PATH
 
 alias newlinestring='sed -e '\'':a'\'' -e '\''N'\'' -e '\''$!ba'\'' -e '\''s/\n/\\n/g'\'
@@ -54,7 +52,7 @@ function highlight() {
     /usr/bin/grep -E --color=auto "$@|";
 }
 
-export BROWSER=google-chrome-stable
+export BROWSER=brave
 export LESS=-Xr
 
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
@@ -64,15 +62,6 @@ export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
 export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
-
-export GIT_AUTHOR_NAME="Kim Nielsen"
-export GIT_AUTHOR_EMAIL=kgn@one.com
-export GIT_COMMITTER_NAME="${GIT_AUTHOR_NAME}"
-export GIT_COMMITTER_EMAIL="${GIT_AUTHOR_EMAIL}"
-export DEBFULLNAME="${GIT_AUTHOR_NAME}"
-export DEBEMAIL="${GIT_AUTHOR_EMAIL}"
-export DEBCHANGE_AUTO_NMU=no
-export ONECOMID=kgn
 
 if [ -x "$(which nvim)" ]; then
     alias vim="nvim"
@@ -95,10 +84,16 @@ export SAVEHIST=5000
 
 export TERMINAL='st'
 
-#export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
 if [ -f ~/.config/dircolors ]; then
     eval $(dircolors ~/.config/dircolors)
+fi
+
+if [ -x /sbin/fzf ]; then
+  if [ -x /sbin/ag ]; then
+    export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g ''"
+  else
+    export FZF_DEFAULT_COMMAND="find -L"
+  fi
 fi
 
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
@@ -140,12 +135,19 @@ unsetopt share_history
 unsetopt AUTO_CD
 
 # Keyboard bindings
-#bindkey -e
+bindkey -e
 
 # Enable CTRL+x-e to edit command line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
 
-#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+if [ -z "${DISPLAY}" ]; then
+  # After sleep the custom mapping is gone
+  xkbcomp -w0 -I"$HOME/.xkb" -R"$HOME/.xkb" keymap/custom "$DISPLAY"
+fi
 
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [ -f ~/.zshrc.work ]; then
+  source ~/.zshrc.work
+fi
+
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

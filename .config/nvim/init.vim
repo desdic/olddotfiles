@@ -1,31 +1,4 @@
-" https://github.com/simonsmith/dotfiles/blob/master/dots/vimrc
-let g:plugin_path = '~/.config/nvim/plugged'
-
-call plug#begin(g:plugin_path)
-    " Airline for tab like menu but for buffers
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-
-    Plug 'junegunn/fzf.vim'
-
-    " Color theme
-    Plug 'dracula/vim', { 'as': 'dracula' }
-
-    " Golang
-    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-    Plug 'ctrlpvim/ctrlp.vim'
-
-    " Nerdtree + icons
-    Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-    Plug 'ryanoasis/vim-devicons'
-
-    " Comments
-    Plug 'scrooloose/nerdcommenter'
-
-    " Autocompletion
-    Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-    " :CocInstall coc-tsserver coc-yaml coc-python coc-pairs coc-highlight
-call plug#end()
+source $HOME/.config/nvim/plugins.vim
 
 " Shortcut for checking if a plugin is loaded
 function! s:has_plugin(plugin)
@@ -53,6 +26,12 @@ set shiftwidth=2
 set expandtab
 set ai
 set number
+
+" Always keep 5 lines visibile
+set scrolloff=5
+
+" maximum number of items to show in the popup menu
+set pumheight=10
 
 " Makes search act like search in modern browsers
 set incsearch
@@ -103,9 +82,13 @@ if has("persistent_undo")
   " Disable undo since it triggers automount
   autocmd BufWritePre /mnt/* setlocal noundofile
   autocmd BufWritePre /boot/* setlocal noundofile
+
+  autocmd BufWritePre /mnt/* setlocal shada="NONE"
+  autocmd BufWritePre /boo/* setlocal shada="NONE"
 endif
 
-"set noundofile
+" Disable shada
+set shada="NONE"
 
 " Always show sign column for git icons
 set signcolumn=yes
@@ -128,10 +111,6 @@ syntax sync minlines=128
 " Prevent autocomplete options opening in scratchpad
 set completeopt=longest,menuone
 "set completeopt-=preview
-
-" Keep the cursor in the same place when switching buffers
-" TODO dosn't work
-set nostartofline
 
 " Allow to switch buffer without saving
 set hidden
@@ -160,7 +139,6 @@ let g:NERDTreeAutoDeleteBuffer=1
 "let NERDTreeMinimalUI=1
 let NERDTreeCascadeSingleChildDir=0
 
-
 " airline
 if s:has_plugin('vim-airline')
     if !exists('g:airline_symbols')
@@ -175,6 +153,11 @@ if s:has_plugin('vim-airline')
     " Enable buffer tabs
     let g:airline#extensions#tabline#enabled =  1
     let g:airline_powerline_fonts = 1
+
+    " Turn off arrows
+    " let g:airline_powerline_fonts = 0
+    " let g:airline_left_sep = ''
+    " let g:airline_right_sep = ''
 endif
 
 " coc
@@ -226,30 +209,44 @@ let g:go_def_mapping_enabled = 0
 let g:go_code_completion_enabled = 0
 let g:go_null_module_warning = 0
 
+" Turn off folding for markdown
+let g:vim_markdown_folding_disabled = 1
 
 " mapping
-nmap <c-n> :bnext<CR>             " Ctrl + n change buffer
-nmap <c-p> :bprevious<CR>         " Ctrl + p change buffer
-nmap <leader>n :enew<CR>          " ,n new buffer
-nmap <leader>q :bp <BAR> bd #<CR> " ,q quit buffer
-map <Leader>c :close<CR>          " close window
+" Ctrl + n change buffer
+map <C-n> :bnext<CR>
+" Ctrl + p change buffer
+map <C-p> :bprevious<CR>
+" ,n new buffer
+nmap <leader>n :enew<CR>
+" ,q quit buffer
+nmap <leader>q :bp <BAR> bd #<CR>
+" close window
+map <Leader>c :close<CR>
 map <Leader>w :w!<CR>
-nmap <C-l> :redraw!               " redraw buffer
+
+" redraw buffer
+nmap <C-l> :redraw!
 nmap <Leader>n :NERDTreeToggle<CR>
-vnoremap <Leader>s :sort<CR>      " ,s sort
+
+" ,s sort
+vnoremap <Leader>s :sort<CR>
 map <Leader>t :s/\s\+$//
+nmap <C-f> :Files<CR>
 
 " Indentation
 vnoremap < <gv
 vnoremap > >gv
 
 " Quoting in visuel mode
-vnoremap <Leader>" c"<C-R>""<ESC>
-vnoremap <Leader>' c'<C-R>"'<ESC>
+vnoremap <Leader>q" c"<C-R>""<ESC>
+vnoremap <Leader>q' c'<C-R>"'<ESC>
 
 " Quoting in non visuel mode
-nnoremap <Leader>" ciw"<C-R>""<ESC>
-nnoremap <Leader>' ciw'<C-R>"'<ESC>
+nnoremap <Leader>q" ciw"<C-R>""<ESC>
+nnoremap <Leader>q' ciw'<C-R>"'<ESC>
+" Delete quote
+nnoremap <Leader>qd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
 
 " Split navigation
 " nnoremap <C-h> <C-w>h
@@ -567,3 +564,30 @@ augroup filetype_systemd
     " Systemd temp files
     au BufNewFile,BufRead /etc/systemd/system/*.d/.#* setfiletype systemd
 augroup END
+
+" Save current view settings on a per-window, per-buffer basis.
+function! AutoSaveWinView()
+    if !exists("w:SavedBufView")
+        let w:SavedBufView = {}
+    endif
+    let w:SavedBufView[bufnr("%")] = winsaveview()
+endfunction
+
+" Restore current view settings.
+function! AutoRestoreWinView()
+    let buf = bufnr("%")
+    if exists("w:SavedBufView") && has_key(w:SavedBufView, buf)
+        let v = winsaveview()
+        let atStartOfFile = v.lnum == 1 && v.col == 0
+        if atStartOfFile && !&diff
+            call winrestview(w:SavedBufView[buf])
+        endif
+        unlet w:SavedBufView[buf]
+    endif
+endfunction
+
+" When switching buffers, preserve window view.
+if v:version >= 700
+    autocmd BufLeave * call AutoSaveWinView()
+    autocmd BufEnter * call AutoRestoreWinView()
+endif
