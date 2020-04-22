@@ -1,6 +1,7 @@
 [global]
     font = Monospace 8
     allow_markup = yes
+    markup = full
     format = "<b>%s</b>\n%b"
     sort = yes
     indicate_hidden = yes
@@ -25,6 +26,7 @@
     #icon_position = left
     #icon_folders = /usr/share/icons/elementary/actions/16/
     icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/:/usr/share/icons/Adwaita/16x16/legacy/:/usr/share/icons/hicolor/scalable/apps/
+    class = Dunst
 
 [frame]
     width = 1
