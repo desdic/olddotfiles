@@ -211,6 +211,8 @@ bindsym XF86AudioPause exec --no-startup-id playerctl -p spotify play-pause
 bindsym $mod+bracketright exec --no-startup-id playerctl -p spotify next
 bindsym $mod+bracketleft exec --no-startup-id playerctl -p spotify previous
 bindsym $mod+p exec --no-startup-id playerctl -p spotify play-pause
+bindsym $mod+Prior exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym $mod+Next exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
 
 # resize window (you can also use the mouse for that)
 mode "  " {
@@ -283,8 +285,9 @@ exec_always --no-startup-id /sbin/optimus-manager-qt &
 #exec ~/bin/locker.sh &
 exec_always --no-startup-id ~/bin/i3startup.sh
 exec --no-startup-id /usr/bin/clipit&
+exec --no-startup-id /sbin/nitrogen --restore
 #exec --no-startup-id /sbin/blueman-applet&
 #exec --no-startup-id /usr/bin/xsetroot -solid "#111111"
 #exec --no-startup-id /usr/bin/xsetroot -solid "#000000"
-exec --no-startup-id ~/bin/randomwallpaper.sh
+#exec --no-startup-id ~/bin/randomwallpaper.sh
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
