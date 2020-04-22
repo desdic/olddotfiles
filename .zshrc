@@ -30,7 +30,7 @@ export LANG=en_US.UTF-8
 export LC_NUMERIC=C
 export LC_COLLATE=C
 export LC_MONETARY=da_DK.UTF-8
-export LC_TIME=da_DK.UTF-8
+export LC_TIME=en_US.UTF-8
 export LC_MESSAGES=C
 export PAGER='less -R'
 
