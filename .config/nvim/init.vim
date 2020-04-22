@@ -1,4 +1,44 @@
-source $HOME/.config/nvim/plugins.vim
+" https://github.com/simonsmith/dotfiles/blob/master/dots/vimrc
+let g:plugin_path = '~/.config/nvim/plugged'
+
+if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
+    echo "Downloading junegunn/vim-plug to manage plugins..."
+    silent !mkdir -p ~/.config/nvim/autoload/
+    silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
+    autocmd VimEnter * PlugInstall
+endif
+
+call plug#begin(g:plugin_path)
+    " Airline for tab like menu but for buffers
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+
+    Plug 'junegunn/fzf.vim'
+
+    " Color theme
+    Plug 'dracula/vim', { 'as': 'dracula' }
+    Plug 'tomasiser/vim-code-dark'
+
+    " Golang
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+    Plug 'ctrlpvim/ctrlp.vim'
+
+    " Nerdtree + icons
+    Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+    Plug 'ryanoasis/vim-devicons'
+
+    " Comments
+    Plug 'scrooloose/nerdcommenter'
+
+    " Autocompletion
+    Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+    " :CocInstall coc-tsserver coc-yaml coc-python coc-pairs coc-highlight
+    Plug 'godlygeek/tabular'
+    Plug 'plasticboy/vim-markdown'
+
+    Plug 'Shougo/neosnippet.vim'
+    Plug 'Shougo/neosnippet-snippets'
+call plug#end()
 
 " Shortcut for checking if a plugin is loaded
 function! s:has_plugin(plugin)
@@ -18,7 +58,12 @@ set termguicolors
 " Use Dracula theme
 syntax on
 set background=dark
-color dracula
+"color dracula
+colorscheme codedark
+let g:airline_theme = 'codedark'
+
+" Use systems clipboard
+" set clipboard+=unnamedplus
 
 set tabstop=2
 set shiftwidth=2
@@ -117,6 +162,7 @@ set hidden
 
 " Show the (partial) command as it’s being typed
 set showcmd
+
 "       _        _       
 "   ___| |_ _ __| |_ __  
 "  / __| __| '__| | '_ \ 
@@ -161,16 +207,24 @@ if s:has_plugin('vim-airline')
 endif
 
 " coc
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 " vim-go
 let g:go_metalinter_autosave = 0
@@ -333,6 +387,20 @@ if s:has_plugin('coc.nvim')
   nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
 endif
 
+if s:has_plugin('neosnippet.vim')
+    " Plugin key-mappings.
+    " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+    imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+    smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+    let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
+    let g:neosnippet#enable_snipmate_compatibility = 1
+endif
+
 " files
 augroup filetypedetect
     command! -nargs=* -complete=help Help vertical belowright help <args>
@@ -455,7 +523,6 @@ augroup filetype_tex
     autocmd FileType tex set shiftwidth=2
 augroup END
 
-
 augroup filetype_yaml
     autocmd!
     autocmd FileType yaml set expandtab
@@ -565,6 +632,9 @@ augroup filetype_systemd
     au BufNewFile,BufRead /etc/systemd/system/*.d/.#* setfiletype systemd
 augroup END
 
+" Don't continue comments for any filetype
+au BufEnter * set formatoptions-=cro
+
 " Save current view settings on a per-window, per-buffer basis.
 function! AutoSaveWinView()
     if !exists("w:SavedBufView")
@@ -591,3 +661,13 @@ if v:version >= 700
     autocmd BufLeave * call AutoSaveWinView()
     autocmd BufEnter * call AutoRestoreWinView()
 endif
+
+"  Plugin key-mappings.
+"" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"xmap <C-k>     <Plug>(neosnippet_expand_target)
+"
+"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+"\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
