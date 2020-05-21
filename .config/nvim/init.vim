@@ -19,10 +19,6 @@ call plug#begin(g:plugin_path)
     Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'tomasiser/vim-code-dark'
 
-    " Golang
-    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-    Plug 'ctrlpvim/ctrlp.vim'
-
     " Nerdtree + icons
     Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     Plug 'ryanoasis/vim-devicons'
@@ -32,11 +28,11 @@ call plug#begin(g:plugin_path)
 
     " Autocompletion
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-    " :CocInstall coc-tsserver coc-yaml coc-python coc-pairs coc-highlight
-    Plug 'godlygeek/tabular'
+    " :CocInstall coc-tsserver coc-yaml coc-python coc-pairs coc-highlight coc-snippets coc-go
+
     Plug 'plasticboy/vim-markdown'
 
-    Plug 'Shougo/neosnippet.vim'
+    Plug 'honza/vim-snippets'
     Plug 'Shougo/neosnippet-snippets'
 call plug#end()
 
@@ -72,8 +68,8 @@ set expandtab
 set ai
 set number
 
-" Always keep 5 lines visibile
-set scrolloff=5
+" Always keep 10 lines visibile
+set scrolloff=10
 
 " maximum number of items to show in the popup menu
 set pumheight=10
@@ -124,7 +120,8 @@ if has("persistent_undo")
   set undofile
   set undolevels=1000
   set undoreload=1000
-  " Disable undo since it triggers automount
+  " Disable undo in automount mountpoints since it triggers automount
+  " When writing files and if mount is not available it hangs
   autocmd BufWritePre /mnt/* setlocal noundofile
   autocmd BufWritePre /boot/* setlocal noundofile
 
@@ -163,21 +160,6 @@ set hidden
 " Show the (partial) command as it’s being typed
 set showcmd
 
-"       _        _       
-"   ___| |_ _ __| |_ __  
-"  / __| __| '__| | '_ \ 
-" | (__| |_| |  | | |_) |
-"  \___|\__|_|  |_| .__/ 
-"                 |_|    
-"  Disable ctrlp since its only used in vim-go
-let g:ctrlp_map = ''
-
-"  _   _              _ _                 
-" | \ | | ___ _ __ __| | |_ _ __ ___  ___ 
-" |  \| |/ _ \ '__/ _` | __| '__/ _ \/ _ \
-" | |\  |  __/ | | (_| | |_| | |  __/  __/
-" |_| \_|\___|_|  \__,_|\__|_|  \___|\___
-
 let NERDTreeShowHidden=1
 let NERDTreeHijackNetrw=0
 let g:NERDTreeWinSize=45
@@ -207,61 +189,32 @@ if s:has_plugin('vim-airline')
 endif
 
 " coc
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+" Use <C-k> for trigger snippet expand.
+imap <C-k> <Plug>(coc-snippets-expand)
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" Use <C-k> for select text for visual placeholder of snippet.
+vmap <C-k> <Plug>(coc-snippets-select)
 
+" Use <tab> for jump to next placeholder, it's default of coc.nvim
 let g:coc_snippet_next = '<tab>'
 
-" vim-go
-let g:go_metalinter_autosave = 0
-let g:go_fmt_fail_silently = 1
-let g:go_fmt_command = "goimports"
-let g:go_def_mode = "gopls"
-let g:go_info_mode= "gopls"
+" Use <s-tab> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<s-tab>'
 
-" Show the progress when running :GoCoverage
-let g:go_echo_command_info = 1  
-" Add the failing test name to the output of :GoTest
-let g:go_test_show_name = 1     
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-let g:go_gocode_autobuild = 1
-let g:go_gocode_unimported_packages = 1
+" Use <cr> to confirm completion
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-"Enabled for go 1.11
-"let g:go_autodetect_gopath = 0  " This does not seem to work so I have disabled it and set it on every project
+" Close the preview window when completion is done.
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_structs = 1
-let g:go_auto_sameids = 0
-let g:go_highlight_space_tab_error = 1
-let g:go_highlight_array_whitespace_error = 1
-let g:go_highlight_trailing_whitespace_error = 1
-let g:go_modifytags_transform = 'camelcase'
-let g:go_addtags_transform = 'camelcase'
-let g:go_jump_to_error = 0
-let g:go_def_mapping_enabled = 0
-let g:go_code_completion_enabled = 0
-let g:go_null_module_warning = 0
+" Add missing imports on save
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Turn off folding for markdown
 let g:vim_markdown_folding_disabled = 1
@@ -357,10 +310,6 @@ set pastetoggle=<Leader>p
 imap jj <ESC>
 
 
-" deoplete tab-complete
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 " fuzzy find text in the working directory
 nnoremap <leader>/ :Rg<CR>
 
@@ -374,7 +323,7 @@ nnoremap <ESC>[1;2A :m .-2<CR>==
 inoremap <ESC>[1;2A <Esc>:m .-2<CR>==gi
 vnoremap <ESC>[1;2A :m '<-2<CR>gv=gv
 
-if s:has_plugin('coc.nvim')
+"if s:has_plugin('coc.nvim')
   " Remap keys for gotos
   nmap <silent> <leader>dr <Plug>(coc-references)
   nmap <silent> <leader>dd <Plug>(coc-implementation)
@@ -385,21 +334,22 @@ if s:has_plugin('coc.nvim')
   nmap <silent> <leader>dv :vsplit<cr> <Plug>(coc-implementation)
   nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
   nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
-endif
+"endif
 
-if s:has_plugin('neosnippet.vim')
-    " Plugin key-mappings.
-    " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-    imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-    smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-    xmap <C-k>     <Plug>(neosnippet_expand_target)
+" if s:has_plugin('neosnippet.vim')
+"     " Plugin key-mappings.
+"     " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"     imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"     smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"     xmap <C-k>     <Plug>(neosnippet_expand_target)
+" 
+"     smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+"     \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" 
+"     let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
+"     let g:neosnippet#enable_snipmate_compatibility = 1
+" endif
 
-    smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-    let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
-    let g:neosnippet#enable_snipmate_compatibility = 1
-endif
 
 " files
 augroup filetypedetect
@@ -476,7 +426,7 @@ augroup filetype_text
     autocmd FileType text set noexpandtab
     autocmd FileType text set tabstop=4
     autocmd FileType text set shiftwidth=4
-    autocmd FileType text let b:deoplete_disable_auto_complete = 1
+    " autocmd FileType text let b:deoplete_disable_auto_complete = 1
     autocmd FileType text let b:delimitMate_autoclose = 0
 augroup END
 
@@ -485,7 +435,7 @@ augroup filetype_html
     autocmd FileType html set noexpandtab
     autocmd FileType html set tabstop=4
     autocmd FileType html set shiftwidth=4
-    autocmd FileType html let b:deoplete_disable_auto_complete = 1
+    " autocmd FileType html let b:deoplete_disable_auto_complete = 1
     autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 augroup END
 
@@ -499,7 +449,7 @@ augroup END
 augroup filetype_gitcommit
     autocmd!
     autocmd FileType gitcommit set spell
-    autocmd FileType gitcommit let b:deoplete_disable_auto_complete = 1
+    " autocmd FileType gitcommit let b:deoplete_disable_auto_complete = 1
 augroup END
 
 augroup filetype_python
@@ -536,7 +486,7 @@ augroup filetype_markdown
     autocmd FileType markdown set noexpandtab
     autocmd FileType markdown set tabstop=4
     autocmd FileType markdown set shiftwidth=4
-    autocmd FileType markdown let b:deoplete_disable_auto_complete = 1
+    " autocmd FileType markdown let b:deoplete_disable_auto_complete = 1
 augroup END
 
 augroup filetype_json
@@ -564,11 +514,11 @@ augroup filetype_go
     autocmd FileType go set shiftwidth=4
 
     autocmd FileType set rtp+=~/.vim/plugin/lint.vim
-    autocmd FileType go nmap <leader>r <Plug>(go-run-split)
-    autocmd FileType go nmap <leader>b <Plug>(go-build)
-    autocmd FileType go nmap <leader>t <Plug>(go-test)
-    autocmd FileType go nmap <leader>c <Plug>(go-coverage)
-    autocmd FileType go nmap <leader>l <Plug>(go-metalinter)
+    " autocmd FileType go nmap <leader>r <Plug>(go-run-split)
+    " autocmd FileType go nmap <leader>b <Plug>(go-build)
+    " autocmd FileType go nmap <leader>t <Plug>(go-test)
+    " autocmd FileType go nmap <leader>c <Plug>(go-coverage)
+    " autocmd FileType go nmap <leader>l <Plug>(go-metalinter)
 ""    autocmd FileType go nmap <leader>d :GoDef<CR>
     autocmd FileType go nmap <leader>g :GoDecls<CR>
 
@@ -588,15 +538,20 @@ augroup filetype_go
     autocmd FileType go nmap   <F8>    :TagbarToggle<CR>
     autocmd FileType go nmap   <F9>    :make
 
-    autocmd FileType go nmap     <leader>dd    <Plug>(go-def)
-    autocmd FileType go nmap     <leader>ds    <Plug>(go-def-split)
-    autocmd FileType go nmap     <leader>dv    <Plug>(go-def-vertical)
-    autocmd FileType go nmap     <leader>dt    <Plug>(go-def-tab)
-    autocmd FileType go nmap     <leader>kk    <Plug>(go-doc)
-    autocmd FileType go nmap     <leader>kv    <Plug>(go-doc-vertical)
-    autocmd FileType go nmap     <leader>kb    <Plug>(go-doc-browser)
-    autocmd FileType go nmap     <leader>im    <Plug>(go-implements)
-    autocmd FileType go nmap     <leader>in    <Plug>(go-info)
+    " autocmd FileType go nmap     <leader>dd    <Plug>(go-def)
+    " autocmd FileType go nmap     <leader>ds    <Plug>(go-def-split)
+    " autocmd FileType go nmap     <leader>dv    <Plug>(go-def-vertical)
+    " autocmd FileType go nmap     <leader>dt    <Plug>(go-def-tab)
+    " autocmd FileType go nmap     <leader>kk    <Plug>(go-doc)
+    " autocmd FileType go nmap     <leader>kv    <Plug>(go-doc-vertical)
+    " autocmd FileType go nmap     <leader>kb    <Plug>(go-doc-browser)
+    " autocmd FileType go nmap     <leader>im    <Plug>(go-implements)
+
+    " map keys to fill json/yaml or clear tags
+    autocmd FileType go nmap gtj :CocCommand go.tags.add json<cr>
+    autocmd FileType go nmap gty :CocCommand go.tags.add yaml<cr>
+    autocmd FileType go nmap gtx :CocCommand go.tags.clear<cr>
+
 augroup END
 
 augroup filetype_vim
@@ -661,13 +616,3 @@ if v:version >= 700
     autocmd BufLeave * call AutoSaveWinView()
     autocmd BufEnter * call AutoRestoreWinView()
 endif
-
-"  Plugin key-mappings.
-"" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"xmap <C-k>     <Plug>(neosnippet_expand_target)
-"
-"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-"\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-

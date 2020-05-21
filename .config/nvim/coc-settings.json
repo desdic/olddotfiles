@@ -1,5 +1,6 @@
 {
   "suggest.noselect": true,
+  "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
   "solargraph.diagnostics": true,
   "solargraph.autoformat": true,
   "solargraph.completion": true,
@@ -18,20 +19,6 @@
   "coc.preferences.formatOnType": false,
   "coc.preferences.useQuickfixForLocations": true,
   "coc.preferences.formatOnSaveFiletypes": [
-    "go",
-  ],
-  "languageserver": {
-    "gopls": {
-      "command": "gopls",
-      "filetypes": [
-        "go"
-      ],
-      "rootPatterns": [
-        "go.mod",
-        ".git/",
-        ".vim/",
-        ".hg/"
-      ]
-    }
-  }
+    "go"
+  ]
 }
