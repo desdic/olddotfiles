@@ -350,6 +350,11 @@ vnoremap <ESC>[1;2A :m '<-2<CR>gv=gv
 "     let g:neosnippet#enable_snipmate_compatibility = 1
 " endif
 
+" Feature in neovim 0.5 to highlight yanked lines
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 200)
+augroup END
 
 " files
 augroup filetypedetect
@@ -383,6 +388,8 @@ augroup filetype_ruby
     autocmd FileType ruby.eruby.chef set shiftwidth=2
     autocmd FileType ruby.eruby.chef set softtabstop=2
     autocmd FileType ruby.eruby.chef set tabstop=2
+    " autocmd BufWritePost *.rb !/opt/chefdk/embedded/bin/rubocop -a <afile>
+    " autocmd FocusGained,BufEnter *.rb :checktime
 augroup END
 
 augroup filetype_sql
