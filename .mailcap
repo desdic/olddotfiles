@@ -7,3 +7,5 @@ application/pdf; /usr/bin/zathura %s ; copiousoutput
 image/*; muttimage %s ; copiousoutput
 video/*; setsid mpv --quiet %s &; copiousoutput
 application/pgp-encrypted; gpg -d '%s'; copiousoutput;
+text/calendar; mutt-ics; copiousoutput
+application/ics; mutt-ics; copiousoutput
