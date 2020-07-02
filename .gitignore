@@ -8,3 +8,4 @@
 .taskrc
 .config/nvim/bundle/
 .config/nvim/plugged/
+.config/i3/img/cache
