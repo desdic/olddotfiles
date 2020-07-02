@@ -46,10 +46,13 @@ for_window [class="^Pidgin$" window_role="^buddy_list$"] move container to works
 for_window [class="^Pidgin$" window_role="^conversation$"] move container to workspace $workspace2, workspace --no-auto-back-and-forth $workspace2
 for_window [class="^Pidgin$" window_role="^conversation$"] resize grow width 0 px or 30 ppt; move right
 
+#for_window [class="^Mumble$"] move container to workspace $workspace2, workspace --no-auto-back-and-forth $workspace2
+
 #for_window [class="Slack"] move container to workspace 2, floating enable, resize set 1280 900, move position center, resize grow right 300
 
 # Program Workspaces (xprop)
-assign [class="Slack"]                         $workspace2
+assign [class="Mumble"]                        $workspace2
+assign [class="Slack"]                         $workspace8
 assign [class="Google-chrome"]                 $workspace3
 assign [class="Brave-browser"]                 $workspace3
 # assign [class="Firefox"]                       $workspace3
@@ -68,32 +71,19 @@ font pango:System San Francisco Display Regular 10
 floating_modifier $mod
 
 # start a terminal
-#bindsym $mod+Return exec --no-startup-id /usr/bin/st
-#bindsym $mod+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/termite
-bindsym $mod+Shift+Return exec --no-startup-id /sbin/kitty
-#bindsym $mod+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/urxvt
-#bindsym $mod+Return exec --no-startup-id /sbin/urxvt
-bindsym $mod+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/st
-#bindsym $mod+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/alacritty
+bindsym $mod+Shift+Return exec --no-startup-id /sbin/st
+bindsym $mod+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/alacritty
 bindsym $mod+BackSpace exec --no-startup-id ~/bin/newsession.sh
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # Set keyboard rate since I loose it after hybernation
-#bindsym $mod+Shift+p exec --no-startup-id ~/bin/i3startup.sh
 bindsym $mod+Shift+w exec --no-startup-id ~/bin/wallpaper.sh
 
 # start dmenu (a program launcher)
-#bindsym $mod+d exec rofi -show run
 bindsym $mod+d exec ~/.config/polybar/scripts/launcher-alt
-#bindsym $mod+Shift+p exec rofi-pass
-#bindsym $mod+Shift+p exec ~/bin/rofi-gopass
-#bindsym $mod+Shift+b exec --no-startup-id LANG=da_DK.UTF-8 /sbin/bwmenu
-#bindsym $mod+Shift+b exec --no-startup-id /sbin/zsh -c 'source /home/kgn/.zshrc; /sbin/bwmenu'
-#bindsym $mod+Shift+t exec --no-startup-id /sbin/env > /tmp/i3-env
 bindsym $mod+Shift+p exec --no-startup-id /sbin/bwmenu
-#bindsym $mod+Shift+p exec /sbin/bwmenu
 bindsym $mod+g exec /sbin/google-chrome-stable; workspace 3
 bindsym $mod+b exec /sbin/brave; workspace 3
 bindsym $mod+s exec /sbin/spotify
@@ -101,7 +91,6 @@ bindsym $mod+s exec /sbin/spotify
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+k focus up
@@ -185,19 +174,6 @@ bindsym $mod+Control+j move workspace to output down
 bindsym $mod+Control+k move workspace to output up
 bindsym $mod+Control+l move workspace to output right
 
-#work space monitors
-#workspace $workspace1 output $laptop
-#workspace $workspace2 output $laptop
-#workspace $workspace3 output $monitor1
-#workspace $workspace4 output $monitor2
-#workspace $workspace5 output $monitor2
-#workspace $workspace6 output $monitor2
-#workspace $workspace7 output $monitor2
-#workspace $workspace8 output $monitor2
-#workspace $workspace9 output $hdmi
-#workspace $workspace10 output $monitor1
-
-
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -270,24 +246,21 @@ bindsym XF86LaunchA exec --no-startup-id ~/bin/toggletrackpad.sh
 
 bindsym $mod+F5 exec --no-startup-id /usr/bin/pavucontrol
 bindsym $mod+F6 exec --no-startup-id /usr/bin/gnome-calculator
-# bindsym $mod+F9 exec --no-startup-id "~/bin/togglecompton.sh"
 bindsym $mod+Shift+x exec --no-startup-id ~/bin/imagelock.sh
-bindsym $mod+F10 exec --no-startup-id /sbin/autorandr -c home
-bindsym $mod+F11 exec --no-startup-id /sbin/autorandr -c laptop
-bindsym $mod+F12 exec --no-startup-id /sbin/autorandr -c work
+
+bindsym $mod+F10 exec --no-startup-id ~/.screenlayout/laptop.sh
+bindsym $mod+F11 exec --no-startup-id ~/.screenlayout/work.sh
+bindsym $mod+F12 exec --no-startup-id ~/.screenlayout/home.sh
 
 bindsym $mod+t split toggle
 
-#exec --no-startup-id /usr/bin/dbus-launch /sbin/picom --config ~/.config/picom.conf
-#exec xautolock -time 5 -locker '~/bin/imagelock.sh' &
 exec --no-startup-id /sbin/xss-lock -- '/home/kgn/bin/imagelock.sh' &
 exec_always --no-startup-id /sbin/optimus-manager-qt &
 #exec ~/bin/locker.sh &
-exec_always --no-startup-id ~/bin/i3startup.sh
+exec_always --no-startup-id ~/bin/keyboard.sh
 exec --no-startup-id /usr/bin/clipit&
 exec --no-startup-id /sbin/nitrogen --restore
-#exec --no-startup-id /sbin/blueman-applet&
+exec --no-startup-id /sbin/blueman-applet&
 #exec --no-startup-id /usr/bin/xsetroot -solid "#111111"
 #exec --no-startup-id /usr/bin/xsetroot -solid "#000000"
-#exec --no-startup-id ~/bin/randomwallpaper.sh
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
