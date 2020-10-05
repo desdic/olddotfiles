@@ -1,19 +1,17 @@
 {
   "suggest.noselect": true,
   "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
-  "solargraph.diagnostics": true,
-  "solargraph.autoformat": true,
-  "solargraph.completion": true,
-  "solargraph.formatting": true,
-  "solargraph.useBundler": false,
-  "solargraph.hover": true,
+  "python.jediEnabled": false,
   "python.linting.enabled": true,
   "python.linting.pylintArgs": [
     "--extension-pkg-whitelist=dlib,cv2"
   ],
-  "python.linting.pylamaEnabled":true,
+  "python.linting.flake8Enabled": true,
   "python.linting.pylamaArgs": [
     "-i E501"
+  ],
+  "python.linting.flake8Args": [
+    "--ignore=E501"
   ],
   "coc.source.buffer.enable": false,
   "coc.preferences.formatOnType": false,
