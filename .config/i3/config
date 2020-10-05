@@ -3,8 +3,8 @@ client.focused          #4c7899 #285577 #ffffff #2e9ef4   #70ACB7
 
 # for i3-gaps
 for_window [class="^.*"] border pixel 1
-gaps inner 5
-gaps outer 5
+gaps inner 3
+gaps outer 3
 
 set $mod Mod4
 
@@ -51,7 +51,7 @@ for_window [class="^Pidgin$" window_role="^conversation$"] resize grow width 0 p
 #for_window [class="Slack"] move container to workspace 2, floating enable, resize set 1280 900, move position center, resize grow right 300
 
 # Program Workspaces (xprop)
-assign [class="Mumble"]                        $workspace2
+assign [class="Mumble"]                        $workspace1
 assign [class="Slack"]                         $workspace8
 assign [class="Google-chrome"]                 $workspace3
 assign [class="Brave-browser"]                 $workspace3
@@ -71,8 +71,8 @@ font pango:System San Francisco Display Regular 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Shift+Return exec --no-startup-id /sbin/st
-bindsym $mod+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/alacritty
+bindsym $mod+Return exec --no-startup-id /sbin/st
+bindsym $mod+Shift+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/alacritty
 bindsym $mod+BackSpace exec --no-startup-id ~/bin/newsession.sh
 
 # kill focused window
