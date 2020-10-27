@@ -15,7 +15,7 @@ function highlight() {
     /usr/bin/grep -E --color=auto "$@|";
 }
 
-export BROWSER=brave
+export BROWSER=google-chrome-stable
 export LESS=-Xr
 
 if [ -x "$(which nvim)" ]; then
@@ -61,6 +61,10 @@ if [ -f "$ZSH/oh-my-zsh.sh" ]; then
     fi
     ZSH_CUSTOM=~/.oh-my-zsh/custom
     source $ZSH/oh-my-zsh.sh
+
+    # Simple term cannot display the weird X that is default
+    ZSH_THEME_GIT_PROMPT_DIRTY="%{%}) %{%}*"
+
 fi
 
 unsetopt share_history
@@ -77,8 +81,4 @@ if [ -n "${DISPLAY}" ]; then
   ~/bin/keyboard.sh
 fi
 
-if [ -f ~/.zshrc.work ]; then
-  source ~/.zshrc.work
-fi
-
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

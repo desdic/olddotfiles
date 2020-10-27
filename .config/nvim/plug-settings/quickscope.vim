@@ -8,7 +8,7 @@ augroup qs_colors
 augroup END
 
 " Disable long lines
-let g:qs_max_chars=100
+let g:qs_max_chars=150
 
 " Blacklist types
 let g:qs_buftype_blacklist = ['terminal', 'nofile']

@@ -46,7 +46,8 @@ nnoremap <Leader>qd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
 " nnoremap <C-l> <C-w>l
 
 " Select all
-map <Leader>a ggVG
+" map <Leader>aa ggVG
+map <Leader>a :Ag!<CR>
 
 map <Leader>l :redraw!<CR>
 "map <Leader>p :set paste<CR> i

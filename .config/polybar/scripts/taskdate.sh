@@ -9,7 +9,7 @@ DUETODAY=""
 OK=""
 
 #FORMAT=$(LC_TIME=en_US.UTF-8 /usr/bin/date +"%V - %A %e %B %Y - %H:%M")
-FORMAT=$(LC_TIME=en_US.UTF-8 /usr/bin/date +"%a %d/%m/%Y - %H:%M")
+FORMAT=$(/usr/bin/date +"%a %d/%m/%Y - %H:%M")
 
 #B=" Week ${FORMAT} "
 B=" ${FORMAT} "

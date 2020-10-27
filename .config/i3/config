@@ -258,7 +258,7 @@ exec --no-startup-id /sbin/xss-lock -- '/home/kgn/bin/imagelock.sh' &
 exec_always --no-startup-id /sbin/optimus-manager-qt &
 #exec ~/bin/locker.sh &
 exec_always --no-startup-id ~/bin/keyboard.sh
-exec --no-startup-id /usr/bin/clipit&
+exec --no-startup-id /sbin/copyq&
 exec --no-startup-id /sbin/nitrogen --restore
 exec --no-startup-id /sbin/blueman-applet&
 #exec --no-startup-id /usr/bin/xsetroot -solid "#111111"

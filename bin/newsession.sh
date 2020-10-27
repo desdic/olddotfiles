@@ -11,16 +11,16 @@ RES=$(${TMUX} ls -F "#{session_name}_#{?session_attached,attached,not_attached}"
 case ${RES} in
   work_attached)
     LANG=da_US.UTF-8 /usr/bin/st -n work -- ${TMUX} new-window -t work
-    #LANG=da_US.UTF-8 ${TMUX} new-window -t work
+    #LANG=da_US.UTF-8 /sbin/alacritty --class work -e ${TMUX} new-window -t work
     ;;
   work_not_attached)
     LANG=da_US.UTF-8 /usr/bin/st -n work -- ${TMUX} attach -t work
-    #LANG=da_US.UTF-8 /sbin/alacritty -e ${TMUX} attach -t work
+    #LANG=da_US.UTF-8 /sbin/alacritty --class work -e ${TMUX} attach -t work
     ;;
   *)
     ${TMUX} new-session -s work -d
     LANG=da_US.UTF-8 /usr/bin/st -n work -- ${TMUX} attach -t work
-    #LANG=da_US.UTF-8 /sbin/alacritty -e ${TMUX} attach -t work
+    #LANG=da_US.UTF-8 /sbin/alacritty --class work -e ${TMUX} attach -t work
     ;;
 esac
 #if /usr/bin/tmux ls|grep -q work:; then

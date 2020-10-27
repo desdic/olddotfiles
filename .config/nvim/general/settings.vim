@@ -52,8 +52,8 @@ set noswapfile
 " Set leader to ,
 let mapleader=','
 
-" Make it obvious where 80 characters is
-set textwidth=80
+" Don't add newlines after 80 chars
+set textwidth=0
 
 " Set relative numbers
 set number relativenumber

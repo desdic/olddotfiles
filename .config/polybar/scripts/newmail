@@ -8,12 +8,14 @@ do
   acc="$(echo "$account" | sed "s/.*\///")"
   newcount=$(find "$HOME/.local/share/mail/$acc/INBOX/new/" "$HOME/.local/share/mail/$acc/Inbox/new/" "$HOME/.local/share/mail/$acc/inbox/new/" -type f 2> /dev/null | wc -l)
   if [ "$newcount" -gt "0" ]; then
-    RES="${acc}:${newcount} ${RES}"
+    # RES="${acc}:${newcount} ${RES}"
+    echo " "
   fi
 done
 
 if [ -n "${RES}" ]; then
-  echo " ${RES}"
+  echo "${RES}"
+  #echo " ${RES}"
   #echo "📨 ${RES}"
 else
   # echo " 0"
