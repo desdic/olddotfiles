@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TASK="/usr/bin/task"
+TASK="/sbin/task"
 OVERDUE=""
 #OVERDUE="🗓"
 #DUETODAY="🗓"
