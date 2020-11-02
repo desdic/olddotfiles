@@ -26,7 +26,7 @@ call plug#begin(g:plugin_path)
     Plug 'scrooloose/nerdcommenter'
 
     " Autocompletion
-    Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " :CocInstall coc-tsserver coc-yaml coc-python coc-pairs coc-highlight coc-snippets coc-go coc-css
 
     Plug 'plasticboy/vim-markdown'
