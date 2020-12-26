@@ -1,0 +1,155 @@
+input type:keyboard {
+  repeat_delay 300
+  repeat_rate 50
+  xkb_layout us
+  xkb_variant altgr-intl
+  xkb_options caps:escape
+  xkb_file ~/.xkb/keymap/custom
+}
+
+output eDP-1 scale 1
+
+xwayland enable
+default_border pixel 1
+
+gaps inner 1
+# gaps outer 3
+
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+
+for_window [app_id="dino"] opacity set 0.9
+for_window [app_id="Alacritty"] opacity set 0.9
+#for_window [class="Brave"] opacity set 0.7
+for_window [app_id="Alacritty"] border pixel 1
+for_window [shell="xwayland"] title_format "%title [XWayland]"
+
+for_window [app_id="Google-chrome-unstable"] border pixel 1
+for_window [app_id="Google-chrome-unstable"] inhibit_idle fullscreen
+for_window [app_id="telegramdestop"] border pixel 1
+for_window [app_id="Chromium"] border pixel 1
+for_window [app_id="Chromium"] inhibit_idle fullscreen
+for_window [app_id="^.*"] inhibit_idle fullscreen
+for_window [app_id="Chromium" title="Open Files"] floating enable
+for_window [app_id="firefox" title="Firefox — Sharing Indicator"] {
+  kill
+}
+
+assign [instance="work"] workspace 4
+assign [class="Steam"] workspace 6
+assign [class="Code"] workspace 9
+assign [class="Google-chrome"] workspace 3  # X11
+assign [app_id="Google-chrome"] workspace 3 # Wayland
+
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+bar splith
+bindsym $mod+minus splitv
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+c reload
+
+bindsym $mod+Shift+x exec loginctl lock-session
+bindsym Print exec grimshot save area
+bindsym $mod+Return exec /sbin/alacritty
+bindsym $mod+s exec /sbin/spotify
+bindsym $mod+g exec /sbin/google-chrome-stable
+bindsym $mod+c exec wl-paste -p|wl-copy
+
+bindsym $mod+d exec ~/.config/polybar/scripts/launcher-alt
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym $mod+p exec playerctl play-pause
+bindsym $mod+Shift+p exec --no-startup-id /sbin/bwmenu
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+
+bindsym --to-code {
+  $mod+h focus left
+  $mod+j focus down
+  $mod+k focus up
+  $mod+l focus right
+}
+
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+bar {
+  position top
+  swaybar_command waybar
+
+  colors {
+    statusline #ffffff
+  }
+}
+
+exec swayidle -w \
+         timeout 60 'swaylock -f -c 000000' \
+         timeout 90 'swaymsg "output * dpms off"' \
+              resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000' \
+         lock 'swaylock -f -c 000000'
+
+#exec /sbin/copyq
+exec wl-paste -pw wl-copy
+
+set $gnome-schema org.gnome.desktop.interface
+exec_always "systemctl --user import-environment"
+# exec_always {
+#     gsettings set $gnome-schema gtk-theme 'NumixSolarizedDarkBlue'
+#     gsettings set $gnome-schema icon-theme 'Adwaita'
+#     gsettings set $gnome-schema cursor-theme 'Adwaita'
+# }

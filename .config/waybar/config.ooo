@@ -1,0 +1,122 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    // "height": 34, // Waybar height
+    // "width": 1280, // Waybar width
+    // Choose the order of the modules
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode"
+    ],
+    "modules-center": [
+//		"sway/window",
+      "custom/nowplaying"
+	],
+    "modules-right": [
+        "idle_inhibitor",
+        "pulseaudio",
+        "network",
+        "cpu",
+        "memory",
+        "disk",
+        "battery",
+        "clock",
+        "tray"
+    ],
+    // Modules configuration
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "disable-scroll-wraparound": true,
+        "all-outputs": false,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
+	"sway/window": {
+    	"format": "{} | ",
+    	"max-length": 50
+	},
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "idle_inhibitor": {
+        "format": "<span>{icon}</span>",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "memory": {
+        "interval": 30,
+        "format": "{}% ",
+        "max-length": 10
+    },
+    "disk": {
+        "interval": 30,
+//        "format": "{percentage_free}%",
+        "format": "{free} 💽",
+        "path": "/mnt/rootbtrfs"
+    },
+    "battery": {
+        "bat": "BAT0",
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-icons": ["", "", "", "", ""],
+        "max-length": 25
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        "format": "{:%a, %b %d | %H:%M}",
+        "timezone":"Europe/Copenhagen",
+        "timezones":["Europe/Copenhagen","UTC"],
+        "tooltip-format": "{:%Y-%m-%d | %H:%M}",
+        "format-alt": "{:%Y-%m-%d}",
+        "interval": 1
+    },
+    "cpu": {
+        "format": "{usage}% "
+    },
+    "network": {
+      "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+      "format-wifi": "{essid} {signalStrength}",
+        "format-disconnected": "Disconnected ⚠",
+      	"interval": 3
+    },
+    "pulseaudio": {
+        //"scroll-step": 1,
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/nowplaying": {
+        "interval": 2,
+        "format": "{}",
+        "max-length": 80,
+        "escape": true,
+        "exec": "$HOME/.config/waybar/nowplaying.sh"
+    }
+}
