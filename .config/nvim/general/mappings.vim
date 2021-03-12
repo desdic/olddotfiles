@@ -6,6 +6,10 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 map <C-n> :bnext<CR>
 " Ctrl + p change buffer
 map <C-p> :bprevious<CR>
+
+" nnoremap <Tab> :bnext<CR>
+" nnoremap <S-Tab> :bprevious<CR>
+
 " ,n new buffer
 nmap <leader>n :enew<CR>
 " ,q quit buffer

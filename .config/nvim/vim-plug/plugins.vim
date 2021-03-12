@@ -12,10 +12,11 @@ call plug#begin(g:plugin_path)
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
 
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
 
     " Color theme
-    Plug 'dracula/vim', { 'as': 'dracula' }
+    " Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'tomasiser/vim-code-dark'
 
     " Nerdtree + icons
@@ -35,4 +36,9 @@ call plug#begin(g:plugin_path)
     Plug 'Shougo/neosnippet-snippets'
 
     Plug 'unblevable/quick-scope'
+
+    Plug 'editorconfig/editorconfig-vim'
+
+    Plug 'christianchiarulli/nvcode-color-schemes.vim'
+    Plug 'nvim-treesitter/nvim-treesitter'
 call plug#end()

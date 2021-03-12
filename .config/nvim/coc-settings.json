@@ -7,16 +7,49 @@
     "--extension-pkg-whitelist=dlib,cv2"
   ],
   "python.linting.flake8Enabled": true,
-  "python.linting.pylamaArgs": [
-    "-i E501"
+  "python.linting.flake8Args":[
+    "--ignore=E501,W191"
   ],
-  "python.linting.flake8Args": [
-    "--ignore=E501"
-  ],
+  "python.linting.mypyEnabled": true,
   "coc.source.buffer.enable": false,
   "coc.preferences.formatOnType": false,
   "coc.preferences.useQuickfixForLocations": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "go"
-  ]
+  ],
+  "languageserver": {
+    "go": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "trace.server": "verbose",
+      "filetypes": ["go"]
+    }
+  },
+  "suggest.completionItemKindLabels": {
+    "method": "  ",
+    "function": "  ",
+    "variable": "[]",
+    "field": "  ",
+    "typeParameter": "<>",
+    "constant": "  ",
+    "class": " פּ ",
+    "interface": " 蘒",
+    "struct": "  ",
+    "event": "  ",
+    "operator": "  ",
+    "module": "  ",
+    "property": "  ",
+    "enum": " 練",
+    "reference": "  ",
+    "keyword": "  ",
+    "file": "  ",
+    "folder": " ﱮ ",
+    "color": "  ",
+    "unit": " 塞 ",
+    "snippet": "  ",
+    "text": "  ",
+    "constructor": "  ",
+    "value": "  ",
+    "enumMember": "  "
+  }
 }

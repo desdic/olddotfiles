@@ -36,8 +36,8 @@ syntax on
 set background=dark
 "color dracula
 " colorscheme codedark
-colorscheme Tomorrow-Night
-let g:airline_theme = 'codedark'
+" colorscheme Tomorrow-Night
+colorscheme nvcode
 
 " Disable Background Color Erase (BCE) so that color schemes
 " render properly when inside 256-color tmux and GNU screen.
@@ -46,7 +46,7 @@ if &term =~ '256color'
 endif
 
 " Use systems clipboard
-" set clipboard+=unnamedplus
+" set clipboard=unnamedplus
 
 set tabstop=2
 set shiftwidth=2
@@ -88,7 +88,10 @@ set number relativenumber
 set lazyredraw
 
 " Highlight current line
-" set cursorline
+set cursorline
+
+" Highlight current column
+"set cursorcolumn
 
 " Briefly move the cursor to the matching brace
 set showmatch
@@ -146,3 +149,14 @@ set hidden
 
 " Show the (partial) command as it’s being typed
 set showcmd
+
+" stop on _ with b and w
+set iskeyword-=_
+
+" Search case insensitive
+set ignorecase
+" If contain a uppercase be case sensitive
+set smartcase
+
+let g:python_host_prog = '/sbin/python2'
+let g:python3_host_prog = '/sbin/python3'
