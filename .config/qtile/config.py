@@ -5,6 +5,7 @@
 # Copyright (c) 2012 Craig Barnes
 # Copyright (c) 2013 horsik
 # Copyright (c) 2013 Tao Sauvage
+# Copyright (c) 2021 Kim Gert Nielsen
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -224,14 +225,6 @@ widget_defaults = dict(
     background=colors[1],
 )
 
-widget_spotify = dict(
-    font='Ubuntu Mono',
-    fontsize=12,
-    padding=3,
-    foreground=colors[8],
-    background=colors[1],
-)
-
 extension_defaults = widget_defaults.copy()
 
 screens = [
@@ -277,9 +270,6 @@ screens = [
                                      update_interval=2,
                                      foreground=colors[2],
                                      background=colors[1]),
-
-                # widget.TextBox('|'),
-                # widget.DF(partition="/", format='{p} ({uf}{m}|{r:.0f}%)'),
 
                 widget.TextBox('|'),
                 widget.TextBox("CPU"),
