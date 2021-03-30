@@ -1,0 +1,5 @@
+#!/bin/sh
+# This works with i3 but dwm does not support it
+# wmctrl -r $1 -b add,demands_attention
+# Gets attention in dwm but does not switch to workspace
+wmctrl -a $1

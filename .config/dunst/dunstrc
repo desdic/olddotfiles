@@ -28,6 +28,14 @@
     icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/:/usr/share/icons/Adwaita/16x16/legacy/:/usr/share/icons/hicolor/scalable/apps/
     class = Dunst
 
+[slack]
+  appname = "Slack"
+  summary = "*" 
+  # this is the filter criterion applied to the message, see below
+  # urgency = critical # those attributes could be used to set details of the message in the script called below
+  # format = "" # could be used to alter the popup text, see below
+  script = ~/.config/dunst/dunst-urgent-notification # this is the script that is called, see below
+
 [frame]
     width = 1
 #    color = "#383838"
