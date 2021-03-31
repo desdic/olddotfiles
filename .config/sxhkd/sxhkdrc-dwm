@@ -1,0 +1,36 @@
+# -----------------------------------------------------------------------------
+# wm independent hotkeys
+# vim:ft=sxhkdrc
+# -----------------------------------------------------------------------------
+# Get key name
+# xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
+
+super + m
+	alacritty --class mutt -e zsh -c 'source ~/.zshrc && /sbin/neomutt'
+
+super + shift + x
+	$HOME/bin/imagelock.sh
+
+super + g
+	/sbin/google-chrome-stable
+
+super + BackSpace
+	$HOME/bin/newsession.sh
+
+super + shift + p
+	/sbin/bwmenu
+
+super + s
+	/sbin/spotify
+
+super + {p, bracketleft, bracketright}
+	/sbin/playerctl -p spotify {play-pause, previous, next}
+
+super + shift + {Prior, Next}
+ 	$HOME/bin/spotifyvolume.sh {up, down}
+
+{XF86AudioRaiseVolume, XF86AudioLowerVolume}
+ 	$HOME/bin/spotifyvolume.sh {up, down}
+
+super + Print
+	$HOME/bin/screenshot.sh
