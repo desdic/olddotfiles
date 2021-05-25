@@ -12,8 +12,12 @@ call plug#begin(g:plugin_path)
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
 
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
+    "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    "Plug 'junegunn/fzf.vim'
+
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
 
     " Color theme
     " Plug 'dracula/vim', { 'as': 'dracula' }
@@ -40,5 +44,5 @@ call plug#begin(g:plugin_path)
     Plug 'editorconfig/editorconfig-vim'
 
     Plug 'christianchiarulli/nvcode-color-schemes.vim'
-    Plug 'nvim-treesitter/nvim-treesitter'
+    "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()

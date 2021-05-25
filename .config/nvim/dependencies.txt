@@ -1,0 +1,15 @@
+ripgrep
+flake8
+shellcheck
+
+-- language servers
+ruby-solargraph
+efm-langserver
+vscode-json-languageserver
+lua-language-server
+gopls
+pyright
+bash-language-server
+yaml-language-server
+clang
+

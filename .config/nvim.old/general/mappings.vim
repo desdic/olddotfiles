@@ -345,6 +345,13 @@ augroup filetype_proto
     autocmd FileType proto set tabstop=2
 augroup END
 
+augroup filetype sxhkdrc
+    autocmd!
+    autocmd FileType sxhkdrc set noexpandtab
+    autocmd FileType sxhkdrc set tabstop=2
+    autocmd FileType sxhkdrc set shiftwidth=2
+augroup END
+
 augroup filetype_systemd
     au BufNewFile,BufRead */systemd/*.{automount,mount,path,service,socket,swap,target,timer} setfiletype systemd
     " Systemd overrides
