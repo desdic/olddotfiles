@@ -20,7 +20,8 @@ super + BackSpace
 super + shift + p
 	/sbin/bwmenu
 
-super + s
+~super + s
+	/sbin/xdotool key super+9; \
 	/sbin/spotify
 
 super + {p, bracketleft, bracketright}
