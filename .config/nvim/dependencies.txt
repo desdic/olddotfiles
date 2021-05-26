@@ -1,5 +1,6 @@
 ripgrep
 flake8
+mypy
 shellcheck
 
 -- language servers
@@ -12,4 +13,3 @@ pyright
 bash-language-server
 yaml-language-server
 clang
-

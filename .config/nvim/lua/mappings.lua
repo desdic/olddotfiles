@@ -31,6 +31,8 @@ api.nvim_set_keymap('i', '<C-m-k>', '<Esc>:m .-2<CR>==gi', {noremap = true})
 api.nvim_set_keymap('v', '<C-m-j>', ':m \'>+1<CR>gv=gv', {noremap = true})
 api.nvim_set_keymap('v', '<C-m-k>', ':m \'<-2<CR>gv=gv', {noremap = true})
 
+api.nvim_set_keymap('n', '<Leader>qa', ':qa!<CR>', {noremap = true})
+
 -- jj as escape
 api.nvim_set_keymap('i', 'jj', '<ESC>', {})
 
@@ -45,6 +47,7 @@ api.nvim_set_keymap('n', '<Leader>fh', ':lua require("telescope.builtin").help_t
 api.nvim_set_keymap('n', '<Leader>vrc', ':lua require("config.telescope").search_nvim()<CR>', {noremap=true})
 -- }}
 
+api.nvim_set_keymap('n', '<Leader>pack', ':PackerSync<CR>', {noremap=true})
 
 -- {{ NvimTree
 api.nvim_set_keymap('n', '<Leader>n',':NvimTreeToggle<CR>', {noremap=true})

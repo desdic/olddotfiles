@@ -1,5 +1,7 @@
 -- requires efm-langserver installed
 
+require('globals')
+
 local python_arguments = {}
 local flake8 = {
   LintCommand = "/usr/bin/flake8 --ignore=E501 --stdin-display-name ${INPUT} -",

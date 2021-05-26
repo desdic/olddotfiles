@@ -1,5 +1,4 @@
 local utils = require('utils')
-local api = vim.api
 local cmd = vim.cmd
 
 local auto_formatters = {}
@@ -16,7 +15,6 @@ utils.define_augroups({
     {'BufEnter','*','set formatoptions-=cro'}, -- Don't continue comments
     {'BufWritePre','/mnt/*','setlocal noundofile,setlocal shada="NONE"'}, -- Disable undo on these locations since
     {'BufWritePre','/boot/*','setlocal noundofile,setlocal shada="NONE"'}, -- they are automounts
-    {'BufWritePre','*','setlocal noswapfile'},
     {'BufReadPost','*',':Watch %'} -- reload file on external changes
   },
   _text = {

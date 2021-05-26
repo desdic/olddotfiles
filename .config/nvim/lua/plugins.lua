@@ -50,24 +50,23 @@ return require("packer").startup({
     -- Theme/colors
     use {"romgrk/barbar.nvim", opt = true}
     use {"glepnir/galaxyline.nvim", opt = true}
-    use {'christianchiarulli/nvcode-color-schemes.vim'}
-    use {'tomasiser/vim-code-dark'}
+    use {'christianchiarulli/nvcode-color-schemes.vim', opt = true}
+    use {'tomasiser/vim-code-dark', opt = true}
 
     -- Snippets
     -- use {'Shougo/neosnippet-snippets'}
     -- use {'honza/vim-snippets'}
 
-    use {'kyazdani42/nvim-tree.lua'}
-    use {'terrortylor/nvim-comment'}
+    use {'kyazdani42/nvim-tree.lua', opt = true}
+    use {'terrortylor/nvim-comment', opt = true}
 
     use {'windwp/nvim-autopairs', opt = true}
     use {"lewis6991/gitsigns.nvim", opt = true}
 
     -- use {'scrooloose/nerdcommenter'}
     use {'unblevable/quick-scope'}
-    use {'editorconfig/editorconfig-vim'}
+    use {'editorconfig/editorconfig-vim', opt = true}
 
-    use {'p00f/nvim-ts-rainbow', opt = true}
     use {'nvim-telescope/telescope.nvim', opt = true}
     use {'nvim-telescope/telescope-fzy-native.nvim', opt = true}
     use {'nvim-lua/popup.nvim'}
@@ -83,7 +82,8 @@ return require("packer").startup({
     use {'golang/vscode-go', opt = true}
     use {'rafamadriz/friendly-snippets', opt = true}
     use {'hrsh7th/nvim-compe', requires = {{'hrsh7th/vim-vsnip'}, {'hrsh7th/vim-vsnip-integ'}}}
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+
+    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', requires = {'p00f/nvim-ts-rainbow'}}
     -- use {'nvim-treesitter/nvim-treesitter', cond = "vim.fn.has('nvim-0.5') == 1", run = ':TSUpdate'}
 
     require_plugin('nvim-lspconfig')
@@ -94,10 +94,14 @@ return require("packer").startup({
     require_plugin('barbar.nvim')
     require_plugin('gitsigns.nvim')
     require_plugin('galaxyline.nvim')
-    require_plugin('nvim-ts-rainbow')
     require_plugin('plenary.nvim')
     require_plugin('telescope.nvim')
     require_plugin('telescope-fzy-native.nvim')
+    require_plugin('nvcode-color-schemes.vim')
+    require_plugin('vim-code-dark')
+    require_plugin('nvim-tree.lua')
+    require_plugin('nvim-comment')
+    require_plugin('editorconfig-vim')
   end,
   config = {
     git = {clone_timeout = false},

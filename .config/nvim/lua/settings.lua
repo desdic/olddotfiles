@@ -1,4 +1,4 @@
--- local cmd = vim.cmd
+local cmd = vim.cmd
 -- local api = vim.api
 local global = vim.g
 local option = vim.o
@@ -7,6 +7,7 @@ local window_option = vim.wo
 local indent = 2
 
 global.mapleader = ',' -- Set leader
+global.shada = "NONE"
 
 option.shortmess = option.shortmess .. 'I' -- Turn off splash
 option.shortmess = option.shortmess .. 'c' -- Avoid showing message extra message when using completion
@@ -24,7 +25,7 @@ option.incsearch = true
 option.hlsearch = false -- No search highlight
 option.backup = false -- Don't use swap or backup
 option.writebackup = false
-option.swapfile = false -- TODO this dosn't work
+
 option.showmatch = true -- Show matching braces
 option.synmaxcol = 500 -- Stop syntax highlight on long lines
 option.wrap = false -- Don't wrap lines
@@ -33,8 +34,7 @@ option.scrolloff = 10 -- Always keep 10 lines visible
 option.errorbells = false -- Disable error bells
 option.showcmd = true -- Show the (partial) command as it’s being typed
 
--- TODO
-option.undodir = '/home/kgn/.config/nvim/undo' -- Save and set undo/redo levels
+option.undodir = "$HOME/.config/nvim/undo" -- Save and set undo/redo levels
 option.undofile = true
 option.undolevels = 100
 option.undoreload = 100
@@ -52,6 +52,4 @@ buffer_option.expandtab = true
 buffer_option.autoindent = true
 buffer_option.smartindent = true
 
--- print(vim.o.listchars)
--- lua print(vim.bo.formatoptions)
-
+cmd("set noswapfile")

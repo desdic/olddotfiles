@@ -17,42 +17,33 @@ O = {
         highlight = {enabled = true, disable={"brainfuck"}},
         playground = {enabled = true},
         rainbow = {
-          enabled = false,
+          enable = true,
           max_file_lines = 1000 -- Do not enable for files with more than 1000 lines, int
         }
     },
 
     database = {save_location = '~/.config/nvcode_db', auto_execute = 1},
     python = {
-        linter = '',
-        -- @usage can be 'yapf', 'black'
-        formatter = '',
         autoformat = false,
         isort = false,
         diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true},
         analysis = {type_checking = "basic", auto_search_paths = true, use_library_code_types = true}
     },
     lua = {
-        -- @usage can be 'lua-format'
-        formatter = '',
         autoformat = false,
         diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true}
     },
     sh = {
-        -- @usage can be 'shellcheck'
-        linter = '',
-        -- @usage can be 'shfmt'
-        formatter = '',
         autoformat = false,
         diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true}
     },
     json = {
-        -- @usage can be 'prettier'
-        formatter = '',
         autoformat = false,
         diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true}
     },
-    clang = {diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true}},
+    clang = {
+      diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true}
+    },
     ruby = {
       diagnostics = {virtualtext = {spacing = 0, prefix = ""}, signs = true, underline = true},
       filetypes = {'rb', 'erb', 'rakefile'}
