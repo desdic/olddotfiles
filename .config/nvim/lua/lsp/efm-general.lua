@@ -6,7 +6,14 @@ local flake8 = {
   lintStdin = true,
   lintFormats = {"%f:%l:%c: %m"}
 }
+
+local mypy = {
+  LintCommand = "/sbin/mypy mypy --show-column-numbers",
+  lintFormats = { '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'}
+}
+
 table.insert(python_arguments, flake8)
+table.insert(python_arguments, mypy)
 
 local sh_arguments = {}
 local shellcheck = {

@@ -42,7 +42,7 @@ api.nvim_set_keymap('n', '<Leader>ff', ':lua require("telescope.builtin").find_f
 api.nvim_set_keymap('n', '<Leader>fg', ':lua require("telescope.builtin").live_grep()<CR>', {})
 api.nvim_set_keymap('n', '<Leader>fb', ':lua require("telescope.builtin").buffers()<CR>', {})
 api.nvim_set_keymap('n', '<Leader>fh', ':lua require("telescope.builtin").help_tags()<CR>', {})
-api.nvim_set_keymap('n', '<Leader>vrc', ':lua require("config.telescope").search_dotfiles()<CR>', {noremap=true})
+api.nvim_set_keymap('n', '<Leader>vrc', ':lua require("config.telescope").search_nvim()<CR>', {noremap=true})
 -- }}
 
 
@@ -56,7 +56,7 @@ api.nvim_set_keymap('n', '<Leader>f',':NvimTreeFindFile<CR>', {noremap=true})
 -- {{ LSPSaga
 api.nvim_set_keymap('n', 'K',            '<cmd>lua require("lspsaga.hover").render_hover_doc()<CR>', {})
 api.nvim_set_keymap('n', '<Leader>ca',   '<cmd>lua require("lspsaga.codeaction").code_action()<CR>', {noremap=true})
-api.nvim_set_keymap('n', '<C-j>',        '<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_prev()<CR>', {noremap=true, silent=true})
+api.nvim_set_keymap('n', '<C-k>',        '<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_prev()<CR>', {noremap=true, silent=true})
 api.nvim_set_keymap('n', '<C-j>',        '<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_next()<CR>', {noremap=true, silent=true})
 api.nvim_set_keymap('n', '<Leader>gr',   '<cmd>lua require("lspsaga.rename").rename()<CR>', {noremap=true, silent=true})
 api.nvim_set_keymap('n', '<C-f>',        '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>)', {noremap=true, silent=true})
