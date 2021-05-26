@@ -1,6 +1,6 @@
 export GOPATH=${HOME}/go
 
-PATH="${HOME}/bin:/opt/chefdk/embedded/bin/:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin"
+PATH="${HOME}/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/opt/chefdk/embedded/bin/"
 for p in /usr/bin/vendor_perl /usr/bin/core_perl ${GOPATH}/bin ${HOME}/.gem/ruby/2.7.0/bin ${HOME}/.gem/ruby/2.6.0/bin ${HOME}/.rvm/bin
 do
   if [ -d "${p}" ]; then
@@ -29,8 +29,8 @@ alias view="${EDITOR} -M"
 export LSCOLORS="Exfxcxdxbxegedabagacad"
 
 export HISTFILE=~/.zsh_history
-export HISTSIZE=5000
-export SAVEHIST=5000
+export HISTSIZE=50000
+export SAVEHIST=50000
 
 export TERMINAL='st'
 
