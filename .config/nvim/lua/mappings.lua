@@ -42,6 +42,7 @@ api.nvim_set_keymap('n', '<Leader>ff', ':lua require("telescope.builtin").find_f
 api.nvim_set_keymap('n', '<Leader>fg', ':lua require("telescope.builtin").live_grep()<CR>', {})
 api.nvim_set_keymap('n', '<Leader>fb', ':lua require("telescope.builtin").buffers()<CR>', {})
 api.nvim_set_keymap('n', '<Leader>fh', ':lua require("telescope.builtin").help_tags()<CR>', {})
+api.nvim_set_keymap('n', '<Leader>vrc', ':lua require("config.telescope").search_dotfiles()<CR>', {noremap=true})
 -- }}
 
 
@@ -61,9 +62,6 @@ api.nvim_set_keymap('n', '<Leader>gr',   '<cmd>lua require("lspsaga.rename").ren
 api.nvim_set_keymap('n', '<C-f>',        '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>)', {noremap=true, silent=true})
 api.nvim_set_keymap('n', '<C-b>',        '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>)', {noremap=true, silent=true})
 -- }}
-
-
-
 
 
 api.nvim_set_keymap('n', 'gd',' <cmd>lua vim.lsp.buf.definition()<CR>', {})
@@ -87,18 +85,3 @@ api.nvim_set_keymap('i', '<C-d>','compe#scroll({ \'delta\': -4 })', {noremap=tru
 
 -- barbar
 api.nvim_set_keymap('n', '<leader>b', ':BufferPick<CR>', {noremap = true, silent = true, expr = false})
-
--- organize imports sync
-function go_organize_imports_sync(timeout_ms)
-  local context = { source = { organizeImports = true } }
-  vim.validate { context = { context, 't', true } }
-  local params = vim.lsp.util.make_range_params()
-  params.context = context
-
-  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
-  if not result then return end
-  result = result[1].result
-  if not result then return end
-  edit = result[1].edit
-  vim.lsp.util.apply_workspace_edit(edit)
-end

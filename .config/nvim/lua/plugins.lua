@@ -68,9 +68,10 @@ return require("packer").startup({
     use {'editorconfig/editorconfig-vim'}
 
     use {'p00f/nvim-ts-rainbow', opt = true}
-    use {'nvim-telescope/telescope.nvim'}
+    use {'nvim-telescope/telescope.nvim', opt = true}
+    use {'nvim-telescope/telescope-fzy-native.nvim', opt = true}
     use {'nvim-lua/popup.nvim'}
-    use {'nvim-lua/plenary.nvim'}
+    use {'nvim-lua/plenary.nvim', opt = true}
 
     -- use {'nvim-lua/completion-nvim'}
 
@@ -94,6 +95,9 @@ return require("packer").startup({
     require_plugin('gitsigns.nvim')
     require_plugin('galaxyline.nvim')
     require_plugin('nvim-ts-rainbow')
+    require_plugin('plenary.nvim')
+    require_plugin('telescope.nvim')
+    require_plugin('telescope-fzy-native.nvim')
   end,
   config = {
     git = {clone_timeout = false},
