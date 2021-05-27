@@ -45,6 +45,7 @@ api.nvim_set_keymap('n', '<Leader>fg', ':lua require("telescope.builtin").live_g
 api.nvim_set_keymap('n', '<Leader>fb', ':lua require("telescope.builtin").buffers()<CR>', {})
 api.nvim_set_keymap('n', '<Leader>fh', ':lua require("telescope.builtin").help_tags()<CR>', {})
 api.nvim_set_keymap('n', '<Leader>vrc', ':lua require("config.telescope").search_nvim()<CR>', {noremap=true})
+api.nvim_set_keymap('n', '<Leader>notes', ':lua require("config.telescope").grep_notes()<CR>', {noremap=true})
 -- }}
 
 api.nvim_set_keymap('n', '<Leader>pack', ':PackerSync<CR>', {noremap=true})

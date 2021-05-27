@@ -80,4 +80,13 @@ M.search_nvim = function()
     })
 end
 
+function M.grep_notes()
+	local opts = {}
+	opts.search_dirs = {"$HOME/notes/"}
+	opts.prompt_prefix = '   '
+	opts.prompt_title = 'Search Notes'
+	opts.shorten_path = true
+	require'telescope.builtin'.live_grep(opts)
+end
+
 return M
