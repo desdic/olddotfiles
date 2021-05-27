@@ -72,7 +72,8 @@ api.nvim_set_keymap('n', 'gD',' <cmd>lua vim.lsp.buf.declaration()<CR>', {})
 api.nvim_set_keymap('n', 'gr',' <cmd>lua vim.lsp.buf.references()<CR>', {})
 api.nvim_set_keymap('n', 'gi',' <cmd>lua vim.lsp.buf.implementation()<CR>', {})
 
-
+-- Expand snippets via CTRL+k
+api.nvim_set_keymap('i', '<C-k>', 'v:lua.MUtils.completion_confirm()', {expr=true, silent=true})
 
 vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')
 
