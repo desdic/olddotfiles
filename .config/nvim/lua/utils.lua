@@ -1,19 +1,32 @@
 local nv_utils = {}
 
 -- organize imports sync
-function go_organize_imports_sync(timeout_ms)
-  local context = { source = { organizeImports = true } }
-  vim.validate { context = { context, 't', true } }
-  local params = vim.lsp.util.make_range_params()
-  params.context = context
+function go_organize_imports_sync(timeoutms)
+    local context = {source = {organizeImports = true}}
+    vim.validate {context = {context, 't', true}}
 
-  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
-  if not result then return end
-  result = result[1].result
-  if not result then return end
-  edit = result[1].edit
-  vim.lsp.util.apply_workspace_edit(edit)
+    local params = vim.lsp.util.make_range_params()
+    params.context = context
+
+    local method = 'textDocument/codeAction'
+    local resp = vim.lsp.buf_request_sync(0, method, params, timeoutms)
+
+    if not resp then return end
+
+    -- imports can be indexed 1 or 2
+    -- 1 is a file opened directly
+    -- 2 is a file opened via functions like goto definition
+    for _, v in next, resp, nil do
+      local result = v.result
+      if result and result[1] then
+        local edit = result[1].edit
+        vim.lsp.util.apply_workspace_edit(edit)
+      end
+    end
+    -- Always do formating
+    vim.lsp.buf.formatting()
 end
+
 
 -- Watch a file for changes
 local w = vim.loop.new_fs_event()
