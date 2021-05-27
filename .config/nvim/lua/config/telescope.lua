@@ -82,7 +82,7 @@ end
 
 function M.grep_notes()
 	local opts = {}
-	opts.search_dirs = {"$HOME/notes/"}
+	opts.search_dirs = {"~/notes/"}
 	opts.prompt_prefix = '   '
 	opts.prompt_title = 'Search Notes'
 	opts.shorten_path = true
