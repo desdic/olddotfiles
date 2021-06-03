@@ -1,10 +1,5 @@
 -- requires pyright installed
 
---require'lspconfig'.pyright.setup{
-  --cmd = {"/usr/bin/pyright-langserver", "--stdio"},
-  --capabilities = capabilities
---}
-
 require'lspconfig'.pyright.setup {
     cmd = {"/usr/bin/pyright-langserver", "--stdio"},
     on_attach = require'lsp'.common_on_attach,
@@ -19,11 +14,7 @@ require'lspconfig'.pyright.setup {
     },
     settings = {
       python = {
-        analysis = {
-          typeCheckingMode = O.python.analysis.type_checking,
-          autoSearchPaths = O.python.analysis.auto_search_paths,
-          useLibraryCodeForTypes = O.python.analysis.use_library_code_types
-        }
+        analysis = O.python.analysis,
       }
     }
 }

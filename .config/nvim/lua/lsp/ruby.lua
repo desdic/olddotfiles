@@ -1,8 +1,9 @@
 -- If you are using rvm, make sure to change below configuration
+-- Make sure that ruby < 3.x.x is installed since solargraph failed with 3.x
 require'lspconfig'.solargraph.setup {
-    cmd = { "/usr/bin/solargraph", "--stdio" },
+    cmd = { DATA_PATH .. "/lspinstall/ruby/solargraph/solargraph", "stdio"},
     capabilities = capabilities,
-    --on_attach = require'lsp'.common_on_attach,
+    on_attach = require'lsp'.common_on_attach,
     handlers = {
         ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
             virtual_text = O.ruby.diagnostics.virtual_text,
@@ -14,4 +15,3 @@ require'lspconfig'.solargraph.setup {
     },
     filetypes = O.ruby.filetypes,
 }
-

@@ -35,6 +35,8 @@ api.nvim_set_keymap('n', '<Leader>qa', ':qa!<CR>', {noremap = true})
 
 -- jj as escape
 api.nvim_set_keymap('i', 'jj', '<ESC>', {})
+api.nvim_set_keymap('i', 'ww', '<BS>', {})
+api.nvim_set_keymap('i', 'ff', '<CR>', {})
 
 api.nvim_set_keymap('n', '<leader><space>', ':nohlsearch<CR>', {noremap = true, silent = false, expr = false})
 

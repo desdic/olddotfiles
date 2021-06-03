@@ -1,3 +1,7 @@
+DATA_PATH = vim.fn.stdpath('data')
+CACHE_PATH = vim.fn.stdpath('cache')
+HOME_PATH = '/home/' .. vim.fn.expand('$USER')
+
 O = {
     auto_close_tree = 0,
     auto_complete = true,
@@ -27,7 +31,7 @@ O = {
         autoformat = false,
         isort = false,
         diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true},
-        analysis = {type_checking = "basic", auto_search_paths = true, use_library_code_types = true}
+        analysis = { autoSearchPaths = true, diagnosticMode = "openFilesOnly", useLibraryCodeForTypes = true,},
     },
     lua = {
         autoformat = false,
@@ -46,7 +50,7 @@ O = {
     },
     ruby = {
       diagnostics = {virtualtext = {spacing = 0, prefix = ""}, signs = true, underline = true},
-      filetypes = {'rb', 'erb', 'rakefile'}
+      filetypes = {'ruby', 'rb', 'erb', 'rakefile'}
     },
     golang = {
       diagnostics = {virtualtext = {spacing = 0, prefix = ""}, signs = true, underline = true},

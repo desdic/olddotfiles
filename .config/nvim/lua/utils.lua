@@ -11,11 +11,6 @@ function go_organize_imports_sync(timeoutms)
     local method = 'textDocument/codeAction'
     local resp = vim.lsp.buf_request_sync(0, method, params, timeoutms)
 
-    if not resp then return end
-
-    -- imports can be indexed 1 or 2
-    -- 1 is a file opened directly
-    -- 2 is a file opened via functions like goto definition
     for _, v in next, resp, nil do
       local result = v.result
       if result and result[1] then

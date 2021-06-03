@@ -15,7 +15,7 @@ local mypy = {
 }
 
 table.insert(python_arguments, flake8)
-table.insert(python_arguments, mypy)
+-- table.insert(python_arguments, mypy)
 
 local sh_arguments = {}
 local shellcheck = {
@@ -23,6 +23,10 @@ local shellcheck = {
   lintFormats = {'%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'}
 }
 table.insert(sh_arguments, shellcheck)
+
+local ruby_arguments = {}
+-- local rubocop = {formatCommand = "rubocop --format emacs --force-exclusion -a", formatStdin = true}
+-- table.insert(ruby_arguments, rubocop)
 
 require'lspconfig'.efm.setup{
   cmd = {"/usr/bin/efm-langserver"},
@@ -33,7 +37,8 @@ require'lspconfig'.efm.setup{
     rootMarkers = {".git/"},
     languages = {
       python = python_arguments,
-      sh = sh_arguments
+      sh = sh_arguments,
+      ruby = ruby_arguments,
     }
   },
   capabilities = capabilities
