@@ -1,6 +1,7 @@
 -- Automatically install packer.nvim at bootstrapping
 local execute = vim.api.nvim_command
 local fn = vim.fn
+
 local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -83,13 +84,10 @@ return require("packer").startup({
     use {'rafamadriz/friendly-snippets', opt = true}
     use {'hrsh7th/nvim-compe', requires = {{'hrsh7th/vim-vsnip'}, {'hrsh7th/vim-vsnip-integ'}}}
 
-    -- use {'ray-x/lsp_signature.nvim', opt = true}
-
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', requires = {'p00f/nvim-ts-rainbow'}}
     -- use {'nvim-treesitter/nvim-treesitter', cond = "vim.fn.has('nvim-0.5') == 1", run = ':TSUpdate'}
 
     require_plugin('nvim-lspconfig')
-    -- require_plugin('lsp_signature')
     require_plugin('lspsaga.nvim')
     require_plugin('vscode-go')
     require_plugin('friendly-snippets')
