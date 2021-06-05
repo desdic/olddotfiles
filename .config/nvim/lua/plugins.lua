@@ -93,7 +93,6 @@ return require("packer").startup({
     require_plugin('friendly-snippets')
     require_plugin('nvim-autopairs')
     require_plugin('barbar.nvim')
-    require_plugin('gitsigns.nvim')
     require_plugin('galaxyline.nvim')
     require_plugin('plenary.nvim')
     require_plugin('telescope.nvim')
@@ -103,6 +102,7 @@ return require("packer").startup({
     require_plugin('nvim-tree.lua')
     require_plugin('nvim-comment')
     require_plugin('editorconfig-vim')
+    require_plugin('gitsigns.nvim')
   end,
   config = {
     git = {clone_timeout = false},
