@@ -11,10 +11,12 @@ super + m
 super + shift + x
 	$HOME/bin/imagelock.sh
 
-super + g
+~super + g
+	/sbin/xdotool key super+3; \
 	/sbin/google-chrome-stable
 
-super + BackSpace
+~super + BackSpace
+	/sbin/xdotool key super+4; \
 	$HOME/bin/newsession.sh
 
 super + shift + p
