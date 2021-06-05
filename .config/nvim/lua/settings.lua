@@ -34,7 +34,7 @@ option.scrolloff = 10 -- Always keep 10 lines visible
 option.errorbells = false -- Disable error bells
 option.showcmd = true -- Show the (partial) command as it’s being typed
 
-option.undodir = "/home/kgn/.config/nvim/undo" -- Save and set undo/redo levels
+option.undodir = HOME_PATH .. "/.config/nvim/undo" -- Save and set undo/redo levels
 option.undofile = true
 option.undolevels = 100
 option.undoreload = 100
@@ -54,3 +54,4 @@ buffer_option.autoindent = true
 buffer_option.smartindent = true
 
 cmd("set noswapfile")
+cmd("filetype plugin on")
