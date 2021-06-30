@@ -1,7 +1,7 @@
 require'compe'.setup {
   enabled = true;
   autocomplete = true;
-  debug = true;
+  debug = false;
   min_length = 1;
   preselect = 'disable'; -- Auto select first element
   throttle_time = 80;

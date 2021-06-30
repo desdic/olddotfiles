@@ -89,7 +89,6 @@ gls.left[3] = {
 --         highlight = {colors.grey, colors.bg}
 --     }
 -- }
--- 
 
 gls.right[1] = {
     DiagnosticError = {provider = 'DiagnosticError', icon = '  ', highlight = {colors.error_red, colors.bg}}

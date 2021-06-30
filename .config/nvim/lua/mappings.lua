@@ -8,8 +8,10 @@ api.nvim_set_keymap('n', '<C-\\>', ':vs<CR>', {})
 -- api.nvim_set_keymap('', '<C-n>', ':bnext<CR>', {})
 -- api.nvim_set_keymap('', '<C-p>', ':bprevious<CR>', {})
 
-api.nvim_set_keymap('n', '<C-p>', ':BufferPrevious<CR>', {})
-api.nvim_set_keymap('n', '<C-n>', ':BufferNext<CR>', {})
+-- api.nvim_set_keymap('n', '<C-p>', ':BufferPrevious<CR>', {})
+-- api.nvim_set_keymap('n', '<C-n>', ':BufferNext<CR>', {})
+api.nvim_set_keymap('n', '<C-p>', ':BufferLineCyclePrev<CR>', {})
+api.nvim_set_keymap('n', '<C-n>', ':BufferLineCycleNext<CR>', {})
 --api.nvim_set_keymap('n', '<Leader>q', ':BufferClose<CR>', {})
 
 
@@ -35,14 +37,17 @@ api.nvim_set_keymap('n', '<Leader>qa', ':qa!<CR>', {noremap = true})
 
 -- jj as escape
 api.nvim_set_keymap('i', 'jj', '<ESC>', {})
-api.nvim_set_keymap('i', 'ww', '<BS>', {})
-api.nvim_set_keymap('i', 'ff', '<CR>', {})
+-- api.nvim_set_keymap('i', 'ww', '<BS>', {})
+-- api.nvim_set_keymap('i', 'ff', '<CR>', {})
+
+
 
 api.nvim_set_keymap('n', '<leader><space>', ':nohlsearch<CR>', {noremap = true, silent = false, expr = false})
 
 
 -- {{ Telescope
 api.nvim_set_keymap('n', '<Leader>ff', ':lua require("telescope.builtin").find_files()<CR>', {})
+api.nvim_set_keymap('n', '<Leader>fm', ':lua require("telescope").extensions.media_files.media_files()<CR>', {})
 api.nvim_set_keymap('n', '<Leader>fg', ':lua require("telescope.builtin").live_grep()<CR>', {})
 api.nvim_set_keymap('n', '<Leader>fb', ':lua require("telescope.builtin").buffers()<CR>', {})
 api.nvim_set_keymap('n', '<Leader>fh', ':lua require("telescope.builtin").help_tags()<CR>', {})

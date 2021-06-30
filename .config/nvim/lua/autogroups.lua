@@ -3,7 +3,8 @@ local cmd = vim.cmd
 
 local auto_formatters = {}
 
-local golang_autoformat = { {'BufWritePre','*.go','lua go_organize_imports_sync(1000)'} }
+-- local golang_autoformat = { {'BufWritePre','*.go','lua go_organize_imports_sync(1000)'} }
+local golang_autoformat = { {'BufWritePre','*.go','lua goimports(1000)'} }
 if O.golang.autoformat then table.insert(auto_formatters, golang_autoformat) end
 
 local lua_format = {'BufWritePre', '*.lua', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
@@ -18,7 +19,7 @@ utils.define_augroups({
     {'BufReadPost','*',':Watch %'} -- reload file on external changes
   },
   _text = {
-    {'FileType','text set tw=20 fo+=taw spell'},
+    {'FileType','text set tw=80 fo+=taw spell'},
     {'FileType','text','set noexpandtab'},
     {'FileType','text','set tabstop=4'},
     {'FileType','text','set shiftwidth=4'}
@@ -104,6 +105,13 @@ utils.define_augroups({
     {'FileType','go','set softtabstop=4'},
     {'FileType','go','set shiftwidth=4'}
   },
+  _lua = {
+    {'FileType','lua','set nolist'},
+    {'FileType','lua','set noexpandtab'},
+    {'FileType','lua','set tabstop=4'},
+    {'FileType','lua','set softtabstop=4'},
+    {'FileType','lua','set shiftwidth=4'}
+  },
   _ruby = {
     {'FileType','ruby','set expandtab'},
     {'FileType','ruby','set shiftwidth=2'},
@@ -122,4 +130,4 @@ utils.define_augroups({
 })
 
 -- Highlight on yank
-cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false, higroup="IncSearch", timeout=200}'
+cmd 'au TextYankPost * silent! vim.highlight.on_yank {on_visual = false, higroup="IncSearch", timeout=200}'

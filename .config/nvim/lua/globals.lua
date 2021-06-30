@@ -14,18 +14,6 @@ O = {
     timeoutlen = 100,
     nvim_tree_disable_netrw = 0, -- "1 by default, disables netrw (must be set before plugin's packadd)
 
-    -- @usage pass a table with your desired languages
-    treesitter = {
-        ensure_installed = {"lua", "dockerfile", "cpp", "bash", "gomod", "go", "python", "c", "ruby", "json", "yaml"},
-        ignore_install = {"javascript", "haskell"},
-        highlight = {enabled = true, disable={"brainfuck"}},
-        playground = {enabled = true},
-        rainbow = {
-          enable = true,
-          max_file_lines = 1000 -- Do not enable for files with more than 1000 lines, int
-        }
-    },
-
     database = {save_location = '~/.config/nvcode_db', auto_execute = 1},
     python = {
         autoformat = false,

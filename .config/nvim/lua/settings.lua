@@ -2,6 +2,7 @@ local cmd = vim.cmd
 -- local api = vim.api
 local global = vim.g
 local option = vim.o
+local opt = vim.opt
 local buffer_option = vim.bo
 local window_option = vim.wo
 local indent = 2
@@ -52,6 +53,8 @@ buffer_option.shiftwidth = indent
 buffer_option.expandtab = true
 buffer_option.autoindent = true
 buffer_option.smartindent = true
+
+opt.termguicolors = true
 
 cmd("set noswapfile")
 cmd("filetype plugin on")
