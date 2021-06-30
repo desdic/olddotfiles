@@ -37,3 +37,6 @@ super + shift + {Prior, Next}
 
 super + Print
 	$HOME/bin/screenshot.sh
+
+super + Escape
+	pkill --signal=USR1 sxhkd
