@@ -2,7 +2,7 @@
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #70ACB7
 
 # for i3-gaps
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 3
 gaps inner 3
 gaps outer 3
 
@@ -52,9 +52,10 @@ for_window [class="^Pidgin$" window_role="^conversation$"] resize grow width 0 p
 
 # Program Workspaces (xprop)
 assign [class="Mumble"]                        $workspace1
+assign [class="Dino"]                          $workspace2
 assign [class="Slack"]                         $workspace8
 assign [class="Google-chrome"]                 $workspace3
-assign [class="Brave-browser"]                 $workspace3
+#assign [class="Brave-browser"]                 $workspace3
 # assign [class="Firefox"]                       $workspace3
 assign [instance="work"]                       $workspace4
 # assign [class="libreoffice-startcenter"]       $workspace8
@@ -71,8 +72,9 @@ font pango:System San Francisco Display Regular 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id /sbin/st
-bindsym $mod+Shift+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/alacritty
+#bindsym $mod+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/alacritty
+bindsym $mod+Return exec --no-startup-id /sbin/alacritty
+bindsym $mod+Shift+Return exec --no-startup-id /sbin/st
 bindsym $mod+BackSpace exec --no-startup-id ~/bin/newsession.sh
 
 # kill focused window
@@ -82,7 +84,8 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Shift+w exec --no-startup-id ~/bin/wallpaper.sh
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec ~/.config/polybar/scripts/launcher-alt
+#bindsym $mod+d exec ~/.config/polybar/scripts/launcher-alt
+bindsym $mod+d exec /sbin/i3-dmenu-desktop
 bindsym $mod+Shift+p exec --no-startup-id /sbin/bwmenu
 bindsym $mod+g exec /sbin/google-chrome-stable; workspace 3
 bindsym $mod+b exec /sbin/brave; workspace 3
@@ -187,8 +190,11 @@ bindsym XF86AudioPause exec --no-startup-id playerctl -p spotify play-pause
 bindsym $mod+bracketright exec --no-startup-id playerctl -p spotify next
 bindsym $mod+bracketleft exec --no-startup-id playerctl -p spotify previous
 bindsym $mod+p exec --no-startup-id playerctl -p spotify play-pause
-bindsym $mod+Prior exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
-bindsym $mod+Next exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym $mod+Prior exec --no-startup-id ~/.config/polybar/scripts/volume.sh up
+bindsym $mod+Next exec --no-startup-id ~/.config/polybar/scripts/volume.sh down
+
+bindsym $mod+Shift+Prior exec --no-startup-id pactl set-sink-input-volume $(pactl list sink-inputs | grep -e 'Sink Input' -e application.name  | tr '\r\n' ' ' | sed 's/\#/\n/g' | egrep '[S|s]potify' | awk '{print $1}') +2%
+bindsym $mod+Shift+Next exec --no-startup-id pactl set-sink-input-volume $(pactl list sink-inputs  | grep -e 'Sink Input' -e application.name  | tr '\r\n' ' ' | sed 's/\#/\n/g' | egrep '[S|s]potify' | awk '{print $1}') -2%
 
 # resize window (you can also use the mouse for that)
 mode "  " {
@@ -233,10 +239,15 @@ mode "move" {
 bindsym $mod+m mode "move" focus floating
 
 # Volume & Media Bindings
-bindsym XF86AudioLowerVolume exec --no-startup-id ~/bin/pulsesink.sh -5%
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/bin/pulsesink.sh +5%
-bindsym XF86AudioMute exec --no-startup-id ~/bin/pulsesink.sh toggle
-bindsym XF86AudioMicMute exec --no-startup-id ~/bin/togglemicrophone.sh
+bindsym XF86AudioLowerVolume exec ~/.config/polybar/scripts/volume.sh down
+bindsym XF86AudioRaiseVolume exec ~/.config/polybar/scripts/volume.sh up
+bindsym XF86AudioMute exec --no-startup-id ~/.config/polybar/scripts/tooglemute.sh
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# bindsym XF86AudioLowerVolume exec --no-startup-id ~/bin/pulsesink.sh -5%
+# bindsym XF86AudioRaiseVolume exec --no-startup-id ~/bin/pulsesink.sh +5%
+# bindsym XF86AudioMute exec --no-startup-id ~/bin/pulsesink.sh toggle
+# bindsym XF86AudioMicMute exec --no-startup-id ~/bin/togglemicrophone.sh
 
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
@@ -255,7 +266,6 @@ bindsym $mod+F12 exec --no-startup-id ~/.screenlayout/home.sh
 bindsym $mod+t split toggle
 
 exec --no-startup-id /sbin/xss-lock -- '/home/kgn/bin/imagelock.sh' &
-exec_always --no-startup-id /sbin/optimus-manager-qt &
 #exec ~/bin/locker.sh &
 exec_always --no-startup-id ~/bin/keyboard.sh
 exec --no-startup-id /sbin/copyq&
