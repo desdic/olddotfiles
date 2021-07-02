@@ -24,7 +24,8 @@ fi
 export EDITOR="vim"
 export VISUAL="${EDITOR}"
 export FCEDIT="${EDITOR}"
-alias view="${EDITOR} -M"
+alias view="$EDITOR} -M"
+alias rm='rm -i'
 
 export LSCOLORS="Exfxcxdxbxegedabagacad"
 
@@ -75,3 +76,5 @@ if [ -d ~/.config/zsh ]; then
     source $config
   done
 fi
+
+eval "$(rbenv init -)"
