@@ -4,6 +4,12 @@ local api = vim.api
 -- Vertical split
 api.nvim_set_keymap('n', '<C-\\>', ':vs<CR>', {})
 
+api.nvim_set_keymap('i', '<C-Space>', 'compe#complete()', {noremap=true, silent=true, expr=true})
+api.nvim_set_keymap('i', '<CR>', 'compe#confirm(\'<CR>\')', {noremap=true, silent=true, expr=true})
+api.nvim_set_keymap('i', '<C-e>','compe#close(\'<C-e>\')', {noremap=true, silent=true, expr=true})
+api.nvim_set_keymap('i', '<C-f>','compe#scroll({ \'delta\': +4 })', {noremap=true, silent=true, expr=true})
+api.nvim_set_keymap('i', '<C-d>','compe#scroll({ \'delta\': -4 })', {noremap=true, silent=true, expr=true})
+
 -- Next/Previous buffer
 -- api.nvim_set_keymap('', '<C-n>', ':bnext<CR>', {})
 -- api.nvim_set_keymap('', '<C-p>', ':bprevious<CR>', {})
@@ -37,13 +43,8 @@ api.nvim_set_keymap('n', '<Leader>qa', ':qa!<CR>', {noremap = true})
 
 -- jj as escape
 api.nvim_set_keymap('i', 'jj', '<ESC>', {})
--- api.nvim_set_keymap('i', 'ww', '<BS>', {})
--- api.nvim_set_keymap('i', 'ff', '<CR>', {})
-
-
 
 api.nvim_set_keymap('n', '<leader><space>', ':nohlsearch<CR>', {noremap = true, silent = false, expr = false})
-
 
 -- {{ Telescope
 api.nvim_set_keymap('n', '<Leader>ff', ':lua require("telescope.builtin").find_files()<CR>', {})
@@ -85,11 +86,6 @@ api.nvim_set_keymap('i', '<C-k>', 'v:lua.MUtils.completion_confirm()', {expr=tru
 
 vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')
 
-api.nvim_set_keymap('i', '<C-Space>', 'compe#complete()', {noremap=true, silent=true, expr=true})
-api.nvim_set_keymap('i', '<CR>', 'compe#confirm(\'<CR>\')', {noremap=true, silent=true, expr=true})
-api.nvim_set_keymap('i', '<C-e>','compe#close(\'<C-e>\')', {noremap=true, silent=true, expr=true})
-api.nvim_set_keymap('i', '<C-f>','compe#scroll({ \'delta\': +4 })', {noremap=true, silent=true, expr=true})
-api.nvim_set_keymap('i', '<C-d>','compe#scroll({ \'delta\': -4 })', {noremap=true, silent=true, expr=true})
 
 -- api.nvim_set_keymap('n', '<Leader>cc',':CommentToggle<CR>', {noremap=true})
 -- api.nvim_set_keymap('v', '<Leader>cc',':CommentToggle<CR>', {noremap=true})
