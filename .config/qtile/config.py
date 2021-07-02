@@ -25,7 +25,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from typing import List  # noqa: F401
+from typing import List, Dict
 
 import os
 import sys
@@ -33,23 +33,20 @@ import subprocess
 from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
+
 # from libqtile.utils import guess_terminal
 # from libqtile.log_utils import logger
 
 
-HOME = os.path.expanduser('~')
-TERMINAL = "/sbin/alacritty"  # guess_terminal()
-
-
-def init_layout_theme():
-    return {"margin": 2,
+def init_layout_theme() -> Dict:
+    return {"margin": 5,
             "border_width": 2,
             "border_focus": "#6790eb",
             "border_normal": "#2F343F"
             }
 
 
-def init_colors():
+def init_colors() -> List[List[str]]:
     return [["#2F343F", "#2F343F"],  # color 0
             ["#2F343F", "#2F343F"],  # color 1
             ["#c0c5ce", "#c0c5ce"],  # color 2
@@ -62,21 +59,37 @@ def init_colors():
             ["#a9a9a9", "#a9a9a9"]]  # color 9
 
 
-mod = "mod4"  # Windows key
+colors = init_colors()
+layout_theme = init_layout_theme()
 
+widget_defaults = dict(
+    font='DejaVuSansMono Nerd Font Mono',
+    fontsize=12,
+    padding=3,
+    foreground=colors[2],
+    background=colors[1],
+)
+
+
+mod = "mod4"  # Windows key
 # If we're running in debug mode, it's for development. Make sure the
 # hotkeys don't clash, only start one window, etc.
 if '-d' in sys.argv:
-    hostname = 'xephyr'
     mod = "mod1"  # alt
 
+HOME = os.path.expanduser('~')
+TERMINAL = "/sbin/alacritty"  # guess_terminal()
 
 keys = [
     # Switch between windows
-    Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
-    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
-    Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
-    Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
+    Key([mod], "h", lazy.layout.left(),
+        desc="Move focus to left"),
+    Key([mod], "l", lazy.layout.right(),
+        desc="Move focus to right"),
+    Key([mod], "j", lazy.layout.down(),
+        desc="Move focus down"),
+    Key([mod], "k", lazy.layout.up(),
+        desc="Move focus up"),
     # Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
 
     Key([mod], "space", lazy.window.toggle_floating(),
@@ -125,17 +138,18 @@ keys = [
     Key([mod], "g", lazy.spawn("/sbin/google-chrome-stable"), desc="Start Chrome"),
 
     Key([mod], "BackSpace",
-        lazy.group["4"].toscreen(),
+        lazy.group["5"].toscreen(toggle=False),
         lazy.spawn(HOME + "/bin/newsession.sh"),
         desc="Start tmux session"),
 
     Key([mod, "shift"], "p", lazy.spawn("/sbin/bwmenu"), desc="Start bwmenu"),
     Key([mod], "f", lazy.window.toggle_fullscreen()),
     Key([mod, "shift"], "x", lazy.spawn(HOME + "/bin/imagelock.sh")),
+    Key([mod, "shift"], "u", lazy.spawn("/sbin/ulauncher"), desc="Start ulauncher"),
 
     # Spotify
     Key([mod], "s",
-        lazy.group["0"].toscreen(),
+        lazy.group["0"].toscreen(toggle=False),
         lazy.spawn("/sbin/spotify"),
         desc="Start Spotify"),
     Key([mod], "p", lazy.spawn("/sbin/playerctl -p spotify play-pause")),
@@ -145,17 +159,17 @@ keys = [
     Key([mod, "shift"], "Page_Down", lazy.spawn(HOME + "/bin/spotifyvolume.sh down")),
 
     Key([mod], "m",
-        lazy.group["5"].toscreen(),
+        lazy.group["5"].toscreen(toggle=False),
         lazy.spawn(TERMINAL + " --class mutt -e zsh -c 'source ~/.zshrc && /sbin/neomutt'"),
         desc="Start Mumble"),
 
     Key([mod], "n",
-        lazy.group["1"].toscreen(),
+        lazy.group["1"].toscreen(toggle=False),
         lazy.spawn("/sbin/mumble"),
         desc="Start Mumble"),
 
     Key([mod], "b",
-        lazy.group["2"].toscreen(),
+        lazy.group["2"].toscreen(toggle=False),
         lazy.spawn("/sbin/dino"),
         desc="Start Dino"),
 
@@ -165,7 +179,7 @@ groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 # https://fontawesome.com/v4.7.0/cheatsheet/
 group_labels = ["", "", "", "", "", "", "", "", "", ""]
-group_layouts  = ["columns", "jabber", "columns", "columns", "max", "columns", "columns", "columns", "columns", "columns"]
+group_layouts = ["columns", "columns", "columns", "columns", "columns", "columns", "columns", "columns", "columns", "columns"]
 group_matches = [[Match(wm_class=["Mumble"])],
                  [Match(wm_class=["Dino"]), Match(wm_class=['Pidgin'], role=['Buddy List'])],
                  [Match(wm_class=["Google-chrome"])],
@@ -189,16 +203,13 @@ for i in range(len(group_names)):
 
 for grp in groups:
     keys.extend([
-        Key([mod], grp.name, lazy.group[grp.name].toscreen()),
+        Key([mod], grp.name, lazy.group[grp.name].toscreen(toggle=False)),
         Key([mod, "shift"], grp.name, lazy.window.togroup(grp.name)),
     ])
 
 
-colors = init_colors()
-layout_theme = init_layout_theme()
-
 layouts = [
-    layout.Columns(**layout_theme),
+    layout.Columns(**layout_theme, insert_position=1),
     layout.MonadTall(**layout_theme),
     layout.Max(**layout_theme),
 
@@ -217,26 +228,15 @@ layouts = [
     # layout.Zoomy(),
 ]
 
-widget_defaults = dict(
-    font='Ubuntu Mono',
-    fontsize=12,
-    padding=3,
-    foreground=colors[2],
-    background=colors[1],
-)
 
 extension_defaults = widget_defaults.copy()
+
+partition = "/mnt/root" if not os.path.isdir("/mnt/root") else "/"
 
 screens = [
     Screen(
         top=bar.Bar(
             [
-                # widget.Image(scale=True,
-                             # # mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("rofi -show drun")},
-                             # filename="~/.config/qtile/icons/python.png",
-                             # background=colors[1],
-                             # padding=3),
-                # widget.CurrentLayout(),
                 widget.GroupBox(font="FontAwesome",
                                 padding=3,
                                 fontsize=12,
@@ -250,41 +250,49 @@ screens = [
                                 background=colors[1],
                                 urgent_border=colors[6]),
 
-                widget.TextBox('|'),
+                widget.TextBox("|"),
                 widget.CurrentLayout(),
 
-                widget.TextBox('|'),
-                widget.WindowName(),
+                widget.Spacer(),
 
                 widget.Mpris2(
-                    name='spotify',
+                    name="spotify",
                     objname="org.mpris.MediaPlayer2.spotify",
-                    display_metadata=['xesam:title', 'xesam:artist'],
+                    display_metadata=["xesam:title", "xesam:artist"],
                     scroll_chars=None,
-                    stop_pause_text="",
+                    # stop_pause_text="",
                     **widget_defaults,
                 ),
 
-                widget.TextBox('|'),
+                widget.Spacer(),
+
+                widget.TextBox("CPU"),
+                widget.CPU(format="{load_percent}%", update_interval=2),
+
+                widget.TextBox("|"),
+                widget.TextBox("MEM"),
+                widget.Memory(format="{MemPercent}%", update_interval=2),
+
+                widget.TextBox("|"),
+                widget.DF(partition=partition, warn_space=250, measure="G", format="{uf}{m}", visible_on_warn=False, update_interval=60, warn_color=colors[3], **widget_defaults),
+
+                # widget.TextBox("|"),
+                # widget.NvidiaSensors(gpu_bus_id="0a:00.0"),
+
+                widget.TextBox("|"),
                 widget.ThermalSensor(threshold=90,
                                      update_interval=2,
                                      foreground=colors[2],
                                      background=colors[1]),
 
-                widget.TextBox('|'),
-                widget.TextBox("CPU"),
-                widget.CPU(format='{load_percent}%', update_interval=2),
+                widget.TextBox("|"),
+                widget.Maildir(subfolder_fmt="Insec:{value}", maildir_path="~/.local/share/mail/insec", sub_folders=["INBOX"], update_interval=60),
+                widget.Maildir(subfolder_fmt="One:{value}", maildir_path="~/.local/share/mail/one", sub_folders=["INBOX"], update_interval=60),
 
-                widget.TextBox('|'),
-                widget.TextBox("MEM"),
-                widget.Memory(format='{MemPercent}%', update_interval=2),
+                widget.TextBox("|"),
+                widget.Clock(format="%a %Y/%m/%d - %H:%M"),
 
-                widget.TextBox('|'),
-                widget.Maildir(subfolder_fmt="INSEC:{value}", maildir_path="~/.local/share/mail/insec", sub_folders=["INBOX"], update_interval=60),
-                widget.Maildir(subfolder_fmt="ONE:{value}", maildir_path="~/.local/share/mail/one", sub_folders=["INBOX"], update_interval=60),
-
-                widget.TextBox('|'),
-                widget.Clock(format='%a %d/%m/%Y - %H:%M'),
+                widget.TextBox("|"),
                 widget.Systray(icon_size=12),
                 widget.Spacer(length=10),
             ],
