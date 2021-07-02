@@ -1,7 +1,7 @@
 require'compe'.setup {
   enabled = true;
   autocomplete = true;
-  debug = false;
+  debug = true;
   min_length = 1;
   preselect = 'disable'; -- Auto select first element
   throttle_time = 80;
@@ -16,12 +16,12 @@ require'compe'.setup {
     path = {kind = "   (Path)"},
     buffer = {kind = "   (Buffer)"},
     calc = {kind = "   (Calc)"},
-    nvim_lsp = {kind = "   (LSP)"},
+    nvim_lsp = {kind = "   (LSP)", priority=1000},
     nvim_lua = {kind = "  "},
     spell = {kind = "   (Spell)"},
     vsnip = {kind = " ﬘ "},
-    ultisnips = true;
-    tags = false;
+    ultisnips = true,
+    tags = false,
   };
 }
 

@@ -56,9 +56,9 @@ return require("packer").startup({
     use {'tomasiser/vim-code-dark', opt = true}
 
     -- Snippets
-    use {'Shougo/neosnippet-snippets'}
-    use {'honza/vim-snippets'}
+	--     use {'Shougo/neosnippet-snippets'}
 	use {'SirVer/ultisnips'}
+	use {'honza/vim-snippets'}
 
     use {'kyazdani42/nvim-tree.lua', opt = true}
     use {'terrortylor/nvim-comment', opt = true}
