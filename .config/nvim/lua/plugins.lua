@@ -61,7 +61,8 @@ return require("packer").startup({
 	use {'honza/vim-snippets'}
 
     use {'kyazdani42/nvim-tree.lua', opt = true}
-    use {'terrortylor/nvim-comment', opt = true}
+    -- use {'terrortylor/nvim-comment', opt = true}
+	use {'b3nj5m1n/kommentary'}
 
     use {'windwp/nvim-autopairs', opt = true}
     use {"lewis6991/gitsigns.nvim", opt = true}
@@ -77,7 +78,17 @@ return require("packer").startup({
     use {'nvim-lua/plenary.nvim', opt = true}
 
     -- Lspinstall
-    use {'neovim/nvim-lspconfig', opt = true}
+    use {'neovim/nvim-lspconfig',
+			opt = true,
+			requires = {
+				{
+					"nametake/golangci-lint-langserver",
+					run = "go install github.com/nametake/golangci-lint-langserver@latest"
+				}
+			}
+	}
+
+	use {"mhartington/formatter.nvim"}
     use {"glepnir/lspsaga.nvim", opt = true}
     use {'kabouzeid/nvim-lspinstall'}
 

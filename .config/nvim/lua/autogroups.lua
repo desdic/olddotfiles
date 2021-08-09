@@ -7,6 +7,9 @@ local auto_formatters = {}
 local golang_autoformat = { {'BufWritePre','*.go','lua goimports(1000)'} }
 if O.golang.autoformat then table.insert(auto_formatters, golang_autoformat) end
 
+-- local golang_autoformatgci = { {'BufWritePost','*.go','FormatWrite'} }
+-- if O.golang.autoformatgci then table.insert(auto_formatters, golang_autoformatgci) end
+
 local lua_format = {'BufWritePre', '*.lua', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
 if O.lua.autoformat then table.insert(auto_formatters, lua_format) end
 
@@ -103,7 +106,8 @@ utils.define_augroups({
     {'FileType','go','set noexpandtab'},
     {'FileType','go','set tabstop=4'},
     {'FileType','go','set softtabstop=4'},
-    {'FileType','go','set shiftwidth=4'}
+    {'FileType','go','set shiftwidth=4'},
+	{'BufWritePre','*.go','FormatWrite'}
   },
   _lua = {
     {'FileType','lua','set nolist'},

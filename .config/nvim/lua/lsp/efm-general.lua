@@ -12,7 +12,6 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   }
 }
 
-
 local python_arguments = {}
 local flake8 = {
   LintCommand = "/usr/bin/flake8 --ignore=E501,W191 --stdin-display-name ${INPUT} -",
@@ -24,6 +23,7 @@ local mypy = {
   LintCommand = "/sbin/mypy mypy --show-column-numbers",
   lintFormats = { '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'}
 }
+
 
 table.insert(python_arguments, flake8)
 -- table.insert(python_arguments, mypy)

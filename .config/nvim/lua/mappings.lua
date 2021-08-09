@@ -20,6 +20,7 @@ api.nvim_set_keymap('n', '<C-p>', ':BufferLineCyclePrev<CR>', {})
 api.nvim_set_keymap('n', '<C-n>', ':BufferLineCycleNext<CR>', {})
 --api.nvim_set_keymap('n', '<Leader>q', ':BufferClose<CR>', {})
 
+api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap=true})
 
 -- Close, write and quit buffers
 -- api.nvim_set_keymap('', '<Leader>c', ':close<CR>', {})
@@ -47,7 +48,9 @@ api.nvim_set_keymap('i', 'jj', '<ESC>', {})
 api.nvim_set_keymap('n', '<leader><space>', ':nohlsearch<CR>', {noremap = true, silent = false, expr = false})
 
 -- {{ Telescope
+api.nvim_set_keymap('n', '<Leader>a', ':lua require("telescope.builtin").marks()<CR>', {})
 api.nvim_set_keymap('n', '<Leader>ff', ':lua require("telescope.builtin").find_files()<CR>', {})
+api.nvim_set_keymap('n', '<Leader>fv', ':lua require("telescope.builtin").treesitter()<CR>', {})
 api.nvim_set_keymap('n', '<Leader>fm', ':lua require("telescope").extensions.media_files.media_files()<CR>', {})
 api.nvim_set_keymap('n', '<Leader>fg', ':lua require("telescope.builtin").live_grep()<CR>', {})
 api.nvim_set_keymap('n', '<Leader>fb', ':lua require("telescope.builtin").buffers()<CR>', {})
