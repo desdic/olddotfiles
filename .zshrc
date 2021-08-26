@@ -33,7 +33,7 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=50000
 export SAVEHIST=50000
 
-export TERMINAL='st'
+export TERMINAL='alacritty'
 
 if [ -f ~/.config/dircolors ]; then
     eval $(dircolors ~/.config/dircolors)
@@ -45,6 +45,15 @@ ssh-add -l | grep -q ED25519 || ssh-add ~/.ssh/id_rsa_onecom ~/.ssh/id_rsa ~/.ss
 
 unsetopt share_history
 unsetopt AUTO_CD
+
+function cnodes() {
+  local selected_host=$(~/git/chef-repo/scripts/cnodes|fzf +m --query "$LBUFFER" --prompt="SSH remote > ")
+  if [ -n "$selected_host" ]; then
+    BUFFER="ssh ${selected_host}"
+    zle accept-line
+  fi
+  zle reset-prompt
+}
 
 # Keyboard bindings
 bindkey -e
@@ -59,14 +68,22 @@ bindkey '^x^e' edit-command-line
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
-if [ -n "${DISPLAY}" ]; then
-  ~/bin/keyboard.sh
-fi
+zle -N cnodes
+bindkey '^s' cnodes
 
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Turn ctrl+s off
+setopt no_flow_control
 
 autoload -U select-word-style
 select-word-style bash
+
+xset s on
+xset s 600
+xkbset repeatkeys rate 600 25
+if [ -n "${DISPLAY}" ]; then
+  xkbcomp -w0 -I"$HOME/.xkb" -R"$HOME/.xkb" keymap/custom "$DISPLAY" >/dev/null 2>&1
+fi
+setxkbmap -variant altgr-intl
 
 eval $(starship init zsh)
 
@@ -78,3 +95,5 @@ if [ -d ~/.config/zsh ]; then
 fi
 
 eval "$(rbenv init -)"
+
+alias luamake=/home/kgn/.local/share/nvim/site/pack/packer/start/lua-language-server/3rd/luamake/luamake
