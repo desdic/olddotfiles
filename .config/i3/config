@@ -74,11 +74,11 @@ floating_modifier $mod
 # start a terminal
 #bindsym $mod+Return exec --no-startup-id LANG=da_DK.UTF-8 /sbin/alacritty
 bindsym $mod+Return exec --no-startup-id /sbin/alacritty
-bindsym $mod+Shift+Return exec --no-startup-id /sbin/st
+bindsym $mod+Shift+Return exec --no-startup-id /sbin/xterm
 bindsym $mod+BackSpace exec --no-startup-id ~/bin/newsession.sh
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # Set keyboard rate since I loose it after hybernation
 bindsym $mod+Shift+w exec --no-startup-id ~/bin/wallpaper.sh
@@ -88,7 +88,6 @@ bindsym $mod+Shift+w exec --no-startup-id ~/bin/wallpaper.sh
 bindsym $mod+d exec /sbin/i3-dmenu-desktop
 bindsym $mod+Shift+p exec --no-startup-id /sbin/bwmenu
 bindsym $mod+g exec /sbin/google-chrome-stable; workspace 3
-bindsym $mod+b exec /sbin/brave; workspace 3
 bindsym $mod+s exec /sbin/spotify
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -266,11 +265,9 @@ bindsym $mod+F12 exec --no-startup-id ~/.screenlayout/home.sh
 bindsym $mod+t split toggle
 
 exec --no-startup-id /sbin/xss-lock -- '/home/kgn/bin/imagelock.sh' &
-#exec ~/bin/locker.sh &
 exec_always --no-startup-id ~/bin/keyboard.sh
 exec --no-startup-id /sbin/copyq&
-exec --no-startup-id /sbin/nitrogen --restore
+exec --no-startup-id /sbin/picom --config ~/.config/i3/picom.conf
 exec --no-startup-id /sbin/blueman-applet&
-#exec --no-startup-id /usr/bin/xsetroot -solid "#111111"
-#exec --no-startup-id /usr/bin/xsetroot -solid "#000000"
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id /sbin/nitrogen --restore
