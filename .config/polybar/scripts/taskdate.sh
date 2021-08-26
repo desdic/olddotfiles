@@ -13,11 +13,12 @@ FORMAT=$(/usr/bin/date +"%a %d/%m/%Y - %H:%M")
 
 #B=" Week ${FORMAT} "
 B=" ${FORMAT} "
+echo "${OK}${B}"
 
-if [ "$($TASK +READY +OVERDUE count)" -gt 0 ]; then
-  echo "%{F#e53935}${OVERDUE}%{F#f5f5f5}${B}"
-elif [ "$($TASK +DUETODAY count)" -gt 0 ]; then
-  echo "%{F#EBD369}${DUETODAY}%{F#f5f5f5} ${B}"
-else
-  echo "${OK}${B}"
-fi
+# if [ "$($TASK +READY +OVERDUE count)" -gt 0 ]; then
+#   echo "%{F#e53935}${OVERDUE}%{F#f5f5f5}${B}"
+# elif [ "$($TASK +DUETODAY count)" -gt 0 ]; then
+#   echo "%{F#EBD369}${DUETODAY}%{F#f5f5f5} ${B}"
+# else
+#   echo "${OK}${B}"
+# fi
