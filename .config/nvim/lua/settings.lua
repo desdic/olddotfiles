@@ -56,5 +56,8 @@ buffer_option.smartindent = true
 
 opt.termguicolors = true
 
+-- Remove artifacts/redraw issue from indent-blankline.nvim
+vim.wo.colorcolumn = "99999"
+
 cmd("set noswapfile")
 cmd("filetype plugin on")

@@ -4,11 +4,11 @@ local api = vim.api
 -- Vertical split
 api.nvim_set_keymap('n', '<C-\\>', ':vs<CR>', {})
 
-api.nvim_set_keymap('i', '<C-Space>', 'compe#complete()', {noremap=true, silent=true, expr=true})
-api.nvim_set_keymap('i', '<CR>', 'compe#confirm(\'<CR>\')', {noremap=true, silent=true, expr=true})
-api.nvim_set_keymap('i', '<C-e>','compe#close(\'<C-e>\')', {noremap=true, silent=true, expr=true})
-api.nvim_set_keymap('i', '<C-f>','compe#scroll({ \'delta\': +4 })', {noremap=true, silent=true, expr=true})
-api.nvim_set_keymap('i', '<C-d>','compe#scroll({ \'delta\': -4 })', {noremap=true, silent=true, expr=true})
+-- api.nvim_set_keymap('i', '<C-Space>', 'compe#complete()', {noremap=true, silent=true, expr=true})
+-- api.nvim_set_keymap('i', '<CR>', 'compe#confirm(\'<CR>\')', {noremap=true, silent=true, expr=true})
+-- api.nvim_set_keymap('i', '<C-e>','compe#close(\'<C-e>\')', {noremap=true, silent=true, expr=true})
+-- api.nvim_set_keymap('i', '<C-f>','compe#scroll({ \'delta\': +4 })', {noremap=true, silent=true, expr=true})
+-- api.nvim_set_keymap('i', '<C-d>','compe#scroll({ \'delta\': -4 })', {noremap=true, silent=true, expr=true})
 
 -- Next/Previous buffer
 -- api.nvim_set_keymap('', '<C-n>', ':bnext<CR>', {})
@@ -18,7 +18,6 @@ api.nvim_set_keymap('i', '<C-d>','compe#scroll({ \'delta\': -4 })', {noremap=tru
 -- api.nvim_set_keymap('n', '<C-n>', ':BufferNext<CR>', {})
 api.nvim_set_keymap('n', '<C-p>', ':BufferLineCyclePrev<CR>', {})
 api.nvim_set_keymap('n', '<C-n>', ':BufferLineCycleNext<CR>', {})
---api.nvim_set_keymap('n', '<Leader>q', ':BufferClose<CR>', {})
 
 api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap=true})
 
@@ -26,6 +25,7 @@ api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap=true})
 -- api.nvim_set_keymap('', '<Leader>c', ':close<CR>', {})
 api.nvim_set_keymap('', '<Leader>c', ':BufferClose<CR>', {})
 api.nvim_set_keymap('', '<Leader>w', ':w!<CR>', {})
+--api.nvim_set_keymap('n', '<Leader>q', ':BufferClose<CR>', {})
 api.nvim_set_keymap('', '<Leader>q', ':bp <BAR> bd #<CR>', {})
 
 -- Indent in visual mode
@@ -55,6 +55,7 @@ api.nvim_set_keymap('n', '<Leader>fm', ':lua require("telescope").extensions.med
 api.nvim_set_keymap('n', '<Leader>fg', ':lua require("telescope.builtin").live_grep()<CR>', {})
 api.nvim_set_keymap('n', '<Leader>fb', ':lua require("telescope.builtin").buffers()<CR>', {})
 api.nvim_set_keymap('n', '<Leader>fh', ':lua require("telescope.builtin").help_tags()<CR>', {})
+api.nvim_set_keymap('n', '<Leader>fo', ':lua require("telescope.builtin").tags{ only_current_buffer = true }<CR>', {})
 api.nvim_set_keymap('n', '<Leader>vrc', ':lua require("config.telescope").search_nvim()<CR>', {noremap=true})
 api.nvim_set_keymap('n', '<Leader>notes', ':lua require("config.telescope").grep_notes()<CR>', {noremap=true})
 -- }}
@@ -85,24 +86,10 @@ api.nvim_set_keymap('n', 'gr',' <cmd>lua vim.lsp.buf.references()<CR>', {})
 api.nvim_set_keymap('n', 'gi',' <cmd>lua vim.lsp.buf.implementation()<CR>', {})
 
 -- Expand snippets via CTRL+k
-api.nvim_set_keymap('i', '<C-k>', 'v:lua.MUtils.completion_confirm()', {expr=true, silent=true})
+-- api.nvim_set_keymap('i', '<C-k>', 'v:lua.MUtils.completion_confirm()', {expr=true, silent=true})
+-- api.nvim_set_keymap('i', '<C-k>', '<cmd>lua cmp.mapping.complete()<CR>', {expr=true, silent=true})
 
 vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')
 
-
--- api.nvim_set_keymap('n', '<Leader>cc',':CommentToggle<CR>', {noremap=true})
--- api.nvim_set_keymap('v', '<Leader>cc',':CommentToggle<CR>', {noremap=true})
-
 -- barbar
 api.nvim_set_keymap('n', '<leader>b', ':BufferPick<CR>', {noremap = true, silent = true, expr = false})
-
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-
-vim.api.nvim_set_keymap("i", "<C-Space>", "compe#complete()", {expr = true, silent = true})
-vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm('<CR>')", {expr = true, silent = true})
-vim.api.nvim_set_keymap("i", "<C-e>", "compe#close('<C-e>')", {expr = true, silent = true})
-vim.api.nvim_set_keymap("i", "<C-f>", "compe#scroll({ 'delta': +4 })", {expr = true, silent = true})
-vim.api.nvim_set_keymap("i", "<C-d>", "compe#scroll({ 'delta': -4 })", {expr = true, silent = true})

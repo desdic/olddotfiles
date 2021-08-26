@@ -48,6 +48,14 @@ require('telescope').load_extension('fzy_native')
 require('telescope').load_extension('media_files')
 
 local M = {}
+
+M.find_files = function()
+  require("telescope.builtin").find_files {
+    find_command = { 'rg', '--files', '--hidden', '-g', '!.git' },
+    previewer = false
+  }
+end
+
 M.search_nvim = function()
     require("telescope.builtin").find_files({
         prompt_title = "< VimRC >",
