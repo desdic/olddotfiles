@@ -49,7 +49,7 @@ api.nvim_set_keymap('n', '<leader><space>', ':nohlsearch<CR>', {noremap = true, 
 
 -- {{ Telescope
 api.nvim_set_keymap('n', '<Leader>a', ':lua require("telescope.builtin").marks()<CR>', {})
-api.nvim_set_keymap('n', '<Leader>ff', ':lua require("telescope.builtin").find_files()<CR>', {})
+api.nvim_set_keymap('n', '<Leader>ff', ':lua require("telescope.builtin").find_files({hidden=true})<CR>', {})
 api.nvim_set_keymap('n', '<Leader>fv', ':lua require("telescope.builtin").treesitter()<CR>', {})
 api.nvim_set_keymap('n', '<Leader>fm', ':lua require("telescope").extensions.media_files.media_files()<CR>', {})
 api.nvim_set_keymap('n', '<Leader>fg', ':lua require("telescope.builtin").live_grep()<CR>', {})
