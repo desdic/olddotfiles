@@ -23,7 +23,8 @@
 
 		"clock#4",
 
-		"tray"
+		"tray",
+    "custom/space"
 	],
 
 	"custom/left-arrow-dark": {
@@ -40,6 +41,10 @@
 	},
 	"custom/right-arrow-light": {
 		"format": "",
+		"tooltip": false
+	},
+	"custom/space": {
+		"format": " ",
 		"tooltip": false
 	},
 
@@ -109,7 +114,7 @@
 		"path": "/"
 	},
 	"tray": {
-		"icon-size":13 
+		"icon-size":13
 	},
   "idle_inhibitor": {
       "format": "<span>{icon}</span>",

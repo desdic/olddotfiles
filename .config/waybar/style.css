@@ -13,6 +13,8 @@ window#waybar {
 	font-size: 20px;
 	color: #1a1a1a;
 }
+
+#custom-space,
 #custom-right-arrow-light,
 #custom-left-arrow-light {
 	font-size: 20px;
