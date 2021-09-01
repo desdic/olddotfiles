@@ -1,174 +1,128 @@
+// -*- mode: json -*-
+
 {
-    "layer": "bottom",
-    "position": "top",
-    "height": 34,
+	"layer": "bottom",
+	"position": "top",
+  "height": 10,
 
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["custom/nowplaying"],
-    "modules-right": [ 
-      "idle_inhibitor",
-      "custom/weather",
-      "backlight",
-      "cpu",
-      "memory",
-      "disk",
-      "temperature",
-      "pulseaudio",
-      "network",
-      "battery",
-      "clock",
-      "tray"
-    ],
-    "sway/mode": {
-        "format": " {}"
-    },
-    "sway/workspaces": {
-        "format": "{icon}",
-        "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "6": "華",
-            "10": "ﱘ",
-            "urgent": "",
-            "focused": "",
-            "default": ""
-        }
-    },
-    "sway/window": {
-        "max-length": 80,
-        "tooltip": false
-    },
-    "clock": {
-        "format": "{:%a %d.%m.%Y %H:%M}",
-        "tooltip": false
-    },
-    "cpu": {
-        "interval": 10,
-        "format": "{}% ",
-        "max-length": 10
-    },
-    "memory": {
-        "interval": 30,
-        "format": "{used:0.2f} / {total:0.0f} GB ",
-        "max-length": 20,
-        "tooltip": false
-    },
-    "battery": {
-        "bat": "BAT0",
-        "format": "{capacity}% {icon}",
-        "format-alt": "{time} {icon}",
-        "format-icons": ["", "", "", "", ""],
-        "format-charging": "{capacity}% ",
-        "interval": 30,
-        "states": {
-            "warning": 25,
-            "critical": 10
-        },
-        "tooltip": false
-    },
-    "temperature": {
-        "critical-threshold": 80,
-        "format-critical": "{temperatureC}° ",
-        "format": "{temperatureC}° "
-    },
-    "network": {
-        "format": "{icon}",
-        "format-alt": "{ipaddr}/{cidr} {icon}",
-        "format-alt-click": "click-right",
-        "format-icons": {
-            "wifi": ["睊", "直" ,""],
-            "ethernet": [""],
-            "disconnected": [""]
-        },
-        "on-click": "alacritty -e nmtui",
-        "tooltip": false
-    },
-    "pulseaudio": {
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon}",
-        "format-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "default": ""
-        },
-        "scroll-step": 1,
-        "on-click": "pavucontrol",
-        "tooltip": false
-    },
-    "custom/spotify": {
-        "interval": 1,
-        "return-type": "json",
-        "exec": "~/.config/waybar/modules/spotify.sh",
-        "exec-if": "pgrep spotify",
-        "escape": true
-    },
-    "custom/storage": {
-        "format": "{} ",
-        "format-alt": "{percentage}% ",
-        "format-alt-click": "click-right",
-        "return-type": "json",
-        "interval": 60,
-        "exec": "~/.config/waybar/modules/storage.sh"
-    },
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{percent}% {icon}",
-        "format-alt": "{percent}% {icon}",
-        "format-alt-click": "click-right",
-        "format-icons": ["", ""],
-        "on-scroll-down": "light -A 1",
-        "on-scroll-up": "light -U 1"
-    },
-    "custom/weather": {
-        "format": "{}",
-        "format-alt": "{alt}: {}",
-        "format-alt-click": "click-right",
-        "interval": 1800,
-        "return-type": "json",
-        "exec": "~/.config/waybar/modules/weather.sh",
-        "exec-if": "ping wttr.in -c1"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-            // "activated": "",
-            // "deactivated": ""
-        },
-        "tooltip": false
-    },
-    "custom/mail": {
-        "format": "",
-        "format-alt": "{alt} ",
-        "format-alt-click": "click-right",
-        "interval": 60,
-        "return-type": "json",
-        "exec": "~/.config/waybar/modules/mail.py",
-        "tooltip": false
-    },
-    "tray": {
-        "icon-size": 18
-    },
-    "custom/nowplaying": {
-        "interval": 2,
-        "format": "{}",
-        "max-length": 80,
-        "escape": true,
-        "exec": "$HOME/.config/waybar/nowplaying.sh"
-    },
-    "disk": {
-        "interval": 30,
-//        "format": "{percentage_free}%",
-        "format": "{free} 💽",
-        "path": "/mnt/rootbtrfs"
-    },
+	"modules-left": [
+		"sway/workspaces",
+		"custom/right-arrow-dark"
+	],
+  "modules-center": [
+    "custom/nowplaying"
+	],
+	"modules-right": [
+    "custom/left-arrow-dark",
+    "idle_inhibitor",
+		"pulseaudio",
+		"memory",
+		"cpu",
+		"battery",
+		"disk",
+
+		"clock#4",
+
+		"tray"
+	],
+
+	"custom/left-arrow-dark": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/left-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/right-arrow-dark": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/right-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"sway/workspaces": {
+		"disable-scroll": true,
+		"format": "{name}"
+	},
+
+	"clock#1": {
+		"format": "{:%a}",
+		"tooltip": false
+	},
+	"clock#2": {
+		"format": "{:%H:%M}",
+		"tooltip": false
+	},
+	"clock#3": {
+		"format": "{:%m-%d}",
+		"tooltip": false
+	},
+	"clock#4": {
+		"format": "{:%a %d/%m/%Y - %H:%M}",
+		"tooltip": false
+	},
+
+	"pulseaudio": {
+		"format": "{icon} {volume:2}%",
+		"format-bluetooth": "{icon}  {volume}%",
+		"format-muted": "MUTE",
+		"format-icons": {
+			"headphones": "",
+			"default": [
+				"",
+				""
+			]
+		},
+		"scroll-step": 5,
+		"on-click": "pamixer -t",
+		"on-click-right": "pavucontrol"
+	},
+	"memory": {
+		"interval": 5,
+		"format": "Mem {}%"
+	},
+	"cpu": {
+		"interval": 5,
+		"format": "CPU {usage:2}%"
+	},
+	"battery": {
+		"states": {
+			"good": 95,
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{icon} {capacity}%",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		]
+	},
+	"disk": {
+		"interval": 5,
+		"format": "Disk {free:2}",
+		"path": "/"
+	},
+	"tray": {
+		"icon-size":13 
+	},
+  "idle_inhibitor": {
+      "format": "<span>{icon}</span>",
+      "format-icons": {
+          "activated": "",
+          "deactivated": ""
+      }
+  },
+  "custom/nowplaying": {
+      "interval": 2,
+      "format": "{}",
+      "max-length": 80,
+      "escape": false,
+      "exec": "$HOME/.config/waybar/nowplaying.sh"
+  }
 }
-
