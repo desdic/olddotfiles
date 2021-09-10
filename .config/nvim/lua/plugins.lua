@@ -62,6 +62,7 @@ return require('packer').startup {
 		}
 
 		use {'christianchiarulli/nvcode-color-schemes.vim'}
+		use {'Pocco81/Catppuccino.nvim'}
 		use {'glepnir/galaxyline.nvim',
 			config = function()
 				require('config.galaxyline')
@@ -86,6 +87,7 @@ return require('packer').startup {
 		use {'kabouzeid/nvim-lspinstall'}
 		use {'glepnir/lspsaga.nvim'}
 		use {'mhartington/formatter.nvim'}
+
 		use {
 			'onsails/lspkind-nvim',
 			config = function()

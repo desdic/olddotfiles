@@ -59,5 +59,9 @@ opt.termguicolors = true
 -- Remove artifacts/redraw issue from indent-blankline.nvim
 vim.wo.colorcolumn = "99999"
 
+-- Disable healthcheck
+global.loaded_perl_provider=0
+-- global.loaded_python_provider=0
+
 cmd("set noswapfile")
 cmd("filetype plugin on")
