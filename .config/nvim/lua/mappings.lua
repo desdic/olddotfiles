@@ -62,6 +62,15 @@ api.nvim_set_keymap('n', '<Leader>vrc', ':lua require("config.telescope").search
 api.nvim_set_keymap('n', '<Leader>notes', ':lua require("config.telescope").grep_notes()<CR>', {noremap=true})
 -- }}
 
+
+-- {{ Focus
+api.nvim_set_keymap('n', '<leader>h', ':FocusSplitLeft<CR>', { silent = true })
+api.nvim_set_keymap('n', '<leader>j', ':FocusSplitDown<CR>', { silent = true })
+api.nvim_set_keymap('n', '<leader>k', ':FocusSplitUp<CR>', { silent = true })
+api.nvim_set_keymap('n', '<leader>l', ':FocusSplitRight<CR>', { silent = true })
+-- }}
+
+
 api.nvim_set_keymap('n', '<Leader>pack', ':PackerSync<CR>', {noremap=true})
 
 -- {{ NvimTree

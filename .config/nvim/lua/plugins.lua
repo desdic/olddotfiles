@@ -61,6 +61,12 @@ return require('packer').startup {
 			end
 		}
 
+		use { "beauwilliams/focus.nvim",
+			 config = function()
+				 require("focus").setup({enable = true, cursorline = true, signcolumn = true, hybridnumber = true})
+			end
+		}
+
 		use {'christianchiarulli/nvcode-color-schemes.vim'}
 		use {'Pocco81/Catppuccino.nvim'}
 		use {'glepnir/galaxyline.nvim',
