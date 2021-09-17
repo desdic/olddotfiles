@@ -18,10 +18,11 @@ function highlight() {
 export BROWSER=google-chrome-stable
 export LESS=-Xr
 
+export EDITOR="vim"
 if [ -x "$(which nvim)" ]; then
     alias vim="nvim"
+    export EDITOR="nvim"
 fi
-export EDITOR="vim"
 export VISUAL="${EDITOR}"
 export FCEDIT="${EDITOR}"
 alias view="$EDITOR} -M"
@@ -46,7 +47,7 @@ ssh-add -l | grep -q ED25519 || ssh-add ~/.ssh/id_rsa_onecom ~/.ssh/id_rsa ~/.ss
 unsetopt share_history
 unsetopt AUTO_CD
 
-function cnodes() {
+function cnodesfzf() {
   local selected_host=$(~/git/chef-repo/scripts/cnodes|fzf +m --query "$LBUFFER" --prompt="SSH remote > ")
   if [ -n "$selected_host" ]; then
     BUFFER="ssh ${selected_host}"
@@ -68,8 +69,8 @@ bindkey '^x^e' edit-command-line
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
-zle -N cnodes
-bindkey '^s' cnodes
+zle -N cnodesfzf
+bindkey '^s' cnodesfzf
 
 # Turn ctrl+s off
 setopt no_flow_control
