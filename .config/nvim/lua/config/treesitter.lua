@@ -1,5 +1,6 @@
 require'nvim-treesitter.configs'.setup {
-	ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+	-- ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+	ensure_installed = {"bash", "c", "cpp", "dockerfile", "go", "json", "lua", "python", "ruby", "yaml", "toml"},
 	ignore_install = { "javascript", "haskell" }, -- List of parsers to ignore installing
 	indent = {
 		enable = true,
