@@ -69,11 +69,20 @@ return require('packer').startup {
 
 		use {'christianchiarulli/nvcode-color-schemes.vim'}
 		use {'Pocco81/Catppuccino.nvim'}
-		use {'glepnir/galaxyline.nvim',
+		-- use {'glepnir/galaxyline.nvim',
+		-- 	config = function()
+		-- 		require('config.galaxyline')
+		-- 	end
+		-- }
+
+		use {
+			'windwp/windline.nvim',
 			config = function()
-				require('config.galaxyline')
+				require('windline')
+				require('wlsample.evil_line')
 			end
 		}
+
 		use {'tomasiser/vim-code-dark'}
 
 		use {
@@ -84,13 +93,19 @@ return require('packer').startup {
 			end
 		}
 
+		use {
+			'kyazdani42/nvim-tree.lua',
+			requires = 'kyazdani42/nvim-web-devicons',
+			config = function() require'nvim-tree'.setup {} end
+		}
+
 		use {'neovim/nvim-lspconfig',
 			config = function()
 				require('config.nvim-lspconfig')
 			end
 		}
 
-		use {'kabouzeid/nvim-lspinstall'}
+		use {'williamboman/nvim-lsp-installer'}
 		use {'glepnir/lspsaga.nvim'}
 		use {'mhartington/formatter.nvim'}
 
