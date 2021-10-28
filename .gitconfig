@@ -7,6 +7,8 @@
     branch = auto
 [core]
     editor = vim
+    pager = delta --keep-plus-minus-markers 
+	  commitGraph = true
 [alias]
     br = branch
     ci = commit
@@ -27,6 +29,10 @@
     decorate = true
 [push]
     default = simple
+[delta]
+  line-numbers = true
+  features = decorations
+	syntax-theme = Dracula
 # Not sure but sometimes this does not work
 #[url "git@github.com:"]
 #    insteadOf = https://github.com/

@@ -9,6 +9,15 @@ set $right l
 set $term alacritty
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000'
+
+exec mako
+exec wl-paste -t text -p --watch clipman store --max-items=1
+exec blueman-applet
+
 output * bg ~/Pictures/wallpapers/beautiful_autumn_landscape_4-wallpaper-2560x1440.jpg fill
 
 input * {
@@ -197,13 +206,5 @@ bar {
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 }
-
-exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 000000'
-
-exec "mako"
-exec "wl-paste -t text -p --watch clipman store --max-items=1"
 
 include /etc/sway/config.d/*
