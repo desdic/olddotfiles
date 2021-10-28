@@ -4,7 +4,7 @@ local cmd = vim.cmd
 local auto_formatters = {}
 
 -- local golang_autoformat = { {'BufWritePre','*.go','lua go_organize_imports_sync(1000)'} }
-local golang_autoformat = { {'BufWritePre','*.go','lua goimports(1000)'} }
+local golang_autoformat = { {'BufWritePost','*.go','lua goimports(1000)'} }
 if O.golang.autoformat then table.insert(auto_formatters, golang_autoformat) end
 
 -- local golang_autoformatgci = { {'BufWritePost','*.go','FormatWrite'} }
@@ -107,7 +107,7 @@ utils.define_augroups({
 		{'FileType','go','set tabstop=4'},
 		{'FileType','go','set softtabstop=4'},
 		{'FileType','go','set shiftwidth=4'},
-		{'BufWritePre','*.go','FormatWrite'}
+		{'BufWritePost','*.go','FormatWrite'}
 	},
 	_lua = {
 		{'FileType','lua','set nolist'},
