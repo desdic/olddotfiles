@@ -88,17 +88,6 @@ vim.lsp.protocol.CompletionItemKind = {
     "   (TypeParameter)"
 }
 
-local lspconfig = require("lspconfig")
-local servers = {
-  "bashls",
-  "dockerls",
-  "gopls",
-	"solargraph"
-}
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {on_attach = on_attach}
-end
-
 require('lsp')
 require('lsp.capabilities')
 require('lsp.efm-general')

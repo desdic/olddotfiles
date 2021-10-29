@@ -28,6 +28,7 @@ return require('packer').startup {
 			end
 		}
 
+
 		use {'ggandor/lightspeed.nvim'}
 		use {'SirVer/ultisnips'}
 		use {'honza/vim-snippets'}
@@ -147,75 +148,6 @@ return require('packer').startup {
 		}
 
 		use {
-			'hrsh7th/nvim-cmp',
-			requires = {
-				'hrsh7th/vim-vsnip',
-				'hrsh7th/cmp-nvim-lsp',
-				'hrsh7th/cmp-buffer',
-				'hrsh7th/cmp-nvim-lua',
-				'hrsh7th/cmp-path',
-				'hrsh7th/cmp-calc',
-				'hrsh7th/cmp-vsnip'
-			},
-			after = 'lspkind-nvim',
-			config = function()
-				require('cmp_nvim_lsp').setup()
-				local cmp = require('cmp')
-				local lspkind = require('lspkind')
-				local compare = require('cmp.config.compare')
-
-				cmp.setup {
-					preselect = false,
-					snippet = {
-						expand = function(args)
-							-- You must install `vim-vsnip` if you use the following as-is.
-							vim.fn['vsnip#anonymous'](args.body)
-						end
-					},
-					formatting = {
-						format = function(_, vim_item)
-							vim_item.kind = lspkind.presets.default[vim_item.kind]
-							return vim_item
-						end
-					},
-					sorting = {
-						priority_weight = 2.,
-						comparators = {
-							compare.offset,
-							compare.exact,
-							compare.score,
-							compare.kind,
-							compare.sort_text,
-							compare.length,
-							compare.order,
-						},
-					},
-					min_length = 0, -- allow for `from package import _` in Python
-					mapping = {
-						['<S-TAB>'] = cmp.mapping.select_prev_item(),
-						['<TAB>'] = cmp.mapping.select_next_item(),
-						['<C-k>'] = cmp.mapping.confirm({
-							behavior = cmp.ConfirmBehavior.Insert,
-							select = true,
-						}),
-						['<CR>'] = cmp.mapping.confirm {
-							behavior = cmp.ConfirmBehavior.Replace,
-							select = true
-						}
-					},
-					sources = {
-						{name = 'buffer'},
-						{name = 'nvim_lsp'},
-						{name = 'nvim_lua'},
-						{name = 'vsnip'},
-						{name = 'path'},
-						{name = 'calc'},
-					}
-				}
-			end
-		}
-
-		use {
 			'folke/trouble.nvim',
 			requires = 'kyazdani42/nvim-web-devicons',
 			config = function()
@@ -266,16 +198,82 @@ return require('packer').startup {
 		}
 
 		use {
+			'hrsh7th/nvim-cmp',
+			requires = {
+				'hrsh7th/vim-vsnip',
+				'hrsh7th/cmp-nvim-lsp',
+				'hrsh7th/cmp-buffer',
+				'hrsh7th/cmp-nvim-lua',
+				'hrsh7th/cmp-path',
+				'hrsh7th/cmp-calc',
+				'hrsh7th/cmp-vsnip'
+			},
+			after = 'lspkind-nvim',
+			config = function()
+				require('cmp_nvim_lsp').setup()
+				local cmp = require('cmp')
+				local lspkind = require('lspkind')
+				local compare = require('cmp.config.compare')
+
+				cmp.setup {
+					preselect = false,
+					snippet = {
+						expand = function(args)
+							-- You must install `vim-vsnip` if you use the following as-is.
+							vim.fn['vsnip#anonymous'](args.body)
+						end
+					},
+					formatting = {
+						format = function(_, vim_item)
+							vim_item.kind = lspkind.presets.default[vim_item.kind]
+							return vim_item
+						end
+					},
+					sorting = {
+						priority_weight = 2.,
+						comparators = {
+							compare.offset,
+							compare.exact,
+							compare.score,
+							compare.kind,
+							compare.sort_text,
+							compare.length,
+							compare.order,
+						},
+					},
+					min_length = 0, -- allow for `from package import _` in Python
+					mapping = {
+						['<S-Tab>'] = cmp.mapping.select_prev_item(),
+						['<Tab>'] = cmp.mapping.select_next_item(),
+						['<C-k>'] = cmp.mapping.confirm({
+							behavior = cmp.ConfirmBehavior.Insert,
+							select = true,
+						}),
+						['<CR>'] = cmp.mapping.confirm {
+							behavior = cmp.ConfirmBehavior.Replace,
+							select = true
+						}
+					},
+					sources = {
+						{name = 'buffer'},
+						{name = 'nvim_lsp'},
+						{name = 'nvim_lua'},
+						{name = 'vsnip'},
+						{name = 'path'},
+						{name = 'calc'},
+					}
+				}
+			end
+		}
+
+		use {
 			'windwp/nvim-autopairs',
 			after = 'nvim-cmp',
 			config = function()
-				require('nvim-autopairs').setup {}
-
-				-- handle <CR> mapping with nvim-cmp
-				require('nvim-autopairs.completion.cmp').setup {
-					map_cr = true, --  map <CR> on insert mode
-					map_complete = true -- insert `(` when function/method is completed
-				}
+				require('nvim-autopairs').setup ({ map_cr = true})
+				local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+				local cmp = require('cmp')
+				cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
 			end
 		}
 	end,

@@ -81,6 +81,6 @@ api.nvim_set_keymap('n', 'gd',' <cmd>lua vim.lsp.buf.definition()<CR>', {})
 api.nvim_set_keymap('n', 'gD',' <cmd>lua vim.lsp.buf.declaration()<CR>', {})
 api.nvim_set_keymap('n', 'gr',' <cmd>lua vim.lsp.buf.references()<CR>', {})
 api.nvim_set_keymap('n', 'gi',' <cmd>lua vim.lsp.buf.implementation()<CR>', {})
-api.nvim_set_keymap('n', 'K',' <cmd>lua vim.lsp.buf.()<CR>', {})
+api.nvim_set_keymap('n', 'K',' <cmd>lua vim.lsp.buf.hover()<CR>', {})
 
 vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')

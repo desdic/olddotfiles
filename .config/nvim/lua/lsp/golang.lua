@@ -19,7 +19,7 @@ require'lspconfig'.gopls.setup{
 				unusedparams = true
 			},
 			staticcheck = true,
-			gofumpt = true,
+			gofumpt = true
 		}
   },
   root_dir = require'lspconfig'.util.root_pattern(".git","go.mod","."),
