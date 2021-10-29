@@ -95,7 +95,7 @@ utils.define_augroups({
 		{'FileType','go','set softtabstop=4'},
 		{'FileType','go','set shiftwidth=4'},
 		{'BufWritePre','*.go','lua goimports(1000)'},
-		{'BufWritePost','*.go','Format'}
+		{'BufWritePost','*.go','FormatWrite'}
 	},
 	_lua = {
 		{'FileType','lua','set nolist'},
