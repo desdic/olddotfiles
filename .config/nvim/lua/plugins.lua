@@ -11,6 +11,15 @@ end
 
 return require('packer').startup {
 	function(use)
+		-- speed up filetype detection
+		use {'nathom/filetype.nvim'}
+
+		use { 'luukvbaal/stabilize.nvim',
+			config = function()
+				require("stabilize").setup()
+			end
+		}
+
 		use {'wbthomason/packer.nvim', opt = true}
 
 		use {'p00f/nvim-ts-rainbow'}

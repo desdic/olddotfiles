@@ -10,6 +10,9 @@ local indent = 2
 global.mapleader = ',' -- Set leader
 global.shada = "NONE"
 
+-- If using a Neovim version earlier than 0.6.0 (nathom/filetype.nvim)
+global.did_load_filetypes = 1
+
 option.shortmess = option.shortmess .. 'I' -- Turn off splash
 option.shortmess = option.shortmess .. 'c' -- Avoid showing message extra message when using completion
 
