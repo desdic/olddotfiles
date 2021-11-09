@@ -46,7 +46,7 @@ return require('packer').startup {
 			config = function()
 				require('indent_blankline').setup {
 					char = '|',
-					buftype_exclude = {'terminal'}
+					buftype_exclude = {'terminal', 'popup'}
 				}
 			end
 		}
@@ -80,7 +80,7 @@ return require('packer').startup {
 						signcolumn = true,
 						hybridnumber = true,
 						excluded_filetypes = {"toggleterm"},
-						excluded_buftypes = {"popup", "help"}
+						-- excluded_buftypes = {"help", "popup"}
 					}
 				)
 			end

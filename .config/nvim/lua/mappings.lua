@@ -16,6 +16,8 @@ api.nvim_set_keymap('', '<Leader>w', ':w!<CR>', {})
 --api.nvim_set_keymap('n', '<Leader>q', ':BufferClose<CR>', {})
 api.nvim_set_keymap('', '<Leader>q', ':bp <BAR> bd #<CR>', {})
 
+api.nvim_set_keymap('', '<Leader>t', ':terminal<CR>', {})
+
 api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
 
 -- Indent in visual mode
