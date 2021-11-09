@@ -81,11 +81,8 @@ api.nvim_set_keymap('n', '<Leader>gs',   '<cmd>lua require("lspsaga.signaturehel
 -- }}
 
 -- {{ renamer
--- nnoremap <silent> <leader>rn <cmd>lua require('renamer').rename()<cr>
--- vnoremap <silent> <leader>rn <cmd>lua require('renamer').rename()<cr>
-
-api.nvim_set_keymap('n', '<Leader>rn',   '<cmd>lua require("renamer").rename()<CR>)', {noremap=true, silent=true})
-api.nvim_set_keymap('v', '<Leader>rn',   '<cmd>lua require("renamer").rename()<CR>)', {noremap=true, silent=true})
+api.nvim_set_keymap('n', '<Leader>rn',   '<cmd>lua require("renamer").rename()<CR>', {noremap=true, silent=true})
+api.nvim_set_keymap('v', '<Leader>rn',   '<cmd>lua require("renamer").rename()<CR>', {noremap=true, silent=true})
 
 api.nvim_set_keymap('n', 'gd',' <cmd>lua vim.lsp.buf.definition()<CR>', {})
 api.nvim_set_keymap('n', 'gD',' <cmd>lua vim.lsp.buf.declaration()<CR>', {})
