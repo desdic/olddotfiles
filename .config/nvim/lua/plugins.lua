@@ -73,17 +73,21 @@ return require('packer').startup {
 
 		use { "beauwilliams/focus.nvim",
 			 config = function()
-				 require("focus").setup({enable = true, cursorline = true, signcolumn = true, hybridnumber = true})
+				 require("focus").setup(
+					{
+						enable = true,
+						cursorline = true,
+						signcolumn = true,
+						hybridnumber = true,
+						excluded_filetypes = {"toggleterm"},
+						excluded_buftypes = {"popup", "help"}
+					}
+				)
 			end
 		}
 
 		use {'christianchiarulli/nvcode-color-schemes.vim'}
 		use {'Pocco81/Catppuccino.nvim'}
-		-- use {'glepnir/galaxyline.nvim',
-		-- 	config = function()
-		-- 		require('config.galaxyline')
-		-- 	end
-		-- }
 
 		use {
 			'windwp/windline.nvim',
