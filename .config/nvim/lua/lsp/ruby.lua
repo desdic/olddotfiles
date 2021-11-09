@@ -12,7 +12,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 require'lspconfig'.solargraph.setup {
-    cmd = { DATA_PATH .. "/lspinstall/ruby/solargraph/solargraph", "stdio"},
+    cmd = { DATA_PATH .. "/lsp_servers/solargraph/bin/solargraph", "stdio"},
     capabilities = capabilities,
     on_attach = require'lsp'.common_on_attach,
     handlers = {
