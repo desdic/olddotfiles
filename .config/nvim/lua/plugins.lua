@@ -188,6 +188,15 @@ return require('packer').startup {
 			end
 		}
 
+		use {
+			'filipdutescu/renamer.nvim',
+			branch = 'master',
+			requires = { {'nvim-lua/plenary.nvim'} },
+			config = function()
+				require("renamer").setup()
+			end
+		}
+
 		use { 'ray-x/lsp_signature.nvim' }
 		use { 'rcarriga/nvim-notify' }
 		use {

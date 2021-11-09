@@ -32,6 +32,9 @@ api.nvim_set_keymap('v', '<C-m-k>', ':m \'<-2<CR>gv=gv', {noremap = true})
 
 api.nvim_set_keymap('n', '<Leader>qa', ':qa!<CR>', {noremap = true})
 
+-- CTRL+Backspace to delete word
+api.nvim_set_keymap('i', '<C-H>', '<C-W>', {noremap = true})
+
 -- jj as escape
 api.nvim_set_keymap('i', 'jj', '<ESC>', {})
 
@@ -76,6 +79,13 @@ api.nvim_set_keymap('n', '<C-f>',        '<cmd>lua require("lspsaga.action").sma
 api.nvim_set_keymap('n', '<C-b>',        '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>)', {noremap=true, silent=true})
 api.nvim_set_keymap('n', '<Leader>gs',   '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>)', {noremap=true, silent=true})
 -- }}
+
+-- {{ renamer
+-- nnoremap <silent> <leader>rn <cmd>lua require('renamer').rename()<cr>
+-- vnoremap <silent> <leader>rn <cmd>lua require('renamer').rename()<cr>
+
+api.nvim_set_keymap('n', '<Leader>rn',   '<cmd>lua require("renamer").rename()<CR>)', {noremap=true, silent=true})
+api.nvim_set_keymap('v', '<Leader>rn',   '<cmd>lua require("renamer").rename()<CR>)', {noremap=true, silent=true})
 
 api.nvim_set_keymap('n', 'gd',' <cmd>lua vim.lsp.buf.definition()<CR>', {})
 api.nvim_set_keymap('n', 'gD',' <cmd>lua vim.lsp.buf.declaration()<CR>', {})
