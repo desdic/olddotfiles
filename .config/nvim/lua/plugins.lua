@@ -87,7 +87,7 @@ return require('packer').startup {
 		}
 
 		use {'christianchiarulli/nvcode-color-schemes.vim'}
-		use {'Pocco81/Catppuccino.nvim'}
+		use "catppuccin/nvim"
 
 		use {
 			'windwp/windline.nvim',

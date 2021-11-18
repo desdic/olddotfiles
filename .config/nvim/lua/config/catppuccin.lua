@@ -1,10 +1,9 @@
-local catppuccino = require("catppuccino")
+local catppuccin = require("catppuccin")
 
 -- configure it
-catppuccino.setup(
+catppuccin.setup(
     {
-		colorscheme = "dark_catppuccino",
-		transparency = false,
+		transparent_background = false,
 		term_colors = false,
 		styles = {
 			comments = "italic",
@@ -28,20 +27,20 @@ catppuccino.setup(
 					hints = "underline",
 					warnings = "underline",
 					information = "underline",
-				}
+				},
 			},
-			lsp_trouble = false,
-			lsp_saga = false,
+			lsp_trouble = true,
+			lsp_saga = true,
 			gitgutter = false,
-			gitsigns = false,
-			telescope = false,
+			gitsigns = true,
+			telescope = true,
 			nvimtree = {
 				enabled = false,
 				show_root = false,
 			},
 			which_key = false,
 			indent_blankline = {
-				enabled = false,
+				enabled = true,
 				colored_indent_levels = false,
 			},
 			dashboard = false,
@@ -51,9 +50,9 @@ catppuccino.setup(
 			barbar = false,
 			bufferline = false,
 			markdown = false,
-			lightspeed = false,
-			ts_rainbow = false,
+			lightspeed = true,
+			ts_rainbow = true,
 			hop = false,
-		}
+		},
 	}
 )
