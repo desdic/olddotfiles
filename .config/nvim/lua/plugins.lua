@@ -22,6 +22,14 @@ return require('packer').startup {
 
 		use {'wbthomason/packer.nvim', opt = true}
 
+		use {
+			'folke/trouble.nvim',
+			requires = 'kyazdani42/nvim-web-devicons',
+			config = function()
+				require('trouble').setup {}
+			end
+		}
+
 		use {'p00f/nvim-ts-rainbow'}
 
 		use {
@@ -36,7 +44,6 @@ return require('packer').startup {
 				require('config.treesitter')
 			end
 		}
-
 
 		use {'ggandor/lightspeed.nvim'}
 		use {'SirVer/ultisnips'}
@@ -68,6 +75,13 @@ return require('packer').startup {
 					prefer_single_line_comments = true,
 					use_consistent_indentation = true,
 				})
+			end
+		}
+
+		use {
+			'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim',
+			config = function()
+				require'toggle_lsp_diagnostics'.init()
 			end
 		}
 
@@ -160,23 +174,6 @@ return require('packer').startup {
 			end
 		}
 
-		use {
-			'folke/trouble.nvim',
-			requires = 'kyazdani42/nvim-web-devicons',
-			config = function()
-				local i = require('config.icons')
-
-				require('trouble').setup {
-					signs = {
-						error = i.diag.error,
-						warning = i.diag.warn,
-						hint = i.diag.hint,
-						information = i.diag.info,
-						other = i.diag.pass
-					}
-				}
-			end
-		}
 
 		use {
 			'nvim-telescope/telescope.nvim',
@@ -298,6 +295,7 @@ return require('packer').startup {
 				cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
 			end
 		}
+
 	end,
 	config = {
 		python_cmd = 'python3'

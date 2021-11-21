@@ -7,6 +7,8 @@ local buffer_option = vim.bo
 local window_option = vim.wo
 local indent = 2
 
+vim.lsp.set_log_level("debug")
+
 global.mapleader = ',' -- Set leader
 global.shada = "NONE"
 

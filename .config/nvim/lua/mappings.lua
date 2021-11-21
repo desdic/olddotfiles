@@ -55,6 +55,9 @@ api.nvim_set_keymap('n', '<Leader>vrc', ':lua require("config.telescope").search
 api.nvim_set_keymap('n', '<Leader>notes', ':lua require("config.telescope").grep_notes()<CR>', {noremap=true})
 -- }}
 
+-- {{ Trouble
+api.nvim_set_keymap('n', '<Leader>p', ':TroubleToggle<CR>', {noremap=true})
+-- }}
 
 -- {{ Focus
 api.nvim_set_keymap('n', '<Leader>h', ':FocusSplitLeft<CR>', { silent = true })

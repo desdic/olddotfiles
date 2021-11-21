@@ -11,34 +11,38 @@ O = {
 	timeoutlen = 100,
 	nvim_tree_disable_netrw = 0, -- "1 by default, disables netrw (must be set before plugin's packadd)
 
-	database = {save_location = '~/.config/nvcode_db', auto_execute = 1},
 	python = {
 		autoformat = false,
 		isort = false,
-		diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true},
+		-- diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true},
+		diagnostics = {virtual_text = false, signs = true, underline = false},
 		analysis = { autoSearchPaths = true, diagnosticMode = "openFilesOnly", useLibraryCodeForTypes = true,},
 	},
 	lua = {
 		autoformat = false,
-		diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true}
+		diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = false}
 	},
 	sh = {
 		autoformat = false,
-		diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true}
+		diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = false}
 	},
 	json = {
 		autoformat = false,
-		diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true}
+		diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = false}
 	},
 	clang = {
-		diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true}
+		diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = false}
 	},
 	ruby = {
-		diagnostics = {virtualtext = {spacing = 0, prefix = ""}, signs = true, underline = true},
+		diagnostics = {virtual_text = false, signs = true, underline = false},
 		filetypes = {'ruby', 'rb', 'erb', 'rakefile'}
 	},
 	golang = {
-		diagnostics = {virtualtext = {spacing = 0, prefix = ""}, signs = true, underline = true},
+		diagnostics = {virtual_text = false, signs = true, underline = false},
+		autoformat = true,
+	},
+	yaml = {
+		diagnostics = {virtual_text = false, signs = true, underline = false},
 		autoformat = true,
 	}
 }

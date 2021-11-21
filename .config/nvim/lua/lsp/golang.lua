@@ -10,6 +10,18 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   }
 }
 
+
+local handlers = {
+	["textDocument/publishDiagnostics"] = vim.lsp.with(
+		vim.lsp.diagnostic.on_publish_diagnostics, {
+			virtual_text = O.golang.diagnostics.virtual_text,
+			signs = O.golang.diagnostics.signs,
+			underline = O.golang.diagnostics.underline,
+			update_in_insert = true
+		}
+	)
+}
+
 require'lspconfig'.gopls.setup{
   cmd = {"/usr/bin/gopls", "serve"},
   on_attach = require'lsp'.common_on_attach,
@@ -28,7 +40,8 @@ require'lspconfig'.gopls.setup{
 		completeUnimported = true;
 		gofumpt = true;
   },
-  capabilities = capabilities,
+	capabilities = capabilities,
+	handlers = handlers,
 }
 
 local lspconfig = require 'lspconfig'
@@ -46,6 +59,9 @@ if not lspconfig.golangcilsp then
 		};
 	}
 end
+
 lspconfig.golangcilsp.setup {
-	filetypes = {'go'}
+	filetypes = {'go'},
+	capabilities = capabilities,
+	handlers = handlers,
 }
