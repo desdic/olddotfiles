@@ -243,10 +243,17 @@ return require('packer').startup {
 						end
 					},
 					formatting = {
-						format = function(_, vim_item)
-							vim_item.kind = lspkind.presets.default[vim_item.kind]
-							return vim_item
-						end
+						format = lspkind.cmp_format{
+							with_text = true,
+							menu = {
+								buffer = "[buf]",
+								nvim_lsp = "[LSP]",
+								nvim_lua = "[api]",
+								path = "[path]",
+								calc = "[calc]",
+								vsnip = "[vsnip]",
+							}
+						}
 					},
 					sorting = {
 						priority_weight = 2.,
@@ -274,11 +281,11 @@ return require('packer').startup {
 						}
 					},
 					sources = {
-						{name = 'buffer'},
 						{name = 'nvim_lsp'},
 						{name = 'nvim_lua'},
-						{name = 'vsnip'},
 						{name = 'path'},
+						{name = 'vsnip'},
+						{name = 'buffer', keyword_length = 3},
 						{name = 'calc'},
 					}
 				}
