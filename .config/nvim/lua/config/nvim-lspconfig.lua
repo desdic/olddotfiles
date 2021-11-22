@@ -25,16 +25,6 @@ local function documentHighlight(client, bufnr)
         )
     end
 end
-local lsp_config = {}
-
--- function lsp_config.common_on_attach(client, bufnr)
---     documentHighlight(client, bufnr)
--- end
-
--- function lsp_config.tsserver_on_attach(client, bufnr)
---     lsp_config.common_on_attach(client, bufnr)
---     client.resolved_capabilities.document_formatting = false
--- end
 
 -- symbols for autocomplete
 vim.lsp.protocol.CompletionItemKind = {
