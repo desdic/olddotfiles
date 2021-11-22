@@ -50,7 +50,7 @@ window_option.number = true -- Show numbers
 window_option.relativenumber = true -- Show relative numbers
 window_option.signcolumn = "yes" -- Make room for gitsigns + numbers
 
-window_option.listchars = 'tab:▸ ,trail:·,nbsp:_' -- Hidden chars
+window_option.listchars = 'tab:▸ ,trail:·,nbsp:_,eol:↴' -- Hidden chars
 window_option.list = true -- Show hidden chars
 
 buffer_option.tabstop = indent -- Default set to spaces
