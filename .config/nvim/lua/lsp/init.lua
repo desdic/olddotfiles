@@ -47,35 +47,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
--- symbols for autocomplete
-vim.lsp.protocol.CompletionItemKind = {
-    "   (Text) ",
-    "   (Method)",
-    "   (Function)",
-    "   (Constructor)",
-    " ﴲ  (Field)",
-    "[] (Variable)",
-    "   (Class)",
-    " ﰮ  (Interface)",
-    "   (Module)",
-    " 襁 (Property)",
-    "   (Unit)",
-    "   (Value)",
-    " 練 (Enum)",
-    "   (Keyword)",
-    "   (Snippet)",
-    "   (Color)",
-    "   (File)",
-    "   (Reference)",
-    "   (Folder)",
-    "   (EnumMember)",
-    " ﲀ  (Constant)",
-    " ﳤ  (Struct)",
-    "   (Event)",
-    "   (Operator)",
-    "   (TypeParameter)"
-}
-
 --[[ " autoformat
 autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
