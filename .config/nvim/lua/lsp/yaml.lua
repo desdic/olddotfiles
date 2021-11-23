@@ -1,18 +1,16 @@
--- requires yaml-language-server installed
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    'documentation',
-    'detail',
-    'additionalTextEdits',
-  }
+	properties = {
+		'documentation',
+		'detail',
+		'additionalTextEdits',
+	}
 }
 
 require'lspconfig'.yamlls.setup{
-  cmd = { DATA_PATH .. "/lsp_servers/yaml/node_modules/yaml-language-server/bin/yaml-language-server", "--stdio"},
-  capabilities = capabilities,
+	cmd = { DATA_PATH .. "/lsp_servers/yaml/node_modules/yaml-language-server/bin/yaml-language-server", "--stdio"},
+	capabilities = capabilities,
 	handlers = {
 		["textDocument/publishDiagnostics"] = vim.lsp.with(
 			vim.lsp.diagnostic.on_publish_diagnostics, {

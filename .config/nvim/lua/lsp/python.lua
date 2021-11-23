@@ -1,5 +1,3 @@
--- requires pyright installed
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
@@ -11,9 +9,9 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 require'lspconfig'.pyright.setup {
-    cmd = {"node", DATA_PATH .. "/lsp_servers/python/node_modules/pyright/langserver.index.js", "--stdio"},
-    on_attach = require'lsp'.common_on_attach,
-    capabilities = capabilities,
+	cmd = {"node", DATA_PATH .. "/lsp_servers/python/node_modules/pyright/langserver.index.js", "--stdio"},
+	on_attach = require'lsp'.common_on_attach,
+	capabilities = capabilities,
 	handlers = {
 		["textDocument/publishDiagnostics"] = vim.lsp.with(
 			vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -24,9 +22,9 @@ require'lspconfig'.pyright.setup {
 			}
 		)
 	},
-    settings = {
-      python = {
-        analysis = O.python.analysis,
-      }
-    }
+	settings = {
+		python = {
+			analysis = O.python.analysis,
+		}
+	}
 }
