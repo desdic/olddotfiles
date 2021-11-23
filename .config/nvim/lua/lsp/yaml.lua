@@ -11,7 +11,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 require'lspconfig'.yamlls.setup{
-  cmd = {"/usr/bin/yaml-language-server", "--stdio"},
+  cmd = { DATA_PATH .. "/lsp_servers/yaml/node_modules/yaml-language-server/bin/yaml-language-server", "--stdio"},
   capabilities = capabilities,
 	handlers = {
 		["textDocument/publishDiagnostics"] = vim.lsp.with(

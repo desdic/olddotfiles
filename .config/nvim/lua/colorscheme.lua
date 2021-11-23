@@ -6,5 +6,4 @@ cmd 'syntax enable'
 option.background = 'dark'
 option.termguicolors = true
 window_option.cursorline = true
--- cmd 'colorscheme nvcode'
 cmd 'colorscheme catppuccin'

@@ -11,7 +11,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 require'lspconfig'.pyright.setup {
-    cmd = {"/usr/bin/pyright-langserver", "--stdio"},
+    cmd = {"node", DATA_PATH .. "/lsp_servers/python/node_modules/pyright/langserver.index.js", "--stdio"},
     on_attach = require'lsp'.common_on_attach,
     capabilities = capabilities,
 	handlers = {

@@ -23,7 +23,7 @@ local handlers = {
 }
 
 require'lspconfig'.gopls.setup{
-  cmd = {"/usr/bin/gopls", "serve"},
+  cmd = { DATA_PATH .. "/lsp_servers/go/gopls", "serve"},
   on_attach = require'lsp'.common_on_attach,
   settings = {
 		gopls = {

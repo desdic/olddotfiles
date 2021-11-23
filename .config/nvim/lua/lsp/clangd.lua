@@ -11,6 +11,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 require'lspconfig'.clangd.setup {
+  cmd = {DATA_PATH .. "/lsp_servers/clangd/clangd"},
   on_attach = require'lsp'.common_on_attach,
   capabilities = capabilities
 }

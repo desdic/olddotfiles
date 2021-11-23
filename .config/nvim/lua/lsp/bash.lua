@@ -11,7 +11,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 require'lspconfig'.bashls.setup {
-  cmd = {"/usr/bin/bash-language-server", "start"},
+  cmd = {"node", DATA_PATH .. "/lsp_servers/bash/node_modules/bash-language-server/bin/main.js", "start"},
   on_attach = require'lsp'.common_on_attach,
   filetypes = { "sh", "zsh" },
   capabilities = capabilities,

@@ -110,7 +110,7 @@ return require('packer').startup {
 			end
 		}
 
-		use {'tomasiser/vim-code-dark'}
+		-- use {'tomasiser/vim-code-dark'}
 
 		use {
 			'akinsho/nvim-bufferline.lua',

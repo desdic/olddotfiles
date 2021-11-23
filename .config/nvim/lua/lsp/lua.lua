@@ -11,7 +11,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 require'lspconfig'.sumneko_lua.setup {
-  cmd = {"/usr/bin/lua-language-server"},
+    cmd = { DATA_PATH .. "/lsp_servers/sumneko_lua/extension/server/bin/Linux/lua-language-server"},
   on_attach = require'lsp'.common_on_attach,
   settings = {
       Lua = {

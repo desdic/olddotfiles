@@ -11,7 +11,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 require'lspconfig'.jsonls.setup{
-	cmd = {"node", "/usr/lib/node_modules/vscode-json-languageserver/out/node/jsonServerMain.js", "--stdio"},
+    cmd = { "node", DATA_PATH .. "/lsp_servers/jsonls/node_modules/vscode-langservers-extracted/dist/json-language-server/node/jsonServerMain.js", "--stdio"},
 	on_attach = require'lsp'.common_on_attach,
 	capabilities = capabilities,
 	handlers = {
