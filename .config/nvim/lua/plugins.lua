@@ -85,8 +85,8 @@ return require('packer').startup {
 		}
 
 		use { "beauwilliams/focus.nvim",
-			 config = function()
-				 require("focus").setup(
+			config = function()
+				require("focus").setup(
 					{
 						enable = true,
 						cursorline = true,
@@ -245,31 +245,31 @@ return require('packer').startup {
 						format = lspkind.cmp_format{
 							with_text = true,
 							symbol_map = {
-							  Text = "",
-							  Method = "",
-							  Function = "",
-							  Constructor = "",
-							  Field = "ﴲ",
-							  Variable = "[]",
-							  Class = "",
-							  Interface = "ﰮ",
-							  Module = "",
-							  Property = "襁",
-							  Unit = "",
-							  Value = "",
-							  Enum = "練",
-							  Keyword = "",
-							  Snippet = "",
-							  Color = "",
-							  File = "",
-							  Reference = "",
-							  Folder = "",
-							  EnumMember = "",
-							  Constant = "ﲀ",
-							  Struct = "ﳤ",
-							  Event = "",
-							  Operator = "",
-							  TypeParameter = ""
+								Text = "",
+								Method = "",
+								Function = "",
+								Constructor = "",
+								Field = "ﴲ",
+								Variable = "[]",
+								Class = "",
+								Interface = "ﰮ",
+								Module = "",
+								Property = "襁",
+								Unit = "",
+								Value = "",
+								Enum = "練",
+								Keyword = "",
+								Snippet = "",
+								Color = "",
+								File = "",
+								Reference = "",
+								Folder = "",
+								EnumMember = "",
+								Constant = "ﲀ",
+								Struct = "ﳤ",
+								Event = "",
+								Operator = "",
+								TypeParameter = ""
 							},
 
 							menu = {
