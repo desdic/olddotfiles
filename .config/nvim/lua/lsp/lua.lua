@@ -1,16 +1,7 @@
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-	properties = {
-		'documentation',
-		'detail',
-		'additionalTextEdits',
-	}
-}
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 require'lspconfig'.sumneko_lua.setup {
 	cmd = { DATA_PATH .. "/lsp_servers/sumneko_lua/extension/server/bin/Linux/lua-language-server"},
-	on_attach = require'lsp'.common_on_attach,
 	settings = {
 		Lua = {
 			runtime = {

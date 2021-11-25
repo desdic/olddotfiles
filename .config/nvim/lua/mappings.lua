@@ -53,10 +53,13 @@ api.nvim_set_keymap('n', '<Leader>fh', ':lua require("telescope.builtin").help_t
 api.nvim_set_keymap('n', '<Leader>fo', ':lua require("telescope.builtin").tags{ only_current_buffer = true }<CR>', {})
 api.nvim_set_keymap('n', '<Leader>vrc', ':lua require("config.telescope").search_nvim()<CR>', {noremap=true})
 api.nvim_set_keymap('n', '<Leader>notes', ':lua require("config.telescope").grep_notes()<CR>', {noremap=true})
+
+api.nvim_set_keymap('n', '<Leader>p', ':lua require("telescope.builtin").lsp_document_diagnostics()<CR>', {})
+api.nvim_set_keymap('n', '<Leader>s', ':lua require("telescope.builtin").lsp_document_symbols()<CR>', {})
 -- }}
 
 -- {{ Trouble
-api.nvim_set_keymap('n', '<Leader>p', ':TroubleToggle<CR>', {noremap=true})
+-- api.nvim_set_keymap('n', '<Leader>p', ':TroubleToggle<CR>', {noremap=true})
 -- }}
 
 -- {{ Focus

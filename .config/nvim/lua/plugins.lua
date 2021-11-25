@@ -22,14 +22,6 @@ return require('packer').startup {
 
 		use {'wbthomason/packer.nvim', opt = true}
 
-		use {
-			'folke/trouble.nvim',
-			requires = 'kyazdani42/nvim-web-devicons',
-			config = function()
-				require('trouble').setup {}
-			end
-		}
-
 		use {'p00f/nvim-ts-rainbow'}
 
 		use {
@@ -77,13 +69,6 @@ return require('packer').startup {
 			end
 		}
 
-		use {
-			'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim',
-			config = function()
-				require'toggle_lsp_diagnostics'.init()
-			end
-		}
-
 		use { "beauwilliams/focus.nvim",
 			config = function()
 				require("focus").setup(
@@ -109,8 +94,6 @@ return require('packer').startup {
 				require('wlsample.evil_line')
 			end
 		}
-
-		-- use {'tomasiser/vim-code-dark'}
 
 		use {
 			'akinsho/nvim-bufferline.lua',
@@ -180,7 +163,6 @@ return require('packer').startup {
 				'nvim-lua/plenary.nvim',
 				'nvim-telescope/telescope-fzy-native.nvim',
 				'nvim-telescope/telescope-media-files.nvim',
-				'nvim-telescope/telescope-github.nvim'
 				-- 'nvim-telescope/telescope-packer.nvim'  -- currently breaking packer
 			},
 			config = function()
@@ -232,6 +214,7 @@ return require('packer').startup {
 				local cmp = require('cmp')
 				local lspkind = require('lspkind')
 				local compare = require('cmp.config.compare')
+				local i = require('config.icons')
 
 				cmp.setup {
 					preselect = false,
@@ -244,34 +227,7 @@ return require('packer').startup {
 					formatting = {
 						format = lspkind.cmp_format{
 							with_text = true,
-							symbol_map = {
-								Text = "",
-								Method = "",
-								Function = "",
-								Constructor = "",
-								Field = "ﴲ",
-								Variable = "[]",
-								Class = "",
-								Interface = "ﰮ",
-								Module = "",
-								Property = "襁",
-								Unit = "",
-								Value = "",
-								Enum = "練",
-								Keyword = "",
-								Snippet = "",
-								Color = "",
-								File = "",
-								Reference = "",
-								Folder = "",
-								EnumMember = "",
-								Constant = "ﲀ",
-								Struct = "ﳤ",
-								Event = "",
-								Operator = "",
-								TypeParameter = ""
-							},
-
+							symbol_map = i.symbol_map,
 							menu = {
 								buffer = "[buf]",
 								nvim_lsp = "[LSP]",

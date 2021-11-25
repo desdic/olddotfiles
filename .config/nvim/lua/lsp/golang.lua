@@ -1,13 +1,4 @@
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-	properties = {
-		'documentation',
-		'detail',
-		'additionalTextEdits',
-	}
-}
-
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local handlers = {
 	["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -22,7 +13,6 @@ local handlers = {
 
 require'lspconfig'.gopls.setup{
 	cmd = { DATA_PATH .. "/lsp_servers/go/gopls", "serve"},
-	on_attach = require'lsp'.common_on_attach,
 	settings = {
 		gopls = {
 			analyses = {
@@ -32,7 +22,7 @@ require'lspconfig'.gopls.setup{
 			gofumpt = true
 		}
 	},
-	root_dir = require'lspconfig'.util.root_pattern(".git","go.mod","."),
+	root_dir = require'lspconfig'.util.root_pattern(".git","go.mod", "."),
 	init_options = {
 		usePlaceholders = true;
 		completeUnimported = true;

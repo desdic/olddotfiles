@@ -1,18 +1,7 @@
--- requires vscode-json-languageserver installed
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-	properties = {
-		'documentation',
-		'detail',
-		'additionalTextEdits',
-	}
-}
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 require'lspconfig'.jsonls.setup{
 	cmd = { "node", DATA_PATH .. "/lsp_servers/jsonls/node_modules/vscode-langservers-extracted/dist/json-language-server/node/jsonServerMain.js", "--stdio"},
-	on_attach = require'lsp'.common_on_attach,
 	capabilities = capabilities,
 	handlers = {
 		["textDocument/publishDiagnostics"] = vim.lsp.with(
