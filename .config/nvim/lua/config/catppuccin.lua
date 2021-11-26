@@ -29,7 +29,7 @@ catppuccin.setup(
 					information = "underline",
 				},
 			},
-			lsp_trouble = true,
+			lsp_trouble = false,
 			lsp_saga = true,
 			gitgutter = false,
 			gitsigns = true,
