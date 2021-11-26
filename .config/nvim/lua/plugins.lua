@@ -90,8 +90,7 @@ return require('packer').startup {
 				local catppuccin = require("catppuccin")
 
 				-- configure it
-				catppuccin.setup(
-					{
+				catppuccin.setup({
 						transparent_background = false,
 						term_colors = false,
 						styles = {
@@ -118,33 +117,23 @@ return require('packer').startup {
 									information = "underline",
 								},
 							},
-							lsp_trouble = false,
 							lsp_saga = true,
-							gitgutter = false,
 							gitsigns = true,
 							telescope = true,
 							nvimtree = {
-								enabled = false,
+								enabled = true,
 								show_root = false,
 							},
-							which_key = false,
 							indent_blankline = {
 								enabled = true,
 								colored_indent_levels = false,
 							},
-							dashboard = false,
-							neogit = false,
-							vim_sneak = false,
-							fern = false,
-							barbar = false,
 							bufferline = false,
 							markdown = false,
 							lightspeed = true,
 							ts_rainbow = true,
-							hop = false,
 						},
-					}
-				)
+					})
 			end
 		}
 
