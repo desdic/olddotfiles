@@ -10,3 +10,4 @@
 .config/nvim/plugged/
 .config/i3/img/cache
 __pycache__
+.config/nvim/lua/packer_compiled.lua
