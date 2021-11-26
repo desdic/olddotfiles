@@ -69,5 +69,12 @@ vim.wo.colorcolumn = "99999"
 global.loaded_perl_provider=0
 -- global.loaded_python_provider=0
 
+
+cmd 'syntax enable'
+-- option.background = 'dark'
+option.termguicolors = true
+window_option.cursorline = true
+cmd 'colorscheme catppuccin'
+
 cmd("set noswapfile")
 cmd("filetype plugin on")
