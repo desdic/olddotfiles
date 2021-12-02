@@ -58,10 +58,6 @@ api.nvim_set_keymap('n', '<Leader>p', ':lua require("telescope.builtin").lsp_doc
 api.nvim_set_keymap('n', '<Leader>s', ':lua require("telescope.builtin").lsp_document_symbols()<CR>', {})
 -- }}
 
--- {{ Trouble
--- api.nvim_set_keymap('n', '<Leader>p', ':TroubleToggle<CR>', {noremap=true})
--- }}
-
 -- {{ Focus
 api.nvim_set_keymap('n', '<Leader>h', ':FocusSplitLeft<CR>', { silent = true })
 api.nvim_set_keymap('n', '<Leader>j', ':FocusSplitDown<CR>', { silent = true })
@@ -76,26 +72,22 @@ api.nvim_set_keymap('n', '<Leader>n',':NvimTreeToggle<CR>', {noremap=true})
 api.nvim_set_keymap('n', '<Leader>r',':NvimTreeRefresh<CR>', {noremap=true})
 -- }}
 
--- {{ LSPSaga
--- Not working at the moment
--- api.nvim_set_keymap('n', 'K',            '<cmd>lua require("lspsaga.hover").render_hover_doc()<CR>', {noremap=true})
-api.nvim_set_keymap('n', '<Leader>ca',   '<cmd>lua require("lspsaga.codeaction").code_action()<CR>', {noremap=true})
-api.nvim_set_keymap('n', '<C-k>',        '<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_prev()<CR>', {noremap=true, silent=true})
-api.nvim_set_keymap('n', '<C-j>',        '<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_next()<CR>', {noremap=true, silent=true})
-api.nvim_set_keymap('n', '<Leader>gr',   '<cmd>lua require("lspsaga.rename").rename()<CR>', {noremap=true, silent=true})
-api.nvim_set_keymap('n', '<C-f>',        '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>)', {noremap=true, silent=true})
-api.nvim_set_keymap('n', '<C-b>',        '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>)', {noremap=true, silent=true})
-api.nvim_set_keymap('n', '<Leader>gs',   '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>)', {noremap=true, silent=true})
--- }}
-
--- {{ renamer
-api.nvim_set_keymap('n', '<Leader>rn',   '<cmd>lua require("renamer").rename()<CR>', {noremap=true, silent=true})
-api.nvim_set_keymap('v', '<Leader>rn',   '<cmd>lua require("renamer").rename()<CR>', {noremap=true, silent=true})
-
 api.nvim_set_keymap('n', 'gd',' <cmd>lua vim.lsp.buf.definition()<CR>', {})
 api.nvim_set_keymap('n', 'gD',' <cmd>lua vim.lsp.buf.declaration()<CR>', {})
 api.nvim_set_keymap('n', 'gr',' <cmd>lua vim.lsp.buf.references()<CR>', {})
 api.nvim_set_keymap('n', 'gi',' <cmd>lua vim.lsp.buf.implementation()<CR>', {})
 api.nvim_set_keymap('n', 'K',' <cmd>lua vim.lsp.buf.hover()<CR>', {})
+api.nvim_set_keymap('n', '<C-k>','<cmd>lua vim.diagnostic.goto_prev()<CR>', {noremap=true, silent=true})
+api.nvim_set_keymap('n', '<C-j>','<cmd>lua vim.diagnostic.goto_next()<CR>', {noremap=true, silent=true})
+api.nvim_set_keymap('n', '<Leader>gr',   '<cmd>lua vim.lsp.buf.rename()<CR>', {noremap=true, silent=true})
+api.nvim_set_keymap('n', '<Leader>ca',   '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap=true})
+api.nvim_set_keymap('n', '<Leader>gs',   '<cmd>lua vim.lsp.buf.signature_help()<CR>', {noremap=true, silent=true})
 
 vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')
+
+-- {{ vsnip
+api.nvim_set_keymap('i', '<Tab>','vsnip#jumpable(1) ? \'<Plug>(vsnip-jump-next)\' : \'<Tab>\'', {expr = true})
+api.nvim_set_keymap('s', '<Tab>','vsnip#jumpable(1) ? \'<Plug>(vsnip-jump-next)\' : \'<Tab>\'', {expr = true})
+api.nvim_set_keymap('i', '<S-Tab>','vsnip#jumpable(-1) ? \'<Plug>(vsnip-jump-prev)\' : \'<S-Tab>\'', {expr = true})
+api.nvim_set_keymap('s', '<S-Tab>','vsnip#jumpable(-1) ? \'<Plug>(vsnip-jump-prev)\' : \'<S-Tab>\'', {expr = true})
+-- }}

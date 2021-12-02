@@ -38,21 +38,20 @@ return require('packer').startup {
 		}
 
 		use {'ggandor/lightspeed.nvim'}
-		use {'SirVer/ultisnips'}
 		use {'honza/vim-snippets'}
-
-		use {'lukas-reineke/indent-blankline.nvim',
-			config = function()
-				require('indent_blankline').setup {
-					buftype_exclude = {'terminal', 'popup'}
-				}
-			end
-		}
 
 		use {'golang/vscode-go'}
 		use {'rafamadriz/friendly-snippets'}
 
-		use {'editorconfig/editorconfig-vim'}
+		-- not working for python for some reason
+		use {'editorconfig/editorconfig-vim',
+		config = function()
+				vim.g.EditorConfig_exclude_patterns = {'fugitive://.*', 'tarfile::.*'}
+				vim.g.EditorConfig_max_line_indictor = 'line'
+				vim.g.EditorConfig_exec_path = '/sbin/editorconfig3'
+				vim.g.EditorConfig_core_mode = 'external_command'
+			end
+		}
 		use 'Vimjas/vim-python-pep8-indent'
 
 		use {'b3nj5m1n/kommentary',
@@ -163,7 +162,6 @@ return require('packer').startup {
 
 		use {'williamboman/nvim-lsp-installer'}
 
-		use {'glepnir/lspsaga.nvim'}
 		use {'mhartington/formatter.nvim'}
 
 		use {
@@ -214,15 +212,6 @@ return require('packer').startup {
 			},
 			config = function()
 				require('config.telescope')
-			end
-		}
-
-		use {
-			'filipdutescu/renamer.nvim',
-			branch = 'master',
-			requires = { {'nvim-lua/plenary.nvim'} },
-			config = function()
-				require("renamer").setup()
 			end
 		}
 
