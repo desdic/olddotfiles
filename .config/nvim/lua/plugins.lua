@@ -159,13 +159,10 @@ return require('packer').startup {
 			config = function() require'nvim-tree'.setup {} end
 		}
 
-		use {'neovim/nvim-lspconfig',
-			config = function()
-				require('config.nvim-lspconfig')
-			end
-		}
+		use {'neovim/nvim-lspconfig'}
 
 		use {'williamboman/nvim-lsp-installer'}
+
 		use {'glepnir/lspsaga.nvim'}
 		use {'mhartington/formatter.nvim'}
 

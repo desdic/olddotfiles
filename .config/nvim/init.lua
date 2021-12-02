@@ -1,6 +1,7 @@
 require("globals")
 require("plugins")
 require("settings")
+require('config.nvim-lspconfig')
 require("mappings")
 require("autogroups")
 require("config.formatter")
