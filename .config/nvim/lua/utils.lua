@@ -1,5 +1,3 @@
-local nv_utils = {}
-
 function goimports(wait_ms)
 	local params = vim.lsp.util.make_range_params()
 	params.context = {only = {"source.organizeImports"}}
@@ -35,27 +33,3 @@ function watch_file(fname)
 		on_change(...) end))
 end
 vim.api.nvim_command("command! -nargs=1 Watch call luaeval('watch_file(_A)', expand('<args>'))")
-
-function nv_utils.define_augroups(definitions) -- {{{1
-	-- Create autocommand groups based on the passed definitions
-	--
-	-- The key will be the name of the group, and each definition
-	-- within the group should have:
-	--    1. Trigger
-	--    2. Pattern
-	--    3. Text
-	-- just like how they would normally be defined from Vim itself
-	for group_name, definition in pairs(definitions) do
-		vim.cmd('augroup ' .. group_name)
-		vim.cmd('autocmd!')
-
-		for _, def in pairs(definition) do
-			local command = table.concat(vim.tbl_flatten {'autocmd', def}, ' ')
-			vim.cmd(command)
-		end
-
-		vim.cmd('augroup END')
-	end
-end
-
-return nv_utils
