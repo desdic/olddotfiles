@@ -3,9 +3,11 @@ local cmd = vim.cmd
 
 -- don't continue comments and reload file on external change
 -- don't create undo for files located in /boot or /mnt and turn off shada
+-- don't like to reload editorconfig since its already loaded but for some reason it doesn't work without it
 cmd([[
 augroup	_general
 	autocmd BufEnter * set formatoptions-=cro
+	autocmd BufEnter * :EditorConfigReload
 	autocmd BufWritePre /mnt/* setlocal noundofile,setlocal shada="NONE"
 	autocmd BufWritePre /boot/* setlocal noundofile,setlocal shada="NONE"
 	autocmd BufReadPost * :Watch %
