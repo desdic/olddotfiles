@@ -45,11 +45,8 @@ return require('packer').startup {
 
 		-- not working for python for some reason
 		use {'editorconfig/editorconfig-vim',
-		config = function()
-				vim.g.EditorConfig_exclude_patterns = {'fugitive://.*', 'tarfile::.*'}
-				vim.g.EditorConfig_max_line_indictor = 'line'
-				vim.g.EditorConfig_exec_path = '/sbin/editorconfig3'
-				vim.g.EditorConfig_core_mode = 'external_command'
+			config = function()
+				require('config.editorconfig').init()
 			end
 		}
 		use 'Vimjas/vim-python-pep8-indent'
