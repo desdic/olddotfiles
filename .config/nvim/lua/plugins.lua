@@ -43,25 +43,13 @@ return require('packer').startup {
 		use {'golang/vscode-go'}
 		use {'rafamadriz/friendly-snippets'}
 
-		-- not working for python for some reason
-		use {'editorconfig/editorconfig-vim',
-			config = function()
-				require('config.editorconfig').init()
-			end
-		}
-		use 'Vimjas/vim-python-pep8-indent'
+		use {'gpanders/editorconfig.nvim'}
+		use {'Vimjas/vim-python-pep8-indent'}
 
-		use {'b3nj5m1n/kommentary',
+		use {
+			'numToStr/Comment.nvim',
 			config = function()
-				require('kommentary.config').configure_language('sxhkdrc', {
-					prefer_single_line_comments = true,
-					use_consistent_indentation = true,
-				})
-
-				require('kommentary.config').configure_language('default', {
-					prefer_single_line_comments = true,
-					use_consistent_indentation = true,
-				})
+				require('Comment').setup()
 			end
 		}
 
@@ -134,10 +122,10 @@ return require('packer').startup {
 		}
 
 		use {
-			'windwp/windline.nvim',
+			'nvim-lualine/lualine.nvim',
+			requires = {'kyazdani42/nvim-web-devicons', opt = true},
 			config = function()
-				require('windline')
-				require('wlsample.evil_line')
+				require('config.evil_lualine')
 			end
 		}
 
@@ -318,7 +306,6 @@ return require('packer').startup {
 				cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
 			end
 		}
-
 	end,
 	config = {
 		python_cmd = 'python3'

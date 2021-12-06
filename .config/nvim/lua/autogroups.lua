@@ -7,7 +7,6 @@ local cmd = vim.cmd
 cmd([[
 augroup	_general
 	autocmd BufEnter * set formatoptions-=cro
-	autocmd BufEnter * :EditorConfigReload
 	autocmd BufWritePre /mnt/* setlocal noundofile,setlocal shada="NONE"
 	autocmd BufWritePre /boot/* setlocal noundofile,setlocal shada="NONE"
 	autocmd BufReadPost * :Watch %
