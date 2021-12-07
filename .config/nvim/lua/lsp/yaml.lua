@@ -13,4 +13,7 @@ require'lspconfig'.yamlls.setup{
 			}
 		)
 	},
+    flags = {
+      debounce_text_changes = O.yaml.debounce_text_changes,
+    },
 }

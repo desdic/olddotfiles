@@ -16,4 +16,7 @@ require'lspconfig'.solargraph.setup {
 		})
 	},
 	filetypes = O.ruby.filetypes,
+    flags = {
+      debounce_text_changes = O.ruby.debounce_text_changes,
+    },
 }

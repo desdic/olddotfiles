@@ -2,5 +2,8 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protoco
 
 require'lspconfig'.clangd.setup {
 	cmd = {DATA_PATH .. "/lsp_servers/clangd/clangd"},
-	capabilities = capabilities
+	capabilities = capabilities,
+    flags = {
+      debounce_text_changes = O.clang.debounce_text_changes,
+    },
 }

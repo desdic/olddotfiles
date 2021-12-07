@@ -31,10 +31,16 @@ lspconfig.gopls.setup{
 	},
 	capabilities = capabilities,
 	handlers = handlers,
+    flags = {
+      debounce_text_changes = O.golang.debounce_text_changes,
+    },
 }
 
 lspconfig.golangci_lint_ls.setup{
 	filetypes = {'go', 'gomod'},
 	capabilities = capabilities,
 	handlers = handlers,
+    flags = {
+      debounce_text_changes = O.golang.debounce_text_changes,
+    },
 }

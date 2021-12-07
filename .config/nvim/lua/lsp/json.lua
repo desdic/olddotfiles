@@ -13,4 +13,7 @@ require'lspconfig'.jsonls.setup{
 			}
 		)
 	},
+    flags = {
+      debounce_text_changes = O.json.debounce_text_changes,
+    },
 }

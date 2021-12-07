@@ -22,4 +22,7 @@ require'lspconfig'.sumneko_lua.setup {
 		}
 	},
 	capabilities = capabilities,
+    flags = {
+      debounce_text_changes = O.lua.debounce_text_changes,
+    },
 }
