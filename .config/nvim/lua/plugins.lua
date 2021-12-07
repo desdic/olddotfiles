@@ -44,7 +44,7 @@ return require('packer').startup {
 		use {'rafamadriz/friendly-snippets'}
 
 		use {'gpanders/editorconfig.nvim'}
-		use {'Vimjas/vim-python-pep8-indent'}
+		use 'Vimjas/vim-python-pep8-indent'
 
 		use {
 			'numToStr/Comment.nvim',
@@ -101,7 +101,7 @@ return require('packer').startup {
 									information = "underline",
 								},
 							},
-							lsp_saga = true,
+							lsp_saga = false,
 							gitsigns = true,
 							telescope = true,
 							nvimtree = {
@@ -109,7 +109,7 @@ return require('packer').startup {
 								show_root = false,
 							},
 							indent_blankline = {
-								enabled = true,
+								enabled = false,
 								colored_indent_levels = false,
 							},
 							bufferline = false,
