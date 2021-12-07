@@ -17,10 +17,12 @@ O = {
 		-- diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true},
 		diagnostics = {virtual_text = false, signs = true, underline = false},
 		analysis = { autoSearchPaths = true, diagnosticMode = "openFilesOnly", useLibraryCodeForTypes = true,},
+		debounce_text_changes = 150,
 	},
 	lua = {
 		autoformat = false,
-		diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = false}
+		diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = false},
+		debounce_text_changes = 150,
 	},
 	sh = {
 		autoformat = false,
@@ -28,21 +30,26 @@ O = {
 	},
 	json = {
 		autoformat = false,
-		diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = false}
+		diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = false},
+		debounce_text_changes = 150,
 	},
 	clang = {
-		diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = false}
+		diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = false},
+		debounce_text_changes = 150,
 	},
 	ruby = {
 		diagnostics = {virtual_text = false, signs = true, underline = false},
-		filetypes = {'ruby', 'rb', 'erb', 'rakefile'}
+		filetypes = {'ruby', 'rb', 'erb', 'rakefile'},
+		debounce_text_changes = 150,
 	},
 	golang = {
 		diagnostics = {virtual_text = false, signs = true, underline = false},
 		autoformat = true,
+		debounce_text_changes = 150,
 	},
 	yaml = {
 		diagnostics = {virtual_text = false, signs = true, underline = false},
 		autoformat = true,
+		debounce_text_changes = 150,
 	}
 }
