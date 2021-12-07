@@ -72,13 +72,18 @@ api.nvim_set_keymap('n', '<Leader>n',':NvimTreeToggle<CR>', {noremap=true})
 api.nvim_set_keymap('n', '<Leader>r',':NvimTreeRefresh<CR>', {noremap=true})
 -- }}
 
+
 api.nvim_set_keymap('n', 'gd',' <cmd>lua vim.lsp.buf.definition()<CR>', {})
 api.nvim_set_keymap('n', 'gD',' <cmd>lua vim.lsp.buf.declaration()<CR>', {})
 api.nvim_set_keymap('n', 'gr',' <cmd>lua vim.lsp.buf.references()<CR>', {})
 api.nvim_set_keymap('n', 'gi',' <cmd>lua vim.lsp.buf.implementation()<CR>', {})
 api.nvim_set_keymap('n', 'K',' <cmd>lua vim.lsp.buf.hover()<CR>', {})
-api.nvim_set_keymap('n', '<C-k>','<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', {noremap=true, silent=true})
-api.nvim_set_keymap('n', '<C-j>','<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', {noremap=true, silent=true})
+
+-- TODO see if float can be specified elsewhere
+Border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+api.nvim_set_keymap('n', '<C-k>','<cmd>lua vim.diagnostic.goto_prev({float = {border = Border }})<CR>', {noremap=true, silent=true})
+api.nvim_set_keymap('n', '<C-j>','<cmd>lua vim.diagnostic.goto_next({float = {border = Border }})<CR>', {noremap=true, silent=true})
+
 api.nvim_set_keymap('n', '<Leader>gr',   '<cmd>lua vim.lsp.buf.rename()<CR>', {noremap=true, silent=true})
 api.nvim_set_keymap('n', '<Leader>ca',   '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap=true})
 api.nvim_set_keymap('n', '<Leader>gs',   '<cmd>lua vim.lsp.buf.signature_help()<CR>', {noremap=true, silent=true})
