@@ -78,3 +78,7 @@ cmd 'colorscheme catppuccin'
 
 cmd("set noswapfile")
 cmd("filetype plugin on")
+
+-- Fix background in diagnostics and floating by using catppuccin1 as BG
+vim.cmd [[ highlight DiagnosticError guibg=#1E1E28 ]]
+vim.cmd [[ highlight NormalFloat guibg=#1E1E28 ]]
