@@ -200,6 +200,13 @@ return require('packer').startup {
 			end
 		}
 
+		use {
+			"AckslD/nvim-neoclip.lua",
+			config = function()
+				require("neoclip").setup()
+			end,
+		}
+
 		use { 'ray-x/lsp_signature.nvim' }
 		use { 'rcarriga/nvim-notify' }
 		use {

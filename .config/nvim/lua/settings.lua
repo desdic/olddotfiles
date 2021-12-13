@@ -65,6 +65,9 @@ opt.termguicolors = true
 -- Remove artifacts/redraw issue from indent-blankline.nvim
 vim.wo.colorcolumn = "99999"
 
+-- Copy to clipboard
+vim.opt.clipboard = 'unnamedplus'
+
 -- Disable healthcheck
 global.loaded_perl_provider=0
 -- global.loaded_python_provider=0
@@ -80,5 +83,6 @@ cmd("set noswapfile")
 cmd("filetype plugin on")
 
 -- Fix background in diagnostics and floating by using catppuccin1 as BG
-vim.cmd [[ highlight DiagnosticError guibg=#1E1E28 ]]
-vim.cmd [[ highlight NormalFloat guibg=#1E1E28 ]]
+-- Would like to use #1E1E28 but since LspInfo doesn't have borders so I have chosen #1B1923
+vim.cmd [[ highlight DiagnosticError guibg=#1B1923 ]]
+vim.cmd [[ highlight NormalFloat guibg=#1B1923 ]]
