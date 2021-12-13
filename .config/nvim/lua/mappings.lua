@@ -78,10 +78,8 @@ api.nvim_set_keymap('n', 'gr',' <cmd>lua vim.lsp.buf.references()<CR>', {})
 api.nvim_set_keymap('n', 'gi',' <cmd>lua vim.lsp.buf.implementation()<CR>', {})
 api.nvim_set_keymap('n', 'K',' <cmd>lua vim.lsp.buf.hover()<CR>', {})
 
--- TODO see if float can be specified elsewhere
-Border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
-api.nvim_set_keymap('n', '<C-k>','<cmd>lua vim.diagnostic.goto_prev({float = {border = Border }})<CR>', {noremap=true, silent=true})
-api.nvim_set_keymap('n', '<C-j>','<cmd>lua vim.diagnostic.goto_next({float = {border = Border }})<CR>', {noremap=true, silent=true})
+api.nvim_set_keymap('n', '<C-k>','<cmd>lua vim.diagnostic.goto_prev({float = {border = O.border }})<CR>', {noremap=true, silent=true})
+api.nvim_set_keymap('n', '<C-j>','<cmd>lua vim.diagnostic.goto_next({float = {border = O.border }})<CR>', {noremap=true, silent=true})
 
 api.nvim_set_keymap('n', '<Leader>gr',   '<cmd>lua vim.lsp.buf.rename()<CR>', {noremap=true, silent=true})
 api.nvim_set_keymap('n', '<Leader>ca',   '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap=true})
