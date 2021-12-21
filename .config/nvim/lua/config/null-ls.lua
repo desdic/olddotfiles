@@ -9,9 +9,7 @@ function M.config()
 		filetypes = { "go" },
 		generator = h.formatter_factory {
 			command = "gci",
-			args = {
-				"$FILENAME",
-			},
+			args = { "$FILENAME" },
 			to_stdin = false,
 		}
 	}
@@ -33,11 +31,23 @@ function M.config()
 					"--disable", "lll",
 					"--out-format=json",
 					"$DIRNAME",
-					"--path-prefix",
-					"$ROOT",
+					"--path-prefix", "$ROOT",
 				}
 			}),
-			null_ls.builtins.formatting.rubocop,
+			null_ls.builtins.formatting.rubocop.with({
+				args = {
+					"--auto-correct",
+					"-f",
+					"-c", "~/.work-rubocop.yml",
+					"quiet",
+					"--stderr",
+					"--stdin",
+					"$FILENAME",
+				},
+			}),
+			null_ls.builtins.diagnostics.rubocop.with({
+				args = { "-c", "~/.work-rubocop.yml", "-f", "json", "--stdin", "$FILENAME" },
+			}),
 		},
 	})
 end
