@@ -1,4 +1,4 @@
-require('utils')
+require("utils")
 local cmd = vim.cmd
 
 -- don't continue comments and reload file on external change
@@ -146,8 +146,6 @@ augroup _go
 	autocmd FileType go set tabstop=4
 	autocmd FileType go set softtabstop=4
 	autocmd FileType go set shiftwidth=4
-	autocmd BufWritePre *.go lua goimports(1000)
-	autocmd BufWritePost *.go FormatWrite
 augroup END 
 ]])
 
@@ -158,9 +156,9 @@ augroup _lua
 	autocmd FileType lua set tabstop=4
 	autocmd FileType lua set softtabstop=4
 	autocmd FileType lua set shiftwidth=4
-	autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 1000)
 augroup END 
 ]])
+	-- autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 1000)
 
 cmd([[
 augroup _ruby
@@ -180,4 +178,4 @@ augroup END
 ]])
 
 -- Highlight on yank
-cmd 'au TextYankPost * silent! lua vim.highlight.on_yank {on_visual = false, higroup="IncSearch", timeout=200}'
+cmd('au TextYankPost * silent! lua vim.highlight.on_yank {on_visual = false, higroup="IncSearch", timeout=200}')

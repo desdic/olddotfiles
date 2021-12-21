@@ -60,7 +60,9 @@ return require('packer').startup {
 						enable = true,
 						cursorline = true,
 						signcolumn = true,
+						number = false,
 						hybridnumber = true,
+						absolutenumber_unfocussed = true,
 						excluded_filetypes = {"toggleterm"},
 						-- excluded_buftypes = {"help", "popup"}
 					}
@@ -147,7 +149,11 @@ return require('packer').startup {
 
 		use {'williamboman/nvim-lsp-installer'}
 
-		use {'mhartington/formatter.nvim'}
+		use {'jose-elias-alvarez/null-ls.nvim',
+			requires = {
+				'nvim-lua/plenary.nvim',
+			},
+		}
 
 		use {
 			'onsails/lspkind-nvim',

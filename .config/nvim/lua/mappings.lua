@@ -1,8 +1,15 @@
 local api = vim.api
 -- local cmd = vim.cmd
 
--- Vertical split
-api.nvim_set_keymap('n', '<C-\\>', ':vs<CR>', {})
+-- Easy navigation
+-- api.nvim_set_keymap('n', 'wh',' <C-W>h', {})
+-- api.nvim_set_keymap('n', 'wj',' <C-W>j', {})
+-- api.nvim_set_keymap('n', 'wk',' <C-W>k', {})
+-- api.nvim_set_keymap('n', 'wl',' <C-W>l', {})
+
+api.nvim_set_keymap('n', 'fn',']m', {})
+api.nvim_set_keymap('n', 'fp','[m', {})
+
 
 api.nvim_set_keymap('n', '<C-p>', ':BufferLineCyclePrev<CR>', {})
 api.nvim_set_keymap('n', '<C-n>', ':BufferLineCycleNext<CR>', {})
@@ -70,7 +77,6 @@ api.nvim_set_keymap('n', '<Leader>pack', ':PackerSync<CR>', {noremap=true})
 api.nvim_set_keymap('n', '<Leader>n',':NvimTreeToggle<CR>', {noremap=true})
 api.nvim_set_keymap('n', '<Leader>r',':NvimTreeRefresh<CR>', {noremap=true})
 -- }}
-
 
 api.nvim_set_keymap('n', 'gd',' <cmd>lua vim.lsp.buf.definition()<CR>', {})
 api.nvim_set_keymap('n', 'gD',' <cmd>lua vim.lsp.buf.declaration()<CR>', {})

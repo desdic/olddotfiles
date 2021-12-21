@@ -44,7 +44,7 @@ O = {
 		debounce_text_changes = 150,
 	},
 	golang = {
-		diagnostics = {virtual_text = false, signs = true, underline = false},
+		diagnostics = {virtual_text = true, signs = true, underline = false},
 		autoformat = true,
 		debounce_text_changes = 150,
 	},
