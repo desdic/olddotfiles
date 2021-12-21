@@ -29,6 +29,7 @@ function M.config()
 					"run",
 					"--enable-all",
 					"--disable", "lll",
+					"--disable", "godot",
 					"--out-format=json",
 					"$DIRNAME",
 					"--path-prefix", "$ROOT",
