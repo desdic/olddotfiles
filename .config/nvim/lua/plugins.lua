@@ -1,26 +1,51 @@
-local packer_path = vim.fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
-if vim.fn.empty(vim.fn.glob(packer_path)) then
-	vim.fn.system {
+
+local fn = vim.fn
+local packer_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
+
+if fn.empty(fn.glob(packer_path)) > 0 then
+	PACKER_BOOTSTRAP = vim.fn.system {
 		'git',
 		'clone',
+		'--depth',
+		'1',
 		'https://github.com/wbthomason/packer.nvim',
 		packer_path
 	}
-	vim.cmd('packadd packer.nvim')
+	print('Installing packer')
 end
 
-return require('packer').startup {
+vim.cmd('packadd packer.nvim')
+
+-- if packer is not loaded lets return
+local ok, packer = pcall(require, 'packer')
+if not ok then
+	vim.notify('Unable to require packer')
+	return
+end
+
+
+-- Have packer use a popup window
+packer.init {
+	display = {
+		open_fn = function()
+			return require('packer.util').float { border = "rounded" }
+		end,
+	},
+}
+
+return packer.startup {
 	function(use)
 		-- speed up filetype detection
 		use {'nathom/filetype.nvim'}
 
 		use { 'luukvbaal/stabilize.nvim',
 			config = function()
-				require("stabilize").setup()
+				require('stabilize').setup()
 			end
 		}
 
 		use {'wbthomason/packer.nvim', opt = true}
+		use {'nvim-lua/popup.nvim'}
 
 		use {'p00f/nvim-ts-rainbow'}
 
@@ -44,7 +69,9 @@ return require('packer').startup {
 		use {'rafamadriz/friendly-snippets'}
 
 		use {'gpanders/editorconfig.nvim'}
-		use 'Vimjas/vim-python-pep8-indent'
+		use {'Vimjas/vim-python-pep8-indent',
+			ft = {'python'},
+		}
 
 		use {
 			'numToStr/Comment.nvim',
@@ -53,9 +80,9 @@ return require('packer').startup {
 			end
 		}
 
-		use { "beauwilliams/focus.nvim",
+		use { 'beauwilliams/focus.nvim',
 			config = function()
-				require("focus").setup(
+				require('focus').setup(
 					{
 						enable = true,
 						cursorline = true,
@@ -63,8 +90,8 @@ return require('packer').startup {
 						number = false,
 						hybridnumber = true,
 						absolutenumber_unfocussed = true,
-						excluded_filetypes = {"toggleterm"},
-						-- excluded_buftypes = {"help", "popup"}
+						excluded_filetypes = {'toggleterm'},
+						-- excluded_buftypes = {'help', 'popup'}
 					}
 				)
 			end
@@ -73,34 +100,34 @@ return require('packer').startup {
 		use {'christianchiarulli/nvcode-color-schemes.vim'}
 		use {'catppuccin/nvim',
 			config = function()
-				local catppuccin = require("catppuccin")
+				local catppuccin = require('catppuccin')
 
 				-- configure it
 				catppuccin.setup({
 					transparent_background = false,
 					term_colors = false,
 					styles = {
-						comments = "italic",
-						functions = "italic",
-						keywords = "italic",
-						strings = "NONE",
-						variables = "NONE",
+						comments = 'italic',
+						functions = 'italic',
+						keywords = 'italic',
+						strings = 'NONE',
+						variables = 'NONE',
 					},
 					integrations = {
 						treesitter = true,
 						native_lsp = {
 							enabled = true,
 							virtual_text = {
-								errors = "italic",
-								hints = "italic",
-								warnings = "italic",
-								information = "italic",
+								errors = 'italic',
+								hints = 'italic',
+								warnings = 'italic',
+								information = 'italic',
 							},
 							underlines = {
-								errors = "underline",
-								hints = "underline",
-								warnings = "underline",
-								information = "underline",
+								errors = 'underline',
+								hints = 'underline',
+								warnings = 'underline',
+								information = 'underline',
 							},
 						},
 						lsp_saga = false,
@@ -153,6 +180,11 @@ return require('packer').startup {
 			requires = {
 				'nvim-lua/plenary.nvim',
 			},
+			run = {
+				'go install github.com/daixiang0/gci@latest',
+				'go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest',
+				'go install golang.org/x/tools/cmd/goimports@latest'
+			}
 		}
 
 		use {
@@ -199,7 +231,6 @@ return require('packer').startup {
 				'nvim-lua/plenary.nvim',
 				'nvim-telescope/telescope-fzy-native.nvim',
 				'nvim-telescope/telescope-media-files.nvim',
-				-- 'nvim-telescope/telescope-packer.nvim'  -- currently breaking packer
 			},
 			config = function()
 				require('config.telescope')
@@ -207,9 +238,9 @@ return require('packer').startup {
 		}
 
 		use {
-			"AckslD/nvim-neoclip.lua",
+			'AckslD/nvim-neoclip.lua',
 			config = function()
-				require("neoclip").setup()
+				require('neoclip').setup()
 			end,
 		}
 
@@ -263,12 +294,12 @@ return require('packer').startup {
 							with_text = true,
 							symbol_map = i.symbol_map,
 							menu = {
-								buffer = "[buf]",
-								nvim_lsp = "[LSP]",
-								nvim_lua = "[api]",
-								path = "[path]",
-								calc = "[calc]",
-								vsnip = "[vsnip]",
+								buffer = '[buf]',
+								nvim_lsp = '[LSP]',
+								nvim_lua = '[api]',
+								path = '[path]',
+								calc = '[calc]',
+								vsnip = '[vsnip]',
 							}
 						}
 					},
@@ -313,10 +344,9 @@ return require('packer').startup {
 			'windwp/nvim-autopairs',
 			after = 'nvim-cmp',
 			config = function()
-				require('nvim-autopairs').setup ({ map_cr = true})
-				local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-				local cmp = require('cmp')
-				cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
+				require('nvim-autopairs').setup ({
+					disable_filetype = { "TelescopePrompt" }
+				})
 			end
 		}
 	end,

@@ -1,6 +1,14 @@
 require("utils")
 local cmd = vim.cmd
 
+-- reload/rebuild after saving plugins.lua
+cmd([[
+augroup pack_user_config
+	autocmd!
+	autocmd BufWritePost plugins.lua source <afile> | PackerSync
+augroup END
+]])
+
 -- don't continue comments and reload file on external change
 -- don't create undo for files located in /boot or /mnt and turn off shada
 -- don't like to reload editorconfig since its already loaded but for some reason it doesn't work without it
