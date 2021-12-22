@@ -1,5 +1,39 @@
 require("config.null-ls").config()
 
+local i = require('config.icons')
+local signs = {
+	{ name = "DiagnosticSignError", text = i.diag.error },
+	{ name = "DiagnosticSignWarn", text = i.diag.warn },
+	{ name = "DiagnosticSignHint", text = i.diag.hint },
+	{ name = "DiagnosticSignInfo", text = i.diag.info },
+}
+
+for _, sign in ipairs(signs) do
+	vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+end
+
+local config = {
+	-- disable virtual text
+	virtual_text = false,
+	-- show signs
+	signs = {
+		active = signs,
+	},
+	update_in_insert = true,
+	underline = true,
+	severity_sort = true,
+	float = {
+		focusable = false,
+		style = "minimal",
+		border = "rounded",
+		source = "always",
+		header = "",
+		prefix = "",
+	},
+}
+
+vim.diagnostic.config(config)
+
 -- Set Default Prefix.
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -11,7 +45,7 @@ vim.lsp.handlers["textDocument/hover"] =
 	vim.lsp.with(
 		vim.lsp.handlers.hover,
 		{
-			border = "single",
+			border = "rounded",
 		}
 	)
 
@@ -19,27 +53,9 @@ vim.lsp.handlers["textDocument/signatureHelp"] =
 	vim.lsp.with(
 		vim.lsp.handlers.signature_help,
 		{
-			border = "single"
+			border = "rounded"
 		}
 	)
-
-local i = require('config.icons')
-vim.fn.sign_define(
-	"DiagnosticSignError",
-	{texthl = "DiagnosticSignError", text = i.diag.error, numhl = "DiagnosticSignError"}
-)
-vim.fn.sign_define(
-	"DiagnosticSignWarn",
-	{texthl = "DiagnosticSignWarn", text = i.diag.warn, numhl = "DiagnosticSignWarn"}
-)
-vim.fn.sign_define(
-	"DiagnosticSignHint",
-	{texthl = "DiagnosticSignHint", text = i.diag.hint, numhl = "DiagnosticSignHint"}
-)
-vim.fn.sign_define(
-	"DiagnosticSignInfo",
-	{texthl = "DiagnosticSignInfo", text = i.diag.info, numhl = "DiagnosticSignInfo"}
-)
 
 -- Set Default Prefix.
 -- Note: You can set a prefix per lsp server in the lv-globals.lua file

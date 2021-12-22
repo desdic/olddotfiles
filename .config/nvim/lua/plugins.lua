@@ -335,7 +335,14 @@ return packer.startup {
 						{name = 'vsnip'},
 						{name = 'buffer', keyword_length = 3},
 						{name = 'calc'},
-					}
+					},
+					documentation = {
+						border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+					},
+					experimental = {
+						ghost_text = false,
+						native_menu = false,
+					},
 				}
 			end
 		}
