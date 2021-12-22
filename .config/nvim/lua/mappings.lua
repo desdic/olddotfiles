@@ -2,14 +2,13 @@ local api = vim.api
 -- local cmd = vim.cmd
 
 -- Easy navigation
--- api.nvim_set_keymap('n', 'wh',' <C-W>h', {})
--- api.nvim_set_keymap('n', 'wj',' <C-W>j', {})
--- api.nvim_set_keymap('n', 'wk',' <C-W>k', {})
--- api.nvim_set_keymap('n', 'wl',' <C-W>l', {})
+api.nvim_set_keymap('n', '<C-h>',' <C-W>h', {})
+api.nvim_set_keymap('n', '<C-j>',' <C-W>j', {})
+api.nvim_set_keymap('n', '<C-k>',' <C-W>k', {})
+api.nvim_set_keymap('n', '<C-l>',' <C-W>l', {})
 
 api.nvim_set_keymap('n', 'fn',']m', {})
 api.nvim_set_keymap('n', 'fp','[m', {})
-
 
 api.nvim_set_keymap('n', '<C-p>', ':BufferLineCyclePrev<CR>', {})
 api.nvim_set_keymap('n', '<C-n>', ':BufferLineCycleNext<CR>', {})
@@ -84,8 +83,8 @@ api.nvim_set_keymap('n', 'gr',' <cmd>lua vim.lsp.buf.references()<CR>', {})
 api.nvim_set_keymap('n', 'gi',' <cmd>lua vim.lsp.buf.implementation()<CR>', {})
 api.nvim_set_keymap('n', 'K',' <cmd>lua vim.lsp.buf.hover()<CR>', {})
 
-api.nvim_set_keymap('n', '<C-k>','<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', {noremap=true, silent=true})
-api.nvim_set_keymap('n', '<C-j>','<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', {noremap=true, silent=true})
+api.nvim_set_keymap('n', '<S-Tab>','<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', {noremap=true, silent=true})
+api.nvim_set_keymap('n', '<Tab>','<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', {noremap=true, silent=true})
 api.nvim_set_keymap('n', 'gl','<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>', {noremap=true, silent=true})
 
 api.nvim_set_keymap('n', '<Leader>gr',   '<cmd>lua vim.lsp.buf.rename()<CR>', {noremap=true, silent=true})
