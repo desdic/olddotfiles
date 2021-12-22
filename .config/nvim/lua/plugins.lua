@@ -38,12 +38,11 @@ return packer.startup {
 		-- speed up filetype detection
 		use {'nathom/filetype.nvim'}
 
-		use { 'luukvbaal/stabilize.nvim'}
+		use {'luukvbaal/stabilize.nvim'}
 		use {'wbthomason/packer.nvim', opt = true}
 		use {'nvim-lua/popup.nvim'}
 		use {'p00f/nvim-ts-rainbow'}
-		use {
-			'nvim-treesitter/nvim-treesitter',
+		use {'nvim-treesitter/nvim-treesitter',
 			requires = {
 				'nvim-treesitter/nvim-treesitter-refactor',
 				'nvim-treesitter/nvim-treesitter-textobjects',
@@ -59,8 +58,8 @@ return packer.startup {
 		use {'Vimjas/vim-python-pep8-indent',
 			ft = {'python'},
 		}
-		use { 'numToStr/Comment.nvim'}
-		use { 'beauwilliams/focus.nvim'}
+		use {'numToStr/Comment.nvim'}
+		use {'beauwilliams/focus.nvim'}
 		use {'christianchiarulli/nvcode-color-schemes.vim'}
 		use {'catppuccin/nvim'}
 		use {'nvim-lualine/lualine.nvim',
