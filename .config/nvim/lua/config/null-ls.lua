@@ -17,7 +17,6 @@ function M.config()
 	require("null-ls").setup({
 		-- debug = true,
 		sources = {
-			null_ls.builtins.completion.spell,
 			null_ls.builtins.formatting.stylua,
 			null_ls.builtins.formatting.lua_format,
 			gci_format,
