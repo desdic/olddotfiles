@@ -30,6 +30,7 @@ option.showmode = false -- We don't need to see things like -- INSERT -- anymore
 option.ruler = true -- Make search act like search in modern browsers
 option.incsearch = true
 option.hlsearch = false -- No search highlight
+opt.swapfile = false -- Turn off swap
 option.backup = false -- Don't use swap or backup
 option.writebackup = false
 
@@ -52,7 +53,6 @@ window_option.relativenumber = true -- Show relative numbers
 window_option.signcolumn = "yes" -- Make room for gitsigns + numbers
 
 window_option.listchars = 'tab:▸ ,trail:·,nbsp:_,eol:↴' -- Hidden chars
-
 window_option.list = true -- Show hidden chars
 
 buffer_option.tabstop = indent -- Default set to spaces
@@ -70,15 +70,10 @@ vim.wo.colorcolumn = "99999"
 global.loaded_perl_provider=0
 -- global.loaded_python_provider=0
 
-
-cmd 'syntax enable'
 -- option.background = 'dark'
 option.termguicolors = true
 window_option.cursorline = true
 cmd 'colorscheme catppuccin'
-
-cmd("set noswapfile")
-cmd("filetype plugin on")
 
 -- Fix background in diagnostics and floating by using catppuccin1 as BG
 -- Would like to use #1E1E28 but since LspInfo doesn't have borders so I have chosen #1B1923
