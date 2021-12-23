@@ -10,12 +10,12 @@ function M.config()
         generator = h.formatter_factory({
             command = "gci",
             args = {"-w", "$FILENAME"},
-			to_temp_file = true
+            to_temp_file = true
         })
     }
 
     require("null-ls").setup({
-        debug = true,
+        -- debug = true,
         on_attach = function(client)
             if client.resolved_capabilities.document_formatting then
                 vim.cmd("autocmd BufWritePre <buffer> FormatWrite")
@@ -43,8 +43,7 @@ function M.config()
                     "-c", "~/.work-rubocop.yml", "-f", "json", "--stdin",
                     "$FILENAME"
                 }
-            }),
-			gci_format,
+            }), gci_format
         }
     })
 end
