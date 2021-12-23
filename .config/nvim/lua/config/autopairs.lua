@@ -1,8 +1,9 @@
-local ok, npairs = pcall(require, 'nvim-autopairs')
+local ok, ap = pcall(require, 'nvim-autopairs')
 if not ok then
+	vim.notify("Unable to require nvim-autopairs")
 	return
 end
 
-npairs.setup ({
+ap.setup ({
 	disable_filetype = { "TelescopePrompt" }
 })

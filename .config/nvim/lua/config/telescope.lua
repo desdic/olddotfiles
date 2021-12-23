@@ -1,6 +1,13 @@
+
+local ok, ts = pcall(require, 'telescope')
+if not ok then
+	vim.notify('Unable to require telescope')
+	return
+end
+
 local actions = require('telescope.actions')
 
-require('telescope').setup {
+ts.setup {
 	defaults = {
 		-- set_env = {['COLORTERM'] = 'truecolor'}, -- default = nil,
 

@@ -1,9 +1,11 @@
-local ok, cmp = pcall(require, 'nvim-autopairs')
+local ok, cmp = pcall(require, 'cmp')
 if not ok then
+	vim.notify("Unable to require cmp")
 	return
 end
 
 require('cmp_nvim_lsp').setup()
+-- local cmp = require('cmp')
 local lspkind = require('lspkind')
 local compare = require('cmp.config.compare')
 local i = require('config.icons')
@@ -21,12 +23,12 @@ cmp.setup {
 			with_text = true,
 			symbol_map = i.symbol_map,
 			menu = {
-				buffer = '[buf]',
-				nvim_lsp = '[LSP]',
-				nvim_lua = '[api]',
-				path = '[path]',
-				calc = '[calc]',
-				vsnip = '[vsnip]',
+				buffer = "[buf]",
+				nvim_lsp = "[LSP]",
+				nvim_lua = "[api]",
+				path = "[path]",
+				calc = "[calc]",
+				vsnip = "[vsnip]",
 			}
 		}
 	},
@@ -62,12 +64,6 @@ cmp.setup {
 		{name = 'vsnip'},
 		{name = 'buffer', keyword_length = 3},
 		{name = 'calc'},
-	},
-	documentation = {
-		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-	},
-	experimental = {
-		ghost_text = false,
-		native_menu = false,
-	},
+	}
 }
+

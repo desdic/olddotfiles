@@ -1,5 +1,6 @@
 local ok, catppuccin = pcall(require, 'catppuccin')
 if not ok then
+	vim.notify("Unable to require catppuccin")
 	return
 end
 
