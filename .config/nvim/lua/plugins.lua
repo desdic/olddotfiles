@@ -56,6 +56,9 @@ return packer.startup({
         use({"windwp/nvim-ts-autotag"})
         use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})
 
+        -- clipboard manager
+        use({"AckslD/nvim-neoclip.lua"})
+
         use({"ggandor/lightspeed.nvim"}) -- navigation
         use({"gpanders/editorconfig.nvim"}) -- use editorconfig
         use({"Vimjas/vim-python-pep8-indent"}) -- python indentenation
