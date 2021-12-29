@@ -4,6 +4,20 @@ if not status_ok then
     return
 end
 
+local myservers = {
+    "bashls", "yamlls", "pyright", "efm", "solargraph", "gopls", "dockerls",
+    "clangd", "sumneko_lua", "jsonls"
+}
+
+local lsp_installer_servers = require("nvim-lsp-installer.servers")
+for _, myserver in ipairs(myservers) do
+    local _, requested_server = lsp_installer_servers.get_server(myserver)
+    if not requested_server:is_installed() then
+        -- Queue the server to be installed
+        requested_server:install()
+    end
+end
+
 -- Register a handler that will be called for all installed servers.
 -- Alternatively, you may also register handlers on specific server instances instead (see example below).
 lsp_installer.on_server_ready(function(server)
@@ -62,12 +76,3 @@ lsp_installer.on_server_ready(function(server)
     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
     server:setup(opts)
 end)
-
--- local myservers = {'bashls', 'yamlls', 'pyright', 'efm', 'solargraph', 'gopls', 'dockerls', 'clangd', 'sumneko_lua', 'jsonls'}
--- for _, myserver in ipairs(myservers) do
--- 	local _, requested_server = lsp_installer_servers.get_server(myserver)
--- 	if not requested_server:is_installed() then
--- 		-- Queue the server to be installed
--- 		requested_server:install()
--- 	end
--- end

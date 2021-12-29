@@ -1,8 +1,17 @@
 local M = {}
 
 function M.config()
-    local null_ls = require("null-ls")
-    local h = require("null-ls.helpers")
+    local ok, null_ls = pcall(require, "null-ls")
+    if not ok then
+        vim.notify("Unable to require null-ls")
+        return
+    end
+
+    local ok, h = pcall(require, "null-ls.helpers")
+    if not ok then
+        vim.notify("Unable to require null-ls.helpers")
+        return
+    end
 
     local gci_format = {
         method = null_ls.methods.FORMATTING,
@@ -14,7 +23,7 @@ function M.config()
         })
     }
 
-    require("null-ls").setup({
+    null_ls.setup({
         -- debug = true,
         on_attach = function(client)
             if client.resolved_capabilities.document_formatting then
