@@ -21,7 +21,6 @@ export LESS=-Xr
 export EDITOR="vim"
 if [ -x "$(which nvim)" ]; then
     alias vim="nvim"
-    export EDITOR="nvim"
 fi
 export VISUAL="${EDITOR}"
 export FCEDIT="${EDITOR}"
