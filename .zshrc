@@ -46,14 +46,12 @@ ssh-add -l | grep -q ED25519 || ssh-add ~/.ssh/id_rsa_onecom ~/.ssh/id_rsa ~/.ss
 unsetopt share_history
 unsetopt AUTO_CD
 
-function cnodesfzf() {
-  local selected_host=$(~/git/chef-repo/scripts/cnodes|fzf +m --query "$LBUFFER" --prompt="SSH remote > ")
-  if [ -n "$selected_host" ]; then
-    BUFFER="ssh ${selected_host}"
-    zle accept-line
-  fi
-  zle reset-prompt
-}
+if [ -d ~/.config/zsh ]; then
+  for config in ~/.config/zsh/*.zsh
+  do
+    source $config
+  done
+fi
 
 # Keyboard bindings
 bindkey -e
@@ -71,6 +69,9 @@ bindkey "^[[1;5D" backward-word
 zle -N cnodesfzf
 bindkey '^s' cnodesfzf
 
+zle -N wcd
+bindkey '^f' wcd
+
 # Turn ctrl+s off
 setopt no_flow_control
 
@@ -87,12 +88,6 @@ setxkbmap -variant altgr-intl
 
 eval $(starship init zsh)
 
-if [ -d ~/.config/zsh ]; then
-  for config in ~/.config/zsh/*.zsh
-  do
-    source $config
-  done
-fi
 
 eval "$(rbenv init -)"
 
