@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sinks=$(pamixer --list-sink | grep ^[0-9] | awk '{print $1}' | xargs)
+sinks=$(pamixer --list-sink | grep "^[0-9]" | awk '{print $1}' | xargs)
 
 case "$1" in
   "up")
