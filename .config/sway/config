@@ -9,23 +9,14 @@ set $right l
 set $term alacritty
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
-exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 000000'
-
-exec mako
-exec wl-paste -t text -p --watch clipman store --max-items=1
-exec blueman-applet
-
 output * bg ~/Pictures/wallpapers/beautiful_autumn_landscape_4-wallpaper-2560x1440.jpg fill
 
 input * {
     xkb_layout us
+    xkb_options caps:escape
     xkb_variant altgr-intl
-    xkb_options caps:none
-    repeat_delay 200
-    repeat_rate 25
+    repeat_delay 250
+    repeat_rate 45
 }
 
 
@@ -40,13 +31,14 @@ default_border pixel 3
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+    bindsym $mod+BackSpace exec ~/bin/newsession.sh
 
     # Kill focused window
     bindsym $mod+q kill
 
     # Start your launcher
-    # bindsym $mod+d exec $menu
-    bindsym $mod+d exec wofi --show drun
+    bindsym $mod+d exec $menu
+    # bindsym $mod+d exec wofi --show drun
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -111,6 +103,13 @@ default_border pixel 3
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+
+
+    assign [instance="element"]  2
+    assign [app_id="dino"]  2
+    assign [instance="google-chrome"]  3
+    assign [app_id="work"]  4
+    assign [instance="slack"]  8
 #
 # Layout stuff:
 #
@@ -210,3 +209,13 @@ bar {
 }
 
 include /etc/sway/config.d/*
+
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000'
+
+exec mako
+exec systemctl --user start wlr-brightness.service
+exec wl-paste -t text -p --watch clipman store --max-items=1
+exec blueman-applet
