@@ -78,13 +78,15 @@ setopt no_flow_control
 autoload -U select-word-style
 select-word-style bash
 
-xset s on
-xset s 600
-xkbset repeatkeys rate 600 25
-if [ -n "${DISPLAY}" ]; then
-  xkbcomp -w0 -I"$HOME/.xkb" -R"$HOME/.xkb" keymap/custom "$DISPLAY" >/dev/null 2>&1
+if [ "$(loginctl show-session 2 -p Type)" != "Type=wayland" ]; then
+  xset s on
+  xset s 600
+  xkbset repeatkeys rate 600 25
+  if [ -n "${DISPLAY}" ]; then
+    xkbcomp -w0 -I"$HOME/.xkb" -R"$HOME/.xkb" keymap/custom "$DISPLAY" >/dev/null 2>&1
+  fi
+  setxkbmap -variant altgr-intl
 fi
-setxkbmap -variant altgr-intl
 
 eval $(starship init zsh)
 
