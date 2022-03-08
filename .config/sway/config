@@ -11,19 +11,21 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
 output * bg ~/Pictures/wallpapers/beautiful_autumn_landscape_4-wallpaper-2560x1440.jpg fill
 
+
+output eDP-1 scale 1.3
+gaps inner 5
+default_border pixel 3
+
 input * {
     xkb_layout us
-    xkb_options caps:escape
     xkb_variant altgr-intl
     repeat_delay 250
     repeat_rate 45
+    xkb_options caps:escape
 }
 
-
-output eDP-1 scale 1.3
 xwayland enable
-gaps inner 5
-default_border pixel 3
+
 
 ### Key bindings
 #
@@ -190,9 +192,9 @@ bindsym XF86MonBrightnessUp exec "/sbin/gdbus call -e -d de.mherzberg -o /de/mhe
 bindsym XF86MonBrightnessDown exec "/sbin/gdbus call -e -d de.mherzberg -o /de/mherzberg/wlrbrightness -m de.mherzberg.wlrbrightness.decrease 0.1"
 
 # Push to talk in mumble
-bindcode --no-repeat 66 exec gdbus call -e -d net.sourceforge.mumble.mumble -o / -m net.sourceforge.mumble.Mumble.startTalking
-bindcode --no-repeat --release 66 exec gdbus call -e -d net.sourceforge.mumble.mumble -o / -m net.sourceforge.mumble.Mumble.stopTalking
-bindsym $mod+Escape exec gdbus call -e -d net.sourceforge.mumble.mumble -o / -m net.sourceforge.mumble.Mumble.stopTalking
+# bindcode --no-repeat 66 exec gdbus call -e -d net.sourceforge.mumble.mumble -o / -m net.sourceforge.mumble.Mumble.startTalking
+# bindcode --no-repeat --release 66 exec gdbus call -e -d net.sourceforge.mumble.mumble -o / -m net.sourceforge.mumble.Mumble.stopTalking
+# bindsym $mod+Escape exec gdbus call -e -d net.sourceforge.mumble.mumble -o / -m net.sourceforge.mumble.Mumble.stopTalking
 
 bindsym Print exec grim -g "$(slurp)" - | swappy -f -
 
