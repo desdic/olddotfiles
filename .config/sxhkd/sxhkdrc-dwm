@@ -26,17 +26,20 @@ super + shift + p
 	/sbin/xdotool key super+9; \
 	/sbin/spotify
 
-super + {p, bracketleft, bracketright}
+{XF86AudioPlay, XF86AudioPrev, XF86AudioNext}
 	/sbin/playerctl -p spotify {play-pause, previous, next}
-
-super + shift + {Prior, Next}
- 	$HOME/bin/spotifyvolume.sh {up, down}
 
 {XF86AudioRaiseVolume, XF86AudioLowerVolume}
  	$HOME/bin/spotifyvolume.sh {up, down}
 
 super + Print
-	$HOME/bin/screenshot.sh
+	/sbin/import ~/Pictures/screenshots/$(date +%F_%H%M%S_%N).png
 
 super + Escape
 	pkill --signal=USR1 sxhkd
+
+super + p
+	gdbus call -e -d net.sourceforge.mumble.mumble -o / -m net.sourceforge.mumble.Mumble.startTalking
+
+@super + p
+	gdbus call -e -d net.sourceforge.mumble.mumble -o / -m net.sourceforge.mumble.Mumble.stopTalking

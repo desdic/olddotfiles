@@ -10,4 +10,6 @@ xset s 600
 #xkbset bouncekeys 70
 #xkbset repeatkeys rate 400 25
 xkbset repeatkeys rate 600 25
-xkbcomp -w0 -I"$HOME/.xkb" -R"$HOME/.xkb" keymap/custom "$DISPLAY" >/dev/null 2>&1
+#xkbcomp -w0 -I"$HOME/.xkb" -R"$HOME/.xkb" "$DISPLAY" >/dev/null 2>&1
+# xkbcomp -w0 -I"$HOME/.xkb" -R"$HOME/.xkb" keymap/custom "$DISPLAY" >/dev/null 2>&1
+setxkbmap -variant altgr-intl

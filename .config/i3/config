@@ -80,9 +80,6 @@ bindsym $mod+BackSpace exec --no-startup-id ~/bin/newsession.sh
 # kill focused window
 bindsym $mod+q kill
 
-# Set keyboard rate since I loose it after hybernation
-bindsym $mod+Shift+w exec --no-startup-id ~/bin/wallpaper.sh
-
 # start dmenu (a program launcher)
 #bindsym $mod+d exec ~/.config/polybar/scripts/launcher-alt
 bindsym $mod+d exec /sbin/i3-dmenu-desktop
@@ -129,8 +126,8 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 # bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# bindsym $mod+w layout tabbed
+# bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -189,8 +186,8 @@ bindsym XF86AudioPause exec --no-startup-id playerctl -p spotify play-pause
 bindsym $mod+bracketright exec --no-startup-id playerctl -p spotify next
 bindsym $mod+bracketleft exec --no-startup-id playerctl -p spotify previous
 bindsym $mod+p exec --no-startup-id playerctl -p spotify play-pause
-bindsym $mod+Prior exec --no-startup-id ~/.config/polybar/scripts/volume.sh up
-bindsym $mod+Next exec --no-startup-id ~/.config/polybar/scripts/volume.sh down
+bindsym $mod+XF86AudioNext exec --no-startup-id ~/.config/polybar/scripts/volume.sh up
+bindsym $mod+XF86AudioPrev exec --no-startup-id ~/.config/polybar/scripts/volume.sh down
 
 bindsym $mod+Shift+Prior exec --no-startup-id pactl set-sink-input-volume $(pactl list sink-inputs | grep -e 'Sink Input' -e application.name  | tr '\r\n' ' ' | sed 's/\#/\n/g' | egrep '[S|s]potify' | awk '{print $1}') +2%
 bindsym $mod+Shift+Next exec --no-startup-id pactl set-sink-input-volume $(pactl list sink-inputs  | grep -e 'Sink Input' -e application.name  | tr '\r\n' ' ' | sed 's/\#/\n/g' | egrep '[S|s]potify' | awk '{print $1}') -2%
@@ -271,3 +268,4 @@ exec --no-startup-id /sbin/picom --config ~/.config/i3/picom.conf
 exec --no-startup-id /sbin/blueman-applet&
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id /sbin/nitrogen --restore
+exec_always --no-startup-id /sbin/dunst
