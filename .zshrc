@@ -75,6 +75,7 @@ bindkey '^f' wcd
 # Turn ctrl+s off
 setopt no_flow_control
 
+export WORDCHARS=''
 autoload -U select-word-style
 select-word-style bash
 
