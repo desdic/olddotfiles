@@ -79,7 +79,7 @@ export WORDCHARS=''
 autoload -U select-word-style
 select-word-style bash
 
-if [ "$(loginctl show-session 2 -p Type)" != "Type=wayland" ]; then
+if [ "$XDG_SESSION_TYPE" = "x11" ]; then
   xset s on
   xset s 600
   xkbset repeatkeys rate 600 25
