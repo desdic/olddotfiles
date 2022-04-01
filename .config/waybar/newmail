@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 RES=""
-COUNT=0
+COUNTER=0
 
 # Check all accounts/mailboxes for new mail. Notify if there is new content.
 for account in "$HOME/.local/share/mail/"*
