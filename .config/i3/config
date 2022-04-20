@@ -86,6 +86,7 @@ bindsym $mod+d exec /sbin/i3-dmenu-desktop
 bindsym $mod+Shift+p exec --no-startup-id /sbin/bwmenu
 bindsym $mod+g exec /sbin/google-chrome-stable; workspace 3
 bindsym $mod+s exec /sbin/spotify
+bindsym Print exec ~/bin/screenshot.sh
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
