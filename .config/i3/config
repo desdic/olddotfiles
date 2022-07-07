@@ -44,6 +44,7 @@ workspace 10 output $laptop
 
 # Make sure pinentry floats
 for_window [class="Pinentry-gtk-2" instance="pinentry-gtk-2"] floating enable
+for_window [class="Blender" instance="Blender"] floating enable
 for_window [class="Spotify"] move container to workspace $workspace10, workspace --no-auto-back-and-forth $workspace10
 for_window [class="VirtualBox Machine"] move container to workspace $workspace9, workspace --no-auto-back-and-forth $workspace9
 
