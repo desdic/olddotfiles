@@ -1,6 +1,6 @@
 export GOPATH=${HOME}/go
 
-PATH="${HOME}/bin:${HOME}/git/scripts:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/opt/chefdk/embedded/bin/"
+PATH="${HOME}/bin:${HOME}/git/scripts:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/opt/cinc-workstation/embedded/bin/"
 for p in /usr/bin/vendor_perl /usr/bin/core_perl ${GOPATH}/bin ${HOME}/.gem/ruby/2.7.0/bin ${HOME}/.gem/ruby/2.6.0/bin ${HOME}/.rvm/bin
 do
   if [ -d "${p}" ]; then
