@@ -1,7 +1,7 @@
 export GOPATH=${HOME}/go
 
 PATH="${HOME}/bin:${HOME}/git/scripts:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/opt/cinc-workstation/embedded/bin/"
-for p in /usr/bin/vendor_perl /usr/bin/core_perl ${GOPATH}/bin ${HOME}/.gem/ruby/2.7.0/bin ${HOME}/.gem/ruby/2.6.0/bin ${HOME}/.rvm/bin
+for p in /usr/bin/vendor_perl /usr/bin/core_perl ${GOPATH}/bin
 do
   if [ -d "${p}" ]; then
     PATH="${PATH}:${p}"
@@ -90,8 +90,5 @@ if [ "$XDG_SESSION_TYPE" = "x11" ]; then
 fi
 
 eval $(starship init zsh)
-
-
-eval "$(rbenv init -)"
 
 alias luamake=/home/kgn/.local/share/nvim/site/pack/packer/start/lua-language-server/3rd/luamake/luamake
