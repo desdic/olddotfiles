@@ -59,14 +59,15 @@ for_window [class="^Pidgin$" window_role="^conversation$"] resize grow width 0 p
 
 # Program Workspaces (xprop)
 assign [class="Mumble"]                        $workspace1
-assign [class="Dino"]                          $workspace2
-assign [class="Slack"]                         $workspace8
-assign [class="Google-chrome"]                 $workspace3
+assign [class="Dino"]                          $workspace1
+assign [instance="mail"]                       $workspace2
+assign [class="Slack"]                         $workspace3
+assign [class="Google-chrome"]                 $workspace9
 #assign [class="Brave-browser"]                 $workspace3
 # assign [class="Firefox"]                       $workspace3
-assign [instance="work"]                       $workspace4
+assign [instance="work"]                       $workspace8
 # assign [class="libreoffice-startcenter"]       $workspace8
-assign [class="Code"]                          $workspace9
+#assign [class="Code"]                          $workspace9
 
 # Remove borders
 new_window pixel 1
@@ -83,6 +84,7 @@ floating_modifier $mod
 bindsym $mod+Return exec --no-startup-id /sbin/alacritty
 bindsym $mod+Shift+Return exec --no-startup-id /sbin/xterm
 bindsym $mod+BackSpace exec --no-startup-id ~/bin/newsession.sh
+bindsym $mod+b exec --no-startup-id ~/bin/startmail.sh
 
 # kill focused window
 bindsym $mod+q kill
@@ -91,7 +93,7 @@ bindsym $mod+q kill
 #bindsym $mod+d exec ~/.config/polybar/scripts/launcher-alt
 bindsym $mod+d exec /sbin/i3-dmenu-desktop
 bindsym $mod+Shift+p exec --no-startup-id /sbin/bwmenu
-bindsym $mod+g exec /sbin/google-chrome-stable; workspace 3
+bindsym $mod+g exec /sbin/google-chrome-stable; workspace 9
 bindsym $mod+s exec /sbin/spotify
 bindsym Print exec ~/bin/screenshot.sh
 
@@ -143,6 +145,7 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
+# bindsym $mod+l workspace next
 bindsym $mod+semicolon workspace next
 
 # focus the parent container
