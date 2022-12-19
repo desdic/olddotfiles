@@ -12,3 +12,4 @@
 __pycache__
 .config/nvim/lua/packer_compiled.lua
 .oh-my-zsh/custom
+.config/lazygit/state.yml
