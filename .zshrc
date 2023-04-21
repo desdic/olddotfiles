@@ -18,7 +18,7 @@ function highlight() {
 export BROWSER=google-chrome-stable
 export LESS=-Xr
 
-export EDITOR="vim"
+export EDITOR="nvim"
 if [ -x "$(which nvim)" ]; then
     alias vim="nvim"
 fi
