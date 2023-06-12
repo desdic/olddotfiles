@@ -91,4 +91,6 @@ fi
 
 eval $(starship init zsh)
 
+export GPG_TTY=$(tty)
+
 alias luamake=/home/kgn/.local/share/nvim/site/pack/packer/start/lua-language-server/3rd/luamake/luamake
