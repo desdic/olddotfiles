@@ -49,7 +49,12 @@ window#waybar {
   color: #268bd2;
 }
 #workspaces button.active {
-  color: #268bd2;
+  background: #fab387;
+  color: #000000;
+}
+#workspaces button.active:hover {
+  background: #ffb387;
+  color: #000000;
 }
 #workspaces button:hover {
   box-shadow: inherit;
@@ -58,11 +63,12 @@ window#waybar {
 #workspaces button:hover {
   background: #1a1a1a;
   border: #1a1a1a;
-  padding: 0 3px;
+  /* padding: 0 3px; */
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+    /* background-color: #eb4d4b; */
+    background-color: #f38ba8;
 }
 
 #idle_inhibitor.activated {
