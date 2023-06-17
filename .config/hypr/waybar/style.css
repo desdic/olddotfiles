@@ -72,39 +72,43 @@ window#waybar {
 }
 
 #idle_inhibitor.activated {
-  color: #d22648;
+  color: #f38ba8;
 }
 
 #idle_inhibitor.deactivated {
-  color: #7c26d2;
+  color: #cba6f7;
 }
 
 /* #custom-nowplaying {
   font-size: 15px;
 } */
 
+#custom-nowplaying {
+  color: #89b4fa;
+}
+
 #custom-newmail {
-  color: #859900;
+  color: #fab387;
 }
 
 #clock.4 {
-  color: #26ccd2;
+  color: #a6e3a1;
 }
 
 #pulseaudio {
-  color: #268bd2;
+  color: #89b4fa;
 }
 #memory {
-  color: #2aa198;
+  color: #89dceb;
 }
 #cpu {
-  color: #6c71c4;
+  color: #cba6f7;
 }
 #battery {
   color: #859900;
 }
 #disk {
-  color: #b58900;
+  color: #fab387;
 }
 
 #clock.4,
