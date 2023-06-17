@@ -92,5 +92,6 @@ fi
 eval $(starship init zsh)
 
 export GPG_TTY=$(tty)
+export NODE_OPTIONS=--dns-result-order=ipv4first
 
 alias luamake=/home/kgn/.local/share/nvim/site/pack/packer/start/lua-language-server/3rd/luamake/luamake
